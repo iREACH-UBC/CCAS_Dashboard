@@ -6,8 +6,6 @@ import os
 import pytz
 import subprocess
 
-sensor_id = "2035"
-
 # Define PST time zone
 pst_tz = pytz.timezone("America/Los_Angeles")
 
@@ -38,6 +36,10 @@ with open(csv_filename, mode='w', newline='') as csv_file:
     writer.writerows([])  # Empty file for testing
 
 print("✅ Data file saved (always overwrites).")
+
+# ✅ Set Git user identity
+subprocess.run(["git", "config", "--global", "user.name", "github-actions[bot]"], check=True)
+subprocess.run(["git", "config", "--global", "user.email", "github-actions@github.com"], check=True)
 
 # ✅ Ensure Git recognizes the file
 print("🚀 Forcing Git commit and push...")
