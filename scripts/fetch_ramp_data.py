@@ -6,6 +6,8 @@ import os
 import pytz
 import subprocess
 
+sensor_id = "2035"
+
 # Define PST time zone
 pst_tz = pytz.timezone("America/Los_Angeles")
 
