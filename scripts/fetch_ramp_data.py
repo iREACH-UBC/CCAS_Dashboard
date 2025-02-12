@@ -12,7 +12,7 @@ sensor_id = "2019"
 
 # Dynamically calculate the past hour
 end_date = datetime.utcnow()
-start_date = end_date - timedelta(hours=24)
+start_date = end_date - timedelta(hours=12)
 
 # Format for filenames
 start_str = start_date.strftime('%Y-%m-%d-%H')
