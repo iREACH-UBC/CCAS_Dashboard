@@ -8,24 +8,21 @@ import pytz
 # -------------------------------
 # CONFIGURATION
 # -------------------------------
-# List of sensor IDs (you can add more sensor IDs here)
-sensor_ids = ["2035"]  
-
-# Base URL for RAMP data
+sensor_ids = ["2035"]  # List of sensor IDs
 base_url = "http://18.222.146.48/RAMP/v1/raw"
+# (For each sensor, data is at: base_url/<sensor_id>/data)
 
 # -------------------------------
 # TIME RANGE: Past 6 hours in PST/PDT
 # -------------------------------
 pst_tz = pytz.timezone("America/Los_Angeles")
 current_time_pst = datetime.now(timezone.utc).astimezone(pst_tz)
-end_date = current_time_pst  # Current time in PST
-start_date = end_date - timedelta(hours=6)  # Six hours before the current time
-
+end_date = current_time_pst
+start_date = end_date - timedelta(hours=6)
 print(f"📡 Fetching data from {start_date.strftime('%Y-%m-%d %H:%M %Z')} to {end_date.strftime('%Y-%m-%d %H:%M %Z')}")
 
 # -------------------------------
-# OUTPUT DIRECTORY: Use a relative path ("data") within the repository
+# OUTPUT DIRECTORY: Relative path "data"
 # -------------------------------
 output_dir = "data"
 os.makedirs(output_dir, exist_ok=True)
@@ -33,7 +30,7 @@ os.makedirs(output_dir, exist_ok=True)
 def parse_file_datetime(file_name):
     """
     Expects file names like 'YYYY-MM-DD-HH-XXXX.txt'
-    Uses the first 4 tokens (YYYY, MM, DD, HH) to build the datetime.
+    Uses the first 4 tokens to build the datetime.
     """
     parts = file_name.split('-')
     if len(parts) < 4:
@@ -66,7 +63,7 @@ for sensor_id in sensor_ids:
         try:
             file_dt = parse_file_datetime(file_name)
         except Exception:
-            continue  # Skip files that don't match expected format
+            continue  # Skip files not matching expected format
 
         if start_date <= file_dt <= end_date:
             print(f"📂 Downloading file: {file_name} (date: {file_dt.strftime('%Y-%m-%d %H:%M %Z')})")
@@ -76,10 +73,9 @@ for sensor_id in sensor_ids:
                 lines = file_response.text.splitlines()
                 if not lines:
                     continue
-                # Use the first file encountered to set the header (assumes header is every other token)
                 if header is None:
                     tokens = lines[0].split(',')
-                    header = tokens[::2]
+                    header = tokens[::2]  # Assume header keys are in even positions
                 for line in lines:
                     tokens = line.split(',')
                     if len(tokens) < 2:
@@ -92,7 +88,7 @@ for sensor_id in sensor_ids:
     if header is None:
         header = ["Field1", "Field2", "Field3"]
 
-    # Construct the output CSV filename (this file will overwrite the previous one each time)
+    # Build CSV filename (overwritten each run)
     csv_filename = os.path.join(
         output_dir,
         f"{sensor_id}_{start_date.strftime('%Y-%m-%d_%H')}_{end_date.strftime('%Y-%m-%d_%H')}.csv"
