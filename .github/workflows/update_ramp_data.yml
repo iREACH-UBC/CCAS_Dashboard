@@ -3,12 +3,11 @@ name: Update RAMP Sensor Data
 on:
   schedule:
     - cron: "0 * * * *"  # Runs every hour
-  workflow_dispatch:  # Allows manual trigger from GitHub
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   fetch-data:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,16 +23,3 @@ jobs:
 
       - name: Run data fetching script
         run: python scripts/fetch_ramp_data.py
-
-      - name: Ensure Git detects changes and push
-        run: |
-          # ✅ Set Git Author Identity
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions@github.com"
-
-          # ✅ Ensure Git recognizes the data folder
-          git add -f data/
-          
-          # ✅ Force a commit (always executes)
-          git commit -m "Forced data update at $(date)" --allow-empty
-          git push --force
