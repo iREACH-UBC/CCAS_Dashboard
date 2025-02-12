@@ -18,14 +18,13 @@ base_url = "http://18.222.146.48/RAMP/v1/raw"
 pst_tz = pytz.timezone("America/Los_Angeles")
 current_time_pst = datetime.now(timezone.utc).astimezone(pst_tz)
 end_date = current_time_pst
-start_date = end_date - timedelta(hours=6)
+start_date = end_date - timedelta(hours=6) # download the last 6 hours of data
 print(f"📡 Fetching data from {start_date.strftime('%Y-%m-%d %H:%M %Z')} to {end_date.strftime('%Y-%m-%d %H:%M %Z')}")
 
 # -------------------------------
 # OUTPUT DIRECTORY: Relative path "data"
 # -------------------------------
 output_dir = "data"
-os.makedirs(output_dir, exist_ok=True)
 
 def parse_file_datetime(file_name):
     """
@@ -88,7 +87,7 @@ for sensor_id in sensor_ids:
     if header is None:
         header = ["Field1", "Field2", "Field3"]
 
-    # Build CSV filename (overwritten each run)
+    # Build CSV filename
     csv_filename = os.path.join(
         output_dir,
         f"{sensor_id}_{start_date.strftime('%Y-%m-%d_%H')}_{end_date.strftime('%Y-%m-%d_%H')}.csv"
@@ -100,4 +99,4 @@ for sensor_id in sensor_ids:
         writer.writerow(header)
         writer.writerows(all_data)
     
-    print(f"✅ Data for sensor {sensor_id} saved successfully (file overwritten each run).")
+    print(f"✅ Data for sensor {sensor_id} saved successfully.")
