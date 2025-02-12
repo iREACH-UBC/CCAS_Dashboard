@@ -8,20 +8,26 @@ import pytz
 # -------------------------------
 # CONFIGURATION
 # -------------------------------
-# List of sensor IDs (you can add more sensor IDs)
+# List of sensor IDs (add more as needed)
 sensor_ids = ["2035"]
 # Base URL for RAMP data
 base_url = "http://18.222.146.48/RAMP/v1/raw"
 
 # -------------------------------
-# TIME RANGE: Past 6 hours in PST/PDT
+# Determine the File Date Based on PST
 # -------------------------------
+# Since filenames are "YYYY-MM-DD-<sensor_id>.txt" (only date, no time),
+# we decide which file to download:
+# - If current PST time is before 6:00 AM, use yesterday's file.
+# - Otherwise, use today's file.
 pst_tz = pytz.timezone("America/Los_Angeles")
 current_time_pst = datetime.now(timezone.utc).astimezone(pst_tz)
-end_date = current_time_pst
-start_date = end_date - timedelta(hours=6)
+if current_time_pst.hour < 6:
+    file_date = current_time_pst.date() - timedelta(days=1)
+else:
+    file_date = current_time_pst.date()
 
-print(f"📡 Fetching data from {start_date.strftime('%Y-%m-%d %H:%M %Z')} to {end_date.strftime('%Y-%m-%d %H:%M %Z')}")
+print(f"📡 Downloading data for date {file_date} (PST) for sensors: {sensor_ids}")
 
 # -------------------------------
 # OUTPUT DIRECTORY: Relative path "data"
@@ -29,84 +35,51 @@ print(f"📡 Fetching data from {start_date.strftime('%Y-%m-%d %H:%M %Z')} to {e
 output_dir = "data"
 os.makedirs(output_dir, exist_ok=True)
 
-def parse_file_datetime(file_name):
+def parse_file_data(text):
     """
-    Expects file names like 'YYYY-MM-DD-HHmm.txt'.
-    For example: '2025-02-12-2035.txt' will be parsed as February 12, 2025, 20:35 PST.
+    Process file content by splitting lines by comma.
+    Assumes the first line contains keys (in even positions) and subsequent lines
+    have the corresponding values (in odd positions).
     """
-    # Remove the file extension
-    base = os.path.splitext(file_name)[0]  # "2025-02-12-2035"
-    parts = base.split('-')
-    if len(parts) != 4:
-        raise ValueError("File name does not match expected format")
-    # Build a string in the format "YYYY-MM-DD-HHmm"
-    dt_str = f"{parts[0]}-{parts[1]}-{parts[2]}-{parts[3]}"
-    dt = datetime.strptime(dt_str, "%Y-%m-%d-%H%M")
-    return pst_tz.localize(dt)
+    lines = text.splitlines()
+    if not lines:
+        return [], []
+    header_tokens = lines[0].split(',')
+    header = header_tokens[::2]
+    data = []
+    for line in lines:
+        tokens = line.split(',')
+        if len(tokens) < 2:
+            continue
+        values = tokens[1::2]
+        data.append(values)
+    return header, data
 
 # -------------------------------
 # PROCESS EACH SENSOR
 # -------------------------------
 for sensor_id in sensor_ids:
+    # Construct the filename: "YYYY-MM-DD-<sensor_id>.txt"
+    file_date_str = file_date.strftime("%Y-%m-%d")
+    filename = f"{file_date_str}-{sensor_id}.txt"
     sensor_url = f"{base_url}/{sensor_id}/data"
-    print(f"\n🔍 Processing sensor {sensor_id} from {sensor_url}")
+    file_url = f"{sensor_url}/{filename}"
     
-    response = requests.get(sensor_url)
+    print(f"\n🔍 Processing sensor {sensor_id}")
+    print(f"Downloading file from: {file_url}")
+    
+    response = requests.get(file_url)
     if response.status_code != 200:
-        print(f"❌ Failed to connect to {sensor_url} (status code: {response.status_code})")
+        print(f"❌ Failed to download {file_url} (status code: {response.status_code})")
         continue
     
-    soup = BeautifulSoup(response.text, "html.parser")
-    data_files = soup.find_all("a", href=True)
-    print(f"Found {len(data_files)} files for sensor {sensor_id}.")
-    
-    all_data = []
-    header = None
-    files_downloaded = 0
+    header, all_data = parse_file_data(response.text)
+    if not all_data:
+        print(f"⚠️ No data found in file {filename}")
+        continue
 
-    for file in data_files:
-        file_name = file['href']
-        try:
-            file_dt = parse_file_datetime(file_name)
-        except Exception as e:
-            # Skip files that don't match expected format
-            continue
-
-        if start_date <= file_dt <= end_date:
-            print(f"📂 Downloading file: {file_name} (date: {file_dt.strftime('%Y-%m-%d %H:%M %Z')})")
-            file_url = f"{sensor_url}/{file_name}"
-            file_response = requests.get(file_url)
-            if file_response.status_code == 200:
-                lines = file_response.text.splitlines()
-                if not lines:
-                    continue
-                # Use the first matching file to set the header (assume keys are in even positions)
-                if header is None:
-                    tokens = lines[0].split(',')
-                    header = tokens[::2]
-                for line in lines:
-                    tokens = line.split(',')
-                    if len(tokens) < 2:
-                        continue
-                    values = tokens[1::2]
-                    all_data.append(values)
-                files_downloaded += 1
-            else:
-                print(f"❌ Failed to download {file_url} (status code: {file_response.status_code})")
-    
-    if files_downloaded == 0:
-        print(f"⚠️ No files found in the past 6 hours for sensor {sensor_id}")
-    else:
-        print(f"✅ Downloaded {files_downloaded} file(s) for sensor {sensor_id}.")
-
-    if header is None:
-        header = ["Field1", "Field2", "Field3"]
-
-    # Construct the CSV filename (it will be overwritten on each run)
-    csv_filename = os.path.join(
-        output_dir,
-        f"{sensor_id}_{start_date.strftime('%Y-%m-%d_%H')}_{end_date.strftime('%Y-%m-%d_%H')}.csv"
-    )
+    # Construct CSV filename (overwritten each run)
+    csv_filename = os.path.join(output_dir, f"{sensor_id}_{file_date_str}.csv")
     print(f"💾 Saving data to {csv_filename}")
     
     with open(csv_filename, mode='w', newline='') as f:
