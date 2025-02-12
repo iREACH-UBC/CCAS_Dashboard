@@ -97,9 +97,14 @@ with open(csv_filename, mode='w', newline='') as csv_file:
 
 print("✅ Data file saved (always overwrites).")
 
-# ✅ Force Git to commit and push every time
+# ✅ Force Git to recognize and push the file, even if unchanged
 print("🚀 Forcing Git commit and push...")
-subprocess.run(["git", "add", csv_filename])
-subprocess.run(["git", "commit", "-m", "Forced data update"])
-subprocess.run(["git", "push", "origin", "main"])
+subprocess.run(["git", "add", csv_filename], check=True)
+
+# Add a forced change to the file to ensure Git recognizes it
+with open(csv_filename, "a") as f:
+    f.write("\n")  # Adds a blank line to force a change
+
+subprocess.run(["git", "commit", "-m", "Forced data update"], check=True)
+subprocess.run(["git", "push", "origin", "main"], check=True)
 print("✅ Git push completed!")
