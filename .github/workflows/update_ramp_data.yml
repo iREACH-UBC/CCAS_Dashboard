@@ -25,14 +25,18 @@ jobs:
       - name: Run data fetching script
         run: python scripts/fetch_ramp_data.py
 
-      - name: Force commit and push
+      - name: Ensure Git detects changes and push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
-          
-          # ✅ Add a dummy change to force a commit
-          echo "Run at $(date)" > data/force_update.txt
-          
+
+          # ✅ Ensure files are not ignored
+          git check-ignore -v data/* || true
+
+          # ✅ Force a change (even if files are identical)
+          echo "Update run at $(date)" >> data/force_update.txt
+
+          # ✅ Add and commit everything
           git add data/
-          git commit -m "Forced data update $(date)"
+          git commit -m "Forced data update at $(date)" || echo "No changes to commit"
           git push --force
