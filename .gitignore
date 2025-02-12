@@ -3,10 +3,6 @@
 .RData
 .Rproj.user/
 
-# Ignore data files
-/data/*
-!data/.gitkeep
-
 # Ignore OS-generated files
 .DS_Store
 Thumbs.db
