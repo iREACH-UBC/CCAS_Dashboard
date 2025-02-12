@@ -13,7 +13,7 @@ current_time_pst = datetime.now(timezone.utc).astimezone(pst_tz)
 
 # Automatically set date range to the past hour in PST
 end_date = current_time_pst  # Current time in PST
-start_date = end_date - timedelta(hours=1)  # One hour before the current time
+start_date = end_date - timedelta(hours=6)  # six hours before the current time
 
 # Print for debugging
 print(f"Fetching data from {start_date.strftime('%Y-%m-%d %H:%M %Z')} to {end_date.strftime('%Y-%m-%d %H:%M %Z')}")
