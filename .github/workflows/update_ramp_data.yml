@@ -3,7 +3,7 @@ name: Update RAMP Sensor Data
 on:
   schedule:
     - cron: "0 * * * *"  # Runs every hour
-  workflow_dispatch:  # Allows manual triggering
+  workflow_dispatch:      # Allows manual triggering
 
 jobs:
   fetch-data:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -24,3 +26,11 @@ jobs:
 
       - name: Run data fetching script
         run: python scripts/fetch_ramp_data.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add data/*.csv
+          git commit -m "Automated data update at $(date)" || echo "No changes to commit"
+          git push origin main
