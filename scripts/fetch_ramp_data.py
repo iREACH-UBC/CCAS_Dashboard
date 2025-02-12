@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta, UTC
+from datetime import datetime, timedelta, timezone
 import csv
 import os
 import pytz  # For timezone handling
@@ -9,11 +9,11 @@ import pytz  # For timezone handling
 pst_tz = pytz.timezone("America/Los_Angeles")
 
 # Get the current time in UTC and convert to PST
-current_time_pst = datetime.now(UTC).astimezone(pst_tz)
+current_time_pst = datetime.now(timezone.utc).astimezone(pst_tz)
 
 # Automatically set date range to the past hour in PST
 end_date = current_time_pst  # Current time in PST
-start_date = end_date - timedelta(hours=12)  # 12 hours before the current time
+start_date = end_date - timedelta(hours=1)  # One hour before the current time
 
 # Print for debugging
 print(f"Fetching data from {start_date.strftime('%Y-%m-%d %H:%M %Z')} to {end_date.strftime('%Y-%m-%d %H:%M %Z')}")
