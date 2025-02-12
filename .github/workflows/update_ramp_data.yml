@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4
+          pip install requests beautifulsoup4 pytz
 
       - name: Run data fetching script
         run: python scripts/fetch_ramp_data.py
