@@ -3,11 +3,12 @@ name: Update RAMP Sensor Data
 on:
   schedule:
     - cron: "0 * * * *"  # Runs every hour
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   fetch-data:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
