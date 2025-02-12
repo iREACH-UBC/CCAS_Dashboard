@@ -13,7 +13,7 @@ current_time_pst = datetime.now(timezone.utc).astimezone(pst_tz)
 
 # Automatically set date range to the past hour in PST
 end_date = current_time_pst  # Current time in PST
-start_date = end_date - timedelta(hours=6)  # six hours before the current time
+start_date = end_date - timedelta(hours=1)  # One hour before the current time
 
 # Print for debugging
 print(f"Fetching data from {start_date.strftime('%Y-%m-%d %H:%M %Z')} to {end_date.strftime('%Y-%m-%d %H:%M %Z')}")
@@ -31,15 +31,15 @@ sensor_url = f"{base_url}/{sensor_id}/data"
 response = requests.get(sensor_url)
 
 # If the request was successful, loop through and save the data
+all_data = []
+header = ["Timestamp", "AQI", "OtherData"]  # Default header in case no data is found
+
 if response.status_code == 200:
     soup = BeautifulSoup(response.text, 'html.parser')
 
     # Find all links (<a> tags) that represent the data files (only works for .txt files)
     data_files = soup.find_all('a', href=True)
     print(f"🔍 Found {len(data_files)} data files.")
-
-    # List to store the data
-    all_data = []
 
     # Function to parse file dates and ensure they are timezone-aware
     def parse_pst_datetime(date_str):
@@ -81,20 +81,19 @@ if response.status_code == 200:
         except ValueError:
             continue  # Skip files that don't match expected format
 
-    # Write headers/data into one CSV file
-    if all_data:
-        csv_filepath = "data"
-        os.makedirs(csv_filepath, exist_ok=True)  # Ensure directory exists
-        csv_filename = f"{csv_filepath}/{sensor_id}_{start_date.strftime('%Y-%m-%d_%H')}_{end_date.strftime('%Y-%m-%d_%H')}.csv"
+# ✅ Write headers/data into one CSV file (always write, even if empty)
+csv_filepath = "data"
+os.makedirs(csv_filepath, exist_ok=True)  # Ensure directory exists
+csv_filename = f"{csv_filepath}/{sensor_id}_{start_date.strftime('%Y-%m-%d_%H')}_{end_date.strftime('%Y-%m-%d_%H')}.csv"
 
-        print(f"💾 Saving file: {csv_filename}")
-        with open(csv_filename, mode='w', newline='') as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(header)
-            writer.writerows(all_data)
+print(f"💾 Saving file: {csv_filename}")
 
-        print("✅ Data successfully saved!")
-    else:
-        print("⚠️ No new data available.")
-else:
-    print(f"❌ Failed to connect to {sensor_url}. Status Code: {response.status_code}")
+with open(csv_filename, mode='w', newline='') as csv_file:
+    writer = csv.writer(csv_file)
+    writer.writerow(header)  # Write header row
+    writer.writerows(all_data)  # Write all data
+
+print("✅ Data file saved (even if empty).")
+
+# Force Git to recognize the change
+os.system(f"echo >> {csv_filename}")  # Modify the file slightly to force Git change
