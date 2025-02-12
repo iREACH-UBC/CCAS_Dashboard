@@ -8,11 +8,11 @@ import os
 base_url = "http://18.222.146.48/RAMP/v1/raw"
 
 # Sensor ID to pull data from
-sensor_id = "2035"
+sensor_id = "2019"
 
 # Dynamically calculate the past hour
 end_date = datetime.utcnow()
-start_date = end_date - timedelta(hours=1)
+start_date = end_date - timedelta(hours=24)
 
 # Format for filenames
 start_str = start_date.strftime('%Y-%m-%d-%H')
