@@ -27,10 +27,13 @@ jobs:
 
       - name: Ensure Git detects changes and push
         run: |
+          # ✅ Set Git Author Identity
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
 
           # ✅ Ensure Git recognizes the data folder
           git add -f data/
-          git commit -m "Forced data update at $(date)" || echo "No changes to commit"
+          
+          # ✅ Force a commit (always executes)
+          git commit -m "Forced data update at $(date)" --allow-empty
           git push --force
