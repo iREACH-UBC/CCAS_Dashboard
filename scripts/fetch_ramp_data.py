@@ -4,6 +4,7 @@ from datetime import datetime, timedelta, timezone
 import csv
 import os
 import pytz  # For timezone handling
+import subprocess  # To force Git push
 
 # Define PST time zone
 pst_tz = pytz.timezone("America/Los_Angeles")
@@ -27,10 +28,15 @@ sensor_id = "2035"
 # URL for the specific sensor's folder
 sensor_url = f"{base_url}/{sensor_id}/data"
 
-# Send a GET request to the sensor's 'data' folder
-response = requests.get(sensor_url)
+# Ensure the directory exists
+csv_filepath = "data"
+os.makedirs(csv_filepath, exist_ok=True)
 
-# If the request was successful, loop through and save the data
+# CSV filename
+csv_filename = f"{csv_filepath}/{sensor_id}_{start_date.strftime('%Y-%m-%d_%H')}_{end_date.strftime('%Y-%m-%d_%H')}.csv"
+
+# Fetch data
+response = requests.get(sensor_url)
 all_data = []
 header = ["Timestamp", "AQI", "OtherData"]  # Default header in case no data is found
 
@@ -81,19 +87,19 @@ if response.status_code == 200:
         except ValueError:
             continue  # Skip files that don't match expected format
 
-# ✅ Write headers/data into one CSV file (always write, even if empty)
-csv_filepath = "data"
-os.makedirs(csv_filepath, exist_ok=True)  # Ensure directory exists
-csv_filename = f"{csv_filepath}/{sensor_id}_{start_date.strftime('%Y-%m-%d_%H')}_{end_date.strftime('%Y-%m-%d_%H')}.csv"
-
-print(f"💾 Saving file: {csv_filename}")
+# ✅ Always overwrite the CSV file, even if no new data
+print(f"💾 Overwriting file: {csv_filename}")
 
 with open(csv_filename, mode='w', newline='') as csv_file:
     writer = csv.writer(csv_file)
     writer.writerow(header)  # Write header row
     writer.writerows(all_data)  # Write all data
 
-print("✅ Data file saved (even if empty).")
+print("✅ Data file saved (always overwrites).")
 
-# Force Git to recognize the change
-os.system(f"echo >> {csv_filename}")  # Modify the file slightly to force Git change
+# ✅ Force Git to commit and push every time
+print("🚀 Forcing Git commit and push...")
+subprocess.run(["git", "add", csv_filename])
+subprocess.run(["git", "commit", "-m", "Forced data update"])
+subprocess.run(["git", "push", "origin", "main"])
+print("✅ Git push completed!")
