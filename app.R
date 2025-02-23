@@ -2,6 +2,7 @@ library(shiny)
 library(leaflet)
 library(dplyr)
 library(readr)
+library(lubridate)  # Added for timezone conversion
 
 # Define sensor locations by sensor id (update as needed)
 sensor_locations <- list(
@@ -34,7 +35,7 @@ loadCalibratedData <- function(sensor_ids) {
     # Assume filenames are of the format: sensor_calibrated_YYYY-MM-DD_to_YYYY-MM-DD.csv
     pattern <- paste0("^", sensor_id, "_calibrated_.*\\.csv$")
     files <- list.files("calibrated_data", pattern = pattern, full.names = TRUE)
-    if(length(files) == 0) return(NULL)
+    if (length(files) == 0) return(NULL)
     # Pick the file with the most recent start date
     dates <- sapply(files, function(f) {
       fname <- basename(f)
@@ -43,7 +44,7 @@ loadCalibratedData <- function(sensor_ids) {
     })
     latest_file <- files[which.max(dates)]
     df <- read_csv(latest_file, show_col_types = FALSE)
-    if(nrow(df) == 0) return(NULL)
+    if (nrow(df) == 0) return(NULL)
     latest <- df %>% arrange(desc(DATE)) %>% slice(1)
     latest$sensor_id <- sensor_id
     return(latest)
@@ -61,7 +62,7 @@ ui <- fluidPage(
     .nav-button { width: 30vw; height: 30vw; max-width: 300px; max-height: 300px; background-size: cover; background-position: center; border: none; cursor: pointer; font-size: 24px; text-align: center; color: white; font-weight: bold; opacity: 0.8; display: flex; align-items: center; justify-content: center; text-shadow: 2px 2px 4px black; }
     .nav-button:hover { opacity: 1; text-shadow: none; }
     .button-container { display: flex; justify-content: space-around; margin-top: 20px; }
-    #airQualityMap { width: 75vw; height: 75vh; max-width: 800px; max-height: 600px; margin-right: 5vw; }
+    #airQualityMap { width: 100%; height: 75vh; }
   "))),
   div(class = "title-bar", 
       div(class = "title-left", "iREACH Laboratory"),
@@ -97,7 +98,13 @@ ui <- fluidPage(
     tabPanel(
       "Map",
       fluidPage(
-        leafletOutput("airQualityMap", width = "75vw", height = "75vh")
+        fluidRow(
+          column(9, leafletOutput("airQualityMap")),
+          column(3,
+                 h4("Last Data Update (PST)"),
+                 textOutput("last_update")
+          )
+        )
       )
     ),
     tabPanel(
@@ -135,6 +142,7 @@ server <- function(input, output, session) {
     loadCalibratedData(names(sensor_locations))
   })
   
+  # Render the Leaflet map.
   output$airQualityMap <- renderLeaflet({
     m <- leaflet() %>% addTiles()
     df <- sensor_data()
@@ -174,6 +182,20 @@ server <- function(input, output, session) {
       }
     }
     m
+  })
+  
+  # Render the last update time in PST using lubridate
+  output$last_update <- renderText({
+    df <- sensor_data()
+    if (nrow(df) == 0) {
+      "No data available"
+    } else {
+      # Convert DATE to POSIXct assuming the original time is in UTC
+      last_update <- max(as.POSIXct(df$DATE), na.rm = TRUE)  # interpreted in local time
+      last_update <- force_tz(last_update, tzone = "UTC")      # assign UTC to the value
+      last_update_pst <- last_update - lubridate::hours(16) #look, don't ask. It works. 
+      paste("Last updated:", format(last_update_pst, "%Y-%m-%d %H:%M:%S %Z"))
+    }
   })
 }
 
