@@ -194,7 +194,7 @@ server <- function(input, output, session) {
       last_update <- max(as.POSIXct(df$DATE), na.rm = TRUE)  # interpreted in local time
       last_update <- force_tz(last_update, tzone = "UTC")      # assign UTC to the value
       last_update_pst <- last_update - lubridate::hours(16) #look, don't ask. It works. 
-      paste("Last updated:", format(last_update_pst, "%Y-%m-%d %H:%M:%S %Z"))
+      paste("Last updated:", format(last_update_pst, "%Y-%m-%d %H:%M"), "PST")
     }
   })
 }
