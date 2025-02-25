@@ -134,19 +134,11 @@ server <- function(input, output, session) {
     updateNavbarPage(session, "navbar", selected = "Info")
   })
   
-  # Use reactivePoll to check the last modification time of any CSV file in calibrated_data.
-  sensor_data <- reactivePoll(60000, session,
-                              # This check function returns the latest modification time among all CSV files.
-                              checkFunc = function() {
-                                files <- list.files("calibrated_data", pattern = "\\.csv$", full.names = TRUE)
-                                if(length(files) == 0) return(0)
-                                max(file.info(files)$mtime)
-                              },
-                              # When the checkFunc value changes, read the calibrated data.
-                              valueFunc = function() {
-                                loadCalibratedData(names(sensor_locations))
-                              }
-  )
+  # Refresh the data once every hour using invalidateLater (3600000 ms)
+  sensor_data <- reactive({
+    invalidateLater(3600000, session)
+    loadCalibratedData(names(sensor_locations))
+  })
   
   output$airQualityMap <- renderLeaflet({
     m <- leaflet() %>% addTiles()
@@ -188,8 +180,6 @@ server <- function(input, output, session) {
     }
     m
   })
-
-
   
   # Render the last update time in PST using lubridate
   output$last_update <- renderText({
@@ -197,13 +187,13 @@ server <- function(input, output, session) {
     if (nrow(df) == 0) {
       "No data available"
     } else {
-      # Convert DATE to POSIXct assuming the original time is in UTC
-      last_update <- max(as.POSIXct(df$DATE), na.rm = TRUE)  # interpreted in local time
-      last_update <- force_tz(last_update, tzone = "UTC")      # assign UTC to the value
-      last_update_pst <- last_update - lubridate::hours(16) #look, don't ask. It works. 
+      last_update <- max(as.POSIXct(df$DATE), na.rm = TRUE)
+      last_update <- force_tz(last_update, tzone = "UTC")
+      last_update_pst <- last_update - lubridate::hours(16) # Adjust as needed
       paste("Last updated:", format(last_update_pst, "%Y-%m-%d %H:%M"), "PST")
     }
   })
 }
 
 shinyApp(ui, server)
+
