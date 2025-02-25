@@ -27,18 +27,16 @@ jobs:
 
       - name: Install required R packages
         run: |
-          Rscript -e "install.packages(c('rsconnect','shiny','leaflet','dplyr','readr','lubridate'), repos='https://cloud.r-project.org', 'cran.r-project.org')"
+          Rscript -e "install.packages(c('rsconnect','shiny','leaflet','dplyr','readr','lubridate'), repos='https://cloud.r-project.org')"
 
-      - name: Load required R libraries
+      - name: List installed packages (for debugging)
         run: |
-          Rscript -e "library(shiny); library(leaflet); library(dplyr); library(readr); library(lubridate)"
+          Rscript -e "print(installed.packages()[,'Package'])"
 
       - name: List repository files (for debugging)
         run: |
           echo "Repository root:"
           ls -la
-          echo "DESCRIPTION file (if exists):"
-          ls -la DESCRIPTION
 
       - name: Deploy App to shinyapps.io
         env:
