@@ -1,4 +1,4 @@
-name: Deploy to shinyapps.io Hourly
+name: Update Calibrated Data and Deploy to shinyapps.io Hourly
 
 on:
   schedule:
@@ -6,9 +6,8 @@ on:
   workflow_dispatch:     # Allows manual triggering
 
 jobs:
-  deploy:
+  update-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -18,12 +17,23 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
-          r-version: "4.1.0"  # Adjust as needed
+          r-version: "4.1.0"  # Adjust if needed
 
-      - name: Install system dependencies
+      - name: Install required packages for calibration
         run: |
-          sudo apt-get update
-          sudo apt-get install -y libcurl4-openssl-dev
+          Rscript -e "install.packages(c('dplyr','readr','lubridate','pytz'), repos='https://cloud.r-project.org')"
+
+      - name: Run calibration script
+        run: |
+          Rscript scripts/calibrate_data.R
+
+      - name: Commit and push calibrated data
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add calibrated_data/*.csv
+          git commit --allow-empty -m "Automated calibrated data update at $(date)" || echo "No changes to commit"
+          git push origin main
 
       - name: Install rsconnect package
         run: |
