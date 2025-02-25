@@ -20,6 +20,11 @@ jobs:
         with:
           r-version: "4.1.0"  # Adjust as needed
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev
+
       - name: Install rsconnect package
         run: |
           Rscript -e "install.packages('rsconnect', repos='https://cloud.r-project.org')"
@@ -31,5 +36,5 @@ jobs:
           RSCONNECT_SECRET: ${{ secrets.RSCONNECT_SECRET }}
           RSCONNECT_SERVER: ${{ secrets.RSCONNECT_SERVER }}
         run: |
-          Rscript -e "rsconnect::setAccountInfo(name=Sys.getenv('RSCONNECT_ACCOUNT'), token=Sys.getenv('RSCONNECT_TOKEN'), secret=Sys.getenv('RSCONNECT_SECRET'))"
-          Rscript -e "rsconnect::deployApp(appDir='.', appName='hugo', server=Sys.getenv('RSCONNECT_SERVER'))"
+          Rscript -e "rsconnect::setAccountInfo(name = Sys.getenv('RSCONNECT_ACCOUNT'), token = Sys.getenv('RSCONNECT_TOKEN'), secret = Sys.getenv('RSCONNECT_SECRET'))"
+          Rscript -e "rsconnect::deployApp(appDir = '.', appName = 'hugo', server = Sys.getenv('RSCONNECT_SERVER'))"
