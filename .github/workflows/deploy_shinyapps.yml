@@ -1,0 +1,35 @@
+name: Deploy to shinyapps.io Hourly
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # Runs every hour on the hour
+  workflow_dispatch:     # Allows manual triggering
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.1.0"  # adjust as needed
+
+      - name: Install rsconnect package
+        run: |
+          Rscript -e "install.packages('rsconnect', repos='https://cloud.r-project.org')"
+
+      - name: Deploy App to shinyapps.io
+        env:
+          RSCONNECT_ACCOUNT: ${{ secrets.RSCONNECT_ACCOUNT }}
+          RSCONNECT_TOKEN: ${{ secrets.RSCONNECT_TOKEN }}
+          RSCONNECT_SECRET: ${{ secrets.RSCONNECT_SECRET }}
+          RSCONNECT_SERVER: ${{ secrets.RSCONNECT_SERVER }}
+        run: |
+          Rscript -e "rsconnect::setAccountInfo(name=Sys.getenv('RSCONNECT_ACCOUNT'), token=Sys.getenv('RSCONNECT_TOKEN'), secret=Sys.getenv('RSCONNECT_SECRET'))"
+          Rscript -e "rsconnect::deployApp(appDir='.', appName='hugo', server=Sys.getenv('RSCONNECT_SERVER'))"
