@@ -134,11 +134,6 @@ server <- function(input, output, session) {
     updateNavbarPage(session, "navbar", selected = "Info")
   })
   
-  # Refresh the data once every hour using invalidateLater (3600000 ms)
-  sensor_data <- reactive({
-    invalidateLater(3600000, session)
-    loadCalibratedData(names(sensor_locations))
-  })
   
   output$airQualityMap <- renderLeaflet({
     m <- leaflet() %>% addTiles()
