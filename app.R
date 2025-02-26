@@ -2,7 +2,7 @@ library(shiny)
 library(leaflet)
 library(dplyr)
 library(readr)
-library(lubridate)  # Added for timezone conversion
+library(lubridate)
 
 # Define sensor locations by sensor id (update as needed)
 sensor_locations <- list(
@@ -80,10 +80,10 @@ ui <- fluidPage(
       fluidPage(
         fluidRow(
           column(12, 
-                 p("This dashboard displays calibrated air quality data."),
+                 p("This dashboard displays nothing of interest at this point in time."),
                  div(id = "advisories", style = "background-color: #f8d7da; padding: 10px; border-radius: 5px;",
                      strong("Active Air Quality Advisories:"),
-                     p("Check the map for current calibrated readings.")
+                     p("No advisories are currently active.")
                  ),
                  br(),
                  div(class = "button-container",

@@ -3,6 +3,6 @@ Type: ShinyApp
 Title: Air Quality Dashboard
 Version: 0.1.0
 Date: 2025-02-25
-Authors@R: person("Your", "Name", email = "your.email@example.com", role = c("aut", "cre"))
+Authors@R: person("Hugo", "Dignoes Ricart", email = "hdignoes@mail.ubc.ca", role = c("aut", "cre"))
 Description: An air quality dashboard for calibrated sensor data.
 Imports: shiny, leaflet, dplyr, readr, lubridate
