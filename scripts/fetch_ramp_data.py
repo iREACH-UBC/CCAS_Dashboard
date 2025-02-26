@@ -16,14 +16,17 @@ base_url = "http://18.222.146.48/RAMP/v1/raw"
 # -------------------------------
 # Determine the File Date Based on PST
 # -------------------------------
-# Since filenames are "YYYY-MM-DD-<sensor_id>.txt" (only date, no time),
-# we decide which file to download:
+# Filenames are "YYYY-MM-DD-<sensor_id>.txt". Use the following rules:
 # - If current PST time is before 6:00 AM, use yesterday's file.
-# - Otherwise, use today's file.
+# - If current PST time is between 6:00 AM and 9:00 PM, use today's file.
+# - If current PST time is 9:00 PM or later, use tomorrow's file.
 pst_tz = pytz.timezone("America/Los_Angeles")
 current_time_pst = datetime.now(timezone.utc).astimezone(pst_tz)
+
 if current_time_pst.hour < 6:
     file_date = current_time_pst.date() - timedelta(days=1)
+elif current_time_pst.hour >= 21:
+    file_date = current_time_pst.date() + timedelta(days=1)
 else:
     file_date = current_time_pst.date()
 
