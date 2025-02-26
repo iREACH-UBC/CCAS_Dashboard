@@ -1,8 +1,10 @@
 name: Update Calibrated Sensor Data
 
 on:
-  schedule:
-    - cron: "0 * * * *"  # Runs every hour
+  workflow_run:          # Whenever update_ramp_data completes
+    workflows: ["update_ramp_data.yml"]
+    types:
+      - completed
   workflow_dispatch:     # Allows manual triggering
 
 jobs:
