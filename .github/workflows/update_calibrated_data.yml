@@ -2,7 +2,7 @@ name: Update Calibrated Sensor Data
 
 on:
   workflow_run:          # Whenever update_ramp_data completes
-    workflows: ["update_ramp_data.yml"]
+    workflows: ["Update RAMP Sensor Data"]
     types:
       - completed
   workflow_dispatch:     # Allows manual triggering
