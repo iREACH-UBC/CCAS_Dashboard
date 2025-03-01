@@ -1,4 +1,4 @@
-name: Deploy to shinyapps.io Hourly
+name: Deploy to shinyapps.io every 15 minutes
 
 on:
   schedule:
