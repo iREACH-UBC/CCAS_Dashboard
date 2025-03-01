@@ -1,6 +1,10 @@
 name: Deploy to shinyapps.io every 15 minutes
 
 on:
+  workflow_run:          # Whenever update_ramp_data completes
+    workflows: ["Update Calibrated Sensor Data"]
+    types:
+      - completed
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:     # Allows manual triggering
