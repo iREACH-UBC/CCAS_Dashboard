@@ -2,7 +2,7 @@ name: Deploy to shinyapps.io Hourly
 
 on:
   schedule:
-    - cron: "*/15 * * * *"  # Runs every hour on the hour
+    - cron: "*/15 * * * *"
   workflow_dispatch:     # Allows manual triggering
 
 jobs:
