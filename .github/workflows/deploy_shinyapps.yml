@@ -5,8 +5,6 @@ on:
     workflows: ["Update Calibrated Sensor Data"]
     types:
       - completed
-  schedule:
-    - cron: "*/15 * * * *"
   workflow_dispatch:     # Allows manual triggering
 
 jobs:
