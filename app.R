@@ -7,6 +7,7 @@ library(lubridate)
 # Define sensor locations by sensor id (update as needed)
 sensor_locations <- list(
   "2035" = list(lat = 49.2827, lng = -123.1207)
+  "2029" = list(lat = 49.4, lng = -123.7)
   # Add additional sensors here
 )
 
