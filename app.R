@@ -63,7 +63,7 @@ ui <- fluidPage(
     .nav-button { width: 30vw; height: 30vw; max-width: 300px; max-height: 300px; background-size: cover; background-position: center; border: none; cursor: pointer; font-size: 24px; text-align: center; color: white; font-weight: bold; opacity: 0.8; display: flex; align-items: center; justify-content: center; text-shadow: 2px 2px 4px black; }
     .nav-button:hover { opacity: 1; text-shadow: none; }
     .button-container { display: flex; justify-content: space-around; margin-top: 20px; }
-    #airQualityMap { width: 100%; height: 75vh; }
+    #airQualityMap { width: 100%; height: 90vh; }  # Increased vertical space
   "))),
   div(class = "title-bar", 
       div(class = "title-left", "iREACH Laboratory"),
@@ -103,7 +103,8 @@ ui <- fluidPage(
           column(9, leafletOutput("airQualityMap")),
           column(3,
                  h4("Last Data Update (PST)"),
-                 textOutput("last_update")
+                 textOutput("last_update"),
+                 uiOutput("sensor_details")  # New UI output for sensor pollutant details
           )
         )
       )
@@ -173,7 +174,8 @@ server <- function(input, output, session) {
             color = df$marker_color[i],
             radius = 8,
             fillOpacity = 0.8,
-            popup = df$popup_text[i]
+            popup = df$popup_text[i],
+            layerId = sensor_id  # Added layerId so we can identify the sensor on click
           )
         }
       }
@@ -192,6 +194,30 @@ server <- function(input, output, session) {
       last_update_pst <- last_update - lubridate::hours(16) # Adjust as needed
       paste("Last updated:", format(last_update_pst, "%Y-%m-%d %H:%M"), "PST")
     }
+  })
+  
+  # Render pollutant concentrations when a sensor marker is clicked
+  output$sensor_details <- renderUI({
+    click <- input$airQualityMap_marker_click
+    if(is.null(click)) return(NULL)
+    
+    # Get sensor data for the clicked sensor
+    df <- sensor_data()
+    sensor_row <- df %>% filter(sensor_id == click$id)
+    if(nrow(sensor_row) == 0) return(NULL)
+    
+    # Display selected pollutant concentrations
+    tagList(
+      h4(paste("Sensor", click$id, "Details")),
+      p(strong("CO:"), sensor_row$CO),
+      p(strong("NO:"), sensor_row$NO),
+      p(strong("NO₂:"), sensor_row$NO2),
+      p(strong("O₃:"), sensor_row$O3),
+      p(strong("CO₂:"), sensor_row$CO2),
+      p(strong("PM1.0:"), sensor_row$`PM1.0`),
+      p(strong("PM2.5:"), sensor_row$`PM2.5`),
+      p(strong("PM10:"), sensor_row$PM10)
+    )
   })
 }
 
