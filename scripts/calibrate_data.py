@@ -8,7 +8,7 @@ import pytz
 # CONFIGURATION
 # -------------------------------
 # List of sensor IDs (add more as needed)
-sensor_ids = ["2035"]
+sensor_ids = ["2035", "2029"]
 # Folder where raw data files are stored.
 # Files are named: <sensor_id>_<YYYY>-<MM>-<DD>.csv
 data_folder = "data"
