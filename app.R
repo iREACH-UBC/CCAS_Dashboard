@@ -63,7 +63,6 @@ ui <- fluidPage(
     .nav-button { width: 30vw; height: 30vw; max-width: 300px; max-height: 300px; background-size: cover; background-position: center; border: none; cursor: pointer; font-size: 24px; text-align: center; color: white; font-weight: bold; opacity: 0.8; display: flex; align-items: center; justify-content: center; text-shadow: 2px 2px 4px black; }
     .nav-button:hover { opacity: 1; text-shadow: none; }
     .button-container { display: flex; justify-content: space-around; margin-top: 20px; }
-    #airQualityMap { width: 100%; height: 90vh; }  # Increased vertical space
   "))),
   div(class = "title-bar", 
       div(class = "title-left", "iREACH Laboratory"),
@@ -100,11 +99,14 @@ ui <- fluidPage(
       "Map",
       fluidPage(
         fluidRow(
-          column(9, leafletOutput("airQualityMap")),
+          column(9, leafletOutput("airQualityMap", height = "85vh")),  # Set explicit height for map
           column(3,
-                 h4("Last Data Update (PST)"),
-                 textOutput("last_update"),
-                 uiOutput("sensor_details")  # New UI output for sensor pollutant details
+                 # At the top, a drop down to select sensor
+                 selectInput("sensor_select", "Select Sensor", choices = names(sensor_locations), selected = ""),
+                 # Sensor details display area
+                 uiOutput("sensor_details"),
+                 # At the bottom, last update message
+                 textOutput("last_update")
           )
         )
       )
@@ -150,17 +152,7 @@ server <- function(input, output, session) {
           marker_color = sapply(AQI, getAQIColor),
           popup_text = paste0(
             "<b>Sensor: ", sensor_id, "</b><br>",
-            "AQI: ", round(AQI, 1), "<br>",
-            "CO: ", CO, "<br>",
-            "NO: ", NO, "<br>",
-            "NO₂: ", NO2, "<br>",
-            "O₃: ", O3, "<br>",
-            "CO₂: ", CO2, "<br>",
-            "PM1.0: ", `PM1.0`, "<br>",
-            "PM2.5: ", `PM2.5`, "<br>",
-            "PM10: ", PM10, "<br>",
-            "Temp: ", T, " °C<br>",
-            "RH: ", RH, " %"
+            "AQI: ", round(AQI, 1), "<br>"
           )
         )
       
@@ -183,6 +175,15 @@ server <- function(input, output, session) {
     m
   })
   
+  # Observer to center map when a sensor is selected from the drop down
+  observeEvent(input$sensor_select, {
+    sensor_id <- input$sensor_select
+    if (sensor_id != "" && sensor_id %in% names(sensor_locations)) {
+      loc <- sensor_locations[[sensor_id]]
+      leafletProxy("airQualityMap") %>% setView(lng = loc$lng, lat = loc$lat, zoom = 12)
+    }
+  })
+  
   # Render the last update time in PST using lubridate
   output$last_update <- renderText({
     df <- sensor_data()
@@ -196,27 +197,70 @@ server <- function(input, output, session) {
     }
   })
   
-  # Render pollutant concentrations when a sensor marker is clicked
+  # Render pollutant concentrations based on sensor selection or marker click
   output$sensor_details <- renderUI({
-    click <- input$airQualityMap_marker_click
-    if(is.null(click)) return(NULL)
+    # Prioritize sensor selected from dropdown if available,
+    # otherwise fall back to the sensor marker click.
+    selected_sensor <- if (!is.null(input$sensor_select) && input$sensor_select != "") {
+      input$sensor_select
+    } else if (!is.null(input$airQualityMap_marker_click)) {
+      input$airQualityMap_marker_click$id
+    } else {
+      NULL
+    }
+    if (is.null(selected_sensor)) return(NULL)
     
-    # Get sensor data for the clicked sensor
+    # Get sensor data for the selected sensor
     df <- sensor_data()
-    sensor_row <- df %>% filter(sensor_id == click$id)
+    sensor_row <- df %>% filter(sensor_id == selected_sensor)
     if(nrow(sensor_row) == 0) return(NULL)
     
-    # Display selected pollutant concentrations
-    tagList(
-      h4(paste("Sensor", click$id, "Details")),
-      p(strong("CO:"), sensor_row$CO),
-      p(strong("NO:"), sensor_row$NO),
-      p(strong("NO₂:"), sensor_row$NO2),
-      p(strong("O₃:"), sensor_row$O3),
-      p(strong("CO₂:"), sensor_row$CO2),
-      p(strong("PM1.0:"), sensor_row$`PM1.0`),
-      p(strong("PM2.5:"), sensor_row$`PM2.5`),
-      p(strong("PM10:"), sensor_row$PM10)
+    # Beautified display with units using a table inside a wellPanel;
+    # each numeric value is rounded to 1 decimal place and table cells are padded.
+    wellPanel(
+      h4(paste("Sensor", selected_sensor, "Details")),
+      tags$table(style="width:100%;",
+                 tags$tr(
+                   tags$td(style="padding: 5px;", strong("CO:")),
+                   tags$td(style="padding: 5px;", round(sensor_row$CO, 1)),
+                   tags$td(style="padding: 5px;", "ppm")
+                 ),
+                 tags$tr(
+                   tags$td(style="padding: 5px;", strong("NO:")),
+                   tags$td(style="padding: 5px;", round(sensor_row$NO, 1)),
+                   tags$td(style="padding: 5px;", "ppb")
+                 ),
+                 tags$tr(
+                   tags$td(style="padding: 5px;", strong("NO₂:")),
+                   tags$td(style="padding: 5px;", round(sensor_row$NO2, 1)),
+                   tags$td(style="padding: 5px;", "ppb")
+                 ),
+                 tags$tr(
+                   tags$td(style="padding: 5px;", strong("O₃:")),
+                   tags$td(style="padding: 5px;", round(sensor_row$O3, 1)),
+                   tags$td(style="padding: 5px;", "ppb")
+                 ),
+                 tags$tr(
+                   tags$td(style="padding: 5px;", strong("CO₂:")),
+                   tags$td(style="padding: 5px;", round(sensor_row$CO2, 1)),
+                   tags$td(style="padding: 5px;", "ppm")
+                 ),
+                 tags$tr(
+                   tags$td(style="padding: 5px;", strong("PM1.0:")),
+                   tags$td(style="padding: 5px;", round(sensor_row$`PM1.0`, 1)),
+                   tags$td(style="padding: 5px;", "µg/m³")
+                 ),
+                 tags$tr(
+                   tags$td(style="padding: 5px;", strong("PM2.5:")),
+                   tags$td(style="padding: 5px;", round(sensor_row$`PM2.5`, 1)),
+                   tags$td(style="padding: 5px;", "µg/m³")
+                 ),
+                 tags$tr(
+                   tags$td(style="padding: 5px;", strong("PM10:")),
+                   tags$td(style="padding: 5px;", round(sensor_row$PM10, 1)),
+                   tags$td(style="padding: 5px;", "µg/m³")
+                 )
+      )
     )
   })
 }
