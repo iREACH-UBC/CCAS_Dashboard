@@ -6,8 +6,21 @@ library(lubridate)
 
 # Define sensor locations by sensor id (update as needed)
 sensor_locations <- list(
-  "2035" = list(lat = 49.2827, lng = -123.1207),
-  "2029" = list(lat = 49.4, lng = -123.7)
+  "2021" = list(lat = 49.141444, lng = -123.10827),
+  "2022" = list(lat = 49.141445, lng = -123.10822),
+  "2023" = list(lat = 49.14143, lng = -123.10821),
+  "2024" = list(lat = 49.141448, lng = -123.10826),
+  "2026" = list(lat = 49.1414410, lng = -123.10823),
+  "2030" = list(lat = 49.141449, lng = -123.10829),
+  "2031" = list(lat = 49.141443, lng = -123.108211),
+  "2032" = list(lat = 49.141442, lng = -123.10822),
+  "2033" = list(lat = 49.141441, lng = -123.10828),
+  "2034" = list(lat = 49.141446, lng = -123.10824),
+  "2039" = list(lat = 49.141444, lng = -123.10822),
+  "2040" = list(lat = 49.141443, lng = -123.10828),
+  "2041" = list(lat = 49.141448, lng = -123.10827),
+  "2042" = list(lat = 49.141446, lng = -123.10829),
+  "2043" = list(lat = 49.141425, lng = -123.10825),
   # Add additional sensors here
 )
 
