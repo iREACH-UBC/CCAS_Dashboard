@@ -20,7 +20,7 @@ sensor_locations <- list(
   "2040" = list(lat = 49.141443, lng = -123.10828),
   "2041" = list(lat = 49.141448, lng = -123.10827),
   "2042" = list(lat = 49.141446, lng = -123.10829),
-  "2043" = list(lat = 49.141425, lng = -123.10825),
+  "2043" = list(lat = 49.141425, lng = -123.10825)
   # Add additional sensors here
 )
 
