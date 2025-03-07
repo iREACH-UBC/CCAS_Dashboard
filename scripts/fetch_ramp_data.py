@@ -9,7 +9,7 @@ import pytz
 # CONFIGURATION
 # -------------------------------
 # List of sensor IDs (add more as needed)
-sensor_ids = ["2035", "2029"]
+sensor_ids = ["2021","2022", "2023", "2024","2026","2030","2031","2032","2033","2034","2039","2040","2041","2042","2043"]
 # Base URL for RAMP data
 base_url = "http://18.222.146.48/RAMP/v1/raw"
 
