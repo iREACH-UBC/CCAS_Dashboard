@@ -43,7 +43,6 @@ getAQIColor <- function(aqi) {
   }
 }
 
-# Load calibrated data (latest row) for each sensor.
 loadCalibratedData <- function(sensor_ids) {
   data_list <- lapply(sensor_ids, function(sensor_id) {
     pattern <- paste0("^", sensor_id, "_calibrated_.*\\.csv$")
@@ -54,7 +53,42 @@ loadCalibratedData <- function(sensor_ids) {
       as.Date(parts[3], format = "%Y-%m-%d")
     })
     latest_file <- files[which.max(dates)]
+    
+    # Read the CSV file
     df <- read_csv(latest_file, show_col_types = FALSE)
+    
+    # --- Debugging Code ---
+    cat("DEBUG: Processing sensor", sensor_id, "from file:", latest_file, "\n")
+    print(sapply(df, class))
+    # ----------------------
+    
+    # Define the expected numeric columns (by name)
+    numeric_cols <- c("AQI", "CO", "NO", "NO2", "O3", "CO2", "PM1.0", "PM2.5", "PM10",
+                      "TE", "T", "RH", "WD", "WS", "PWR", "BATT", "CHRG", "RUN",
+                      "SD", "RAW")
+    
+    # Force conversion for expected numeric columns
+    for (col in numeric_cols) {
+      if (col %in% names(df)) {
+        original <- df[[col]]
+        df[[col]] <- as.numeric(df[[col]])
+        if (any(is.na(df[[col]]) & !is.na(original))) {
+          warning("Conversion to numeric resulted in NA for column ", col, " in sensor ", sensor_id)
+        }
+      }
+    }
+    
+    # Additionally, force conversion for any columns whose names look like numeric values
+    for (col in names(df)) {
+      if (grepl("^-?[0-9.]+$", col)) {
+        original <- df[[col]]
+        df[[col]] <- as.numeric(df[[col]])
+        if (any(is.na(df[[col]]) & !is.na(original))) {
+          warning("Conversion to numeric resulted in NA for column ", col, " in sensor ", sensor_id)
+        }
+      }
+    }
+    
     if (nrow(df) == 0) return(NULL)
     latest <- df %>% arrange(desc(DATE)) %>% slice(1)
     latest$sensor_id <- sensor_id
@@ -62,6 +96,7 @@ loadCalibratedData <- function(sensor_ids) {
   })
   bind_rows(data_list)
 }
+
 
 # Load historical data (last 24 hours) for a sensor.
 loadHistoricalData <- function(sensor_id) {

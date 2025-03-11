@@ -19,20 +19,15 @@ os.makedirs(output_folder, exist_ok=True)
 # -------------------------------
 # Define Time Range
 # -------------------------------
-# We will join the raw files for the last two days,
-# then filter the joined data to only include rows from the past 24 hours.
-# We'll assume the DATE column in the files is in a standard format.
 pst_tz = pytz.timezone("America/Los_Angeles")
 now_pst = datetime.now(pst_tz)
-# For joining files, we need the two most recent dates (raw files are per day)
-# We'll list all files for a sensor, parse their dates, and take the last two distinct dates.
+
 def parse_filename_date(filename, sensor_id):
     # Expects filename in format: <sensor_id>_<YYYY>-<MM>-<DD>.csv
     base = os.path.basename(filename)
     parts = base.split('_')
     if len(parts) != 2:
         raise ValueError("Filename does not match expected format")
-    # parts[0] is sensor_id; parts[1] is "YYYY-MM-DD.csv"
     date_part = parts[1].split('.')[0]
     return datetime.strptime(date_part, "%Y-%m-%d").date()
 
@@ -83,7 +78,6 @@ for sensor in sensor_ids:
     print(f"Sensor {sensor}: Processing files for dates: {last_two_dates}")
     
     dfs = []
-    # For each date, find the corresponding file (assuming one file per date)
     for d in last_two_dates:
         file_pattern = os.path.join(data_folder, f"{sensor}_{d.strftime('%Y-%m-%d')}.csv")
         matched = glob.glob(file_pattern)
@@ -100,10 +94,9 @@ for sensor in sensor_ids:
     # Join the two days of data
     joined_df = pd.concat(dfs, ignore_index=True)
     
-    # Convert DATE column to datetime (assume format, e.g., "%Y-%m-%d %H:%M:%S")
+    # Convert DATE column to datetime and localize to PST if needed.
     try:
         joined_df['DATE'] = pd.to_datetime(joined_df['DATE'])
-        # If the DATE column is tz-naive, localize it to PST.
         if joined_df['DATE'].dt.tz is None:
             joined_df['DATE'] = joined_df['DATE'].dt.tz_localize(pst_tz)
     except Exception as e:
@@ -117,13 +110,19 @@ for sensor in sensor_ids:
         print(f"No data in the past 24 hours for sensor {sensor}")
         continue
     
-    # Apply calibration functions to the specified columns for the past 24 hours.
+    # Apply calibration functions to the specified columns.
     for col, func in calibration_functions.items():
         if col in recent_df.columns:
             recent_df[col] = recent_df[col].apply(func)
     
     # Calculate AQI for each row based on the calibrated data
     recent_df['AQI'] = recent_df.apply(calculate_aqi, axis=1)
+    
+    # Drop unwanted columns before saving.
+    columns_to_remove = ["WD", "WS", "PWR", "BATT", "CHRG", "RUN", "SD", "RAW",
+                         "108", "24", "0", "-29", "6", "0.1", "0.00000", "0.00000.1",
+                         "0.2", "348142736", "118", "19", "-5", "-28", "302302278"]
+    recent_df.drop(columns=columns_to_remove, errors='ignore', inplace=True)
     
     # Save the calibrated data and AQI to a new file in the "calibrated_data" folder.
     output_file = os.path.join(output_folder,
