@@ -220,7 +220,7 @@ server <- function(input, output, session) {
       df <- df %>%
         mutate(
           marker_color = sapply(AQI, getAQIColor),
-          popup_text = paste0("<b>", getSensorName(sensor_id), " (", sensor_id, ")</b><br>",
+          popup_text = paste0("<b>", sapply(sensor_id, getSensorName), " (", sensor_id, ")</b><br>",
                               "AQI: ", round(as.numeric(AQI), 1), "<br>")
         )
       for(i in 1:nrow(df)) {
@@ -237,6 +237,7 @@ server <- function(input, output, session) {
     }
     m
   })
+  
   
   observeEvent(input$sensor_select, {
     sensor_id <- input$sensor_select
