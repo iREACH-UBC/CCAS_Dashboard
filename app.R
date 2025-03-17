@@ -4,25 +4,31 @@ library(dplyr)
 library(readr)
 library(lubridate)
 
-# Define sensor locations by sensor id (update as needed)
+# Define sensor locations by sensor id with location names.
 sensor_locations <- list(
-  "2021" = list(lat = 49.141444, lng = -123.10827),
-  "2022" = list(lat = 49.141445, lng = -123.10822),
-  "2023" = list(lat = 49.14143, lng = -123.10821),
-  "2024" = list(lat = 49.141448, lng = -123.10826),
-  "2026" = list(lat = 49.1414410, lng = -123.10823),
-  "2030" = list(lat = 49.141449, lng = -123.10829),
-  "2031" = list(lat = 49.141443, lng = -123.108211),
-  "2032" = list(lat = 49.141442, lng = -123.10822),
-  "2033" = list(lat = 49.141441, lng = -123.10828),
-  "2034" = list(lat = 49.141446, lng = -123.10824),
-  "2039" = list(lat = 49.141444, lng = -123.10822),
-  "2040" = list(lat = 49.141443, lng = -123.10828),
-  "2041" = list(lat = 49.141448, lng = -123.10827),
-  "2042" = list(lat = 49.141446, lng = -123.10829),
-  "2043" = list(lat = 49.141425, lng = -123.10825)
-  # Add additional sensors here
+  "2021" = list(name = "Location 1", lat = 49.141444, lng = -123.10827),
+  "2022" = list(name = "Location 2", lat = 49.141445, lng = -123.10822),
+  "2023" = list(name = "Location 3", lat = 49.14143, lng = -123.10821),
+  "2024" = list(name = "Location 4", lat = 49.141448, lng = -123.10826),
+  "2026" = list(name = "Location 5", lat = 49.1414410, lng = -123.10823),
+  "2030" = list(name = "Location 6", lat = 49.141449, lng = -123.10829),
+  "2031" = list(name = "Location 7", lat = 49.141443, lng = -123.108211),
+  "2032" = list(name = "Location 8", lat = 49.141442, lng = -123.10822),
+  "2033" = list(name = "Location 9", lat = 49.141441, lng = -123.10828),
+  "2034" = list(name = "Location 10", lat = 49.141446, lng = -123.10824),
+  "2039" = list(name = "Location 11", lat = 49.141444, lng = -123.10822),
+  "2040" = list(name = "Location 12", lat = 49.141443, lng = -123.10828),
+  "2041" = list(name = "Location 13", lat = 49.141448, lng = -123.10827),
+  "2042" = list(name = "Location 14", lat = 49.141446, lng = -123.10829),
+  "2043" = list(name = "Location 15", lat = 49.141425, lng = -123.10825)
 )
+
+# Helper function to get sensor name from sensor id.
+getSensorName <- function(sensor_id) {
+  if (!is.null(sensor_locations[[sensor_id]]) && !is.null(sensor_locations[[sensor_id]]$name))
+    return(sensor_locations[[sensor_id]]$name)
+  else return(sensor_id)
+}
 
 # Function to choose marker color based on AQI
 getAQIColor <- function(aqi) {
@@ -43,7 +49,7 @@ getAQIColor <- function(aqi) {
   }
 }
 
-# Function to return a qualitative description for AQI as a length-one character vector.
+# Function to return a qualitative description for AQI.
 getAQIDescription <- function(aqi) {
   aqi <- as.numeric(aqi)
   if (is.na(aqi)) return("No data available")
@@ -73,7 +79,7 @@ loadCalibratedData <- function(sensor_ids) {
     })
     latest_file <- files[which.max(dates)]
     
-    # Read the CSV file
+    # Read the CSV file.
     df <- read_csv(latest_file, show_col_types = FALSE)
     
     # --- Debugging Code ---
@@ -81,12 +87,9 @@ loadCalibratedData <- function(sensor_ids) {
     print(sapply(df, class))
     # ----------------------
     
-    # Define the expected numeric columns (by name)
     numeric_cols <- c("AQI", "CO", "NO", "NO2", "O3", "CO2", "PM1.0", "PM2.5", "PM10",
                       "TE", "T", "RH", "WD", "WS", "PWR", "BATT", "CHRG", "RUN",
                       "SD", "RAW")
-    
-    # Force conversion for expected numeric columns
     for (col in numeric_cols) {
       if (col %in% names(df)) {
         original <- df[[col]]
@@ -96,8 +99,6 @@ loadCalibratedData <- function(sensor_ids) {
         }
       }
     }
-    
-    # Additionally, force conversion for any columns whose names look like numeric values
     for (col in names(df)) {
       if (grepl("^-?[0-9.]+$", col)) {
         original <- df[[col]]
@@ -116,7 +117,6 @@ loadCalibratedData <- function(sensor_ids) {
   bind_rows(data_list)
 }
 
-# Load historical data (last 24 hours) for a sensor.
 loadHistoricalData <- function(sensor_id) {
   pattern <- paste0("^", sensor_id, "_calibrated_.*\\.csv$")
   files <- list.files("calibrated_data", pattern = pattern, full.names = TRUE)
@@ -131,7 +131,6 @@ loadHistoricalData <- function(sensor_id) {
   df %>% filter(DATE >= Sys.time() - 24*3600)
 }
 
-# Define pollutants (CSV column names) and their units.
 pollutants <- list(
   "CO" = "ppm",
   "NO" = "ppb",
@@ -143,12 +142,12 @@ pollutants <- list(
   "PM10" = "µg/m³"
 )
 
+# Create a named vector for dropdown choices using sensor id as the value and sensor name as the label.
+sensor_choices <- setNames(names(sensor_locations), sapply(sensor_locations, function(x) x$name))
+
 ui <- fluidPage(
-  # Include external CSS from www/styles.css
   includeCSS("www/styles.css"),
-  tags$head(
-    tags$meta(charset = "utf-8")
-  ),
+  tags$head(tags$meta(charset = "utf-8")),
   div(class = "title-bar",
       div(class = "title-left", "iREACH Laboratory"),
       div(class = "title-center", "Community Cleaner Air Spaces"),
@@ -184,7 +183,7 @@ ui <- fluidPage(
                fluidRow(
                  column(9, leafletOutput("airQualityMap", height = "85vh")),
                  column(3,
-                        selectInput("sensor_select", "Select Sensor", choices = names(sensor_locations), selected = ""),
+                        selectInput("sensor_select", "Select Sensor", choices = sensor_choices, selected = ""),
                         uiOutput("sensor_details"),
                         textOutput("last_update")
                  )
@@ -193,8 +192,7 @@ ui <- fluidPage(
     ),
     tabPanel("Detailed View",
              fluidPage(
-               # Dropdown for sensor selection on the List page.
-               selectInput("list_sensor_select", "Select Sensor", choices = names(sensor_locations), selected = ""),
+               selectInput("list_sensor_select", "Select Sensor", choices = sensor_choices, selected = ""),
                uiOutput("sensor_info")
              )
     ),
@@ -210,7 +208,7 @@ server <- function(input, output, session) {
   
   # Navigation between tabs.
   observeEvent(input$map_page, { updateNavbarPage(session, "navbar", selected = "Map") })
-  observeEvent(input$list_page, { updateNavbarPage(session, "navbar", selected = "Detailed") })
+  observeEvent(input$list_page, { updateNavbarPage(session, "navbar", selected = "Detailed View") })
   observeEvent(input$info_page, { updateNavbarPage(session, "navbar", selected = "Info") })
   
   sensor_data <- reactive({ loadCalibratedData(names(sensor_locations)) })
@@ -222,7 +220,7 @@ server <- function(input, output, session) {
       df <- df %>%
         mutate(
           marker_color = sapply(AQI, getAQIColor),
-          popup_text = paste0("<b>Sensor: ", sensor_id, "</b><br>",
+          popup_text = paste0("<b>", getSensorName(sensor_id), " (", sensor_id, ")</b><br>",
                               "AQI: ", round(as.numeric(AQI), 1), "<br>")
         )
       for(i in 1:nrow(df)) {
@@ -254,7 +252,7 @@ server <- function(input, output, session) {
       "No data available"
     } else {
       last_update <- max(as.POSIXct(df$DATE), na.rm = TRUE)
-      last_update <- force_tz(last_update, tzone="UTC")
+      last_update <- force_tz(last_update, tzone = "UTC")
       last_update_pst <- last_update - lubridate::hours(16)
       paste("Last updated:", format(last_update_pst, "%Y-%m-%d %H:%M"), "PST")
     }
@@ -273,7 +271,7 @@ server <- function(input, output, session) {
     sensor_row <- df %>% filter(sensor_id == selected_sensor)
     if(nrow(sensor_row) == 0) return(NULL)
     wellPanel(
-      h4(paste("Sensor", selected_sensor, "Details")),
+      h4(paste("Sensor", selected_sensor, "(", getSensorName(selected_sensor), ") Details")),
       tags$table(class = "data-table",
                  tags$thead(
                    tags$tr(
@@ -328,26 +326,20 @@ server <- function(input, output, session) {
     )
   })
   
-  # New List page UI: sensor selection, qualitative description, expandable pollutant details, and 24-hour graph.
   output$sensor_info <- renderUI({
     req(input$list_sensor_select)
     sensor_id <- input$list_sensor_select
     df <- sensor_data()
     sensor_row <- df %>% filter(sensor_id == sensor_id)
     if(nrow(sensor_row) == 0) return("No sensor data available.")
-    
-    # Get a single qualitative description for the AQI.
     description <- getAQIDescription(sensor_row$AQI[1])
-    
-    # Build pollutant concentration items ensuring each value is length-one.
     pollutant_ui <- lapply(names(pollutants), function(poll) {
       value <- round(as.numeric(sensor_row[[poll]][1]), 1)
       div(class = "pollutant-item", paste0(poll, ": ", value, " ", pollutants[[poll]]))
     })
-    
     tagList(
       div(class = "sensor-info-box",
-          h4(paste("Sensor", sensor_id, "Air Quality")),
+          h4(paste("Air Quality for", getSensorName(sensor_id), "(", sensor_id, ")")),
           p(description),
           tags$details(
             tags$summary("More info"),
@@ -363,7 +355,6 @@ server <- function(input, output, session) {
     )
   })
   
-  # Render the 24-hour AQI graph for the selected sensor.
   output$selected_sensor_plot <- renderPlot({
     req(input$list_sensor_select)
     sensor_id <- input$list_sensor_select
@@ -373,7 +364,7 @@ server <- function(input, output, session) {
     aqi_values <- as.numeric(hist_data$AQI)
     plot(hist_data$DATE, aqi_values, type = "l", lwd = 2,
          xlab = "Time", ylab = "AQI",
-         main = paste("24-hour AQI for Sensor", sensor_id))
+         main = paste("24-hour AQI for", getSensorName(sensor_id), "(", sensor_id, ")"))
   })
 }
 
