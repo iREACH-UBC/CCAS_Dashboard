@@ -172,7 +172,7 @@ ui <- fluidPage(
                         br(),
                         div(class = "button-container",
                             actionButton("map_page", "View Map", class = "nav-button", style = "background-image: url('map.png');"),
-                            actionButton("list_page", "View List", class = "nav-button", style = "background-image: url('placeholder-image.jpg');"),
+                            actionButton("list_page", "Detailed View", class = "nav-button", style = "background-image: url('list_image.png');"),
                             actionButton("info_page", "Info", class = "nav-button", style = "background-image: url('placeholder-image.jpg');")
                         )
                  )
@@ -191,7 +191,7 @@ ui <- fluidPage(
                )
              )
     ),
-    tabPanel("List",
+    tabPanel("Detailed View",
              fluidPage(
                # Dropdown for sensor selection on the List page.
                selectInput("list_sensor_select", "Select Sensor", choices = names(sensor_locations), selected = ""),
@@ -210,7 +210,7 @@ server <- function(input, output, session) {
   
   # Navigation between tabs.
   observeEvent(input$map_page, { updateNavbarPage(session, "navbar", selected = "Map") })
-  observeEvent(input$list_page, { updateNavbarPage(session, "navbar", selected = "List") })
+  observeEvent(input$list_page, { updateNavbarPage(session, "navbar", selected = "Detailed") })
   observeEvent(input$info_page, { updateNavbarPage(session, "navbar", selected = "Info") })
   
   sensor_data <- reactive({ loadCalibratedData(names(sensor_locations)) })
@@ -350,7 +350,7 @@ server <- function(input, output, session) {
           h4(paste("Sensor", sensor_id, "Air Quality")),
           p(description),
           tags$details(
-            tags$summary("Show pollutant concentrations"),
+            tags$summary("More info"),
             div(
               tagList(pollutant_ui),
               tags$details(
