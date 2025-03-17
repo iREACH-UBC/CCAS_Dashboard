@@ -29,17 +29,36 @@ getAQIColor <- function(aqi) {
   aqi <- as.numeric(aqi)
   if (is.na(aqi)) return("gray")
   if (aqi <= 50) {
-    "green"
+    return("green")
   } else if (aqi <= 100) {
-    "yellow"
+    return("yellow")
   } else if (aqi <= 150) {
-    "orange"
+    return("orange")
   } else if (aqi <= 200) {
-    "red"
+    return("red")
   } else if (aqi <= 300) {
-    "purple"
+    return("purple")
   } else {
-    "maroon"
+    return("maroon")
+  }
+}
+
+# Function to return a qualitative description for AQI as a length-one character vector.
+getAQIDescription <- function(aqi) {
+  aqi <- as.numeric(aqi)
+  if (is.na(aqi)) return("No data available")
+  if (aqi <= 50) {
+    return("Good air quality")
+  } else if (aqi <= 100) {
+    return("Moderate air quality")
+  } else if (aqi <= 150) {
+    return("Unhealthy for sensitive groups")
+  } else if (aqi <= 200) {
+    return("Unhealthy air quality")
+  } else if (aqi <= 300) {
+    return("Very unhealthy air quality")
+  } else {
+    return("Hazardous air quality")
   }
 }
 
@@ -73,7 +92,7 @@ loadCalibratedData <- function(sensor_ids) {
         original <- df[[col]]
         df[[col]] <- as.numeric(df[[col]])
         if (any(is.na(df[[col]]) & !is.na(original))) {
-          warning("Conversion to numeric resulted in NA for column ", col, " in sensor ", sensor_id)
+          warning(paste("Conversion to numeric resulted in NA for column", col, "in sensor", sensor_id))
         }
       }
     }
@@ -84,7 +103,7 @@ loadCalibratedData <- function(sensor_ids) {
         original <- df[[col]]
         df[[col]] <- as.numeric(df[[col]])
         if (any(is.na(df[[col]]) & !is.na(original))) {
-          warning("Conversion to numeric resulted in NA for column ", col, " in sensor ", sensor_id)
+          warning(paste("Conversion to numeric resulted in NA for column", col, "in sensor", sensor_id))
         }
       }
     }
@@ -96,7 +115,6 @@ loadCalibratedData <- function(sensor_ids) {
   })
   bind_rows(data_list)
 }
-
 
 # Load historical data (last 24 hours) for a sensor.
 loadHistoricalData <- function(sensor_id) {
@@ -125,43 +143,12 @@ pollutants <- list(
   "PM10" = "µg/m³"
 )
 
-# Use reactiveValues to track the sensor and pollutant selected in the List tab.
-rv <- reactiveValues(sensor = NULL, pollutant = NULL)
-
 ui <- fluidPage(
-  tags$head(tags$style(HTML("
-    body { margin: 0; padding: 0; }
-    .title-bar {
-      width: 100vw; background-color: #002145; color: white; padding: 20px;
-      display: flex; justify-content: space-between; align-items: center; box-sizing: border-box;
-    }
-    .title-left { font-size: 20px; font-weight: bold; }
-    .title-center { font-size: 24px; font-weight: bold; text-align: center; flex-grow: 1; }
-    .title-right { display: flex; flex-direction: column; align-items: center; }
-    .nav-button {
-      width: 30vw; height: 30vw; max-width: 300px; max-height: 300px;
-      background-size: cover; background-position: center; border: none;
-      cursor: pointer; font-size: 24px; text-align: center; color: white;
-      font-weight: bold; opacity: 0.8; display: flex; align-items: center; justify-content: center;
-      text-shadow: 2px 2px 4px black;
-    }
-    .nav-button:hover { opacity: 1; text-shadow: none; }
-    .button-container { display: flex; justify-content: space-around; margin-top: 20px; }
-    details { margin-bottom: 15px; background: #f7f7f7; padding: 10px; border-radius: 5px; }
-    summary { font-size: 16px; font-weight: bold; cursor: pointer; }
-    /* Neat table styling */
-    .data-table {
-      width: 100%; border-collapse: collapse; margin-top: 10px;
-    }
-    .data-table th, .data-table td {
-      border: 1px solid #ddd; padding: 8px;
-    }
-    .data-table tr:nth-child(even) { background-color: #f9f9f9; }
-    .data-table tr:hover { background-color: #f1f1f1; }
-    .data-table th { background-color: #002145; color: white; }
-    /* Inline plot styling */
-    .inline-plot { margin-top: 10px; }
-  "))),
+  # Include external CSS from www/styles.css
+  includeCSS("www/styles.css"),
+  tags$head(
+    tags$meta(charset = "utf-8")
+  ),
   div(class = "title-bar",
       div(class = "title-left", "iREACH Laboratory"),
       div(class = "title-center", "Community Cleaner Air Spaces"),
@@ -206,7 +193,9 @@ ui <- fluidPage(
     ),
     tabPanel("List",
              fluidPage(
-               uiOutput("sensor_list")
+               # Dropdown for sensor selection on the List page.
+               selectInput("list_sensor_select", "Select Sensor", choices = names(sensor_locations), selected = ""),
+               uiOutput("sensor_info")
              )
     ),
     tabPanel("Info",
@@ -261,7 +250,7 @@ server <- function(input, output, session) {
   
   output$last_update <- renderText({
     df <- sensor_data()
-    if(nrow(df)==0) {
+    if(nrow(df) == 0) {
       "No data available"
     } else {
       last_update <- max(as.POSIXct(df$DATE), na.rm = TRUE)
@@ -272,18 +261,20 @@ server <- function(input, output, session) {
   })
   
   output$sensor_details <- renderUI({
-    selected_sensor <- if(!is.null(input$sensor_select) && input$sensor_select!="") {
+    selected_sensor <- if(!is.null(input$sensor_select) && input$sensor_select != "") {
       input$sensor_select
     } else if(!is.null(input$airQualityMap_marker_click)) {
       input$airQualityMap_marker_click$id
-    } else { NULL }
+    } else { 
+      NULL 
+    }
     if(is.null(selected_sensor)) return(NULL)
     df <- sensor_data()
     sensor_row <- df %>% filter(sensor_id == selected_sensor)
-    if(nrow(sensor_row)==0) return(NULL)
+    if(nrow(sensor_row) == 0) return(NULL)
     wellPanel(
       h4(paste("Sensor", selected_sensor, "Details")),
-      tags$table(class="data-table",
+      tags$table(class = "data-table",
                  tags$thead(
                    tags$tr(
                      tags$th("Pollutant"),
@@ -294,42 +285,42 @@ server <- function(input, output, session) {
                  tags$tbody(
                    tags$tr(
                      tags$td("CO"),
-                     tags$td(round(as.numeric(sensor_row$CO),1)),
+                     tags$td(round(as.numeric(sensor_row$CO)[1], 1)),
                      tags$td("ppm")
                    ),
                    tags$tr(
                      tags$td("NO"),
-                     tags$td(round(as.numeric(sensor_row$NO),1)),
+                     tags$td(round(as.numeric(sensor_row$NO)[1], 1)),
                      tags$td("ppb")
                    ),
                    tags$tr(
                      tags$td("NO2"),
-                     tags$td(round(as.numeric(sensor_row$NO2),1)),
+                     tags$td(round(as.numeric(sensor_row$NO2)[1], 1)),
                      tags$td("ppb")
                    ),
                    tags$tr(
                      tags$td("O3"),
-                     tags$td(round(as.numeric(sensor_row$O3),1)),
+                     tags$td(round(as.numeric(sensor_row$O3)[1], 1)),
                      tags$td("ppb")
                    ),
                    tags$tr(
                      tags$td("CO2"),
-                     tags$td(round(as.numeric(sensor_row$CO2),1)),
+                     tags$td(round(as.numeric(sensor_row$CO2)[1], 1)),
                      tags$td("ppm")
                    ),
                    tags$tr(
                      tags$td("PM1.0"),
-                     tags$td(round(as.numeric(sensor_row$`PM1.0`),1)),
+                     tags$td(round(as.numeric(sensor_row$`PM1.0`)[1], 1)),
                      tags$td("µg/m³")
                    ),
                    tags$tr(
                      tags$td("PM2.5"),
-                     tags$td(round(as.numeric(sensor_row$`PM2.5`),1)),
+                     tags$td(round(as.numeric(sensor_row$`PM2.5`)[1], 1)),
                      tags$td("µg/m³")
                    ),
                    tags$tr(
                      tags$td("PM10"),
-                     tags$td(round(as.numeric(sensor_row$PM10),1)),
+                     tags$td(round(as.numeric(sensor_row$PM10)[1], 1)),
                      tags$td("µg/m³")
                    )
                  )
@@ -337,98 +328,52 @@ server <- function(input, output, session) {
     )
   })
   
-  # Build the sensor list in the List tab.
-  output$sensor_list <- renderUI({
+  # New List page UI: sensor selection, qualitative description, expandable pollutant details, and 24-hour graph.
+  output$sensor_info <- renderUI({
+    req(input$list_sensor_select)
+    sensor_id <- input$list_sensor_select
     df <- sensor_data()
-    if(nrow(df)==0) return("No sensor data available.")
+    sensor_row <- df %>% filter(sensor_id == sensor_id)
+    if(nrow(sensor_row) == 0) return("No sensor data available.")
     
-    sensor_panels <- lapply(1:nrow(df), function(i) {
-      sensor_id <- df$sensor_id[i]
-      summary_text <- paste0("Sensor ", sensor_id, 
-                             " - AQI: ", round(as.numeric(df$AQI[i]),1),
-                             ", PM2.5: ", round(as.numeric(df$`PM2.5`[i]),1))
-      
-      # Build pollutant rows as clickable links.
-      poll_rows <- lapply(names(pollutants), function(poll) {
-        link_id <- paste0("poll_", sensor_id, "_", poll)
-        value <- round(as.numeric(df[[poll]][i]), 1)
-        unit <- pollutants[[poll]]
-        tags$tr(
-          tags$td(actionLink(link_id, poll, style="cursor:pointer; color: #007BFF; text-decoration: underline;")),
-          tags$td(style="padding: 5px;", value),
-          tags$td(style="padding: 5px;", unit)
-        )
-      })
-      
-      # Assemble a details panel for the sensor.
-      # If this sensor is selected in rv, show an inline plot below the table.
-      inlinePlot <- NULL
-      if (!is.null(rv$sensor) && rv$sensor == sensor_id && !is.null(rv$pollutant)) {
-        inlinePlot <- tags$div(class="inline-plot", plotOutput(paste0("inline_plot_", sensor_id)))
-      }
-      
-      tags$div(
-        style="margin-bottom:15px; padding:10px; border:1px solid #ddd; border-radius:5px; background-color:#fff;",
-        tags$details(
-          tags$summary(summary_text),
-          tags$table(class="data-table", do.call(tagList, poll_rows))
-        ),
-        inlinePlot
+    # Get a single qualitative description for the AQI.
+    description <- getAQIDescription(sensor_row$AQI[1])
+    
+    # Build pollutant concentration items ensuring each value is length-one.
+    pollutant_ui <- lapply(names(pollutants), function(poll) {
+      value <- round(as.numeric(sensor_row[[poll]][1]), 1)
+      div(class = "pollutant-item", paste0(poll, ": ", value, " ", pollutants[[poll]]))
+    })
+    
+    tagList(
+      div(class = "sensor-info-box",
+          h4(paste("Sensor", sensor_id, "Air Quality")),
+          p(description),
+          tags$details(
+            tags$summary("Show pollutant concentrations"),
+            div(
+              tagList(pollutant_ui),
+              tags$details(
+                tags$summary("Show 24-hour AQI graph"),
+                plotOutput("selected_sensor_plot")
+              )
+            )
+          )
       )
-    })
-    do.call(tagList, sensor_panels)
+    )
   })
   
-  # Create observers for pollutant action links in the list.
-  observe({
-    df <- sensor_data()
-    if(nrow(df)==0) return()
-    for(i in 1:nrow(df)) {
-      sensor_id <- df$sensor_id[i]
-      for(poll in names(pollutants)) {
-        link_id <- paste0("poll_", sensor_id, "_", poll)
-        local({
-          s_id <- sensor_id
-          p_name <- poll
-          l_id <- link_id
-          observeEvent(input[[l_id]], {
-            rv$sensor <- s_id
-            rv$pollutant <- p_name
-          }, ignoreNULL = TRUE, ignoreInit = TRUE)
-        })
-      }
-    }
-  })
-  
-  # Render inline plot for the selected sensor in the List tab.
-  observe({
-    req(rv$sensor, rv$pollutant)
-    s_id <- rv$sensor
-    p_name <- rv$pollutant
-    out_id <- paste0("inline_plot_", s_id)
-    output[[out_id]] <- renderPlot({
-      hist_data <- loadHistoricalData(s_id)
-      req(nrow(hist_data) > 0)
-      hist_data <- hist_data %>% mutate(DATE = as.POSIXct(DATE))
-      y_values <- as.numeric(hist_data[[p_name]])
-      y_values <- round(y_values, 1)
-      plot(hist_data$DATE, y_values, type="l", lwd=2,
-           xlab="Time", ylab=paste(p_name, " (", pollutants[[p_name]], ")", sep=""),
-           main=paste("Sensor", s_id, "-", p_name, "over past 24 hours"))
-    })
-  })
-  
-  # The modal plot (for Map tab) remains unchanged.
-  output$pollution_plot <- renderPlot({
-    req(rv$sensor, rv$pollutant)
-    hist_data <- loadHistoricalData(rv$sensor)
+  # Render the 24-hour AQI graph for the selected sensor.
+  output$selected_sensor_plot <- renderPlot({
+    req(input$list_sensor_select)
+    sensor_id <- input$list_sensor_select
+    hist_data <- loadHistoricalData(sensor_id)
     req(nrow(hist_data) > 0)
     hist_data <- hist_data %>% mutate(DATE = as.POSIXct(DATE))
-    y_values <- as.numeric(hist_data[[rv$pollutant]])
-    y_values <- round(y_values, 1)
-    plot(hist_data$DATE, y_values, type="l", lwd=2,
-         xlab="Time", ylab=paste(rv$pollutant, " (", pollutants[[rv$pollutant]], ")", sep=""),
-         main=paste("Sensor", rv$sensor, "-", rv$pollutant, "over past 24 hours"))
+    aqi_values <- as.numeric(hist_data$AQI)
+    plot(hist_data$DATE, aqi_values, type = "l", lwd = 2,
+         xlab = "Time", ylab = "AQI",
+         main = paste("24-hour AQI for Sensor", sensor_id))
   })
 }
 
