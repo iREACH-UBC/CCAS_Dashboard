@@ -118,14 +118,21 @@ for sensor in sensor_ids:
     # Calculate AQI for each row based on the calibrated data
     recent_df['AQI'] = recent_df.apply(calculate_aqi, axis=1)
     
+    # Print column names before dropping to debug
     print(f"Columns before dropping for sensor {sensor}:")
     print(recent_df.columns.tolist())
     
-    # Drop unwanted columns before saving
+    # Convert all column names to strings
+    recent_df.columns = recent_df.columns.astype(str)
+    
+    # Drop unwanted columns
     columns_to_remove = ["WD", "WS", "PWR", "BATT", "CHRG", "RUN", "SD", "RAW",
                          "108", "24", "0", "-29", "6", "0.1", "0.00000", "0.00000.1",
                          "0.2", "348142736", "118", "19", "-5", "-28", "302302278"]
+    existing = [col for col in columns_to_remove if col in recent_df.columns]
+    print(f"-> Dropping columns for sensor {sensor}: {existing}")
     recent_df.drop(columns=columns_to_remove, errors='ignore', inplace=True)
+
     
     # Save the calibrated data and AQI to a new file in the "calibrated_data" folder.
     output_file = os.path.join(output_folder,
