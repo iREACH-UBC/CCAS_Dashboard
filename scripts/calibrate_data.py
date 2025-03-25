@@ -128,7 +128,8 @@ for sensor in sensor_ids:
     # Drop unwanted columns
     columns_to_remove = ["WD", "WS", "PWR", "BATT", "CHRG", "RUN", "SD", "RAW",
                          "108", "24", "0", "-29", "6", "0.1", "0.00000", "0.00000.1",
-                         "0.2", "348142736", "118", "19", "-5", "-28", "302302278"]
+                         "0.2", "348142736", "118", "19", "-5", "-28", "302302278", "119",	
+                         "35",	"-8",	"-22", "3450814661",	"124",	"33",	"-24",	"1934690919"]
     existing = [col for col in columns_to_remove if col in recent_df.columns]
     print(f"-> Dropping columns for sensor {sensor}: {existing}")
     recent_df.drop(columns=columns_to_remove, errors='ignore', inplace=True)
