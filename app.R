@@ -34,14 +34,28 @@ getSensorName <- function(sensor_id) {
 getAQHIColor <- function(aqhi) {
   aqhi <- as.numeric(aqhi)
   if (is.na(aqhi)) return("gray")
-  if (aqhi <= 3) {
-    return("green")
+  if (aqhi <= 1) {
+    return("#67c1f1")
+  } else if (aqhi <= 2) {
+    return("#4e95c7")
+  } else if (aqhi <= 3) {
+    return("#396798")
+  } else if (aqhi <= 4) {
+    return("#e7eb38")
+  } else if (aqhi <= 5) {
+    return("#f1cb2e")
   } else if (aqhi <= 6) {
-    return("yellow")
+    return("#e79647")
+  } else if (aqhi <= 7) {
+    return("#dd6869")
+  } else if (aqhi <= 8) {
+    return("#d82732")
+  } else if (aqhi <= 9) {
+    return("#bf2733")
   } else if (aqhi <= 10) {
-    return("orange")
+    return("#8b2328")
   } else {
-    return("red")
+    return("#5a161b")
   }
 }
 
