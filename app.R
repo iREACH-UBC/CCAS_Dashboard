@@ -30,43 +30,37 @@ getSensorName <- function(sensor_id) {
   else return(sensor_id)
 }
 
-# Function to choose marker color based on AQI
-getAQIColor <- function(aqi) {
-  aqi <- as.numeric(aqi)
-  if (is.na(aqi)) return("gray")
-  if (aqi <= 50) {
+# Function to choose marker color based on AQHI
+getAQHIColor <- function(aqhi) {
+  aqhi <- as.numeric(aqhi)
+  if (is.na(aqhi)) return("gray")
+  if (aqhi <= 3) {
     return("green")
-  } else if (aqi <= 100) {
+  } else if (aqhi <= 6) {
     return("yellow")
-  } else if (aqi <= 150) {
+  } else if (aqhi <= 10) {
     return("orange")
-  } else if (aqi <= 200) {
-    return("red")
-  } else if (aqi <= 300) {
-    return("purple")
   } else {
-    return("maroon")
+    return("red")
   }
 }
 
-# Function to return a qualitative description for AQI.
-getAQIDescription <- function(aqi) {
-  aqi <- as.numeric(aqi)
-  if (is.na(aqi)) return("No data available")
-  if (aqi <= 50) {
-    return("Good air quality")
-  } else if (aqi <= 100) {
-    return("Moderate air quality")
-  } else if (aqi <= 150) {
-    return("Unhealthy for sensitive groups")
-  } else if (aqi <= 200) {
-    return("Unhealthy air quality")
-  } else if (aqi <= 300) {
-    return("Very unhealthy air quality")
+
+# Function to return a qualitative description for AQHI.
+getAQHIDescription <- function(aqhi) {
+  aqhi <- as.numeric(aqhi)
+  if (is.na(aqhi)) return("No data available")
+  if (aqhi <= 3) {
+    return("Low health risk")
+  } else if (aqhi <= 6) {
+    return("Moderate health risk")
+  } else if (aqhi <= 10) {
+    return("High health risk")
   } else {
-    return("Hazardous air quality")
+    return("Very high health risk")
   }
 }
+
 
 loadCalibratedData <- function(sensor_ids) {
   data_list <- lapply(sensor_ids, function(sensor_id) {
@@ -87,7 +81,7 @@ loadCalibratedData <- function(sensor_ids) {
     print(sapply(df, class))
     # ----------------------
     
-    numeric_cols <- c("AQI", "CO", "NO", "NO2", "O3", "CO2", "PM1.0", "PM2.5", "PM10",
+    numeric_cols <- c("AQHI", "CO", "NO", "NO2", "O3", "CO2", "PM1.0", "PM2.5", "PM10",
                       "TE", "T", "RH", "WD", "WS", "PWR", "BATT", "CHRG", "RUN",
                       "SD", "RAW")
     for (col in numeric_cols) {
@@ -219,9 +213,9 @@ server <- function(input, output, session) {
     if(nrow(df) > 0) {
       df <- df %>%
         mutate(
-          marker_color = sapply(AQI, getAQIColor),
+          marker_color = sapply(AQHI, getAQHIColor),
           popup_text = paste0("<b>", sapply(sensor_id, getSensorName), " (", sensor_id, ")</b><br>",
-                              "AQI: ", round(as.numeric(AQI), 1), "<br>")
+                              "AQHI: ", round(as.numeric(AQHI), 1), "<br>")
         )
       for(i in 1:nrow(df)) {
         sensor_id <- df$sensor_id[i]
@@ -333,7 +327,7 @@ server <- function(input, output, session) {
     df <- sensor_data()
     sensor_row <- df %>% filter(sensor_id == sensor_id)
     if(nrow(sensor_row) == 0) return("No sensor data available.")
-    description <- getAQIDescription(sensor_row$AQI[1])
+    description <- getAQHIDescription(sensor_row$AQHI[1])
     pollutant_ui <- lapply(names(pollutants), function(poll) {
       value <- round(as.numeric(sensor_row[[poll]][1]), 1)
       div(class = "pollutant-item", paste0(poll, ": ", value, " ", pollutants[[poll]]))
@@ -347,7 +341,7 @@ server <- function(input, output, session) {
             div(
               tagList(pollutant_ui),
               tags$details(
-                tags$summary("Show 24-hour AQI graph"),
+                tags$summary("Show 24-hour AQHI graph"),
                 plotOutput("selected_sensor_plot")
               )
             )
@@ -362,10 +356,10 @@ server <- function(input, output, session) {
     hist_data <- loadHistoricalData(sensor_id)
     req(nrow(hist_data) > 0)
     hist_data <- hist_data %>% mutate(DATE = as.POSIXct(DATE))
-    aqi_values <- as.numeric(hist_data$AQI)
-    plot(hist_data$DATE, aqi_values, type = "l", lwd = 2,
-         xlab = "Time", ylab = "AQI",
-         main = paste("24-hour AQI for", getSensorName(sensor_id), "(", sensor_id, ")"))
+    aqhi_values <- as.numeric(hist_data$AQHI)
+    plot(hist_data$DATE, aqhi_values, type = "l", lwd = 2,
+         xlab = "Time", ylab = "AQHI",
+         main = paste("24-hour AQHI for", getSensorName(sensor_id), "(", sensor_id, ")"))
   })
 }
 
