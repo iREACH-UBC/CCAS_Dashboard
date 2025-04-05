@@ -13,7 +13,9 @@ SENSOR_IDS = [
     "MOD-00628", "MOD-00620", "MOD-00627", "MOD-00630", "MOD-00624"
 ]
 
-API_KEY = "842CY1LYOY3HIA2ZGFLWZFBL"
+API_KEY = os.getenv("QUANTAQ_API_KEY")
+if not API_KEY:
+    raise EnvironmentError("❌ QUANTAQ_API_KEY environment variable not set.")
 
 OUTPUT_DIR = "data"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -42,7 +44,11 @@ for sn in SENSOR_IDS:
         print(f"Fetching data for {sn}...")
 
         url = f"https://api.quant-aq.com/v1/devices/{sn}/data-by-date/{date_str}/"
-        response = requests.get(url, auth=HTTPBasicAuth(API_KEY, ""), headers={"Accept": "application/json"})
+        response = requests.get(
+            url,
+            auth=HTTPBasicAuth(API_KEY, ""),
+            headers={"Accept": "application/json"}
+        )
 
         if response.status_code != 200:
             print(f"Failed to fetch {sn}: {response.status_code} - {response.text}")
