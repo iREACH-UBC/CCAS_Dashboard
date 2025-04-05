@@ -1,17 +1,19 @@
-name: Calibrate QAQ Data
+name: Calibrate QAQ Sensor Data
 
 on:
   schedule:
-    - cron: "0 * * * *"  # Runs every hour
+    - cron: "0 * * * *"  # Every hour
   workflow_dispatch:
 
 jobs:
-  calibrate-data:
+  calibrate-qaq:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -22,13 +24,14 @@ jobs:
         run: |
           pip install pandas numpy pytz
 
-      - name: Run calibration script
+      - name: Run QAQ calibration script
         run: python scripts/calibrate_qaq.py
 
       - name: Commit and push calibrated data
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
-          git add calibrated_data/*.csv
-          git commit -m "🔁 Auto-calibrated QAQ data at $(date)" || echo "No changes to commit"
+          
+          git add -A calibrated_data/
+          git commit -m "🔁 Calibrated QAQ data update at $(date)" || echo "No changes to commit"
           git push origin main || echo "Nothing to push"
