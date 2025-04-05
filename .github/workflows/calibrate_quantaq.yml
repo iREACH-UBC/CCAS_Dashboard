@@ -23,7 +23,7 @@ jobs:
           pip install pandas numpy pytz
 
       - name: Run calibration script
-        run: python scripts/calibrate_quantaq_data.py
+        run: python scripts/calibrate_qaq.py
 
       - name: Commit and push calibrated data
         run: |
