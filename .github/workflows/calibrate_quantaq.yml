@@ -1,0 +1,34 @@
+name: Calibrate QuantAQ Data
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # Runs hourly
+  workflow_dispatch:     # Allows manual trigger
+
+jobs:
+  calibrate-quantaq:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          pip install pandas numpy pytz
+
+      - name: Run calibration script
+        run: python scripts/calibrate_quantaq_data.py
+
+      - name: Commit and push calibrated data
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add calibrated_data/*.csv
+          git commit -m "Automated QuantAQ calibration update at $(date)" || echo "No changes to commit"
+          git push origin main
