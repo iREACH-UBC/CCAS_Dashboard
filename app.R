@@ -99,9 +99,6 @@ loadCalibratedData <- function(sensor_ids) {
     
     # Parse DATE as timezone-blind (ignoring any timezone info)
     df$DATE <- as.POSIXct(df$DATE, format = "%Y-%m-%d %H:%M:%S")
-    if (!grepl("^MOD", sensor_id)) {
-      df$DATE <- df$DATE - lubridate::hours(3)
-    }
     
     
     # --- Debugging Code ---
@@ -150,9 +147,6 @@ loadHistoricalData <- function(sensor_id) {
   latest_file <- files[which.max(dates)]
   df <- read_csv(latest_file, show_col_types = FALSE)
   df <- df %>% mutate(DATE = as.POSIXct(DATE, format = "%Y-%m-%d %H:%M:%S"))
-  if (!grepl("^MOD", sensor_id)) {
-    df$DATE <- df$DATE - lubridate::hours(3)
-  }
   
   df %>% filter(DATE >= Sys.time() - 24*3600)
 }
