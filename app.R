@@ -20,7 +20,17 @@ sensor_locations <- list(
   "2040" = list(name = "Location 12", lat = 49.141443, lng = -123.10828),
   "2041" = list(name = "Location 13", lat = 49.141448, lng = -123.10827),
   "2042" = list(name = "Location 14", lat = 49.141446, lng = -123.10829),
-  "2043" = list(name = "Location 15", lat = 49.141425, lng = -123.10825)
+  "2043" = list(name = "Location 15", lat = 49.141425, lng = -123.10825),
+  "MOD-00616" = list(name = "Location 16", lat = 49.141425, lng = -123.10825),
+  "MOD-00632" = list(name = "Location 17", lat = 49.141425, lng = -123.10825), 
+  "MOD-00625" = list(name = "Location 18", lat = 49.141425, lng = -123.10825), 
+  "MOD-00631" = list(name = "Location 19", lat = 49.141425, lng = -123.10825),
+  "MOD-00623" = list(name = "Location 20", lat = 49.141425, lng = -123.10825),
+  "MOD-00628" = list(name = "Location 21", lat = 49.141425, lng = -123.10825),
+  "MOD-00620" = list(name = "Location 22", lat = 49.141425, lng = -123.10825), 
+  "MOD-00627" = list(name = "Location 23", lat = 49.141425, lng = -123.10825), 
+  "MOD-00630" = list(name = "Location 24", lat = 49.141425, lng = -123.10825), 
+  "MOD-00624" = list(name = "Location 25", lat = 49.141425, lng = -123.10825)
 )
 
 # Helper function to get sensor name from sensor id.
