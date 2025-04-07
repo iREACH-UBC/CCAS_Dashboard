@@ -132,8 +132,11 @@ for sensor in sensor_ids:
     )
     recent_df["AQHI"] = aqhi
 
-    # Reset index to get DATE back as column
+        # Reset index to get DATE back as column
     recent_df.reset_index(inplace=True)
+
+    # Convert DATE column to ISO8601 format
+    recent_df['DATE'] = recent_df['DATE'].apply(lambda dt: dt.isoformat())
 
     output_file = os.path.join(
         output_folder,

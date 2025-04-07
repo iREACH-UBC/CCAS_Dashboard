@@ -115,6 +115,9 @@ for sensor in sensor_ids:
 
     df.reset_index(inplace=True)
 
+    # Convert DATE column to ISO8601 strings
+    df["DATE"] = df["DATE"].apply(lambda dt: dt.isoformat())
+
     # Reorder columns
     desired_cols = ["DATE", "TE", "CO", "NO", "NO2", "O3", "CO2", "T", "RH", "PM1.0", "PM2.5", "PM10", "AQHI"]
     for col in desired_cols:
@@ -123,7 +126,7 @@ for sensor in sensor_ids:
     df = df[desired_cols]
 
     # Save
-    date_str = df["DATE"].dt.date.min().strftime("%Y-%m-%d")
+    date_str = df["DATE"].apply(lambda d: d.split("T")[0]).min()  # Extract date portion
     output_path = os.path.join(output_folder, f"{sensor}_calibrated_{date_str}_to_{now_pst.date()}.csv")
     df.to_csv(output_path, index=False)
     print(f"✅ Saved calibrated file: {output_path}")
