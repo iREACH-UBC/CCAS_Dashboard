@@ -2,13 +2,13 @@ name: Update Calibrated Sensor Data
 
 on:
   workflow_run:          # Whenever update_ramp_data completes
-    workflows: ["Update RAMP Sensor Data"]
+    workflows: ["Update Sensor Data"]
     types:
       - completed
   workflow_dispatch:     # Allows manual triggering
 
 jobs:
-  calibrate:
+  calibrate-ramp:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -33,5 +33,35 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
           git add calibrated_data/*.csv
-          git commit -m "Automated calibrated data update at $(date)" || echo "No changes to commit"
+          git commit -m "Automated RAMP calibrated data update at $(date)" || echo "No changes to commit"
+          git pull --rebase origin main
           git push origin main
+          
+  calibrate-qaq:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+          with:
+            persist-credentials: true
+  
+        - name: Set up Python
+          uses: actions/setup-python@v4
+          with:
+            python-version: "3.9"
+  
+        - name: Install dependencies
+          run: |
+            pip install pandas pytz
+  
+        - name: Run calibration script
+          run: python scripts/calibrate_qaq.py
+  
+        - name: Commit and push calibrated data
+          run: |
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions@github.com"
+            git add calibrated_data/*.csv
+            git commit -m "Automated QAQ calibrated data update at $(date)" || echo "No changes to commit"
+            git pull --rebase origin main
+            git push origin main
