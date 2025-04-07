@@ -33,9 +33,12 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
           git add calibrated_data/*.csv
-          git commit -m "Automated RAMP calibrated data update at $(date)" || echo "No changes to commit"
-          git pull --rebase origin main
-          git push origin main
+          git commit -m "Automated QAQ calibrated data update at $(date)" || echo "No changes to commit"
+          for i in {1..5}; do
+            git pull --rebase origin main && git push origin main && break
+            sleep 5
+          done
+
           
   calibrate-qaq:
       runs-on: ubuntu-latest
@@ -63,5 +66,7 @@ jobs:
             git config --global user.email "github-actions@github.com"
             git add calibrated_data/*.csv
             git commit -m "Automated QAQ calibrated data update at $(date)" || echo "No changes to commit"
-            git pull --rebase origin main
-            git push origin main
+            for i in {1..5}; do
+              git pull --rebase origin main && git push origin main && break
+              sleep 5
+            done
