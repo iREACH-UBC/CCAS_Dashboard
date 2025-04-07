@@ -60,7 +60,7 @@ for sn in SENSOR_IDS:
             continue
 
         df = pd.DataFrame(data)
-        csv_path = os.path.join(OUTPUT_DIR, f"{file_date}-{sn}.csv")
+        csv_path = os.path.join(OUTPUT_DIR, f"{sn}-{file_date}.csv")
         df.to_csv(csv_path, index=False)
         print(f"Saved to {csv_path}")
 
