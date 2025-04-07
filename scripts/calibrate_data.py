@@ -80,11 +80,13 @@ for sensor in sensor_ids:
     joined_df = pd.concat(dfs, ignore_index=True)
 
     try:
-        # Convert DATE to datetime and strip any timezone info (naive PDT)
-        joined_df['DATE'] = pd.to_datetime(joined_df['DATE']).dt.tz_localize(None)
+        # Convert DATE to datetime and shift back by 7 hours to simulate PST day transition
+        joined_df['DATE'] = pd.to_datetime(joined_df['DATE']) - timedelta(hours=7)
+        joined_df['DATE'] = joined_df['DATE'].dt.tz_localize(None)
     except Exception as e:
         print(f"Error converting DATE column: {e}")
         continue
+
 
     past_24h = now_pst.replace(tzinfo=None) - timedelta(hours=24)
     recent_df = joined_df[joined_df['DATE'] >= past_24h].copy()
