@@ -26,12 +26,9 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 pst = pytz.timezone("America/Los_Angeles")
 now_pst = datetime.now(timezone.utc).astimezone(pst)
 
-if now_pst.hour < 6:
-    file_date = now_pst.date() - timedelta(days=1)
-elif now_pst.hour >= 21:
-    file_date = now_pst.date() + timedelta(days=1)
-else:
-    file_date = now_pst.date()
+pst = pytz.timezone("America/Los_Angeles")
+now_pst = datetime.now(timezone.utc).astimezone(pst)
+file_date = now_pst.date()
 
 date_str = str(file_date)
 print(f"Fetching QuantAQ data for {date_str}")

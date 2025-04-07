@@ -23,12 +23,10 @@ base_url = "http://18.222.146.48/RAMP/v1/raw"
 pst_tz = pytz.timezone("America/Los_Angeles")
 current_time_pst = datetime.now(timezone.utc).astimezone(pst_tz)
 
-if current_time_pst.hour < 6:
-    file_date = current_time_pst.date() - timedelta(days=1)
-elif current_time_pst.hour >= 21:
-    file_date = current_time_pst.date() + timedelta(days=1)
-else:
-    file_date = current_time_pst.date()
+pst = pytz.timezone("America/Los_Angeles")
+now_pst = datetime.now(timezone.utc).astimezone(pst)
+file_date = now_pst.date()
+
 
 print(f"📡 Downloading data for date {file_date} (PST) for sensors: {sensor_ids}")
 

@@ -97,8 +97,11 @@ loadCalibratedData <- function(sensor_ids) {
     })
     latest_file <- files[which.max(dates)]
     
-    # Read the CSV file.
     df <- read_csv(latest_file, show_col_types = FALSE)
+    
+    # Convert DATE column properly with timezone awareness
+    df$DATE <- as.POSIXct(df$DATE, format = "%Y-%m-%d %H:%M:%S%z", tz = "America/Los_Angeles")
+    
     
     # --- Debugging Code ---
     cat("DEBUG: Processing sensor", sensor_id, "from file:", latest_file, "\n")
