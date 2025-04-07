@@ -262,7 +262,7 @@ server <- function(input, output, session) {
     } else {
       last_update <- max(as.POSIXct(df$DATE), na.rm = TRUE)
       last_update <- force_tz(last_update, tzone = "UTC")
-      last_update_pst <- last_update - lubridate::hours(16)
+      last_update_pst <- last_update - lubridate::hours(7)
       paste("Last updated:", format(last_update_pst, "%Y-%m-%d %H:%M"), "PST")
     }
   })
