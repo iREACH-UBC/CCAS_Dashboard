@@ -32,8 +32,9 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
+          git pull --rebase origin main
           git add data/*.csv
-          git commit -m "RAMP data update at $(date)" || echo "No changes to commit"
+          git commit -m "Automated data update at $(date)" || echo "No changes to commit"
           git push origin main
 
   fetch-quantaq:
