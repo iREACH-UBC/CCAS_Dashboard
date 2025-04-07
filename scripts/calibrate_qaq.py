@@ -112,13 +112,19 @@ for sensor in sensor_ids:
         df['AQHI'] = np.nan
         df.reset_index(inplace=True)
 
-    # Ensure correct column order
-    final_cols = ["DATE", "TE", "CO", "NO", "NO2", "O3", "CO2", "T", "RH", "PM1.0", "PM2.5", "PM10", "AQHI"]
-    df['TE'] = sensor  # Use sensor ID as TE identifier for now
-    for col in final_cols:
-        if col not in df.columns:
-            df[col] = np.nan
-    df = df[final_cols]
+    # Ensure all output columns exist and are numeric (or NaN)
+    final_columns = [
+        "DATE", "TE", "CO", "NO", "NO2", "O3", "CO2", "T", "RH",
+        "PM1.0", "PM2.5", "PM10", "AQHI"
+    ]
+    for col in final_columns:
+        if col not in recent_df.columns:
+            recent_df[col] = np.nan
+        if col != "DATE":
+            recent_df[col] = pd.to_numeric(recent_df[col], errors="coerce")
+    
+    # Reorder columns
+    recent_df = recent_df[final_columns]
 
     # Output
     start = df['DATE'].min().strftime('%Y-%m-%d') if not df.empty else 'unknown'
