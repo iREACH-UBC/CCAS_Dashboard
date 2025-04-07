@@ -84,7 +84,8 @@ for sensor in sensor_ids:
     df = df[list(rename_map.values())].copy()
 
     # Parse DATE column
-    df['DATE'] = pd.to_datetime(df['DATE'])
+    pst = pytz.timezone("America/Los_Angeles")
+    df['DATE'] = pd.to_datetime(df['DATE']).dt.tz_localize(pst)
     df = df.sort_values('DATE')
     df = df[df['DATE'] >= now_pst - timedelta(hours=24)].copy()
 
