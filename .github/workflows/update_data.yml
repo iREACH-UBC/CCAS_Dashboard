@@ -37,7 +37,7 @@ jobs:
           git push origin main
 
   fetch-quantaq:
-    name: Run fetch_quantaq_data.py
+    name: Run fetch_qaq_data.py
     runs-on: ubuntu-latest
 
     steps:
@@ -55,8 +55,8 @@ jobs:
         run: |
           pip install requests beautifulsoup4 pytz pandas numpy
 
-      - name: Run fetch_quantaq_data.py
-        run: python scripts/fetch_quantaq_data.py
+      - name: Run fetch_qaq_data.py
+        run: python scripts/fetch_qaq_data.py
 
       - name: Commit and push changes
         run: |
