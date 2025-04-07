@@ -43,7 +43,7 @@ for sn in SENSOR_IDS:
     try:
         print(f"Fetching data for {sn}...")
 
-        url = f"https://api.quant-aq.com/v1/devices/{sn}/data-by-date/{date_str}/"
+        url = f"https://api.quant-aq.com/v1/devices/{sn}/data-by-date/raw/{date_str}/"
         response = requests.get(
             url,
             auth=HTTPBasicAuth(API_KEY, ""),
