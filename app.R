@@ -69,7 +69,6 @@ getAQHIColor <- function(aqhi) {
   }
 }
 
-
 # Function to return a qualitative description for AQHI.
 getAQHIDescription <- function(aqhi) {
   aqhi <- as.numeric(aqhi)
@@ -85,7 +84,6 @@ getAQHIDescription <- function(aqhi) {
   }
 }
 
-
 loadCalibratedData <- function(sensor_ids) {
   data_list <- lapply(sensor_ids, function(sensor_id) {
     pattern <- paste0("^", sensor_id, "_calibrated_.*\\.csv$")
@@ -99,8 +97,11 @@ loadCalibratedData <- function(sensor_ids) {
     
     df <- read_csv(latest_file, show_col_types = FALSE)
     
-    # Convert DATE column properly with timezone awareness
-    df$DATE <- as.POSIXct(df$DATE, format = "%Y-%m-%d %H:%M:%S%z", tz = "America/Los_Angeles")
+    # Parse DATE as timezone-blind (ignoring any timezone info)
+    df$DATE <- as.POSIXct(df$DATE, format = "%Y-%m-%d %H:%M:%S")
+    if (!grepl("^MOD", sensor_id)) {
+      df$DATE <- df$DATE - lubridate::hours(3)
+    }
     
     
     # --- Debugging Code ---
@@ -148,7 +149,11 @@ loadHistoricalData <- function(sensor_id) {
   })
   latest_file <- files[which.max(dates)]
   df <- read_csv(latest_file, show_col_types = FALSE)
-  df <- df %>% mutate(DATE = as.POSIXct(DATE))
+  df <- df %>% mutate(DATE = as.POSIXct(DATE, format = "%Y-%m-%d %H:%M:%S"))
+  if (!grepl("^MOD", sensor_id)) {
+    df$DATE <- df$DATE - lubridate::hours(3)
+  }
+  
   df %>% filter(DATE >= Sys.time() - 24*3600)
 }
 
@@ -259,7 +264,6 @@ server <- function(input, output, session) {
     m
   })
   
-  
   observeEvent(input$sensor_select, {
     sensor_id <- input$sensor_select
     if (sensor_id != "" && sensor_id %in% names(sensor_locations)) {
@@ -274,9 +278,8 @@ server <- function(input, output, session) {
       "No data available"
     } else {
       last_update <- max(as.POSIXct(df$DATE), na.rm = TRUE)
-      last_update <- force_tz(last_update, tzone = "UTC")
-      last_update_pst <- last_update - lubridate::hours(7)
-      paste("Last updated:", format(last_update_pst, "%Y-%m-%d %H:%M"), "PST")
+      # Display the last update as a timezone-blind timestamp
+      paste("Last updated:", format(last_update, "%Y-%m-%d %H:%M"))
     }
   })
   
@@ -382,7 +385,7 @@ server <- function(input, output, session) {
     sensor_id <- input$list_sensor_select
     hist_data <- loadHistoricalData(sensor_id)
     req(nrow(hist_data) > 0)
-    hist_data <- hist_data %>% mutate(DATE = as.POSIXct(DATE))
+    hist_data <- hist_data %>% mutate(DATE = as.POSIXct(DATE, format = "%Y-%m-%d %H:%M:%S"))
     aqhi_values <- as.numeric(hist_data$AQHI)
     plot(hist_data$DATE, aqhi_values, type = "l", lwd = 2,
          xlab = "Time", ylab = "AQHI",

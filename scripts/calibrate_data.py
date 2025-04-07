@@ -81,7 +81,7 @@ for sensor in sensor_ids:
 
     try:
         # Convert DATE to datetime and shift back by 7 hours to simulate PST day transition
-        joined_df['DATE'] = pd.to_datetime(joined_df['DATE']) - timedelta(hours=7)
+        joined_df['DATE'] = pd.to_datetime(joined_df['DATE']) - timedelta(hours=10)
         joined_df['DATE'] = joined_df['DATE'].dt.tz_localize(None)
     except Exception as e:
         print(f"Error converting DATE column: {e}")
