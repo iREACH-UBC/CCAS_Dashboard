@@ -107,8 +107,8 @@ for sensor in sensor_ids:
 
     df["AQHI"] = (
         (10 / 10.4) * 100 * (
-            (np.exp(0.000871 * rolling["NO2"]) - 1) +
-            (np.exp(0.000537 * rolling["O3"]) - 1) +
+            (np.exp(0.000871 * rolling["NO2"] / 1000) - 1) +
+            (np.exp(0.000537 * rolling["O3"] / 1000) - 1) +
             (np.exp(0.000487 * rolling["PM2.5"]) - 1)
         )
     )
