@@ -34,8 +34,10 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add data/*.csv
           git commit -m "Automated RAMP data update at $(date)" || echo "No changes to commit"
-          git pull --rebase origin main
-          git push origin main
+          for i in {1..5}; do
+            git pull --rebase origin main && git push origin main && break
+            sleep 5
+          done
 
   fetch-quantaq:
     name: Run fetch_qaq_data.py
@@ -67,5 +69,7 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add data/*.csv
           git commit -m "Automated QAQ data update at $(date)" || echo "No changes to commit"
-          git pull --rebase origin main
-          git push origin main
+          for i in {1..5}; do
+            git pull --rebase origin main && git push origin main && break
+            sleep 5
+          done
