@@ -1,0 +1,32 @@
+name: Update HelloLamppost JSON
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every hour
+  workflow_dispatch:     # Allow manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install pandas
+        run: pip install pandas
+
+      - name: Run update script
+        run: python update_hellolamppost_data.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add main/HelloLamppostData.json
+          git diff --cached --quiet || git commit -m "Update HelloLamppostData"
+          git push
