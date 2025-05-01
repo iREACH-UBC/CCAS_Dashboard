@@ -21,7 +21,7 @@ jobs:
         run: pip install pandas
 
       - name: Run update script
-        run: python scripts/update_hellolamppost_data.py
+        run: python scripts/hellolamppost_integration.py
 
       - name: Commit and push if changed
         run: |
