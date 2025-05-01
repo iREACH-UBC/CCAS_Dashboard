@@ -1,9 +1,10 @@
 name: Update HelloLamppost JSON
 
+
 on:
   schedule:
-    - cron: '0 * * * *'  # Every hour
-  workflow_dispatch:     # Allow manual trigger
+    - cron: "*/15 * * * *"  # Runs every 15 minutes
+  workflow_dispatch:        # Allows manual triggering
 
 jobs:
   update:
