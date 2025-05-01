@@ -7,8 +7,8 @@ import json
 sensor_ids = ["MOD-00630"]  # Replace with actual IDs
 
 # Paths (relative to repo root)
-input_folder = "hugo/calibrated_data"
-output_file = "hugo/HelloLamppostData.json"
+input_folder = "calibrated_data"
+output_file = "HelloLamppostData.json"
 
 # AQHI label mapping function
 def get_aqhi_label(value):
