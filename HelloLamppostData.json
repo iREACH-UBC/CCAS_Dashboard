@@ -1,0 +1,152 @@
+[
+    {
+        "2021": {
+            "label": "moderate",
+            "value": 3.03
+        }
+    },
+    {
+        "2022": {
+            "label": "low",
+            "value": 2.19
+        }
+    },
+    {
+        "2023": {
+            "label": "low",
+            "value": 0.66
+        }
+    },
+    {
+        "2024": {
+            "label": "low",
+            "value": 1.01
+        }
+    },
+    {
+        "2026": {
+            "label": "low",
+            "value": 2.19
+        }
+    },
+    {
+        "2030": {
+            "label": "low",
+            "value": 0.74
+        }
+    },
+    {
+        "2031": {
+            "label": "low",
+            "value": 0.58
+        }
+    },
+    {
+        "2032": {
+            "label": "high",
+            "value": 9.56
+        }
+    },
+    {
+        "2033": {
+            "label": "low",
+            "value": 0.46
+        }
+    },
+    {
+        "2034": {
+            "label": "low",
+            "value": 0.83
+        }
+    },
+    {
+        "2039": {
+            "label": "low",
+            "value": 0.25
+        }
+    },
+    {
+        "2040": {
+            "label": "low",
+            "value": 0.53
+        }
+    },
+    {
+        "2041": {
+            "label": "low",
+            "value": 0.3
+        }
+    },
+    {
+        "2042": {
+            "label": "low",
+            "value": 0.96
+        }
+    },
+    {
+        "2043": {
+            "label": "low",
+            "value": 0.64
+        }
+    },
+    {
+        "MOD-00616": {
+            "label": "low",
+            "value": 0.35
+        }
+    },
+    {
+        "MOD-00632": {
+            "label": "low",
+            "value": 0.36
+        }
+    },
+    {
+        "MOD-00625": {
+            "label": "low",
+            "value": 0.36
+        }
+    },
+    {
+        "MOD-00631": {
+            "label": "low",
+            "value": 0.35
+        }
+    },
+    {
+        "MOD-00623": {
+            "label": "low",
+            "value": 0.35
+        }
+    },
+    {
+        "MOD-00628": {
+            "label": "low",
+            "value": 0.32
+        }
+    },
+    {
+        "MOD-00620": {
+            "label": "low",
+            "value": 0.34
+        }
+    },
+    {
+        "MOD-00627": {
+            "label": "low",
+            "value": 0.34
+        }
+    },
+    {
+        "MOD-00630": {
+            "label": "low",
+            "value": 0.33
+        }
+    },
+    {
+        "MOD-00624": {
+            "label": "low",
+            "value": 0.33
+        }
+    }
+]
