@@ -1,9 +1,11 @@
 name: Calibrate QAQ Sensor Data
 
 on:
-  schedule:
-    - cron: "0 * * * *"  # Every hour
-  workflow_dispatch:
+  workflow_run:          # Whenever update_ramp_data completes
+    workflows: ["Update QuantAQ Sensor Data"]
+    types:
+      - completed
+  workflow_dispatch:     # Allows manual triggering
 
 jobs:
   calibrate-qaq:
