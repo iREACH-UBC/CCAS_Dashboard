@@ -4,7 +4,10 @@ import pandas as pd
 import json
 
 # List your sensor IDs here
-sensor_ids = ["MOD-00630"]  # Replace with actual IDs
+sensor_ids = ["2021","2022", "2023", "2024","2026","2030","2031",
+              "2032","2033","2034","2039","2040","2041","2042","2043",
+              "MOD-00616", "MOD-00632", "MOD-00625", "MOD-00631", "MOD-00623",
+              "MOD-00628", "MOD-00620", "MOD-00627", "MOD-00630", "MOD-00624"]
 
 # Paths (relative to repo root)
 input_folder = "calibrated_data"
