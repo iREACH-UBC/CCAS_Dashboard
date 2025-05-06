@@ -36,6 +36,7 @@ print(f"Fetching QuantAQ data for {date_str}")
 # ----------------------------------------
 # FETCH FINAL DATA BY DATE
 # ----------------------------------------
+# ...
 for sn in SENSOR_IDS:
     try:
         print(f"Fetching data for {sn}...")
@@ -57,7 +58,13 @@ for sn in SENSOR_IDS:
             continue
 
         df = pd.DataFrame(data)
-        csv_path = os.path.join(OUTPUT_DIR, f"{sn}-{file_date}.csv")
+
+        # Create subfolder for sensor
+        sensor_dir = os.path.join(OUTPUT_DIR, sn)
+        os.makedirs(sensor_dir, exist_ok=True)
+
+        # Save to sensor-specific folder
+        csv_path = os.path.join(sensor_dir, f"{sn}-{file_date}.csv")
         df.to_csv(csv_path, index=False)
         print(f"Saved to {csv_path}")
 

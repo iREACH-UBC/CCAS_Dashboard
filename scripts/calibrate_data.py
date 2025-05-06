@@ -145,9 +145,15 @@ for sensor in sensor_ids:
     # Convert DATE column to ISO8601 format
     recent_df['DATE'] = recent_df['DATE'].apply(lambda dt: dt.isoformat())
 
+    # Create sensor-specific subfolder
+    sensor_output_folder = os.path.join(output_folder, sensor)
+    os.makedirs(sensor_output_folder, exist_ok=True)
+
+    # Save to sensor-specific folder
     output_file = os.path.join(
-        output_folder,
+        sensor_output_folder,
         f"{sensor}_calibrated_{last_two_dates[0].strftime('%Y-%m-%d')}_to_{last_two_dates[-1].strftime('%Y-%m-%d')}.csv"
     )
     recent_df.to_csv(output_file, index=False)
     print(f"Calibrated data with AQHI for sensor {sensor} saved to {output_file}")
+

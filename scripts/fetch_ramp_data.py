@@ -59,6 +59,7 @@ def parse_file_data(text):
 # -------------------------------
 # PROCESS EACH SENSOR
 # -------------------------------
+# ...
 for sensor_id in sensor_ids:
     # Construct the filename: "YYYY-MM-DD-<sensor_id>.txt"
     file_date_str = file_date.strftime("%Y-%m-%d")
@@ -79,13 +80,17 @@ for sensor_id in sensor_ids:
         print(f"⚠️ No data found in file {filename}")
         continue
 
-    # Construct CSV filename (overwritten each run)
-    csv_filename = os.path.join(output_dir, f"{sensor_id}_{file_date_str}.csv")
+    # Create subfolder for this sensor
+    sensor_dir = os.path.join(output_dir, sensor_id)
+    os.makedirs(sensor_dir, exist_ok=True)
+
+    # Construct CSV filename inside sensor-specific folder
+    csv_filename = os.path.join(sensor_dir, f"{sensor_id}_{file_date_str}.csv")
     print(f"💾 Saving data to {csv_filename}")
     
     with open(csv_filename, mode='w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(header)
-        writer.writerows(all_data)
+        writer.writero(all_data)
     
     print(f"✅ Data for sensor {sensor_id} saved successfully (file overwritten each run).")

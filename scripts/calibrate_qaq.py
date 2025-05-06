@@ -152,6 +152,13 @@ for sensor in sensor_ids:
 
     # Save
     date_str = df["DATE"].apply(lambda d: d.split("T")[0]).min()  # Extract date portion
-    output_path = os.path.join(output_folder, f"{sensor}_calibrated_{date_str}_to_{now_pst.date()}.csv")
+
+    # Create sensor-specific subfolder
+    sensor_output_folder = os.path.join(output_folder, sensor)
+    os.makedirs(sensor_output_folder, exist_ok=True)
+
+    # Save to sensor folder
+    output_path = os.path.join(sensor_output_folder, f"{sensor}_calibrated_{date_str}_to_{now_pst.date()}.csv")
     df.to_csv(output_path, index=False)
     print(f"✅ Saved calibrated file: {output_path}")
+
