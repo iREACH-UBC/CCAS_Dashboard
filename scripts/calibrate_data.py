@@ -122,17 +122,24 @@ for sensor in sensor_ids:
     # 3-hour rolling mean for AQHI calculation
     rolling_means = recent_df[["NO2", "O3", "PM2.5"]].rolling("3H").mean()
 
-    # Calculate AQHI
-    aqhi = (
-        (10 / 10.4) * 100 * (
-            (np.exp(0.000871 * rolling_means["NO2"]) - 1) +
-            (np.exp(0.000537 * rolling_means["O3"]) - 1) +
-            (np.exp(0.000487 * rolling_means["PM2.5"]) - 1)
-        )
-    )
-    recent_df["AQHI"] = aqhi
+    # Calculate individual AQHI components
+    NO2_component = (np.exp(0.000871 * rolling_means["NO2"]) - 1)
+    O3_component  = (np.exp(0.000537 * rolling_means["O3"]) - 1)
+    PM25_component = (np.exp(0.000487 * rolling_means["PM2.5"]) - 1)
+    
+    # Calculate total AQHI
+    component_sum = NO2_component + O3_component + PM25_component
+    recent_df["AQHI"] = (10 / 10.4) * 100 * component_sum
+    
+    # Normalize for contribution proportions
+    recent_df["NO2_contrib"] = NO2_component / component_sum
+    recent_df["O3_contrib"] = O3_component / component_sum
+    recent_df["PM25_contrib"] = PM25_component / component_sum
+    
+    # Identify dominant AQHI contributor
+    recent_df["Top_AQHI_Contributor"] = recent_df[["NO2_contrib", "O3_contrib", "PM25_contrib"]].idxmax(axis=1).str.replace("_contrib", "")
 
-        # Reset index to get DATE back as column
+    # Reset index to get DATE back as column
     recent_df.reset_index(inplace=True)
 
     # Convert DATE column to ISO8601 format

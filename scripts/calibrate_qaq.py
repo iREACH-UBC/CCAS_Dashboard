@@ -105,13 +105,23 @@ for sensor in sensor_ids:
 
     rolling = df[["NO2", "O3", "PM2.5"]].rolling("3h").mean()
 
-    df["AQHI"] = (
-        (10 / 10.4) * 100 * (
-            (np.exp(0.000871 * rolling["NO2"] / 1000) - 1) +
-            (np.exp(0.000537 * rolling["O3"] / 1000) - 1) +
-            (np.exp(0.000487 * rolling["PM2.5"]) - 1)
-        )
-    )
+    # Calculate individual AQHI components
+    NO2_component = (np.exp(0.000871 * rolling["NO2"] / 1000) - 1)
+    O3_component  = (np.exp(0.000537 * rolling["O3"] / 1000) - 1)
+    PM25_component = (np.exp(0.000487 * rolling["PM2.5"]) - 1)
+    
+    # Store for contribution analysis
+    component_sum = NO2_component + O3_component + PM25_component
+    df["NO2_contrib"] = NO2_component / component_sum
+    df["O3_contrib"] = O3_component / component_sum
+    df["PM25_contrib"] = PM25_component / component_sum
+    
+    # Final AQHI computation
+    df["AQHI"] = (10 / 10.4) * 100 * component_sum
+    
+    # Identify dominant contributor
+    df["Top_AQHI_Contributor"] = df[["NO2_contrib", "O3_contrib", "PM25_contrib"]].idxmax(axis=1).str.replace("_contrib", "")
+
 
     df.reset_index(inplace=True)
 
@@ -119,7 +129,22 @@ for sensor in sensor_ids:
     df["DATE"] = df["DATE"].apply(lambda dt: dt.isoformat())
 
     # Reorder columns
-    desired_cols = ["DATE", "TE", "CO", "NO", "NO2", "O3", "CO2", "T", "RH", "PM1.0", "PM2.5", "PM10", "AQHI"]
+    # Calculate individual AQHI components
+    NO2_component = (np.exp(0.000871 * rolling["NO2"] / 1000) - 1)
+    O3_component  = (np.exp(0.000537 * rolling["O3"] / 1000) - 1)
+    PM25_component = (np.exp(0.000487 * rolling["PM2.5"]) - 1)
+    
+    # Store for contribution analysis
+    component_sum = NO2_component + O3_component + PM25_component
+    df["NO2_contrib"] = NO2_component / component_sum
+    df["O3_contrib"] = O3_component / component_sum
+    df["PM25_contrib"] = PM25_component / component_sum
+    
+    # Final AQHI computation
+    df["AQHI"] = (10 / 10.4) * 100 * component_sum
+
+    # Identify dominant contributor
+    df["Top_AQHI_Contributor"] = df[["NO2_contrib", "O3_contrib", "PM25_contrib"]].idxmax(axis=1).str.replace("_contrib", "")
     for col in desired_cols:
         if col not in df.columns:
             df[col] = np.nan
