@@ -91,6 +91,6 @@ for sensor_id in sensor_ids:
     with open(csv_filename, mode='w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(header)
-        writer.writero(all_data)
+        writer.writerows(all_data)
     
     print(f"✅ Data for sensor {sensor_id} saved successfully (file overwritten each run).")

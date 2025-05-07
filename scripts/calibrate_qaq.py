@@ -4,6 +4,8 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import pytz
+import smtplib
+from email.message import EmailMessage
 
 # ----------------------------------------
 # CONFIGURATION
@@ -78,12 +80,17 @@ for sensor in sensor_ids:
         print(f"❌ 'timestamp_local' missing in {latest_file}")
         continue
 
-    df["DATE"] = pd.to_datetime(df["timestamp_local"]).dt.tz_localize(None)
     df = df[df["DATE"] >= past_24h].copy()
+    
+    if df.empty or df["DATE"].max() < past_24h:
+        print(f"⚠️ Data for {sensor} is stale. Inserting -1 as fallback.")
+        # Construct fallback DataFrame
+        fallback_date = now_pst.replace(tzinfo=None).isoformat()
+        fallback = {col: -1 for col in ["TE", "CO", "NO", "NO2", "O3", "CO2", "T", "RH", "PM1.0", "PM2.5", "PM10", "AQHI"]}
+        fallback["DATE"] = fallback_date
+        fallback["Top_AQHI_Contributor"] = "-1"
+        df = pd.DataFrame([fallback])
 
-    if df.empty:
-        print(f"⚠️ No recent data for {sensor}")
-        continue
 
     # Apply dummy calibration
     for raw, std in varmap.items():
