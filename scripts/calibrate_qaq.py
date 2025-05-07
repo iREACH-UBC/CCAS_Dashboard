@@ -56,6 +56,15 @@ varmap = {
     "opc.pm10": "PM10"
 }
 
+def apply_aqhi_ceiling(aqhi_series, pm25_1h_series):
+    """
+    Return a series where AQHI is the maximum of the original AQHI 
+    and the ceiling of 1-hour PM2.5 divided by 10.
+    """
+    pm25_ceiling = np.ceil(pm25_1h_series["PM2.5"] / 10)
+    return np.maximum(aqhi_series, pm25_ceiling)
+
+
 # ----------------------------------------
 # PROCESS EACH SENSOR
 # ----------------------------------------
@@ -123,8 +132,13 @@ for sensor in sensor_ids:
     df["O3_contrib"] = O3_component / component_sum
     df["PM25_contrib"] = PM25_component / component_sum
     
-    # Final AQHI computation
-    df["AQHI"] = (10 / 10.4) * 100 * component_sum
+    raw_aqhi = (10 / 10.4) * 100 * component_sum
+    
+    # 1-hour rolling mean for AQHI ceiling check
+    pm25_1h = df[["PM2.5"]].rolling("1h").mean()
+    
+    df["AQHI"] = apply_aqhi_ceiling(raw_aqhi, pm25_1h)
+
     
     # Identify dominant contributor
     df["Top_AQHI_Contributor"] = df[["NO2_contrib", "O3_contrib", "PM25_contrib"]].idxmax(axis=1).str.replace("_contrib", "")
