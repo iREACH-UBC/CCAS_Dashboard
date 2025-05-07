@@ -97,13 +97,36 @@ for sensor in sensor_ids:
         continue
 
     if df.empty or df["DATE"].max() < past_24h:
-        print(f"⚠️ Data for {sensor} is stale. Inserting -1 as fallback.")
-        # Construct fallback DataFrame
-        fallback_date = now_pst.replace(tzinfo=None).isoformat()
-        fallback = {col: -1 for col in ["TE", "CO", "NO", "NO2", "O3", "CO2", "T", "RH", "PM1.0", "PM2.5", "PM10", "AQHI"]}
-        fallback["DATE"] = fallback_date
-        fallback["Top_AQHI_Contributor"] = "-1"
+        print(f"⚠️ Data for {sensor} is stale. Skipping AQHI calculation and inserting fallback row.")
+    
+        fallback_date = now_pst.replace(tzinfo=None)
+        fallback = {
+            "DATE": fallback_date.isoformat(),
+            "TE": "QAQ",
+            "CO": -1,
+            "NO": -1,
+            "NO2": -1,
+            "O3": -1,
+            "CO2": -1,
+            "T": -1,
+            "RH": -1,
+            "PM1.0": -1,
+            "PM2.5": -1,
+            "PM10": -1,
+            "AQHI": -1,
+            "Top_AQHI_Contributor": "-1"
+        }
         df = pd.DataFrame([fallback])
+        
+        # Save immediately and skip the rest
+        sensor_output_folder = os.path.join(output_folder, sensor)
+        os.makedirs(sensor_output_folder, exist_ok=True)
+    
+        output_path = os.path.join(sensor_output_folder, f"{sensor}_calibrated_{fallback_date.date()}_to_{now_pst.date()}.csv")
+        df.to_csv(output_path, index=False)
+        print(f"✅ Saved fallback file for {sensor}: {output_path}")
+        continue
+
 
 
     # Apply dummy calibration
