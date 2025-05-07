@@ -85,12 +85,17 @@ for sensor in sensor_ids:
         continue
 
     # Use timestamp_local if available
-    if "timestamp_local" not in df.columns:
-        print(f"❌ 'timestamp_local' missing in {latest_file}")
+    try:
+        if "timestamp_local" not in df.columns:
+            raise KeyError("'timestamp_local' missing")
+    
+        df["DATE"] = pd.to_datetime(df["timestamp_local"])
+        df = df[df["DATE"] >= past_24h].copy()
+    
+    except Exception as e:
+        print(f"❌ Error preparing DATE column for {sensor}: {e}")
         continue
 
-    df = df[df["DATE"] >= past_24h].copy()
-    
     if df.empty or df["DATE"].max() < past_24h:
         print(f"⚠️ Data for {sensor} is stale. Inserting -1 as fallback.")
         # Construct fallback DataFrame
