@@ -70,7 +70,6 @@ for sensor_id in sensor_ids:
     print(f"\n🔍 Processing sensor {sensor_id}")
     print(f"Downloading file from: {file_url}")
     
-    response = requests.get(file_url)
     if response.status_code != 200:
         print(f"❌ Failed to download {file_url} (status code: {response.status_code})")
         continue
@@ -81,7 +80,7 @@ for sensor_id in sensor_ids:
         continue
 
     # Create subfolder for this sensor
-    sensor_dir = os.path.join(output_dir, sensor_id)
+    sensor_dir = os.path.join(output_dir)
     os.makedirs(sensor_dir, exist_ok=True)
 
     # Construct CSV filename inside sensor-specific folder

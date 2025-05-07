@@ -60,7 +60,7 @@ for sn in SENSOR_IDS:
         df = pd.DataFrame(data)
 
         # Create subfolder for sensor
-        sensor_dir = os.path.join(OUTPUT_DIR, sn)
+        sensor_dir = os.path.join(OUTPUT_DIR)
         os.makedirs(sensor_dir, exist_ok=True)
 
         # Save to sensor-specific folder
