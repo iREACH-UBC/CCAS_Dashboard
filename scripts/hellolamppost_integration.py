@@ -40,7 +40,7 @@ for sensor_id in sensor_ids:
     # Default values
     value = "N/A"
     contributor = "N/A"
-    contrib_value = "N/A"
+    pollutant_conc = "N/A"
 
     if files:
         latest_file = files[0]
@@ -60,11 +60,10 @@ for sensor_id in sensor_ids:
                 ):
                     value = float(aqhi_val)
                     contributor = str(latest.get("Top_AQHI_Contributor", "N/A"))
-                    contrib_value = (
-                        float(round(latest[contributor], 2))
-                        if contributor in latest and pd.notnull(latest[contributor])
-                        else "N/A"
-                    )
+
+                    # Try to fetch pollutant concentration value
+                    if contributor in latest and pd.notnull(latest[contributor]):
+                        pollutant_conc = float(round(latest[contributor], 2))
         except Exception as e:
             print(f"Failed to process {sensor_id}: {e}")
 
@@ -75,7 +74,7 @@ for sensor_id in sensor_ids:
             "label": label,
             "value": value if value == "N/A" else int(round(value)),
             "top_contributor": contributor,
-            "contribution": contrib_value
+            "pollutant_concentration": pollutant_conc
         }
     })
 
