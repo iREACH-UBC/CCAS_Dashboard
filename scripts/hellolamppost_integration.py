@@ -37,42 +37,47 @@ for sensor_id in sensor_ids:
     pattern = os.path.join(sensor_folder, f"{sensor_id}_calibrated_*.csv")
     files = sorted(glob.glob(pattern), reverse=True)
 
-    if not files:
-        print(f"No files found for {sensor_id}")
-        continue
+    # Default values
+    value = "N/A"
+    contributor = "N/A"
+    contrib_value = "N/A"
 
-    latest_file = files[0]
-    try:
-        df = pd.read_csv(latest_file, parse_dates=["DATE"])
-        if df.empty:
-            print(f"Empty file for {sensor_id}")
-            continue
+    if files:
+        latest_file = files[0]
+        try:
+            df = pd.read_csv(latest_file, parse_dates=["DATE"])
+            if not df.empty:
+                df = df.sort_values("DATE")
+                latest = df.iloc[-1]
 
-        df = df.sort_values("DATE")
-        latest = df.iloc[-1]
+                latest_date = pd.to_datetime(latest["DATE"])
+                aqhi_val = latest.get("AQHI", "N/A")
 
-        if pd.to_datetime(latest["DATE"]) < past_24h:
-            value = "N/A"
-            contributor = "N/A"
-            contrib_value = "N/A"
-        else:
-            value = float(latest["AQHI"])
-            contributor = str(latest["Top_AQHI_Contributor"])
-            contrib_value = float(latest[contributor]) if contributor in latest else "N/A"
+                if (
+                    latest_date >= past_24h
+                    and pd.notnull(aqhi_val)
+                    and float(aqhi_val) != -1
+                ):
+                    value = float(aqhi_val)
+                    contributor = str(latest.get("Top_AQHI_Contributor", "N/A"))
+                    contrib_value = (
+                        float(round(latest[contributor], 2))
+                        if contributor in latest and pd.notnull(latest[contributor])
+                        else "N/A"
+                    )
+        except Exception as e:
+            print(f"Failed to process {sensor_id}: {e}")
 
-        label = get_aqhi_label(value)
+    label = get_aqhi_label(value)
 
-        output_json.append({
-            sensor_id: {
-                "label": label,
-                "value": value if value == "N/A" else int(round(value)),
-                "top_contributor": contributor,
-                "contribution": contrib_value if contrib_value == "N/A" else float(round(contrib_value, 2))
-            }
-        })
-
-    except Exception as e:
-        print(f"Failed to process {sensor_id}: {e}")
+    output_json.append({
+        sensor_id: {
+            "label": label,
+            "value": value if value == "N/A" else int(round(value)),
+            "top_contributor": contributor,
+            "contribution": contrib_value
+        }
+    })
 
 # Write JSON output
 with open(output_file, "w") as f:
