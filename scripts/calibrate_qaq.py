@@ -136,24 +136,33 @@ for sensor in sensor_ids:
     df["NO2_contrib"] = NO2_component / component_sum
     df["O3_contrib"] = O3_component / component_sum
     df["PM25_contrib"] = PM25_component / component_sum
-    df["Top_AQHI_Contributor"] = df[["NO2_contrib", "O3_contrib", "PM25_contrib"]].idxmax(axis=1).str.replace("_contrib", "")
-
+    # Identify dominant AQHI contributor
+    df["Top_AQHI_Contributor"] = df[["NO2_contrib", "O3_contrib", "PM25_contrib"]] \
+                                    .idxmax(axis=1).str.replace("_contrib", "")
+    
     df.reset_index(inplace=True)
     df["DATE"] = df["DATE"].apply(lambda dt: dt.isoformat())
-
+    
+    # Final column ordering
     desired_cols = [
         "DATE", "TE", "CO", "NO", "NO2", "O3", "CO2", "T", "RH",
         "PM1.0", "PM2.5", "PM10", "AQHI", "Top_AQHI_Contributor"
     ]
+    
+    # Ensure all required columns are present
     for col in desired_cols:
         if col not in df.columns:
             df[col] = np.nan
     df = df[desired_cols]
-
+    
+    # Save
+    date_str = df["DATE"].apply(lambda d: d.split("T")[0]).min()
     sensor_output_folder = os.path.join(output_folder, sensor)
     os.makedirs(sensor_output_folder, exist_ok=True)
-
-    date_str = df["DATE"].apply(lambda d: d.split("T")[0]).min()
-    output_path = os.path.join(sensor_output_folder, f"{sensor}_calibrated_{date_str}_to_{now_pst.date()}.csv")
+    
+    output_path = os.path.join(
+        sensor_output_folder,
+        f"{sensor}_calibrated_{date_str}_to_{now_pst.date()}.csv"
+    )
     df.to_csv(output_path, index=False)
     print(f"✅ Saved calibrated file: {output_path}")

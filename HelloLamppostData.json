@@ -1,152 +1,98 @@
 [
     {
         "2021": {
-            "label": "moderate",
-            "value": 3.02
-        }
-    },
-    {
-        "2022": {
             "label": "low",
-            "value": 2.19
-        }
-    },
-    {
-        "2023": {
-            "label": "low",
-            "value": 0.66
-        }
-    },
-    {
-        "2024": {
-            "label": "low",
-            "value": 1.01
+            "value": 2,
+            "top_contributor": "NO2",
+            "contribution": 6.41
         }
     },
     {
         "2026": {
             "label": "low",
-            "value": 2.35
-        }
-    },
-    {
-        "2030": {
-            "label": "low",
-            "value": 0.74
-        }
-    },
-    {
-        "2031": {
-            "label": "low",
-            "value": 0.58
-        }
-    },
-    {
-        "2032": {
-            "label": "low",
-            "value": 1.95
-        }
-    },
-    {
-        "2033": {
-            "label": "low",
-            "value": 0.46
-        }
-    },
-    {
-        "2034": {
-            "label": "low",
-            "value": 0.83
-        }
-    },
-    {
-        "2039": {
-            "label": "low",
-            "value": 0.25
-        }
-    },
-    {
-        "2040": {
-            "label": "low",
-            "value": 0.53
-        }
-    },
-    {
-        "2041": {
-            "label": "low",
-            "value": 0.3
-        }
-    },
-    {
-        "2042": {
-            "label": "low",
-            "value": 0.96
-        }
-    },
-    {
-        "2043": {
-            "label": "low",
-            "value": 0.64
+            "value": 2,
+            "top_contributor": "NO2",
+            "contribution": 9.18
         }
     },
     {
         "MOD-00616": {
             "label": "low",
-            "value": 0.35
+            "value": -1,
+            "top_contributor": "-1",
+            "contribution": "N/A"
         }
     },
     {
         "MOD-00632": {
             "label": "low",
-            "value": 0.36
+            "value": -1,
+            "top_contributor": "-1",
+            "contribution": "N/A"
         }
     },
     {
         "MOD-00625": {
             "label": "low",
-            "value": 0.36
+            "value": -1,
+            "top_contributor": "-1",
+            "contribution": "N/A"
         }
     },
     {
         "MOD-00631": {
             "label": "low",
-            "value": 0.35
+            "value": -1,
+            "top_contributor": "-1",
+            "contribution": "N/A"
         }
     },
     {
         "MOD-00623": {
             "label": "low",
-            "value": 0.43
+            "value": 1,
+            "top_contributor": "PM25",
+            "contribution": "N/A"
         }
     },
     {
         "MOD-00628": {
             "label": "low",
-            "value": 0.32
+            "value": -1,
+            "top_contributor": "-1",
+            "contribution": "N/A"
         }
     },
     {
         "MOD-00620": {
             "label": "low",
-            "value": 0.34
+            "value": -1,
+            "top_contributor": "-1",
+            "contribution": "N/A"
         }
     },
     {
         "MOD-00627": {
             "label": "low",
-            "value": 0.34
+            "value": -1,
+            "top_contributor": "-1",
+            "contribution": "N/A"
         }
     },
     {
         "MOD-00630": {
             "label": "low",
-            "value": 0.33
+            "value": -1,
+            "top_contributor": "-1",
+            "contribution": "N/A"
         }
     },
     {
         "MOD-00624": {
             "label": "low",
-            "value": 0.33
+            "value": -1,
+            "top_contributor": "-1",
+            "contribution": "N/A"
         }
     }
 ]
