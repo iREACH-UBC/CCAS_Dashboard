@@ -12,7 +12,36 @@ sensor_ids = [
     "MOD-00628", "MOD-00620", "MOD-00627", "MOD-00630", "MOD-00624"
 ]
 
-# Paths (relative to repo root)
+sensor_names = {
+  "2021" : "Location 1",
+  "2022" : "Location 2", 
+  "2023" : "Location 3", 
+  "2024" : "Location 4",
+  "2026" : "Location 5",
+  "2030" : "Location 6",
+  "2031" : "Location 7",
+  "2032" : "Location 8",
+  "2033" : "Location 9",
+  "2034" : "Location 10",
+  "2039" : "Location 11",
+  "2040" : "Location 12",
+  "2041" : "Location 13",
+  "2042" : "Location 14",
+  "2043" : "Location 15",
+  "MOD-00616" : "Location 16", 
+  "MOD-00632" : "Location 17", 
+  "MOD-00625" : "Location 18", 
+  "MOD-00631" : "Location 19", 
+  "MOD-00623" : "Location 20",
+  "MOD-00628" : "Location 21", 
+  "MOD-00620" : "Location 22", 
+  "MOD-00627" : "Location 23", 
+  "MOD-00630" : "Location 24", 
+  "MOD-00624" : "Location 25"
+}
+
+
+# Paths
 input_folder = "calibrated_data"
 output_file = "HelloLamppostData.json"
 
@@ -70,7 +99,7 @@ for sensor_id in sensor_ids:
     label = get_aqhi_label(value)
 
     output_json.append({
-        sensor_id: {
+        sensor_names[sensor_id]: {
             "label": label,
             "value": value if value == "N/A" else int(round(value)),
             "top_contributor": contributor,
