@@ -47,11 +47,12 @@ calibration_functions = {
 
 def apply_aqhi_ceiling(aqhi_series, pm25_1h_series):
     """
-    Return a series where AQHI is the maximum of the original AQHI 
-    and the ceiling of 1-hour PM2.5 divided by 10.
+    Return a series where AQHI is the maximum of the original AQHI (rounded) 
+    and the ceiling of 1-hour PM2.5 divided by 10. The result is an integer series.
     """
+    aqhi_rounded = aqhi_series.round()
     pm25_ceiling = np.ceil(pm25_1h_series["PM2.5"] / 10)
-    return np.maximum(aqhi_series, pm25_ceiling)
+    return np.maximum(aqhi_rounded, pm25_ceiling).astype(int)
 
 # -------------------------------
 # Process Each Sensor
@@ -141,8 +142,8 @@ for sensor in sensor_ids:
     # Calculate total AQHI
     component_sum = NO2_component + O3_component + PM25_component
     raw_aqhi = (10 / 10.4) * 100 * component_sum
-    recent_df["AQHI"] = apply_aqhi_ceiling(round(raw_aqhi, 0), PM25_1h)
-
+    recent_df["AQHI"] = apply_aqhi_ceiling(raw_aqhi, PM25_1h)
+    print(recent_df["AQHI"])
     
     # Normalize for contribution proportions
     recent_df["NO2_contrib"] = NO2_component / component_sum

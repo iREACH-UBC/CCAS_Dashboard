@@ -4,8 +4,6 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import pytz
-import smtplib
-from email.message import EmailMessage
 
 # ----------------------------------------
 # CONFIGURATION
@@ -40,7 +38,7 @@ calibration_functions = {
     "PM1.0": lambda x: x,
     "PM2.5": lambda x: x,
     "PM10": lambda x: x,
-    "TE": lambda x: "QAQ",  # Placeholder value
+    "TE": lambda x: "QAQ",  # Placeholder
 }
 
 varmap = {
@@ -57,13 +55,9 @@ varmap = {
 }
 
 def apply_aqhi_ceiling(aqhi_series, pm25_1h_series):
-    """
-    Return a series where AQHI is the maximum of the original AQHI 
-    and the ceiling of 1-hour PM2.5 divided by 10.
-    """
+    aqhi_rounded = aqhi_series.round()
     pm25_ceiling = np.ceil(pm25_1h_series["PM2.5"] / 10)
-    return np.maximum(aqhi_series, pm25_ceiling)
-
+    return np.maximum(aqhi_rounded, pm25_ceiling).astype(int)
 
 # ----------------------------------------
 # PROCESS EACH SENSOR
@@ -76,7 +70,7 @@ for sensor in sensor_ids:
         continue
 
     latest_file = max(files, key=os.path.getmtime)
-    print(f"📄 Processing {latest_file}")
+    print(f"\U0001F4C4 Processing {latest_file}")
 
     try:
         df = pd.read_csv(latest_file)
@@ -84,61 +78,41 @@ for sensor in sensor_ids:
         print(f"❌ Failed to read {latest_file}: {e}")
         continue
 
-    # Use timestamp_local if available
     try:
         if "timestamp_local" not in df.columns:
             raise KeyError("'timestamp_local' missing")
-    
         df["DATE"] = pd.to_datetime(df["timestamp_local"])
         df = df[df["DATE"] >= past_24h].copy()
-    
     except Exception as e:
         print(f"❌ Error preparing DATE column for {sensor}: {e}")
         continue
 
     if df.empty or df["DATE"].max() < past_24h:
         print(f"⚠️ Data for {sensor} is stale. Skipping AQHI calculation and inserting fallback row.")
-    
         fallback_date = now_pst.replace(tzinfo=None)
         fallback = {
             "DATE": fallback_date.isoformat(),
             "TE": "QAQ",
-            "CO": -1,
-            "NO": -1,
-            "NO2": -1,
-            "O3": -1,
-            "CO2": -1,
-            "T": -1,
-            "RH": -1,
-            "PM1.0": -1,
-            "PM2.5": -1,
-            "PM10": -1,
-            "AQHI": -1,
-            "Top_AQHI_Contributor": "-1"
+            "CO": -1, "NO": -1, "NO2": -1, "O3": -1,
+            "CO2": -1, "T": -1, "RH": -1,
+            "PM1.0": -1, "PM2.5": -1, "PM10": -1,
+            "AQHI": -1, "Top_AQHI_Contributor": "-1"
         }
         df = pd.DataFrame([fallback])
-        
-        # Save immediately and skip the rest
         sensor_output_folder = os.path.join(output_folder, sensor)
         os.makedirs(sensor_output_folder, exist_ok=True)
-    
         output_path = os.path.join(sensor_output_folder, f"{sensor}_calibrated_{fallback_date.date()}_to_{now_pst.date()}.csv")
         df.to_csv(output_path, index=False)
         print(f"✅ Saved fallback file for {sensor}: {output_path}")
         continue
 
-
-
-    # Apply dummy calibration
     for raw, std in varmap.items():
         if raw in df.columns:
             df[std] = calibration_functions[std](pd.to_numeric(df[raw], errors="coerce"))
         else:
             df[std] = np.nan
+    df["TE"] = calibration_functions["TE"](None)
 
-    df["TE"] = calibration_functions["TE"](None)  # Add TE field
-
-    # Calculate 3-hour rolling mean for AQHI
     df = df.sort_values("DATE")
     df.set_index("DATE", inplace=True)
 
@@ -148,66 +122,38 @@ for sensor in sensor_ids:
         continue
 
     rolling = df[["NO2", "O3", "PM2.5"]].rolling("3h").mean()
-
-    # Calculate individual AQHI components
-    NO2_component = (np.exp(0.000871 * rolling["NO2"] / 1000) - 1)
-    O3_component  = (np.exp(0.000537 * rolling["O3"] / 1000) - 1)
-    PM25_component = (np.exp(0.000487 * rolling["PM2.5"]) - 1)
-    
-    # Store for contribution analysis
-    component_sum = NO2_component + O3_component + PM25_component
-    df["NO2_contrib"] = NO2_component / component_sum
-    df["O3_contrib"] = O3_component / component_sum
-    df["PM25_contrib"] = PM25_component / component_sum
-    
-    raw_aqhi = (10 / 10.4) * 100 * component_sum
-    
-    # 1-hour rolling mean for AQHI ceiling check
     pm25_1h = df[["PM2.5"]].rolling("1h").mean()
-    
+
+    NO2_component = (np.exp(0.000871 * rolling["NO2"]/1000) - 1)
+    O3_component  = (np.exp(0.000537 * rolling["O3"]/1000) - 1)
+    PM25_component = (np.exp(0.000487 * rolling["PM2.5"]) - 1)
+
+    component_sum = NO2_component + O3_component + PM25_component
+    raw_aqhi = pd.Series((10 / 10.4) * 100 * component_sum, index=df.index)
+
     df["AQHI"] = apply_aqhi_ceiling(raw_aqhi, pm25_1h)
 
-    
-    # Identify dominant contributor
-    df["Top_AQHI_Contributor"] = df[["NO2_contrib", "O3_contrib", "PM25_contrib"]].idxmax(axis=1).str.replace("_contrib", "")
-
-
-    df.reset_index(inplace=True)
-
-    # Convert DATE column to ISO8601 strings
-    df["DATE"] = df["DATE"].apply(lambda dt: dt.isoformat())
-
-    # Reorder columns
-    # Calculate individual AQHI components
-    NO2_component = (np.exp(0.000871 * rolling["NO2"] / 1000) - 1)
-    O3_component  = (np.exp(0.000537 * rolling["O3"] / 1000) - 1)
-    PM25_component = (np.exp(0.000487 * rolling["PM2.5"]) - 1)
-    
-    # Store for contribution analysis
-    component_sum = NO2_component + O3_component + PM25_component
     df["NO2_contrib"] = NO2_component / component_sum
     df["O3_contrib"] = O3_component / component_sum
     df["PM25_contrib"] = PM25_component / component_sum
-    
-    # Final AQHI computation
-    df["AQHI"] = (10 / 10.4) * 100 * component_sum
-
-    # Identify dominant contributor
     df["Top_AQHI_Contributor"] = df[["NO2_contrib", "O3_contrib", "PM25_contrib"]].idxmax(axis=1).str.replace("_contrib", "")
+
+    df.reset_index(inplace=True)
+    df["DATE"] = df["DATE"].apply(lambda dt: dt.isoformat())
+
+    desired_cols = [
+        "DATE", "TE", "CO", "NO", "NO2", "O3", "CO2", "T", "RH",
+        "PM1.0", "PM2.5", "PM10", "AQHI", "Top_AQHI_Contributor"
+    ]
     for col in desired_cols:
         if col not in df.columns:
             df[col] = np.nan
     df = df[desired_cols]
 
-    # Save
-    date_str = df["DATE"].apply(lambda d: d.split("T")[0]).min()  # Extract date portion
-
-    # Create sensor-specific subfolder
     sensor_output_folder = os.path.join(output_folder, sensor)
     os.makedirs(sensor_output_folder, exist_ok=True)
 
-    # Save to sensor folder
+    date_str = df["DATE"].apply(lambda d: d.split("T")[0]).min()
     output_path = os.path.join(sensor_output_folder, f"{sensor}_calibrated_{date_str}_to_{now_pst.date()}.csv")
     df.to_csv(output_path, index=False)
     print(f"✅ Saved calibrated file: {output_path}")
-
