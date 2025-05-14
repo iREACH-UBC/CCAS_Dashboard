@@ -3,16 +3,16 @@
         "2021": {
             "label": "low",
             "value": 2,
-            "top_contributor": "NO2",
-            "contribution": 6.41
+            "top_contributor": "O3",
+            "contribution": 25.86
         }
     },
     {
         "2026": {
             "label": "low",
             "value": 2,
-            "top_contributor": "NO2",
-            "contribution": 9.18
+            "top_contributor": "O3",
+            "contribution": 20.64
         }
     },
     {
