@@ -4,7 +4,7 @@
             "label": "low",
             "value": 2,
             "top_contributor": "O3",
-            "contribution": 23.53
+            "pollutant_concentration": 23.53
         }
     },
     {
@@ -12,7 +12,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -20,7 +20,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -28,7 +28,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -36,7 +36,7 @@
             "label": "low",
             "value": 2,
             "top_contributor": "O3",
-            "contribution": 19.75
+            "pollutant_concentration": 19.75
         }
     },
     {
@@ -44,7 +44,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -52,7 +52,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -60,7 +60,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -68,7 +68,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -76,7 +76,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -84,7 +84,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -92,7 +92,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -100,7 +100,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -108,7 +108,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -116,7 +116,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -124,7 +124,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -132,7 +132,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -140,7 +140,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -148,7 +148,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -156,7 +156,7 @@
             "label": "low",
             "value": 1,
             "top_contributor": "PM25",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -164,7 +164,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -172,7 +172,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -180,7 +180,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -188,7 +188,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     },
     {
@@ -196,7 +196,7 @@
             "label": "no data",
             "value": "N/A",
             "top_contributor": "N/A",
-            "contribution": "N/A"
+            "pollutant_concentration": "N/A"
         }
     }
 ]
