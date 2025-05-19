@@ -4,7 +4,7 @@
             "label": "low",
             "value": 2,
             "top_contributor": "NO2",
-            "pollutant_concentration": 17.59
+            "pollutant_concentration": 16.37
         }
     },
     {
@@ -35,8 +35,8 @@
         "Location 5": {
             "label": "low",
             "value": 2,
-            "top_contributor": "O3",
-            "pollutant_concentration": 15.34
+            "top_contributor": "NO2",
+            "pollutant_concentration": 10.35
         }
     },
     {
