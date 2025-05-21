@@ -2,9 +2,9 @@
     {
         "Location 1": {
             "label": "low",
-            "value": 2,
+            "value": 3,
             "top_contributor": "O3",
-            "pollutant_concentration": 22.52
+            "pollutant_concentration": 20.88
         }
     },
     {
