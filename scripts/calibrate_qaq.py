@@ -63,7 +63,7 @@ def apply_aqhi_ceiling(aqhi_series, pm25_1h_series):
 # PROCESS EACH SENSOR
 # ----------------------------------------
 for sensor in sensor_ids:
-    pattern = os.path.join(data_folder, f"{sensor}-*.csv")
+    pattern = os.path.join(data_folder,f"{sensor}", f"{sensor}-*.csv")
     files = glob.glob(pattern)
     if not files:
         print(f"No files found for {sensor}")
