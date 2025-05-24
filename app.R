@@ -96,7 +96,9 @@ loadCalibratedData <- function(sensor_ids) {
     latest_file <- files[which.max(dates)]
     
     df <- read_csv(latest_file, show_col_types = FALSE)
-    
+    if ("Top_AQHI_Contributor" %in% names(df)) {
+      df$Top_AQHI_Contributor <- as.character(df$Top_AQHI_Contributor)
+    }
     # Parse DATE as timezone-blind (ignoring any timezone info)
     df$DATE <- as.POSIXct(df$DATE, format = "%Y-%m-%d %H:%M:%S")
     
@@ -146,6 +148,10 @@ loadHistoricalData <- function(sensor_id) {
   })
   latest_file <- files[which.max(dates)]
   df <- read_csv(latest_file, show_col_types = FALSE)
+  if ("Top_AQHI_Contributor" %in% names(df)) {
+    df$Top_AQHI_Contributor <- as.character(df$Top_AQHI_Contributor)
+  }
+  
   df <- df %>% mutate(DATE = as.POSIXct(DATE, format = "%Y-%m-%d %H:%M:%S"))
   
   df %>% filter(DATE >= Sys.time() - 24*3600)
