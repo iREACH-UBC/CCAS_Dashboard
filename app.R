@@ -87,7 +87,7 @@ getAQHIDescription <- function(aqhi) {
 loadCalibratedData <- function(sensor_ids) {
   data_list <- lapply(sensor_ids, function(sensor_id) {
     pattern <- paste0("^", sensor_id, "_calibrated_.*\\.csv$")
-    files <- list.files("calibrated_data", pattern = pattern, full.names = TRUE)
+    files <- list.files(file.path("calibrated_data", sensor_id), pattern = pattern, full.names = TRUE)
     if (length(files) == 0) return(NULL)
     dates <- sapply(files, function(f) {
       parts <- unlist(strsplit(basename(f), "_"))
@@ -138,7 +138,7 @@ loadCalibratedData <- function(sensor_ids) {
 
 loadHistoricalData <- function(sensor_id) {
   pattern <- paste0("^", sensor_id, "_calibrated_.*\\.csv$")
-  files <- list.files("calibrated_data", pattern = pattern, full.names = TRUE)
+  files <- list.files(file.path("calibrated_data", sensor_id), pattern = pattern, full.names = TRUE)
   if (length(files) == 0) return(NULL)
   dates <- sapply(files, function(f) {
     parts <- unlist(strsplit(basename(f), "_"))
