@@ -178,12 +178,11 @@ ui <- fluidPage(
     tags$meta(name = "viewport", content = "width=device-width, initial-scale=1")
   ),
   div(class = "title-bar",
-      div(class = "title-left", "iREACH Laboratory"),
-      div(class = "title-center", "Community Cleaner Air Spaces"),
-      div(class = "title-right",
-          img(src = "image1.png", height = "50px"),
-          img(src = "image2.png", height = "50px")
-      )
+      div(class = "title-left",
+          img(src = "image1.png", height = "35px"),
+          img(src = "image2.png", height = "35px")
+      ),
+      div(class = "title-center", "Community Cleaner Air Spaces")
   ),
   navbarPage(
     id = "navbar",
