@@ -173,7 +173,10 @@ sensor_choices <- setNames(names(sensor_locations), sapply(sensor_locations, fun
 
 ui <- fluidPage(
   includeCSS("www/styles.css"),
-  tags$head(tags$meta(charset = "utf-8")),
+  tags$head(
+    tags$meta(charset = "utf-8"),
+    tags$meta(name = "viewport", content = "width=device-width, initial-scale=1")
+  ),
   div(class = "title-bar",
       div(class = "title-left", "iREACH Laboratory"),
       div(class = "title-center", "Community Cleaner Air Spaces"),
@@ -205,14 +208,12 @@ ui <- fluidPage(
              )
     ),
     tabPanel("Map",
-             fluidPage(
-               fluidRow(
-                 column(9, leafletOutput("airQualityMap", height = "85vh")),
-                 column(3,
-                        selectInput("sensor_select", "Select Sensor", choices = sensor_choices, selected = ""),
-                        uiOutput("sensor_details"),
-                        textOutput("last_update")
-                 )
+             fluidRow(
+               column(width = 12, style = "padding-bottom: 10px;", leafletOutput("airQualityMap", height = "60vh")),
+               column(width = 12,
+                      selectInput("sensor_select", "Select Sensor", choices = sensor_choices, selected = ""),
+                      uiOutput("sensor_details"),
+                      textOutput("last_update")
                )
              )
     ),
