@@ -19,11 +19,10 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev
 
       - name: Install R packages
         run: |
-          Rscript -e 'install.packages(c("mRpostman", "mime", "stringr", "jsonlite", "lubridate"), repos="https://cloud.r-project.org")'
+          Rscript -e 'install.packages(c("libcurl", mRpostman", "mime", "stringr", "jsonlite", "lubridate"), repos="https://cloud.r-project.org")'
 
       - name: Run HelloLamppost integration script
         env:
