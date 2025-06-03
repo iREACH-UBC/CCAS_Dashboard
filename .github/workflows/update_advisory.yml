@@ -22,7 +22,7 @@ jobs:
 
       - name: Install R packages
         run: |
-          Rscript -e 'install.packages(c("libcurl", mRpostman", "mime", "stringr", "jsonlite", "lubridate"), repos="https://cloud.r-project.org")'
+          Rscript -e 'install.packages(c("libcurl", "mRpostman", "mime", "stringr", "jsonlite", "lubridate"), repos="https://cloud.r-project.org")'
 
       - name: Run HelloLamppost integration script
         env:
