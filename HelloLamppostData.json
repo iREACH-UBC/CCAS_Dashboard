@@ -153,10 +153,10 @@
     },
     {
         "Location 20": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
+            "label": "low",
+            "value": 1,
+            "top_contributor": "NO2",
+            "pollutant_concentration": 1740.38
         }
     },
     {
