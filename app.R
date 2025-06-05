@@ -25,7 +25,7 @@ sensor_locations <- list(
   "MOD-00632" = list(name = "Location 17", lat = 49.141425, lng = -123.10825), 
   "MOD-00625" = list(name = "Location 18", lat = 49.141425, lng = -123.10825), 
   "MOD-00631" = list(name = "Location 19", lat = 49.141425, lng = -123.10825),
-  "MOD-00623" = list(name = "Hydra Energy", lat = 49.16117455543103, lng = -122.96617030713607),
+  "MOD-00623" = list(name = "Location 20", lat = 49.16117455543103, lng = -122.96617030713607),
   "MOD-00628" = list(name = "Location 21", lat = 49.141425, lng = -123.10825),
   "MOD-00620" = list(name = "Location 22", lat = 49.141425, lng = -123.10825), 
   "MOD-00627" = list(name = "Location 23", lat = 49.141425, lng = -123.10825), 

@@ -42,10 +42,10 @@ calibration_functions = {
 }
 
 varmap = {
-    "gases.co.we": "CO",
-    "gases.no.we": "NO",
-    "gases.no2.we": "NO2",
-    "gases.o3.we": "O3",
+    "gases.co.diff": "CO",
+    "gases.no.diff": "NO",
+    "gases.no2.diff": "NO2",
+    "gases.o3.diff": "O3",
     "gases.co2.raw": "CO2",
     "met.temp": "T",
     "met.rh": "RH",

@@ -50,13 +50,13 @@ def get_aqhi_label(value):
     if value == "N/A":
         return "no data"
     elif value <= 3:
-        return "low"
+        return "Low health risk"
     elif value <= 6:
-        return "moderate"
+        return "Moderate health risk"
     elif value <= 10:
-        return "high"
+        return "High health risk"
     else:
-        return "very high"
+        return "Very high health risk"
 
 output_json = []
 past_24h = datetime.now() - timedelta(hours=24)
