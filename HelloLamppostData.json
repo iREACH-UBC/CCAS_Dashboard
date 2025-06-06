@@ -4,7 +4,7 @@
             "label": "Low health risk",
             "value": 2,
             "top_contributor": "O3",
-            "pollutant_concentration": 20.46
+            "pollutant_concentration": 19.38
         }
     },
     {
@@ -155,8 +155,8 @@
         "Location 20": {
             "label": "Low health risk",
             "value": 1,
-            "top_contributor": "NO2",
-            "pollutant_concentration": 1726.62
+            "top_contributor": "PM25",
+            "pollutant_concentration": "N/A"
         }
     },
     {
