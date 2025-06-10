@@ -3,6 +3,8 @@ library(leaflet)
 library(dplyr)
 library(readr)
 library(lubridate)
+library(ggplot2)
+
 
 # Define sensor locations by sensor id with location names.
 sensor_locations <- list(
@@ -366,16 +368,11 @@ server <- function(input, output, session) {
       div(class = "sensor-info-box",
           h4(paste("Air Quality for", getSensorName(sensor_id), "(", sensor_id, ")")),
           p(description),
-          tags$details(
-            tags$summary("More info"),
-            div(
-              tagList(pollutant_ui),
-              tags$details(
-                tags$summary("Show 24-hour AQHI graph"),
-                plotOutput("selected_sensor_plot")
-              )
-            )
-          )
+          tagList(pollutant_ui),
+          h4("24-Hour AQHI Trend"),
+          plotOutput("selected_sensor_plot"),
+          h4("Pollutant Time Series"),
+          uiOutput("pollutant_plots_ui")
       )
     )
   })
@@ -385,12 +382,82 @@ server <- function(input, output, session) {
     sensor_id <- input$list_sensor_select
     hist_data <- loadHistoricalData(sensor_id)
     req(nrow(hist_data) > 0)
-    hist_data <- hist_data %>% mutate(DATE = as.POSIXct(DATE, format = "%Y-%m-%d %H:%M:%S"))
-    aqhi_values <- as.numeric(hist_data$AQHI)
-    plot(hist_data$DATE, aqhi_values, type = "l", lwd = 2,
-         xlab = "Time", ylab = "AQHI",
-         main = paste("24-hour AQHI for", getSensorName(sensor_id), "(", sensor_id, ")"))
+    
+    df <- hist_data %>% mutate(DATE = as.POSIXct(DATE, format = "%Y-%m-%d %H:%M:%S"))
+    
+    ggplot(df, aes(x = DATE, y = as.numeric(AQHI))) +
+      geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 0, ymax = 3), fill = "lightblue", alpha = 0.2) +
+      geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 3, ymax = 6), fill = "khaki", alpha = 0.2) +
+      geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 6, ymax = 10), fill = "orange", alpha = 0.2) +
+      geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 10, ymax = Inf), fill = "red", alpha = 0.2) +
+      geom_line(color = "black", size = 1.2) +
+      labs(title = paste("AQHI -", getSensorName(sensor_id)),
+           x = "Time", y = "AQHI") +
+      theme_minimal()
   })
-}
+  output$pollutant_plots_ui <- renderUI({
+    req(input$list_sensor_select)
+    lapply(names(pollutants), function(poll) {
+      plotname <- paste0("poll_plot_", poll)
+      tagList(
+        h5(poll),
+        plotOutput(plotname)
+      )
+    })
+  })
+  observe({
+    req(input$list_sensor_select)
+    sensor_id <- input$list_sensor_select
+    hist_data <- loadHistoricalData(sensor_id)
+    req(nrow(hist_data) > 0)
+    
+    thresholds_list <- list(
+      "PM2.5" = c(0, 12, 35.5, 55.5, Inf),
+      "PM10" = c(0, 20, 50, 100, Inf),
+      "O3" = c(0, 50, 100, 150, Inf),
+      "NO2" = c(0, 53, 100, 200, Inf),
+      "NO" = c(0, 50, 150, 300, Inf),
+      "CO" = c(0, 1, 5, 10, Inf),
+      "CO2" = c(0, 600, 1000, 1500, Inf),
+      "PM1.0" = c(0, 10, 25, 50, Inf)
+    )
+    
+    color_bands <- c("lightblue", "khaki", "orange", "red")
+    
+    for (poll in names(pollutants)) {
+      local({
+        p <- poll
+        plotname <- paste0("poll_plot_", p)
+        output[[plotname]] <- renderPlot({
+          df <- hist_data
+          df$val <- as.numeric(df[[p]])
+          
+          # Check and convert DATE if needed
+          if (!inherits(df$DATE, "POSIXct")) {
+            df$DATE <- parse_date_time(df$DATE, orders = c("ymd HMS", "ymd HM", "ymd"), quiet = TRUE)
+          }
+          
+          # Drop rows with NA dates or values
+          df <- df %>% filter(!is.na(DATE) & !is.na(val))
+          if (nrow(df) == 0) return(NULL)
+          
+          thresh <- thresholds_list[[p]]
+          if (is.null(thresh)) thresh <- c(0, 1, 2, 3, Inf)
+          
+          ggplot(df, aes(x = DATE, y = val)) +
+            geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = thresh[1], ymax = thresh[2]), fill = color_bands[1], alpha = 0.2) +
+            geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = thresh[2], ymax = thresh[3]), fill = color_bands[2], alpha = 0.2) +
+            geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = thresh[3], ymax = thresh[4]), fill = color_bands[3], alpha = 0.2) +
+            geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = thresh[4], ymax = thresh[5]), fill = color_bands[4], alpha = 0.2) +
+            geom_line(color = "black", linewidth = 1.2) +  # Use `linewidth` instead of `size`
+            labs(title = paste(p, "(", pollutants[[p]], ")"),
+                 x = "Time", y = pollutants[[p]]) +
+            theme_minimal()
+        })
+        
+      })
+    }
+  })
+}  
 
 shinyApp(ui, server)
