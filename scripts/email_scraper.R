@@ -312,13 +312,13 @@ regions <- c(
   "Eastern Fraser Valley, B.C.",
   "Fraser Canyon - north including Lillooet, B.C.",
   "Nicola, B.C.",
-  "Fraser Canyon - south including Lytton, B.C."
-  "Lake Winnipegosis, Man."
-  "The Pas Cormorant Westray and Wanless, Man."
-  "Westgate Red Deer Lake and Barrows, Man."
-  "Porcupine Prov. Forest, Man."
-  "Thompson Thicket Portage and Pikwitonei, Man."
-  "Nelson House, Man."
+  "Fraser Canyon - south including Lytton, B.C.",
+  "Lake Winnipegosis, Man.",
+  "The Pas Cormorant Westray and Wanless, Man.",
+  "Westgate Red Deer Lake and Barrows, Man.",
+  "Porcupine Prov. Forest, Man.",
+  "Thompson Thicket Portage and Pikwitonei, Man.",
+  "Nelson House, Man.",
   "Flin Flon Cranberry Portage and Grass River Prov. Park, Man."
 )
 
