@@ -5,459 +5,240 @@ library(readr)
 library(lubridate)
 library(ggplot2)
 
-
-# Define sensor locations by sensor id with location names.
+# ----------------------------------------------------------------------------
+#  1.  Sensor location definitions
+# ----------------------------------------------------------------------------
 sensor_locations <- list(
-  "2021" = list(name = "Location 1", lat = 49.141444, lng = -123.10827),
-  "2022" = list(name = "Location 2", lat = 49.141445, lng = -123.10822),
-  "2023" = list(name = "Location 3", lat = 49.14143, lng = -123.10821),
-  "2024" = list(name = "Location 4", lat = 49.141448, lng = -123.10826),
-  "2026" = list(name = "Location 5", lat = 49.1414410, lng = -123.10823),
-  "2030" = list(name = "Location 6", lat = 49.141449, lng = -123.10829),
-  "2031" = list(name = "Location 7", lat = 49.141443, lng = -123.108211),
-  "2032" = list(name = "Location 8", lat = 49.141442, lng = -123.10822),
-  "2033" = list(name = "Location 9", lat = 49.141441, lng = -123.10828),
-  "2034" = list(name = "Location 10", lat = 49.141446, lng = -123.10824),
-  "2039" = list(name = "Location 11", lat = 49.141444, lng = -123.10822),
-  "2040" = list(name = "Location 12", lat = 49.141443, lng = -123.10828),
-  "2041" = list(name = "Location 13", lat = 49.141448, lng = -123.10827),
-  "2042" = list(name = "Location 14", lat = 49.141446, lng = -123.10829),
-  "2043" = list(name = "Location 15", lat = 49.141425, lng = -123.10825),
-  "MOD-00616" = list(name = "Location 16", lat = 49.141425, lng = -123.10825),
-  "MOD-00632" = list(name = "Location 17", lat = 49.141425, lng = -123.10825), 
-  "MOD-00625" = list(name = "Location 18", lat = 49.141425, lng = -123.10825), 
-  "MOD-00631" = list(name = "Location 19", lat = 49.141425, lng = -123.10825),
-  "MOD-00623" = list(name = "Location 20", lat = 49.16117455543103, lng = -122.96617030713607),
-  "MOD-00628" = list(name = "Location 21", lat = 49.141425, lng = -123.10825),
-  "MOD-00620" = list(name = "Location 22", lat = 49.141425, lng = -123.10825), 
-  "MOD-00627" = list(name = "Location 23", lat = 49.141425, lng = -123.10825), 
-  "MOD-00630" = list(name = "Location 24", lat = 49.141425, lng = -123.10825), 
-  "MOD-00624" = list(name = "Location 25", lat = 49.141425, lng = -123.10825)
+  "2021"      = list(name="Location 1",  lat=49.141444,      lng=-123.10827),
+  "2022"      = list(name="Location 2",  lat=49.141445,      lng=-123.10822),
+  "2023"      = list(name="Location 3",  lat=49.141430,      lng=-123.10821),
+  "2024"      = list(name="Location 4",  lat=49.141448,      lng=-123.10826),
+  "2026"      = list(name="Location 5",  lat=49.1414410,     lng=-123.10823),
+  "2030"      = list(name="Location 6",  lat=49.141449,      lng=-123.10829),
+  "2031"      = list(name="Location 7",  lat=49.141443,      lng=-123.108211),
+  "2032"      = list(name="Location 8",  lat=49.141442,      lng=-123.10822),
+  "2033"      = list(name="Location 9",  lat=49.141441,      lng=-123.10828),
+  "2034"      = list(name="Location 10", lat=49.141446,      lng=-123.10824),
+  "2039"      = list(name="Location 11", lat=49.141444,      lng=-123.10822),
+  "2040"      = list(name="Location 12", lat=49.141443,      lng=-123.10828),
+  "2041"      = list(name="Location 13", lat=49.141448,      lng=-123.10827),
+  "2042"      = list(name="Location 14", lat=49.141446,      lng=-123.10829),
+  "2043"      = list(name="Location 15", lat=49.141425,      lng=-123.10825),
+  "MOD-00616" = list(name="Location 16", lat=49.141425,      lng=-123.10825),
+  "MOD-00632" = list(name="Location 17", lat=49.141425,      lng=-123.10825),
+  "MOD-00625" = list(name="Location 18", lat=49.141425,      lng=-123.10825),
+  "MOD-00631" = list(name="Location 19", lat=49.141425,      lng=-123.10825),
+  "MOD-00623" = list(name="Location 20", lat=49.16117455543103, lng=-122.96617030713607),
+  "MOD-00628" = list(name="Location 21", lat=49.141425,      lng=-123.10825),
+  "MOD-00620" = list(name="Location 22", lat=49.141425,      lng=-123.10825),
+  "MOD-00627" = list(name="Location 23", lat=49.141425,      lng=-123.10825),
+  "MOD-00630" = list(name="Location 24", lat=49.141425,      lng=-123.10825),
+  "MOD-00624" = list(name="Location 25", lat=49.141425,      lng=-123.10825)
 )
 
-# Helper function to get sensor name from sensor id.
-getSensorName <- function(sensor_id) {
-  if (!is.null(sensor_locations[[sensor_id]]) && !is.null(sensor_locations[[sensor_id]]$name))
-    return(sensor_locations[[sensor_id]]$name)
-  else return(sensor_id)
+getSensorName <- function(id) {
+  if (!is.null(sensor_locations[[id]]$name)) sensor_locations[[id]]$name else id
 }
 
-# Function to choose marker color based on AQHI
+# 2. Helpers
+parse_datetime <- function(x) {
+  x_chr <- as.character(x)
+  dt <- suppressWarnings(ymd_hms(x_chr, tz = "America/Vancouver"))
+  if (all(is.na(dt))) dt <- suppressWarnings(ymd_hm(x_chr, tz = "America/Vancouver"))
+  if (all(is.na(dt))) dt <- suppressWarnings(ymd(x_chr,    tz = "America/Vancouver"))
+  as.POSIXct(dt, tz = "America/Vancouver")
+}
+
 getAQHIColor <- function(aqhi) {
-  aqhi <- as.numeric(aqhi)
-  if (is.na(aqhi)) return("gray")
-  if (aqhi <= 1) {
-    return("#67c1f1")
-  } else if (aqhi <= 2) {
-    return("#4e95c7")
-  } else if (aqhi <= 3) {
-    return("#396798")
-  } else if (aqhi <= 4) {
-    return("#e7eb38")
-  } else if (aqhi <= 5) {
-    return("#f1cb2e")
-  } else if (aqhi <= 6) {
-    return("#e79647")
-  } else if (aqhi <= 7) {
-    return("#dd6869")
-  } else if (aqhi <= 8) {
-    return("#d82732")
-  } else if (aqhi <= 9) {
-    return("#bf2733")
-  } else if (aqhi <= 10) {
-    return("#8b2328")
-  } else {
-    return("#5a161b")
-  }
+  a <- as.numeric(aqhi)
+  if (is.na(a)) return("gray")
+  else if (a <= 1) return("#67c1f1")
+  else if (a <= 2) return("#4e95c7")
+  else if (a <= 3) return("#396798")
+  else if (a <= 4) return("#e7eb38")
+  else if (a <= 5) return("#f1cb2e")
+  else if (a <= 6) return("#e79647")
+  else if (a <= 7) return("#dd6869")
+  else if (a <= 8) return("#d82732")
+  else if (a <= 9) return("#bf2733")
+  else if (a <= 10) return("#8b2328")
+  else return("#5a161b")
 }
 
-# Function to return a qualitative description for AQHI.
 getAQHIDescription <- function(aqhi) {
-  aqhi <- as.numeric(aqhi)
-  if (is.na(aqhi)) return("No data available")
-  if (aqhi <= 3) {
-    return("Low health risk")
-  } else if (aqhi <= 6) {
-    return("Moderate health risk")
-  } else if (aqhi <= 10) {
-    return("High health risk")
-  } else {
-    return("Very high health risk")
-  }
+  a <- as.numeric(aqhi)
+  if (is.na(a))      "No data available"
+  else if (a <= 3)   "Low health risk"
+  else if (a <= 6)   "Moderate health risk"
+  else if (a <= 10)  "High health risk"
+  else               "Very high health risk"
 }
 
+# 3. Data loaders
 loadCalibratedData <- function(sensor_ids) {
-  data_list <- lapply(sensor_ids, function(sensor_id) {
-    pattern <- paste0("^", sensor_id, "_calibrated_.*\\.csv$")
-    files <- list.files(file.path("calibrated_data", sensor_id), pattern = pattern, full.names = TRUE)
-    if (length(files) == 0) return(NULL)
-    dates <- sapply(files, function(f) {
-      parts <- unlist(strsplit(basename(f), "_"))
-      as.Date(parts[3], format = "%Y-%m-%d")
-    })
-    latest_file <- files[which.max(dates)]
+  rows <- lapply(sensor_ids, function(id) {
+    pattern <- paste0("^", id, "_calibrated_.*\\.csv$")
+    files   <- list.files(file.path("calibrated_data", id), pattern, full.names = TRUE)
+    if (!length(files)) return(NULL)
+    ds      <- sapply(files, function(f) as.Date(strsplit(basename(f), "_")[[1]][3]))
+    latest  <- files[which.max(ds)]
+    df      <- read_csv(latest, show_col_types = FALSE)
+    df$DATE <- parse_datetime(df$DATE)
     
-    df <- read_csv(latest_file, show_col_types = FALSE)
-    if ("Top_AQHI_Contributor" %in% names(df)) {
-      df$Top_AQHI_Contributor <- as.character(df$Top_AQHI_Contributor)
-    }
-    # Parse DATE as timezone-blind (ignoring any timezone info)
-    df$DATE <- as.POSIXct(df$DATE, format = "%Y-%m-%d %H:%M:%S")
+    # cast numeric cols
+    num_cols <- intersect(c("AQHI","CO","NO","NO2","O3","CO2","PM1.0","PM2.5","PM10"), names(df))
+    for (c in num_cols) df[[c]] <- suppressWarnings(as.numeric(df[[c]]))
     
+    # harmonize Top_AQHI_Contributor
+    if (!"Top_AQHI_Contributor" %in% names(df)) df$Top_AQHI_Contributor <- NA_character_
+    else df$Top_AQHI_Contributor <- as.character(df$Top_AQHI_Contributor)
     
-    # --- Debugging Code ---
-    cat("DEBUG: Processing sensor", sensor_id, "from file:", latest_file, "\n")
-    print(sapply(df, class))
-    # ----------------------
-    
-    numeric_cols <- c("AQHI", "CO", "NO", "NO2", "O3", "CO2", "PM1.0", "PM2.5", "PM10",
-                      "TE", "T", "RH", "WD", "WS", "PWR", "BATT", "CHRG", "RUN",
-                      "SD", "RAW")
-    for (col in numeric_cols) {
-      if (col %in% names(df)) {
-        original <- df[[col]]
-        df[[col]] <- as.numeric(df[[col]])
-        if (any(is.na(df[[col]]) & !is.na(original))) {
-          warning(paste("Conversion to numeric resulted in NA for column", col, "in sensor", sensor_id))
-        }
-      }
-    }
-    for (col in names(df)) {
-      if (grepl("^-?[0-9.]+$", col)) {
-        original <- df[[col]]
-        df[[col]] <- as.numeric(df[[col]])
-        if (any(is.na(df[[col]]) & !is.na(original))) {
-          warning(paste("Conversion to numeric resulted in NA for column", col, "in sensor", sensor_id))
-        }
-      }
-    }
-    
-    if (nrow(df) == 0) return(NULL)
-    latest <- df %>% arrange(desc(DATE)) %>% slice(1)
-    latest$sensor_id <- sensor_id
-    latest
+    rec <- df %>% arrange(desc(DATE)) %>% slice(1)
+    rec$sensor_id <- id
+    rec
   })
-  bind_rows(data_list)
+  bind_rows(rows)
 }
 
-loadHistoricalData <- function(sensor_id) {
-  pattern <- paste0("^", sensor_id, "_calibrated_.*\\.csv$")
-  files <- list.files(file.path("calibrated_data", sensor_id), pattern = pattern, full.names = TRUE)
-  if (length(files) == 0) return(NULL)
-  dates <- sapply(files, function(f) {
-    parts <- unlist(strsplit(basename(f), "_"))
-    as.Date(parts[3], format = "%Y-%m-%d")
-  })
-  latest_file <- files[which.max(dates)]
-  df <- read_csv(latest_file, show_col_types = FALSE)
-  if ("Top_AQHI_Contributor" %in% names(df)) {
-    df$Top_AQHI_Contributor <- as.character(df$Top_AQHI_Contributor)
-  }
-  
-  df <- df %>% mutate(DATE = as.POSIXct(DATE, format = "%Y-%m-%d %H:%M:%S"))
-  
+loadHistoricalData <- function(id) {
+  pattern <- paste0("^", id, "_calibrated_.*\\.csv$")
+  files   <- list.files(file.path("calibrated_data", id), pattern, full.names = TRUE)
+  if (!length(files)) return(NULL)
+  ds      <- sapply(files, function(f) as.Date(strsplit(basename(f), "_")[[1]][3]))
+  latest  <- files[which.max(ds)]
+  df      <- read_csv(latest, show_col_types = FALSE)
+  df$DATE <- parse_datetime(df$DATE)
   df %>% filter(DATE >= Sys.time() - 24*3600)
 }
 
-pollutants <- list(
-  "CO" = "ppm",
-  "NO" = "ppb",
-  "NO2" = "ppb",
-  "O3" = "ppb",
-  "CO2" = "ppm",
-  "PM1.0" = "µg/m³",
-  "PM2.5" = "µg/m³",
-  "PM10" = "µg/m³"
-)
+# 4. Pollutant metadata
+pollutants <- c(CO="ppm", NO="ppb", NO2="ppb", O3="ppb",
+                CO2="ppm", `PM2.5`="µg/m³", PM10="µg/m³")
 
-# Create a named vector for dropdown choices using sensor id as the value and sensor name as the label.
-sensor_choices <- setNames(names(sensor_locations), sapply(sensor_locations, function(x) x$name))
-
+# 5. UI Definition
 ui <- fluidPage(
   includeCSS("www/styles.css"),
-  tags$head(
-    tags$meta(charset = "utf-8"),
-    tags$meta(name = "viewport", content = "width=device-width, initial-scale=1")
-  ),
-  div(class = "title-bar",
-      div(class = "title-left",
-          img(src = "image1.png", height = "35px"),
-          img(src = "image2.png", height = "35px")
-      ),
-      div(class = "title-center", "Community Cleaner Air Spaces")
-  ),
-  navbarPage(
-    id = "navbar",
-    "Air Quality Dashboard",
-    tabPanel("Home",
-             fluidPage(
-               fluidRow(
-                 column(12,
-                        p("This dashboard displays nothing of interest at this point in time."),
-                        div(id = "advisories", style = "background-color: #f8d7da; padding: 10px; border-radius: 5px;",
-                            strong("Active Air Quality Advisories:"),
-                            p("No advisories are currently active.")
-                        ),
-                        br(),
-                        div(class = "button-container",
-                            actionButton("map_page", "View Map", class = "nav-button", style = "background-image: url('map.png');"),
-                            actionButton("list_page", "Detailed View", class = "nav-button", style = "background-image: url('list_image.png');"),
-                            actionButton("info_page", "Info", class = "nav-button", style = "background-image: url('placeholder-image.jpg');")
+  navbarPage("Air Quality Dashboard", id = "navbar",
+             tabPanel("Home",
+                      fluidPage(
+                        fluidRow(
+                          column(12,
+                                 p("This dashboard displays nothing of interest at this point in time."),
+                                 div(id = "advisories", style = "background-color:#f8d7da;padding:10px;border-radius:5px;",
+                                     strong("Active Air Quality Advisories:"), p("No advisories are currently active.")),
+                                 br(),
+                                 div(class = "button-container",
+                                     actionButton("map_page",  "View Map",      class = "nav-button"),
+                                     actionButton("list_page", "Detailed View", class = "nav-button"),
+                                     actionButton("info_page", "Info",          class = "nav-button")
+                                 )
+                          )
                         )
-                 )
-               )
+                      )
+             ),
+             tabPanel("Map",
+                      fluidRow(
+                        column(12, leafletOutput("airQualityMap", height = "60vh")),
+                        column(12,
+                               selectInput("sensor_select", "Select Sensor", choices = names(sensor_locations)),
+                               textOutput("last_update"), uiOutput("sensor_details")
+                        )
+                      )
+             ),
+             tabPanel("Detailed View",
+                      fluidPage(
+                        sidebarLayout(
+                          sidebarPanel(
+                            selectInput("d_sensor",   "Sensor:",    choices = names(sensor_locations)),
+                            selectInput("d_pollutant","Pollutant:", choices = names(pollutants))
+                          ),
+                          mainPanel(
+                            h4(textOutput("dv_title")),
+                            plotOutput("d_plot"),
+                            verbatimTextOutput("d_desc")
+                          )
+                        )
+                      )
+             ),
+             tabPanel("Info",
+                      fluidPage(h2("Information Page - Coming Soon"))
              )
-    ),
-    tabPanel("Map",
-             fluidRow(
-               column(width = 12, style = "padding-bottom: 10px;", leafletOutput("airQualityMap", height = "60vh")),
-               column(width = 12,
-                      selectInput("sensor_select", "Select Sensor", choices = sensor_choices, selected = ""),
-                      uiOutput("sensor_details"),
-                      textOutput("last_update")
-               )
-             )
-    ),
-    tabPanel("Detailed View",
-             fluidPage(
-               selectInput("list_sensor_select", "Select Sensor", choices = sensor_choices, selected = ""),
-               uiOutput("sensor_info")
-             )
-    ),
-    tabPanel("Info",
-             fluidPage(
-               h2("Information Page - Coming Soon")
-             )
-    )
   )
 )
 
+# 6. Server Logic
 server <- function(input, output, session) {
+  # navigation
+  observeEvent(input$map_page,  updateNavbarPage(session, "navbar", "Map"))
+  observeEvent(input$list_page, updateNavbarPage(session, "navbar", "Detailed View"))
+  observeEvent(input$info_page, updateNavbarPage(session, "navbar", "Info"))
   
-  # Navigation between tabs.
-  observeEvent(input$map_page, { updateNavbarPage(session, "navbar", selected = "Map") })
-  observeEvent(input$list_page, { updateNavbarPage(session, "navbar", selected = "Detailed View") })
-  observeEvent(input$info_page, { updateNavbarPage(session, "navbar", selected = "Info") })
-  
-  sensor_data <- reactive({ loadCalibratedData(names(sensor_locations)) })
+  # map data
+  sensor_data <- reactive(loadCalibratedData(names(sensor_locations)))
   
   output$airQualityMap <- renderLeaflet({
-    m <- leaflet() %>% addTiles()
-    df <- sensor_data()
-    if(nrow(df) > 0) {
-      df <- df %>%
-        mutate(
-          marker_color = sapply(AQHI, getAQHIColor),
-          popup_text = paste0("<b>", sapply(sensor_id, getSensorName), " (", sensor_id, ")</b><br>",
-                              "AQHI: ", round(as.numeric(AQHI), 1), "<br>")
-        )
-      for(i in 1:nrow(df)) {
-        sensor_id <- df$sensor_id[i]
-        loc <- sensor_locations[[sensor_id]]
-        if(!is.null(loc)) {
-          m <- m %>% addCircleMarkers(
-            lng = loc$lng, lat = loc$lat,
-            color = df$marker_color[i], radius = 8, fillOpacity = 0.8,
-            popup = df$popup_text[i], layerId = sensor_id
-          )
-        }
+    df <- sensor_data(); m <- leaflet() %>% addTiles()
+    if (nrow(df)) {
+      df <- df %>% mutate(
+        col = vapply(AQHI, getAQHIColor, character(1)),
+        popup = paste0("<b>", sensor_id, "</b><br>AQHI: ", round(AQHI,1))
+      )
+      for (i in seq_len(nrow(df))) {
+        loc <- sensor_locations[[df$sensor_id[i]]]
+        m <- addCircleMarkers(m, lng = loc$lng, lat = loc$lat,
+                              color = df$col[i], radius=8, fillOpacity=0.8,
+                              popup = df$popup[i], layerId = df$sensor_id[i])
       }
     }
     m
   })
   
   observeEvent(input$sensor_select, {
-    sensor_id <- input$sensor_select
-    if (sensor_id != "" && sensor_id %in% names(sensor_locations)) {
-      loc <- sensor_locations[[sensor_id]]
-      leafletProxy("airQualityMap") %>% setView(lng = loc$lng, lat = loc$lat, zoom = 12)
-    }
+    loc <- sensor_locations[[input$sensor_select]]
+    leafletProxy("airQualityMap") %>% setView(loc$lng, loc$lat, zoom=12)
   })
   
   output$last_update <- renderText({
     df <- sensor_data()
-    if(nrow(df) == 0) {
-      "No data available"
-    } else {
-      last_update <- max(as.POSIXct(df$DATE), na.rm = TRUE)
-      # Display the last update as a timezone-blind timestamp
-      paste("Last updated:", format(last_update, "%Y-%m-%d %H:%M"))
-    }
+    if (!nrow(df)) return("No data")
+    paste("Last updated:", format(max(df$DATE), "%Y-%m-%d %H:%M"))
   })
   
   output$sensor_details <- renderUI({
-    selected_sensor <- if(!is.null(input$sensor_select) && input$sensor_select != "") {
-      input$sensor_select
-    } else if(!is.null(input$airQualityMap_marker_click)) {
-      input$airQualityMap_marker_click$id
-    } else { 
-      NULL 
-    }
-    if(is.null(selected_sensor)) return(NULL)
-    df <- sensor_data()
-    sensor_row <- df %>% filter(sensor_id == selected_sensor)
-    if(nrow(sensor_row) == 0) return(NULL)
+    req(input$sensor_select)
+    row <- sensor_data() %>% filter(sensor_id == input$sensor_select)
     wellPanel(
-      h4(paste("Sensor", selected_sensor, "(", getSensorName(selected_sensor), ") Details")),
-      tags$table(class = "data-table",
-                 tags$thead(
-                   tags$tr(
-                     tags$th("Pollutant"),
-                     tags$th("Value"),
-                     tags$th("Unit")
-                   )
-                 ),
-                 tags$tbody(
-                   tags$tr(
-                     tags$td("CO"),
-                     tags$td(round(as.numeric(sensor_row$CO)[1], 1)),
-                     tags$td("ppm")
-                   ),
-                   tags$tr(
-                     tags$td("NO"),
-                     tags$td(round(as.numeric(sensor_row$NO)[1], 1)),
-                     tags$td("ppb")
-                   ),
-                   tags$tr(
-                     tags$td("NO2"),
-                     tags$td(round(as.numeric(sensor_row$NO2)[1], 1)),
-                     tags$td("ppb")
-                   ),
-                   tags$tr(
-                     tags$td("O3"),
-                     tags$td(round(as.numeric(sensor_row$O3)[1], 1)),
-                     tags$td("ppb")
-                   ),
-                   tags$tr(
-                     tags$td("CO2"),
-                     tags$td(round(as.numeric(sensor_row$CO2)[1], 1)),
-                     tags$td("ppm")
-                   ),
-                   tags$tr(
-                     tags$td("PM1.0"),
-                     tags$td(round(as.numeric(sensor_row$`PM1.0`)[1], 1)),
-                     tags$td("µg/m³")
-                   ),
-                   tags$tr(
-                     tags$td("PM2.5"),
-                     tags$td(round(as.numeric(sensor_row$`PM2.5`)[1], 1)),
-                     tags$td("µg/m³")
-                   ),
-                   tags$tr(
-                     tags$td("PM10"),
-                     tags$td(round(as.numeric(sensor_row$PM10)[1], 1)),
-                     tags$td("µg/m³")
-                   )
-                 )
-      )
+      h4(paste0("Sensor ", input$sensor_select)),
+      p(getAQHIDescription(row$AQHI))
     )
   })
   
-  output$sensor_info <- renderUI({
-    req(input$list_sensor_select)
-    sensor_id <- input$list_sensor_select
-    df <- sensor_data()
-    sensor_row <- df %>% filter(sensor_id == sensor_id)
-    if(nrow(sensor_row) == 0) return("No sensor data available.")
-    description <- getAQHIDescription(sensor_row$AQHI[1])
-    pollutant_ui <- lapply(names(pollutants), function(poll) {
-      value <- round(as.numeric(sensor_row[[poll]][1]), 1)
-      div(class = "pollutant-item", paste0(poll, ": ", value, " ", pollutants[[poll]]))
-    })
-    tagList(
-      div(class = "sensor-info-box",
-          h4(paste("Air Quality for", getSensorName(sensor_id), "(", sensor_id, ")")),
-          p(description),
-          tagList(pollutant_ui),
-          h4("24-Hour AQHI Trend"),
-          plotOutput("selected_sensor_plot"),
-          h4("Pollutant Time Series"),
-          uiOutput("pollutant_plots_ui")
-      )
-    )
+  # Detailed View
+  output$dv_title <- renderText({
+    paste(input$d_pollutant, "– Sensor", input$d_sensor)
   })
   
-  output$selected_sensor_plot <- renderPlot({
-    req(input$list_sensor_select)
-    sensor_id <- input$list_sensor_select
-    hist_data <- loadHistoricalData(sensor_id)
-    req(nrow(hist_data) > 0)
+  output$d_desc <- renderText({
+    df <- loadHistoricalData(input$d_sensor)
+    req(nrow(df))
+    desc <- getAQHIDescription(df$AQHI[nrow(df)])
+    paste("Current AQHI:", round(df$AQHI[nrow(df)],1), "(", desc, ")")
+  })
+  
+  output$d_plot <- renderPlot({
+    req(input$d_sensor, input$d_pollutant)
+    df <- loadHistoricalData(input$d_sensor)
+    validate(need(nrow(df)>0, "No data past 24h"))
+    df$DATE <- parse_datetime(df$DATE)
+    df$val  <- as.numeric(df[[input$d_pollutant]])
+    validate(need(!all(is.na(df$val)), "No pollutant data"))
     
-    df <- hist_data %>% mutate(DATE = as.POSIXct(DATE, format = "%Y-%m-%d %H:%M:%S"))
-    
-    ggplot(df, aes(x = DATE, y = as.numeric(AQHI))) +
-      geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 0, ymax = 3), fill = "lightblue", alpha = 0.2) +
-      geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 3, ymax = 6), fill = "khaki", alpha = 0.2) +
-      geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 6, ymax = 10), fill = "orange", alpha = 0.2) +
-      geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = 10, ymax = Inf), fill = "red", alpha = 0.2) +
-      geom_line(color = "black", size = 1.2) +
-      labs(title = paste("AQHI -", getSensorName(sensor_id)),
-           x = "Time", y = "AQHI") +
+    ggplot(df, aes(x=DATE, y=val)) +
+      geom_line(linewidth=1.2) +
+      labs(x="Time", y=pollutants[input$d_pollutant]) +
       theme_minimal()
   })
-  output$pollutant_plots_ui <- renderUI({
-    req(input$list_sensor_select)
-    lapply(names(pollutants), function(poll) {
-      plotname <- paste0("poll_plot_", poll)
-      tagList(
-        h5(poll),
-        plotOutput(plotname)
-      )
-    })
-  })
-  observe({
-    req(input$list_sensor_select)
-    sensor_id <- input$list_sensor_select
-    hist_data <- loadHistoricalData(sensor_id)
-    req(nrow(hist_data) > 0)
-    
-    thresholds_list <- list(
-      "PM2.5" = c(0, 12, 35.5, 55.5, Inf),
-      "PM10" = c(0, 20, 50, 100, Inf),
-      "O3" = c(0, 50, 100, 150, Inf),
-      "NO2" = c(0, 53, 100, 200, Inf),
-      "NO" = c(0, 50, 150, 300, Inf),
-      "CO" = c(0, 1, 5, 10, Inf),
-      "CO2" = c(0, 600, 1000, 1500, Inf),
-      "PM1.0" = c(0, 10, 25, 50, Inf)
-    )
-    
-    color_bands <- c("lightblue", "khaki", "orange", "red")
-    
-    for (poll in names(pollutants)) {
-      local({
-        p <- poll
-        plotname <- paste0("poll_plot_", p)
-        output[[plotname]] <- renderPlot({
-          df <- hist_data
-          df$val <- as.numeric(df[[p]])
-          
-          # Check and convert DATE if needed
-          if (!inherits(df$DATE, "POSIXct")) {
-            df$DATE <- parse_date_time(df$DATE, orders = c("ymd HMS", "ymd HM", "ymd"), quiet = TRUE)
-          }
-          
-          # Drop rows with NA dates or values
-          df <- df %>% filter(!is.na(DATE) & !is.na(val))
-          if (nrow(df) == 0) return(NULL)
-          
-          thresh <- thresholds_list[[p]]
-          if (is.null(thresh)) thresh <- c(0, 1, 2, 3, Inf)
-          
-          ggplot(df, aes(x = DATE, y = val)) +
-            geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = thresh[1], ymax = thresh[2]), fill = color_bands[1], alpha = 0.2) +
-            geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = thresh[2], ymax = thresh[3]), fill = color_bands[2], alpha = 0.2) +
-            geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = thresh[3], ymax = thresh[4]), fill = color_bands[3], alpha = 0.2) +
-            geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = thresh[4], ymax = thresh[5]), fill = color_bands[4], alpha = 0.2) +
-            geom_line(color = "black", linewidth = 1.2) +  # Use `linewidth` instead of `size`
-            labs(title = paste(p, "(", pollutants[[p]], ")"),
-                 x = "Time", y = pollutants[[p]]) +
-            theme_minimal()
-        })
-        
-      })
-    }
-  })
-}  
+}
 
+# 7. Launch app
 shinyApp(ui, server)
