@@ -1,0 +1,89 @@
+{
+  "lastChecked": "2025-06-10 01:38:38",
+  "Advisories": [
+    {
+      "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Sunshine Coast - Saltery Bay to Powell River, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Whistler, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Metro Vancouver - NW, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Metro Vancouver - NE, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Howe Sound, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Metro Vancouver - SE, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Metro Vancouver - SW, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Central Fraser Valley, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "North Harrison Lake, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Eastern Fraser Valley, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Fraser Canyon - north including Lillooet, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Nicola, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Fraser Canyon - south including Lytton, B.C.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "Lake Winnipegosis, Man.",
+      "ActiveAlert": false
+    },
+    {
+      "Region": "The Pas Cormorant Westray and Wanless, Man.",
+      "ActiveAlert": true
+    },
+    {
+      "Region": "Westgate Red Deer Lake and Barrows, Man.",
+      "ActiveAlert": true
+    },
+    {
+      "Region": "Porcupine Prov. Forest, Man.",
+      "ActiveAlert": true
+    },
+    {
+      "Region": "Thompson Thicket Portage and Pikwitonei, Man.",
+      "ActiveAlert": true
+    },
+    {
+      "Region": "Nelson House, Man.",
+      "ActiveAlert": true
+    },
+    {
+      "Region": "Flin Flon Cranberry Portage and Grass River Prov. Park, Man.",
+      "ActiveAlert": true
+    }
+  ]
+}
