@@ -3,8 +3,8 @@
         "Location 1": {
             "label": "Low health risk",
             "value": 3,
-            "top_contributor": "O3",
-            "pollutant_concentration": 20.26
+            "top_contributor": "NO2",
+            "pollutant_concentration": 21.9
         }
     },
     {
