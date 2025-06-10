@@ -33,6 +33,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config pull.rebase true
           git add AQAdvisories.json
           git diff --cached --quiet || git commit -m "Update AQAdvisories.json"
           git pull
