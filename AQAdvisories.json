@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-06-12 10:09:24",
+  "lastChecked": "2025-06-12 11:07:49",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -23,7 +23,7 @@
     },
     {
       "Region": "Howe Sound, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Metro Vancouver - SE, B.C.",
