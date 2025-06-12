@@ -89,7 +89,7 @@ extract_info <- function(raw_mime, plain_text, email_id) {
   # checks for issued, ended, or continued status
   alert_match <- str_match(
     plain_text,
-    "Air quality warning - (issued|ended|continued) for:\\s*([\\s\\S]+?)(?=\\n{2}|The above alert)"
+    "(?i)air quality (warning|statement) - (issued|ended|continued) for:\\s*([\\s\\S]+?)(?=\\n{2}|The above alert|Current details)"
   )
   
   if (is.na(alert_match[1])) {
@@ -98,10 +98,10 @@ extract_info <- function(raw_mime, plain_text, email_id) {
   }
   
   # returns alert status
-  status <- tolower(alert_match[2])
+  status <- tolower(alert_match[3])
   
   # returns the locations for which the alert is issued
-  locations_list <- alert_match[3]
+  locations_list <- alert_match[4]
   
   # splits the list of locations into lines
   locations <- str_trim(unlist(strsplit(locations_list, "\n")))
@@ -112,10 +112,8 @@ extract_info <- function(raw_mime, plain_text, email_id) {
   codes <- str_extract(locations, "(?<=\\()[^)]+(?=\\))")
   
   # validate that lengths match, otherwise df returns NA
-  if (length(location_names) != length(codes)) {
-    warning("Mismatch between extracted location names and codes in email ID: ", email_id)
-    return(NULL)
-  }
+  min_len <- min(length(location_names), length(codes))
+  if (min_len == 0) return(NULL)
   
   # dataframe with five variables:
   #     Region: name of alert locations
@@ -125,8 +123,8 @@ extract_info <- function(raw_mime, plain_text, email_id) {
   #     Email ID: Number associated with emails to keep track/prevent duplicate logs
   
   temp_df <- data.frame(
-    Region = location_names,
-    Code = codes,
+    Region = location_names[1:min_len],
+    Code = codes[1:min_len],
     Status = status,
     EmailTimestamp = datetime_str,
     EmailID = email_id,
@@ -230,6 +228,7 @@ for (email_id in new_emails) {
   plain_text <- clean_plain_text(plain_text)
   
   temp_df <- extract_info(raw_mime, plain_text, email_id)
+  print(temp_df)
   
   if (!is.null(temp_df)) {
     # append to full alert history, avoiding duplicates
@@ -323,12 +322,18 @@ regions <- c(
 )
 
 # Build output list
-output <- lapply(regions, function(region) {
+clean_region <- function(x) gsub("\\s+", " ", trimws(x))
+
+active_regions <- clean_region(active_alerts$Region)
+regions_cleaned <- clean_region(regions)
+
+output <- lapply(seq_along(regions), function(i) {
   list(
-    Region = region,
-    ActiveAlert = region %in% active_regions
+    Region = regions[i],
+    ActiveAlert = regions_cleaned[i] %in% active_regions
   )
 })
+
 
 # Add timestamp
 final_json <- list(
