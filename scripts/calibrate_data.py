@@ -1,4 +1,5 @@
 import os
+import subprocess
 import glob
 import pandas as pd
 import numpy as np
@@ -102,10 +103,25 @@ for sensor in sensor_ids:
     if recent_df.empty:
         print(f"No data in the past 24 hours for sensor {sensor}")
         continue
-
-    for col, func in calibration_functions.items():
-        if col in recent_df.columns:
-            recent_df[col] = recent_df[col].apply(func)
+      
+    # Create sensor-specific subfolder
+    sensor_output_folder = os.path.join(output_folder, sensor)
+    os.makedirs(sensor_output_folder, exist_ok=True)
+    
+    # Save recent_df as temporary input for R
+    temp_input_path = os.path.join(sensor_output_folder, f"{sensor}_temp_input.csv")
+    recent_df.to_csv(temp_input_path, index=False)
+    
+    # Run the R script to apply real calibration models
+    subprocess.run(["Rscript", "apply_calibration.R", sensor, temp_input_path], check=True)
+    
+    # Load the calibrated data back
+    calibrated_path = os.path.join(sensor_output_folder, "sensor_calibrated_output.csv")
+    recent_df = pd.read_csv(calibrated_path)
+    
+    # Reparse DATE and reindex
+    recent_df['DATE'] = pd.to_datetime(recent_df['DATE'])
+    recent_df = recent_df.set_index('DATE').sort_index()
 
     # Drop all columns after PM10 (keep up to and including PM10, plus DATE)
     if "PM10" in recent_df.columns:
@@ -159,9 +175,6 @@ for sensor in sensor_ids:
     # Convert DATE column to ISO8601 format
     recent_df['DATE'] = recent_df['DATE'].apply(lambda dt: dt.isoformat())
 
-    # Create sensor-specific subfolder
-    sensor_output_folder = os.path.join(output_folder, sensor)
-    os.makedirs(sensor_output_folder, exist_ok=True)
 
     # Save to sensor-specific folder
     output_file = os.path.join(
@@ -170,4 +183,3 @@ for sensor in sensor_ids:
     )
     recent_df.to_csv(output_file, index=False)
     print(f"Calibrated data with AQHI for sensor {sensor} saved to {output_file}")
-
