@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-06-14 00:07:04",
+  "lastChecked": "2025-06-14 01:07:50",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -83,7 +83,7 @@
     },
     {
       "Region": "Flin Flon Cranberry Portage and Grass River Prov. Park, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     }
   ]
 }
