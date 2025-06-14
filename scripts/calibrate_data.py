@@ -113,7 +113,7 @@ for sensor in sensor_ids:
     recent_df.to_csv(temp_input_path, index=False)
     
     # Run the R script to apply real calibration models
-    subprocess.run(["Rscript", "apply_calibration.R", sensor, temp_input_path], check=True)
+    subprocess.run(["Rscript", "scripts/apply_calibration.R", sensor, temp_input_path], check=True)
     
     # Load the calibrated data back
     calibrated_path = os.path.join(sensor_output_folder, "sensor_calibrated_output.csv")
