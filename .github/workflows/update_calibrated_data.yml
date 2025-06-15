@@ -11,80 +11,45 @@ defaults:
     shell: bash
 
 env:
-  RENV_PATHS_CACHE: ~/.local/share/renv        # cache location
+  R_LIBS_USER: ${{ github.workspace }}/.Rlib
+  RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"            # no renv autoload
+  RSPM: "https://packagemanager.posit.co/cran/__linux__/focal/latest"
 
 jobs:
-# ─────────────────────────────────────────── RAMP ────────────────────────────
+# ──────────────────────────────── RAMP ────────────────────────────────
   calibrate-ramp:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
+      # 1. checkout
       - uses: actions/checkout@v4
+        with: { persist-credentials: true }
 
-      # 2. Cache the renv package store (keyed on renv.lock hash)
-      - name: Cache renv package store
+      # 2. cache compiled pkgs
+      - name: Cache R packages
         uses: actions/cache@v4
         with:
-          path: ${{ env.RENV_PATHS_CACHE }}
-          key:  ${{ runner.os }}-renv-${{ hashFiles('renv.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-renv-
+          path: ${{ env.R_LIBS_USER }}
+          key:  ${{ runner.os }}-r-lib-${{ hashFiles('scripts/calibrate_data.R') }}
+          restore-keys: ${{ runner.os }}-r-lib-
 
-      # 3. Set up R
+      # 3. set up R
       - uses: r-lib/actions/setup-r@v2
 
-      # 4. Restore packages exactly as in renv.lock
-      - name: renv restore
+      # 4. Install packages in a safe three-phase order -----------------------
+      - name: Install R packages
         run: |
-          Rscript -e 'if (!requireNamespace("renv", quietly = TRUE))
-                         install.packages("renv", repos = "https://cloud.r-project.org")'
-          Rscript -e 'renv::restore(prompt = FALSE)'
+          # helper to install a set of pkgs as binaries
+          install_bin () {
+            Rscript -e "pkgs <- commandArgs(TRUE); \
+              inst <- setdiff(pkgs, rownames(installed.packages())); \
+              if (length(inst)) install.packages(inst, repos = Sys.getenv('RSPM'), quiet = TRUE)" "$@"
+          }
 
-      # 5. Run the calibration script
-      - name: Run RAMP calibration
-        run: Rscript scripts/calibrate_data.R
+          # ---- phase 0: always purge any cached binary stringi --------------
+          rm -rf "$R_LIBS_USER/stringi"
 
-      # 6. Commit & push calibrated CSVs
-      - name: Commit & push calibrated data (RAMP)
-        run: |
-          git config --global user.name  "github-actions[bot]"
-          git config --global user.email "github-actions@github.com"
-          git add calibrated_data/**/*.csv || true
-          git commit -m "Automated RAMP calibrated data update at $(date -u)" || echo "No RAMP changes to commit"
-          for i in {1..5}; do
-            git pull --rebase origin main && git push origin main && break
-            sleep 5
-          done
+          # ---- phase 1: lightweight binaries (everything except stringr/terra/raster) ----
+          install_bin dplyr readr lubridate purrr tibble fs zoo openair glue randomForest
 
-# ─────────────────────────────────────────── QAQ  (unchanged) ────────────────
-  calibrate-qaq:
-    runs-on: ubuntu-latest
-    needs: calibrate-ramp          # remove if parallel execution is fine
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: true
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
-
-      - name: Install Python dependencies
-        run: |
-          pip install pandas pytz
-
-      - name: Run QAQ calibration script
-        run: python scripts/calibrate_qaq.py
-
-      - name: Commit & push calibrated data (QAQ)
-        run: |
-          git config --global user.name  "github-actions[bot]"
-          git config --global user.email "github-actions@github.com"
-          git add calibrated_data/**/*.csv || true
-          git commit -m "Automated QAQ calibrated data update at $(date -u)" || echo "No QAQ changes to commit"
-          for i in {1..5}; do
-            git pull --rebase origin main && git push origin main && break
-            sleep 5
-          done
+          # ---- phase 2: build stringi from source to fix ICU mismatch -------
