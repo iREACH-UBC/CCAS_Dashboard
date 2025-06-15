@@ -1,12 +1,10 @@
 name: Update Calibrated Sensor Data
 
 on:
-  # automatic trigger when “Update Sensor Data” completes
   workflow_run:
     workflows: ["Update Sensor Data"]
     types: [completed]
 
-  # manual trigger
   workflow_dispatch:
 
 defaults:
@@ -16,22 +14,21 @@ defaults:
 env:
   R_LIBS_USER: ${{ github.workspace }}/.Rlib
   RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
-  # use Jammy binaries (ICU 70) so stringi loads
   RSPM: "https://packagemanager.posit.co/cran/__linux__/jammy/latest"
 
-# ─────────────────────────── RAMP job (R) ───────────────────────────
 jobs:
+# ───────────────────────── RAMP job (R) ─────────────────────────
   calibrate-ramp:
     runs-on: ubuntu-latest
 
     steps:
-      # 1 Checkout repo + LFS objects
+      # 1 Checkout repository + LFS binaries
       - uses: actions/checkout@v4
         with:
           lfs: true
           persist-credentials: true
 
-      # 2 Cache R packages
+      # 2 Cache R package library
       - uses: actions/cache@v4
         with:
           path: ${{ env.R_LIBS_USER }}
@@ -41,12 +38,13 @@ jobs:
       # 3 Install R
       - uses: r-lib/actions/setup-r@v2
 
-      # 4 Install the packages the scripts require (now includes caret)
+      # 4 Install required R packages (now includes gtools)
       - name: Install R packages
         run: |
           Rscript -e '
             pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble",
-                      "fs","zoo","openair","glue","randomForest","caret")
+                      "fs","zoo","openair","glue","randomForest",
+                      "caret","gtools")          # ← added gtools
             missing <- setdiff(pkgs, rownames(installed.packages()))
             if (length(missing))
               install.packages(missing,
@@ -54,7 +52,7 @@ jobs:
                                quiet = TRUE)
           '
 
-      # 5 Run calibration (repo root → relative paths work)
+      # 5 Run calibration script
       - name: Run RAMP calibration
         run: Rscript scripts/calibrate_data.R
 
@@ -70,13 +68,12 @@ jobs:
             sleep 5
           done
 
-# ─────────────────────────── QAQ job (Python) ─────────────────────────
+# ───────────────────────── QAQ job (Python) ─────────────────────
   calibrate-qaq:
     runs-on: ubuntu-latest
-    needs: calibrate-ramp        # remove if jobs may run in parallel
+    needs: calibrate-ramp
 
     steps:
-      # Checkout repo + LFS
       - uses: actions/checkout@v4
         with:
           lfs: true
