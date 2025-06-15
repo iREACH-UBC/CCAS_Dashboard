@@ -18,8 +18,7 @@ library(tidyr)
 source("scripts/apply_caps_calibration.R")   # wrapper we wrote earlier
 
 # ── CONFIG --------------------------------------------------------------------
-sensor_ids    <- c("2021","2022","2023","2024","2026","2030","2031","2032",
-                   "2033","2034","2039","2040","2041","2042","2043")
+sensor_ids    <- c("2021") #,"2022","2023","2024","2026","2030","2031","2032", "2033","2034","2039","2040","2041","2042","2043"
 data_folder   <- "data"              # raw logger exports live here
 output_folder <- "calibrated_data"   # sensor sub-folders written here
 dir_create(output_folder)
