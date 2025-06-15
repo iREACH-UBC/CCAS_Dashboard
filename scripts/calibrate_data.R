@@ -13,6 +13,7 @@ library(tibble)
 library(fs)
 library(zoo)                  # rollapply
 library(glue)                 # glue::glue()
+library(gtools)
 source("scripts/apply_caps_calibration.R")   # wrapper we wrote earlier
 
 # ── CONFIG --------------------------------------------------------------------
