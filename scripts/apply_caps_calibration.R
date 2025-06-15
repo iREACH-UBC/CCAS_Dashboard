@@ -25,6 +25,7 @@ apply_caps_calibration <- function(sensor_id,
     library(tibble)
     library(openair)
     library(fs)
+    library(gtools)
   })
   
   message("→ Loading CAPS helpers and models …")
