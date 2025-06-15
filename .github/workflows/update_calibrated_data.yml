@@ -11,21 +11,25 @@ defaults:
     shell: bash
 
 env:
+  # Local user library cache for R
   R_LIBS_USER: ${{ github.workspace }}/.Rlib
-  RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"            # no renv autoload
+  # Disable renv autoload on runner
+  RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
+  # Posit Package Manager (binary builds for Linux)
   RSPM: "https://packagemanager.posit.co/cran/__linux__/focal/latest"
 
 jobs:
-# ──────────────────────────────── RAMP ────────────────────────────────
+# ───────────────────────────── RAMP (R) ──────────────────────────────
   calibrate-ramp:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. checkout
+      # 1. Checkout repository
       - uses: actions/checkout@v4
-        with: { persist-credentials: true }
+        with:
+          persist-credentials: true
 
-      # 2. cache compiled pkgs
+      # 2. Cache compiled R packages
       - name: Cache R packages
         uses: actions/cache@v4
         with:
@@ -33,23 +37,81 @@ jobs:
           key:  ${{ runner.os }}-r-lib-${{ hashFiles('scripts/calibrate_data.R') }}
           restore-keys: ${{ runner.os }}-r-lib-
 
-      # 3. set up R
+      # 3. Set up R
       - uses: r-lib/actions/setup-r@v2
 
-      # 4. Install packages in a safe three-phase order -----------------------
+      # 4. Install packages in safe order
       - name: Install R packages
         run: |
-          # helper to install a set of pkgs as binaries
+          # Helper for binary installs
           install_bin () {
             Rscript -e "pkgs <- commandArgs(TRUE); \
               inst <- setdiff(pkgs, rownames(installed.packages())); \
               if (length(inst)) install.packages(inst, repos = Sys.getenv('RSPM'), quiet = TRUE)" "$@"
           }
 
-          # ---- phase 0: always purge any cached binary stringi --------------
+          # Phase 0 – ensure no stale binary stringi
           rm -rf "$R_LIBS_USER/stringi"
 
-          # ---- phase 1: lightweight binaries (everything except stringr/terra/raster) ----
+          # Phase 1 – lightweight binaries (everything except stringr/terra/raster)
           install_bin dplyr readr lubridate purrr tibble fs zoo openair glue randomForest
 
-          # ---- phase 2: build stringi from source to fix ICU mismatch -------
+          # Phase 2 – build stringi from source (fix ICU mismatch)
+          Rscript -e 'install.packages("stringi", type = "source", repos = Sys.getenv("RSPM"), quiet = TRUE)'
+
+          # Phase 3 – build terra + raster from source (self-contained)
+          export MAKEFLAGS="-j2"
+          Rscript -e 'install.packages(c("terra","raster"), type = "source", repos = Sys.getenv("RSPM"), quiet = TRUE)'
+
+          # Phase 4 – build stringr from source (uses good stringi)
+          Rscript -e 'install.packages("stringr", type = "source", repos = Sys.getenv("RSPM"), quiet = TRUE)'
+
+      # 5. Run calibration (set WD to scripts/)
+      - name: Run RAMP calibration
+        run: |
+          cd scripts
+          Rscript calibrate_data.R
+
+      # 6. Commit & push calibrated CSVs
+      - name: Commit & push calibrated data (RAMP)
+        run: |
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add calibrated_data/**/*.csv || true
+          git commit -m "Automated RAMP calibrated data update at $(date -u)" || echo "No RAMP changes to commit"
+          for i in {1..5}; do
+            git pull --rebase origin main && git push origin main && break
+            sleep 5
+          done
+
+# ───────────────────────────── QAQ (Python) ─────────────────────────────
+  calibrate-qaq:
+    runs-on: ubuntu-latest
+    needs: calibrate-ramp   # remove if you prefer both jobs in parallel
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install Python dependencies
+        run: |
+          pip install pandas pytz
+
+      - name: Run QAQ calibration script
+        run: python scripts/calibrate_qaq.py
+
+      - name: Commit & push calibrated data (QAQ)
+        run: |
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add calibrated_data/**/*.csv || true
+          git commit -m "Automated QAQ calibrated data update at $(date -u)" || echo "No QAQ changes to commit"
+          for i in {1..5}; do
+            git pull --rebase origin main && git push origin main && break
+            sleep 5
+          done
