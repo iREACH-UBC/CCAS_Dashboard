@@ -1,7 +1,7 @@
 name: Update Calibrated Sensor Data
 
 on:
-  # auto-run when “Update Sensor Data” succeeds
+  # automatic trigger when “Update Sensor Data” completes
   workflow_run:
     workflows: ["Update Sensor Data"]
     types: [completed]
@@ -14,22 +14,21 @@ defaults:
     shell: bash
 
 env:
-  # R user library cache
   R_LIBS_USER: ${{ github.workspace }}/.Rlib
-  # disable renv autoloader (we install manually)
   RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
-  # use Jammy binaries (ICU 70, matches runner)
+  # use Jammy binaries (ICU 70) so stringi loads
   RSPM: "https://packagemanager.posit.co/cran/__linux__/jammy/latest"
 
-# ───────────────────────── RAMP job (R) ─────────────────────────
+# ─────────────────────────── RAMP job (R) ───────────────────────────
 jobs:
   calibrate-ramp:
     runs-on: ubuntu-latest
 
     steps:
-      # 1 Checkout repo
+      # 1 Checkout repo + LFS objects
       - uses: actions/checkout@v4
         with:
+          lfs: true                         # ← fetch .obj files
           persist-credentials: true
 
       # 2 Cache R packages
@@ -42,7 +41,7 @@ jobs:
       # 3 Install R
       - uses: r-lib/actions/setup-r@v2
 
-      # 4 Install the handful of packages the scripts import
+      # 4 Install the few packages the scripts need
       - name: Install R packages
         run: |
           Rscript -e '
@@ -53,11 +52,11 @@ jobs:
               install.packages(missing, repos = Sys.getenv("RSPM"), quiet = TRUE)
           '
 
-      # 5 Run calibration (repo root → paths in script stay valid)
+      # 5 Run calibration (repo root → relative paths work)
       - name: Run RAMP calibration
         run: Rscript scripts/calibrate_data.R
 
-      # 6 Commit & push CSVs
+      # 6 Commit & push new CSVs
       - name: Commit & push calibrated data (RAMP)
         run: |
           git config --global user.name  "github-actions[bot]"
@@ -69,14 +68,16 @@ jobs:
             sleep 5
           done
 
-# ───────────────────────── QAQ job (Python) ────────────────────────
+# ─────────────────────────── QAQ job (Python) ─────────────────────────
   calibrate-qaq:
     runs-on: ubuntu-latest
-    needs: calibrate-ramp   # remove if the two jobs may run in parallel
+    needs: calibrate-ramp         # remove if jobs may run in parallel
 
     steps:
+      # Checkout repo + LFS
       - uses: actions/checkout@v4
         with:
+          lfs: true
           persist-credentials: true
 
       - uses: actions/setup-python@v4
