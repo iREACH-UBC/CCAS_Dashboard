@@ -1,15 +1,59 @@
 name: Update Calibrated Sensor Data
 
 on:
-  workflow_run:          # Whenever update_ramp_data completes
+  workflow_run:          # fires after “Update Sensor Data” workflow
     workflows: ["Update Sensor Data"]
-    types:
-      - completed
-  workflow_dispatch:     # Allows manual triggering
+    types: [completed]
+  workflow_dispatch:     # allow manual trigger
 
+# ────────────────────────────────────────────────────────────
+# RAMP job — runs scripts/calibrate_data.R
+# ────────────────────────────────────────────────────────────
 jobs:
   calibrate-ramp:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      # ---- Set up R ---------------------------------------------------------
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages(
+            c("tidyverse","fs","zoo","openair","glue",
+              "randomForest","lubridate","readr","tibble",
+              "stringr","purrr"),
+            repos = "https://cloud.r-project.org",
+            quiet = TRUE
+          )'
+
+      # ---- Run the new RAMP calibration script ------------------------------
+      - name: Run RAMP calibration
+        run: Rscript scripts/calibrate_data.R
+
+      # ---- Commit & push any new/changed CSVs -------------------------------
+      - name: Commit and push calibrated data
+        run: |
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add calibrated_data/**/*.csv
+          git commit -m "Automated RAMP calibrated data update at $(date -u)" || echo "No changes to commit"
+          for i in {1..5}; do
+            git pull --rebase origin main && git push origin main && break
+            sleep 5
+          done
+
+# ────────────────────────────────────────────────────────────
+# QAQ job — unchanged (Python + calibrate_qaq.py)
+# ────────────────────────────────────────────────────────────
+  calibrate-qaq:
+    runs-on: ubuntu-latest
+    needs: calibrate-ramp          # wait until RAMP job completes; remove if parallel OK
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,52 +65,20 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           pip install pandas pytz
 
-      - name: Run calibration script
-        run: python scripts/calibrate_data.py
+      - name: Run QAQ calibration script
+        run: python scripts/calibrate_qaq.py
 
       - name: Commit and push calibrated data
         run: |
-          git config --global user.name "github-actions[bot]"
+          git config --global user.name  "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
-          git add calibrated_data/*.csv
-          git commit -m "Automated QAQ calibrated data update at $(date)" || echo "No changes to commit"
+          git add calibrated_data/**/*.csv
+          git commit -m "Automated QAQ calibrated data update at $(date -u)" || echo "No changes to commit"
           for i in {1..5}; do
             git pull --rebase origin main && git push origin main && break
             sleep 5
           done
-
-          
-  calibrate-qaq:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v4
-          with:
-            persist-credentials: true
-  
-        - name: Set up Python
-          uses: actions/setup-python@v4
-          with:
-            python-version: "3.9"
-  
-        - name: Install dependencies
-          run: |
-            pip install pandas pytz
-  
-        - name: Run calibration script
-          run: python scripts/calibrate_qaq.py
-  
-        - name: Commit and push calibrated data
-          run: |
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions@github.com"
-            git add calibrated_data/*.csv
-            git commit -m "Automated QAQ calibrated data update at $(date)" || echo "No changes to commit"
-            for i in {1..5}; do
-              git pull --rebase origin main && git push origin main && break
-              sleep 5
-            done
