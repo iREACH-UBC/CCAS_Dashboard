@@ -21,27 +21,20 @@ jobs:
   calibrate-ramp:
     runs-on: ubuntu-latest
     env:
-      RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"                         # skip renv autoload
+      RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
       RSPM: "https://packagemanager.posit.co/cran/__linux__/focal/latest"
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: true
+      - uses: actions/checkout@v4
+        with: { persist-credentials: true }
 
-      # Cache compiled packages (keyed on script hash)
-      - name: Cache R packages
-        uses: actions/cache@v4
+      - uses: actions/cache@v4           # cache R libs
         with:
           path: ${{ env.R_LIBS_USER }}
           key:  ${{ runner.os }}-r-lib-${{ hashFiles('scripts/calibrate_data.R') }}
           restore-keys: ${{ runner.os }}-r-lib-
 
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r@v2   # install R
 
-      # Install only the packages the script actually uses
       - name: Install R packages
         run: |
           Rscript -e '
@@ -51,10 +44,19 @@ jobs:
             )
             to_install <- setdiff(pkgs, rownames(installed.packages()))
             if (length(to_install))
-              install.packages(to_install,
-                               repos = Sys.getenv("RSPM"),
-                               quiet = TRUE)
+              install.packages(to_install, repos = Sys.getenv("RSPM"), quiet = TRUE)
           '
+
+      # ---------- added step -------------------------------------------------
+      - name: Rebuild stringi from source (avoids ICU mismatch)
+        run: |
+          Rscript -e '
+            if (!requireNamespace("stringi", quietly = TRUE) ||
+                !file.exists(system.file("libs", "stringi.so", package = "stringi")))
+              install.packages("stringi", type = "source",
+                               repos = Sys.getenv("RSPM"), quiet = TRUE)
+          '
+      # ----------------------------------------------------------------------
 
       - name: Run RAMP calibration
         run: Rscript scripts/calibrate_data.R
