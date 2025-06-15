@@ -11,68 +11,62 @@ defaults:
     shell: bash
 
 env:
-  # Local user library cache for R
   R_LIBS_USER: ${{ github.workspace }}/.Rlib
-  # Disable renv autoload on runner
   RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
-  # Posit Package Manager (binary builds for Linux)
   RSPM: "https://packagemanager.posit.co/cran/__linux__/focal/latest"
 
 jobs:
-# ───────────────────────────── RAMP (R) ──────────────────────────────
+# ────────────────────────────── RAMP ──────────────────────────────
   calibrate-ramp:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repository
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
 
-      # 2. Cache compiled R packages
-      - name: Cache R packages
-        uses: actions/cache@v4
+      - uses: actions/cache@v4
         with:
           path: ${{ env.R_LIBS_USER }}
           key:  ${{ runner.os }}-r-lib-${{ hashFiles('scripts/calibrate_data.R') }}
           restore-keys: ${{ runner.os }}-r-lib-
 
-      # 3. Set up R
       - uses: r-lib/actions/setup-r@v2
 
-      # 4. Install packages in safe order
-      - name: Install R packages
+      # -------- install packages in a safe order ----------------------------
+      - name: Install R packages (safe order)
         run: |
-          # Helper for binary installs
+          set -e
+          # helper for binary installs
           install_bin () {
             Rscript -e "pkgs <- commandArgs(TRUE); \
               inst <- setdiff(pkgs, rownames(installed.packages())); \
-              if (length(inst)) install.packages(inst, repos = Sys.getenv('RSPM'), quiet = TRUE)" "$@"
+              if (length(inst)) \
+                install.packages(inst, repos = Sys.getenv('RSPM'), quiet = TRUE)" "$@"
           }
 
-          # Phase 0 – ensure no stale binary stringi
+          # 0) nuke any cached binary stringi
           rm -rf "$R_LIBS_USER/stringi"
 
-          # Phase 1 – lightweight binaries (everything except stringr/terra/raster)
-          install_bin dplyr readr lubridate purrr tibble fs zoo openair glue randomForest
-
-          # Phase 2 – build stringi from source (fix ICU mismatch)
+          # 1) build stringi from source (provides good ICU)
           Rscript -e 'install.packages("stringi", type = "source", repos = Sys.getenv("RSPM"), quiet = TRUE)'
 
-          # Phase 3 – build terra + raster from source (self-contained)
+          # 2) binaries for everything except terra/raster/stringr/stringi
+          install_bin dplyr readr lubridate purrr tibble fs zoo openair glue randomForest
+
+          # 3) build heavy pkgs from source (self-contained)
           export MAKEFLAGS="-j2"
           Rscript -e 'install.packages(c("terra","raster"), type = "source", repos = Sys.getenv("RSPM"), quiet = TRUE)'
 
-          # Phase 4 – build stringr from source (uses good stringi)
+          # 4) build stringr from source (links against good stringi, no binary pulled)
           Rscript -e 'install.packages("stringr", type = "source", repos = Sys.getenv("RSPM"), quiet = TRUE)'
 
-      # 5. Run calibration (set WD to scripts/)
+      # run calibration (wd = scripts/)
       - name: Run RAMP calibration
         run: |
           cd scripts
           Rscript calibrate_data.R
 
-      # 6. Commit & push calibrated CSVs
       - name: Commit & push calibrated data (RAMP)
         run: |
           git config --global user.name  "github-actions[bot]"
@@ -84,10 +78,10 @@ jobs:
             sleep 5
           done
 
-# ───────────────────────────── QAQ (Python) ─────────────────────────────
+# ────────────────────────────── QAQ (unchanged) ─────────────────────────────
   calibrate-qaq:
     runs-on: ubuntu-latest
-    needs: calibrate-ramp   # remove if you prefer both jobs in parallel
+    needs: calibrate-ramp
 
     steps:
       - uses: actions/checkout@v4
@@ -99,8 +93,7 @@ jobs:
           python-version: "3.9"
 
       - name: Install Python dependencies
-        run: |
-          pip install pandas pytz
+        run: pip install pandas pytz
 
       - name: Run QAQ calibration script
         run: python scripts/calibrate_qaq.py
