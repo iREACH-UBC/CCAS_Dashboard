@@ -44,7 +44,7 @@ jobs:
           Rscript -e '
             pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble",
                       "fs","zoo","openair","glue","randomForest",
-                      "caret","gtools")          # ← added gtools
+                      "caret","gtools", "tidyr")
             missing <- setdiff(pkgs, rownames(installed.packages()))
             if (length(missing))
               install.packages(missing,
