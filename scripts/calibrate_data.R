@@ -14,6 +14,7 @@ library(fs)
 library(zoo)                  # rollapply
 library(glue)                 # glue::glue()
 library(gtools)
+library(tidyr)
 source("scripts/apply_caps_calibration.R")   # wrapper we wrote earlier
 
 # ── CONFIG --------------------------------------------------------------------
