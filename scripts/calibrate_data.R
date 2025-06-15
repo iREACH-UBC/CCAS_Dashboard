@@ -1,5 +1,15 @@
 # ─── process_sensors.R ─────────────────────────────────────────────────────────
-library(tidyverse)            # dplyr, readr, lubridate, stringr, purrr, tibble…
+# replace this
+# library(tidyverse)
+
+# with the narrow set you actually need
+library(dplyr)
+library(readr)
+library(lubridate)
+library(stringr)
+library(purrr)
+library(tibble)
+
 library(fs)
 library(zoo)                  # rollapply
 library(glue)                 # glue::glue()
