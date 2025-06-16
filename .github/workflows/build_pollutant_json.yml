@@ -1,4 +1,4 @@
-name: Build pollutant JSON (every 10 min)
+name: Build pollutant JSON
 
 on:
   # Manual trigger
@@ -15,7 +15,7 @@ on:
     - cron: '*/10 * * * *'   # ← every 10 min
 
 concurrency:
-  group: build-pollutant-json
+  group: build-pollutant-jsonS
   cancel-in-progress: true     # kill prior run if a new one starts
 
 jobs:
