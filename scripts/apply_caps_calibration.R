@@ -31,7 +31,7 @@ apply_caps_calibration <- function(sensor_id,
   
   message("→ Loading CAPS helpers and models …")
   source("caps_core.R", local = TRUE)        # CAPS_* helpers
-  load(model_path)                           # `calibration_models`
+  load(model_path)                           # calibration_models
   
   ## ── read & clean raw file --------------------------------------------------
   raw <- read_csv(

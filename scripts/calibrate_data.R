@@ -1,8 +1,5 @@
-# ─── process_sensors.R ─────────────────────────────────────────────────────────
-# replace this
-# library(tidyverse)
+# ─── calibrate_data.R ─────────────────────────────────────────────────────────
 
-# with the narrow set you actually need
 library(dplyr)
 library(readr)
 library(lubridate)
@@ -87,11 +84,11 @@ for (sid in sensor_ids) {
   # ── (4) merge & tidy -------------------------------------------------------
   calib <- bind_rows(calibrated_list) |>
     mutate(
-      DATE  = lubridate::with_tz(date, "America/Los_Angeles"),
+      DATE  = lubridate::with_tz(date, "America/Los_Angeles")+ hours(2),
       .keep = "unused"
     ) |>
-    rename(`PM2.5` = PM2_5) |>
-    select(DATE, CO, NO, NO2, O3, CO2, `PM2.5`, everything()) |>
+    rename(PM2.5 = PM2_5) |>
+    select(DATE, CO, NO, NO2, O3, CO2, PM2.5, everything()) |>
     filter(DATE >= past_24h)
   
   if (nrow(calib) == 0) {
@@ -104,8 +101,8 @@ for (sid in sensor_ids) {
     mutate(
       NO2_3h   = zoo::rollapply(NO2,     12, mean, fill = NA, align = "right", na.rm = TRUE),
       O3_3h    = zoo::rollapply(O3,      12, mean, fill = NA, align = "right", na.rm = TRUE),
-      PM25_3h  = zoo::rollapply(`PM2.5`, 12, mean, fill = NA, align = "right", na.rm = TRUE),
-      PM25_1h  = zoo::rollapply(`PM2.5`,  4, mean, fill = NA, align = "right", na.rm = TRUE),
+      PM25_3h  = zoo::rollapply(PM2.5, 12, mean, fill = NA, align = "right", na.rm = TRUE),
+      PM25_1h  = zoo::rollapply(PM2.5,  4, mean, fill = NA, align = "right", na.rm = TRUE),
       AQHI_raw = (10/10.4) * 100 * (
         (exp(0.000871 * NO2_3h)  - 1) +
           (exp(0.000537 * O3_3h)   - 1) +
@@ -132,7 +129,7 @@ for (sid in sensor_ids) {
     Top_AQHI_Contributor = pmap_chr(
       list(NO2_contrib, O3_contrib, PM25_contrib),
       function(no2, o3, pm25) {
-        vals <- c(NO2 = no2, O3 = o3, `PM2.5` = pm25)
+        vals <- c(NO2 = no2, O3 = o3, PM2.5 = pm25)
         if (all(is.na(vals))) NA_character_            # ← avoid length-0
         else names(vals)[which.max(replace_na(vals, -Inf))]
       }
