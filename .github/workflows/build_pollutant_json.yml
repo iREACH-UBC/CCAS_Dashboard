@@ -39,7 +39,7 @@ jobs:
           pip install pandas
 
       - name: Generate pollutant_data.json
-        run: python scripts/build_pollutant_data.py
+        run: python scripts/generate_json.py
 
       - name: Commit and push artefact
         run: |
