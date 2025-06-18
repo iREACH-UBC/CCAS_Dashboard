@@ -153,9 +153,9 @@
     },
     {
         "Location 20": {
-            "label": "Low health risk",
-            "value": 1,
-            "top_contributor": "PM25",
+            "label": "no data",
+            "value": "N/A",
+            "top_contributor": "N/A",
             "pollutant_concentration": "N/A"
         }
     },
