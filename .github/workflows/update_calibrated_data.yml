@@ -15,6 +15,11 @@ env:
   R_LIBS_USER: ${{ github.workspace }}/.Rlib
   RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
   RSPM: "https://packagemanager.posit.co/cran/__linux__/jammy/latest"
+  env:
+  AWS_ACCESS_KEY_ID:     ${{ secrets.R2_KEY }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET }}
+  R2_ENDPOINT:           https://${{ secrets.CF_ACCOUNT_ID }}.r2.cloudflarestorage.com
+
 
 jobs:
 # ───────────────────────── RAMP job (R) ─────────────────────────
@@ -44,7 +49,7 @@ jobs:
           Rscript -e '
             pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble",
                       "fs","zoo","openair","glue","randomForest",
-                      "caret","gtools", "tidyr")
+                      "caret","gtools", "tidyr", "aws.s3")
             missing <- setdiff(pkgs, rownames(installed.packages()))
             if (length(missing))
               install.packages(missing,

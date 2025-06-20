@@ -1,22 +1,32 @@
-# ─── apply_caps_calibration.R (final) ─────────────────────────────────────────
+# ─── apply_caps_calibration.R ─────────────────────────────────────────
 # Wrapper: calibrate one raw QuantAQ (or RAMP-style) logger file  --------------
 # Usage: called by process_sensors.R for each sensor & date pair
 # ------------------------------------------------------------------------------
 
 apply_caps_calibration <- function(sensor_id,
                                    data_file,
-                                   model_root = "calibration_models",
-                                   out_dir    = "calibrated_data",
-                                   tz_raw     = "Etc/GMT-8",
-                                   avg_time   = "15 min") {
+                                   bucket      = "outdoor-calibrations",
+                                   tz_raw      = "Etc/GMT-8",
+                                   avg_time    = "15 min") {
   
-  ## ── safety checks ----------------------------------------------------------
-  if (!file.exists(data_file))
-    stop("Data file not found: ", data_file)
+  # ---------- NEW SECTION: pull model straight from R2 -----------------
+  library(aws.s3)
+  library(glue)
   
-  model_path <- file.path(model_root, sensor_id, "Calibration_Models.obj")
-  if (!file.exists(model_path))
-    stop("Calibration model not found: ", model_path)
+  base_url <- Sys.getenv("R2_ENDPOINT")
+  if (base_url == "")
+    stop("R2_ENDPOINT env-var not set (e.g. https://<ACCOUNT>.r2.cloudflarestorage.com)")
+  
+  model_key <- glue("calibration_models/{sensor_id}/Calibration_Models.obj")
+  
+  message("→ Downloading {sensor_id} model from R2 …")
+  raw_obj <- aws.s3::get_object(
+    object   = model_key,
+    bucket   = bucket,
+    base_url = base_url
+  )
+  # load() directly from the raw vector (RAM only)
+  load(rawConnection(raw_obj), verbose = FALSE)   # creates `calibration_models`
   
   suppressPackageStartupMessages({
     library(dplyr)
