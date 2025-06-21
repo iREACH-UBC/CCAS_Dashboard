@@ -24,26 +24,32 @@ apply_caps_calibration <- function(sensor_id,
     region   = ""
   )
   
-  ## gzip?  load() or readRDS() ------------------------------------------
-  hdr <- rawToChar(raw_obj[1:3])                 # gzip header = 1F 8B 08
-  make_con <- function(bytes, hdr) {
+  ## gzip?  load() into temp env or readRDS() ---------------------------------
+  make_con <- function(bytes) {
     con <- rawConnection(bytes)
-    if (hdr == "\x1f\x8b\b") con <- gzcon(con)
+    if (identical(rawToChar(bytes[1:3]), "\x1f\x8b\b"))
+      con <- gzcon(con)
     con
   }
   
-  con <- make_con(raw_obj, hdr)
+  tmp_env <- new.env()
+  con <- make_con(raw_obj)
   
-  ok <- tryCatch({ load(con, verbose = FALSE); TRUE },
-                 error = function(e) FALSE)
+  load_success <- tryCatch({
+    load(con, envir = tmp_env)
+    exists("calibration_models", envir = tmp_env, inherits = FALSE)
+  }, error = function(e) FALSE)
   close(con)
   
-  if (!ok) {
-    con2 <- make_con(raw_obj, hdr)              # new connection (rewind implicitly)
+  if (load_success) {
+    calibration_models <- tmp_env$calibration_models
+  } else {                          # assume file is an .rds
+    con2 <- make_con(raw_obj)       # fresh, rewound connection
     calibration_models <- readRDS(con2)
     close(con2)
   }
-  ## ---------------------------------------------------------------------
+  ## --------------------------------------------------------------------------
+  
   
   
   ## 2 ── Libraries for downstream work -----------------------------------
