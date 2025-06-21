@@ -22,7 +22,7 @@ apply_caps_calibration <- function(sensor_id,
   base_url <- sub("^https?://", "", base_url)
   
   # 3. build the key and download
-  model_key <- glue("calibration_models/{sensor_id}/Calibration_Models.obj")
+  model_key <- glue("{sensor_id}/Calibration_Models.obj")
   
   message("→ Downloading {sensor_id} model from R2 …")
   raw_obj <- aws.s3::get_object(
