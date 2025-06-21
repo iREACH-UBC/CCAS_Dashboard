@@ -75,11 +75,14 @@ for (sid in sensor_ids) {
   message("  • taking files: ", paste(path_file(last_two), collapse = ", "))
   
   # ── (3) run calibration wrapper on each file → list of tibbles ------------
-  calibrated_list <- map(last_two, ~ apply_caps_calibration(
-    sensor_id = sid, data_file = .x,
-    model_root = "calibration_models",
-    out_dir    = NULL
-  ))
+  calibrated_list <- map(
+    last_two,
+    ~ apply_caps_calibration(
+        sensor_id = sid,
+        data_file = .x          
+      )
+  )
+
   
   # ── (4) merge & tidy -------------------------------------------------------
   calib <- bind_rows(calibrated_list) |>
