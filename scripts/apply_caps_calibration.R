@@ -24,18 +24,27 @@ apply_caps_calibration <- function(sensor_id,
     region   = ""
   )
   
-  ## gzip?  load() or readRDS() -------------------------------------------
-  hdr <- rawToChar(raw_obj[1:3])          # gzip header = 1F 8B 08
-  con <- rawConnection(raw_obj)
-  if (hdr == "\x1f\x8b\b") con <- gzcon(con)
+  ## gzip?  load() or readRDS() ------------------------------------------
+  hdr <- rawToChar(raw_obj[1:3])                 # gzip header = 1F 8B 08
+  make_con <- function(bytes, hdr) {
+    con <- rawConnection(bytes)
+    if (hdr == "\x1f\x8b\b") con <- gzcon(con)
+    con
+  }
+  
+  con <- make_con(raw_obj, hdr)
   
   ok <- tryCatch({ load(con, verbose = FALSE); TRUE },
                  error = function(e) FALSE)
-  if (!ok) {
-    seek(con, 0)
-    calibration_models <- readRDS(con)
-  }
   close(con)
+  
+  if (!ok) {
+    con2 <- make_con(raw_obj, hdr)              # new connection (rewind implicitly)
+    calibration_models <- readRDS(con2)
+    close(con2)
+  }
+  ## ---------------------------------------------------------------------
+  
   
   ## 2 ── Libraries for downstream work -----------------------------------
   suppressPackageStartupMessages({
