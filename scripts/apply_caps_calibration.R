@@ -24,7 +24,7 @@ apply_caps_calibration <- function(sensor_id,
     region   = ""
   )
   
-  ## gzip?  load() into temp env or readRDS() ---------------------------------
+  ## gzip?  load() into temp env -------------------------------------------------
   make_con <- function(bytes) {
     con <- rawConnection(bytes)
     if (identical(rawToChar(bytes[1:3]), "\x1f\x8b\b"))
@@ -34,24 +34,23 @@ apply_caps_calibration <- function(sensor_id,
   
   tmp_env <- new.env()
   con <- make_con(raw_obj)
-  
-  load_success <- tryCatch({
-    load(con, envir = tmp_env)
-    exists("calibration_models", envir = tmp_env, inherits = FALSE)
-  }, error = function(e) FALSE)
+  load(con, envir = tmp_env)               # .obj must load successfully
   close(con)
   
-  if (load_success) {
-    calibration_models <- tmp_env$calibration_models
-  } else {                          # assume file is an .rds
-    con2 <- make_con(raw_obj)       # fresh, rewound connection
-    calibration_models <- readRDS(con2)
-    close(con2)
+  # Find object whose name (case-insensitive) is "calibration_models"
+  obj_name <- ls(tmp_env, all.names = TRUE)
+  hit <- obj_name[tolower(obj_name) == "calibration_models"]
+  
+  if (length(hit) == 1) {
+    calibration_models <- tmp_env[[hit]]
+    if (hit != "calibration_models")
+      message(glue("ℹ Using object '{hit}' as calibration_models"))
+  } else {
+    stop("Loaded ", length(obj_name),
+         " object(s) from ", model_key,
+         ", but none named 'calibration_models'. Check the .obj file.")
   }
-  ## --------------------------------------------------------------------------
-  
-  
-  
+  ## ---------------------------------------------------------------------------
   ## 2 ── Libraries for downstream work -----------------------------------
   suppressPackageStartupMessages({
     library(dplyr);        library(readr);  library(lubridate); library(tibble)
