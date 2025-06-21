@@ -9,24 +9,31 @@ apply_caps_calibration <- function(sensor_id,
                                    tz_raw      = "Etc/GMT-8",
                                    avg_time    = "15 min") {
   
-  # ---------- NEW SECTION: pull model straight from R2 -----------------
+  ## ── pull model straight from R2 ──────────────────────────────────────────
   library(aws.s3)
   library(glue)
   
-  base_url <- sub("^https?://", "", base_url)
+  # 1. read the host name from the env-var
+  base_url <- Sys.getenv("R2_ENDPOINT")
   if (base_url == "")
-    stop("R2_ENDPOINT env-var not set (e.g. https://<ACCOUNT>.r2.cloudflarestorage.com)")
+    stop("R2_ENDPOINT env-var not set (e.g. 111aaa.r2.cloudflarestorage.com)")
   
+  # 2. ensure it is **just the host**, no https://
+  base_url <- sub("^https?://", "", base_url)
+  
+  # 3. build the key and download
   model_key <- glue("calibration_models/{sensor_id}/Calibration_Models.obj")
   
   message("→ Downloading {sensor_id} model from R2 …")
   raw_obj <- aws.s3::get_object(
     object   = model_key,
     bucket   = bucket,
-    base_url = base_url
+    base_url = base_url,
+    region   = ""          # suppress “us-east-1.” prefix
   )
-  # load() directly from the raw vector (RAM only)
   load(rawConnection(raw_obj), verbose = FALSE)   # creates `calibration_models`
+ 
+   ## ─────────────────────────────────────────────────────────────────────────
   
   suppressPackageStartupMessages({
     library(dplyr)
