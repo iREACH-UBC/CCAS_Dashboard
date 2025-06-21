@@ -9,56 +9,62 @@ apply_caps_calibration <- function(sensor_id,
   ## 1 ── Download & load model object from R2 ─────────────────────────────
   library(aws.s3); library(glue)
   
-  base_url  <- Sys.getenv("R2_ENDPOINT")
-  if (base_url == "") stop("R2_ENDPOINT env-var not set")
-  base_url  <- sub("^https?://", "", base_url)
+  base_url <- Sys.getenv("R2_ENDPOINT")
+  if (base_url == "")
+    stop("R2_ENDPOINT env-var not set (e.g. xxxx.r2.cloudflarestorage.com)")
+  base_url <- sub("^https?://", "", base_url)
   
   model_key <- glue("{sensor_id}/Calibration_Models.obj")
   message(glue("→ Downloading {sensor_id} model from R2 …"))
-  raw_obj   <- aws.s3::get_object(
+  raw_obj <- aws.s3::get_object(
     object   = model_key,
     bucket   = bucket,
     base_url = base_url,
     region   = ""
   )
   
-  # ── NEW implementation that still uses seek() ──────────────────────────
-  hdr        <- rawToChar(raw_obj[1:3])                # gzip header = 1F 8B 08
-  raw_con    <- rawConnection(raw_obj, open = "rb")    # SEEK-ABLE connection
-  load_env   <- new.env(parent = emptyenv())           # sandbox for load()
+  # ── robust loader that *still* uses seek() ------------------------------
+  hdr      <- rawToChar(raw_obj[1:3])                 # gzip header = 1F 8B 08
+  is_gzip  <- identical(hdr, "\x1f\x8b\b")
+  raw_con  <- rawConnection(raw_obj, open = "rb")     # seek-able connection
+  load_env <- new.env(parent = emptyenv())
   
-  if (hdr == "\x1f\x8b\b") {
-    gz_con  <- gzcon(raw_con)                          # wrap, but keep raw_con
-    ok <- tryCatch({ load(gz_con, envir = load_env); TRUE },
-                   error = function(e) FALSE)
-    close(gz_con)                                      # close wrapper only
-  } else {
-    ok <- tryCatch({ load(raw_con, envir = load_env); TRUE },
-                   error = function(e) FALSE)
-  }
+  # — try to load() first ---------------------------------------------------
+  try_ok <- tryCatch({
+    if (is_gzip) {
+      load(gzcon(raw_con), envir = load_env, verbose = FALSE)
+    } else {
+      load(raw_con,        envir = load_env, verbose = FALSE)
+    }
+    TRUE
+  }, error = function(e) FALSE)
   
-  # --- fall back to readRDS() if load() failed ---------------------------
-  if (!ok) {
-    seek(raw_con, where = 0, origin = "start")         # ← still using seek()
-    calibration_models <- readRDS(raw_con)
+  if (!try_ok) {
+    # rewind and fall back to readRDS(), but *use seek() as requested*
+    seek(raw_con, where = 0L, origin = "start")
+    
+    if (is_gzip) {
+      calibration_models <- readRDS(gzcon(raw_con))
+    } else {
+      calibration_models <- readRDS(raw_con)
+    }
   } else {
     calibration_models <- load_env$calibration_models
   }
   
-  close(raw_con)
+  close(raw_con)   # now safe to close
   
-  
-  ## 2 ── Libraries for downstream work -----------------------------------
+  ## 2 ── Libraries for downstream work -------------------------------------
   suppressPackageStartupMessages({
     library(dplyr);        library(readr);  library(lubridate); library(tibble)
     library(openair);      library(fs);     library(gtools);    library(tidyr)
-    library(purrr);        library(randomForest)   # randomForest msgs suppressed
+    library(purrr);        library(randomForest)
   })
   
   message("→ Loading CAPS helpers and models …")
-  source("caps_core.R", local = TRUE)      # CAPS_* helpers
+  source("caps_core.R", local = TRUE)      # brings in CAPS_* helpers
   
-  ## 3 ── Read & tidy raw logger file -------------------------------------
+  ## 3 ── Read & tidy raw logger file ---------------------------------------
   raw <- read_csv(data_file, col_names = FALSE, show_col_types = FALSE)
   names(raw) <- paste0("V", seq_along(raw))
   
@@ -76,17 +82,17 @@ apply_caps_calibration <- function(sensor_id,
   
   raw$date <- force_tz(raw$date, tz_raw)
   
-  ## daylight-saving shim ---------------------------------------------------
+  ## daylight-saving shim ----------------------------------------------------
   raw <- bind_rows(
     filter(raw, date < "2025-03-09 02:00:00"),
     filter(raw, date >= "2025-03-09 02:00:00") |>
       mutate(date = date - 3600)
   )
   
-  ## 4 ── 15-min averages ---------------------------------------------------
+  ## 4 ── 15-min averages ----------------------------------------------------
   ramp_15 <- openair::timeAverage(raw, avg.time = avg_time)
   
-  ## predictors -------------------------------------------------------------
+  ## predictors --------------------------------------------------------------
   gas_mat <- ramp_15 |>
     select(CO_RAMP, NO_RAMP, NO2_RAMP, O3_RAMP,
            CO2_RAMP, T_RAMP, RH_RAMP) |>
@@ -99,7 +105,7 @@ apply_caps_calibration <- function(sensor_id,
              (17.62 - (log(RH_RAMP/100) + 17.62*T_RAMP / (243.12 + T_RAMP)))) |>
     as.matrix()
   
-  ## 5 ── Apply CAPS models -------------------------------------------------
+  ## 5 ── Apply CAPS models --------------------------------------------------
   message("→ Applying calibration …")
   pred <- tibble(
     date  = ramp_15$date,
@@ -111,7 +117,7 @@ apply_caps_calibration <- function(sensor_id,
     PM2_5 = as.numeric(CAPS_PR_Apply   (calibration_models$pm$Regression$PM2_5, pm_mat))
   )
   
-  ## 6 ── Optional write-out -----------------------------------------------
+  ## 6 ── Optional write-out --------------------------------------------------
   if (!is.null(out_dir)) {
     fs::dir_create(out_dir)
     out_file <- file.path(
