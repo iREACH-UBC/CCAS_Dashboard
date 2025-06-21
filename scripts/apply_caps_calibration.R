@@ -6,71 +6,63 @@ apply_caps_calibration <- function(sensor_id,
                                    avg_time = "15 min",
                                    out_dir  = NULL) {
   
-  ## 1 ── Download & load model object from R2 ─────────────────────────────
+  ## 1 ── Download model OBJ from R2 ----------------------------------------
   library(aws.s3); library(glue)
   
-  base_url <- Sys.getenv("R2_ENDPOINT")
-  if (base_url == "")
-    stop("R2_ENDPOINT env-var not set (e.g. 111aaa…r2.cloudflarestorage.com)")
-  base_url <- sub("^https?://", "", base_url)
+  host <- sub("^https?://", "", Sys.getenv("R2_ENDPOINT"))
+  if (host == "") stop("R2_ENDPOINT not set")
   
-  model_key <- glue("{sensor_id}/Calibration_Models.obj")
-  
+  key <- glue("{sensor_id}/Calibration_Models.obj")
   message(glue("→ Downloading {sensor_id} model from R2 …"))
-  raw_obj <- aws.s3::get_object(
-    object   = model_key,
-    bucket   = bucket,
-    base_url = base_url,
-    region   = ""
-  )
   
-  ## gzip?  load() into temp env -------------------------------------------------
-  make_con <- function(bytes) {
-    con <- rawConnection(bytes)
-    if (identical(rawToChar(bytes[1:3]), "\x1f\x8b\b"))
-      con <- gzcon(con)
-    con
+  bytes <- aws.s3::get_object(object = key,
+                              bucket = bucket,
+                              base_url = host,
+                              region = "")
+  
+  ## 2 ── Header check (must be RData, maybe gzipped) -----------------------
+  is_gz  <- identical(rawToChar(bytes[1:3]), "\x1f\x8b\b")
+  magic  <- rawToChar(if (is_gz)
+    memDecompress(bytes[1:20], "gzip")
+    else
+      bytes[1:4])
+  
+  if (!magic %in% c("RDX2", "RDX3"))
+    stop(glue("File '{key}' is not a valid .obj (RDX2/RDX3 header not found)."))
+  
+  ## 3 ── Load calibration_models from OBJ ----------------------------------
+  make_con <- function(x) {
+    con <- rawConnection(x); if (is_gz) con <- gzcon(con); con
   }
   
-  tmp_env <- new.env()
-  con <- make_con(raw_obj)
-  load(con, envir = tmp_env)               # .obj must load successfully
-  close(con)
+  env <- new.env()
+  con <- make_con(bytes); load(con, envir = env); close(con)
   
-  # Find object whose name (case-insensitive) is "calibration_models"
-  obj_name <- ls(tmp_env, all.names = TRUE)
-  hit <- obj_name[tolower(obj_name) == "calibration_models"]
+  nm  <- ls(env, all.names = TRUE)
+  hit <- nm[tolower(nm) == "calibration_models"]
+  if (length(hit) != 1)
+    stop(glue("Expected object 'calibration_models' in '{key}' but found: {paste(nm, collapse=', ')}"))
   
-  if (length(hit) == 1) {
-    calibration_models <- tmp_env[[hit]]
-    if (hit != "calibration_models")
-      message(glue("ℹ Using object '{hit}' as calibration_models"))
-  } else {
-    stop("Loaded ", length(obj_name),
-         " object(s) from ", model_key,
-         ", but none named 'calibration_models'. Check the .obj file.")
-  }
-  ## ---------------------------------------------------------------------------
-  ## 2 ── Libraries for downstream work -----------------------------------
+  calibration_models <- env[[hit]]
+  
+  ## 4 ── Libraries for downstream work -------------------------------------
   suppressPackageStartupMessages({
-    library(dplyr);        library(readr);  library(lubridate); library(tibble)
-    library(openair);      library(fs);     library(gtools);    library(tidyr)
-    library(purrr);        library(randomForest)   # randomForest msgs suppressed
+    library(dplyr);  library(readr);  library(lubridate); library(tibble)
+    library(purrr);   library(tidyr); library(openair);   library(zoo)
+    library(fs);      library(gtools); library(randomForest)
   })
   
   message("→ Loading CAPS helpers and models …")
-  source("caps_core.R", local = TRUE)      # CAPS_* helpers
+  source("caps_core.R", local = TRUE)        # creates CAPS_* helpers
   
-  ## 3 ── Read & tidy raw logger file -------------------------------------
+  ## 5 ── Read & tidy raw logger file ---------------------------------------
   raw <- read_csv(data_file, col_names = FALSE, show_col_types = FALSE)
   names(raw) <- paste0("V", seq_along(raw))
   
   raw <- raw |>
     select(V1, V3, V4, V5, V6, V7, V8, V9, V11) |>
-    rlang::set_names(
-      c("date","CO_RAMP","NO_RAMP","NO2_RAMP","O3_RAMP",
-        "CO2_RAMP","T_RAMP","RH_RAMP","PM_RAMP")
-    ) |>
+    rlang::set_names(c("date","CO_RAMP","NO_RAMP","NO2_RAMP","O3_RAMP",
+                       "CO2_RAMP","T_RAMP","RH_RAMP","PM_RAMP")) |>
     mutate(
       date  = parse_date_time(date, orders = "%m/%d/%y %H:%M:%S"),
       across(-date, parse_number)
@@ -79,17 +71,17 @@ apply_caps_calibration <- function(sensor_id,
   
   raw$date <- force_tz(raw$date, tz_raw)
   
-  ## daylight-saving shim ---------------------------------------------------
-  raw <- bind_rows(
+  ## daylight-saving shim ----------------------------------------------------
+  raw <- dplyr::bind_rows(
     filter(raw, date < "2025-03-09 02:00:00"),
     filter(raw, date >= "2025-03-09 02:00:00") |>
       mutate(date = date - 3600)
   )
   
-  ## 4 ── 15-min averages ---------------------------------------------------
+  ## 6 ── 15-min averages ----------------------------------------------------
   ramp_15 <- openair::timeAverage(raw, avg.time = avg_time)
   
-  ## predictors -------------------------------------------------------------
+  ## predictors --------------------------------------------------------------
   gas_mat <- ramp_15 |>
     select(CO_RAMP, NO_RAMP, NO2_RAMP, O3_RAMP,
            CO2_RAMP, T_RAMP, RH_RAMP) |>
@@ -102,7 +94,7 @@ apply_caps_calibration <- function(sensor_id,
              (17.62 - (log(RH_RAMP/100) + 17.62*T_RAMP / (243.12 + T_RAMP)))) |>
     as.matrix()
   
-  ## 5 ── Apply CAPS models -------------------------------------------------
+  ## 7 ── Apply CAPS models --------------------------------------------------
   message("→ Applying calibration …")
   pred <- tibble(
     date  = ramp_15$date,
@@ -114,7 +106,7 @@ apply_caps_calibration <- function(sensor_id,
     PM2_5 = as.numeric(CAPS_PR_Apply   (calibration_models$pm$Regression$PM2_5, pm_mat))
   )
   
-  ## 6 ── Optional write-out -----------------------------------------------
+  ## 8 ── Optional write-out -------------------------------------------------
   if (!is.null(out_dir)) {
     fs::dir_create(out_dir)
     out_file <- file.path(
