@@ -15,35 +15,36 @@ apply_caps_calibration <- function(sensor_id,
   key <- glue("{sensor_id}/Calibration_Models.obj")
   message(glue("→ Downloading {sensor_id} model from R2 …"))
   
-  bytes <- aws.s3::get_object(object = key,
-                              bucket = bucket,
-                              base_url = host,
-                              region = "")
+  bytes <- aws.s3::get_object(
+    object   = key,
+    bucket   = bucket,
+    base_url = host,
+    region   = ""
+  )
   
-  ## 2 ── Header check (must be RData, maybe gzipped) -----------------------
-  is_gz  <- identical(rawToChar(bytes[1:3]), "\x1f\x8b\b")
-  magic  <- rawToChar(if (is_gz)
-    memDecompress(bytes[1:20], "gzip")
-    else
-      bytes[1:4])
+  ## 2 ── Peek header safely (works for gzip & plain) ------------------------
+  is_gz <- identical(rawToChar(bytes[1:3]), "\x1f\x8b\b")
+  
+  peek_con <- rawConnection(bytes, open = "rb")
+  if (is_gz) peek_con <- gzcon(peek_con)   # transparently decompress stream
+  magic <- rawToChar(readBin(peek_con, "raw", 4))
+  close(peek_con)
   
   if (!magic %in% c("RDX2", "RDX3"))
-    stop(glue("File '{key}' is not a valid .obj (RDX2/RDX3 header not found)."))
+    stop(glue("File '{key}' is not a valid RData/OBJ (header = '{magic}')."))
   
   ## 3 ── Load calibration_models from OBJ ----------------------------------
-  make_con <- function(x) {
-    con <- rawConnection(x); if (is_gz) con <- gzcon(con); con
-  }
+  load_con <- rawConnection(bytes, open = "rb")
+  if (is_gz) load_con <- gzcon(load_con)
   
-  env <- new.env()
-  con <- make_con(bytes); load(con, envir = env); close(con)
+  tmp_env <- new.env()
+  load(load_con, envir = tmp_env)
+  close(load_con)
   
-  nm  <- ls(env, all.names = TRUE)
-  hit <- nm[tolower(nm) == "calibration_models"]
-  if (length(hit) != 1)
-    stop(glue("Expected object 'calibration_models' in '{key}' but found: {paste(nm, collapse=', ')}"))
+  if (!exists("calibration_models", envir = tmp_env, inherits = FALSE))
+    stop(glue("Object 'calibration_models' not found in '{key}'."))
   
-  calibration_models <- env[[hit]]
+  calibration_models <- tmp_env$calibration_models
   
   ## 4 ── Libraries for downstream work -------------------------------------
   suppressPackageStartupMessages({
