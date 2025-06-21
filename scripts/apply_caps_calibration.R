@@ -13,7 +13,7 @@ apply_caps_calibration <- function(sensor_id,
   library(aws.s3)
   library(glue)
   
-  base_url <- Sys.getenv("R2_ENDPOINT")
+  base_url <- sub("^https?://", "", base_url)
   if (base_url == "")
     stop("R2_ENDPOINT env-var not set (e.g. https://<ACCOUNT>.r2.cloudflarestorage.com)")
   
