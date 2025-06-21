@@ -19,7 +19,7 @@ apply_caps_calibration <- function(sensor_id,
     object   = key,
     bucket   = bucket,
     base_url = host,
-    region   = ""
+    region   = "auto"
   )
   
   ## 2 ── Peek header safely (works for gzip & plain) ------------------------
