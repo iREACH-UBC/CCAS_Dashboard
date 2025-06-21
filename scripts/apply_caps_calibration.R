@@ -9,33 +9,44 @@ apply_caps_calibration <- function(sensor_id,
   ## 1 ── Download & load model object from R2 ─────────────────────────────
   library(aws.s3); library(glue)
   
-  base_url <- Sys.getenv("R2_ENDPOINT")
-  if (base_url == "")
-    stop("R2_ENDPOINT env-var not set (e.g. 111aaa…r2.cloudflarestorage.com)")
-  base_url <- sub("^https?://", "", base_url)
+  base_url  <- Sys.getenv("R2_ENDPOINT")
+  if (base_url == "") stop("R2_ENDPOINT env-var not set")
+  base_url  <- sub("^https?://", "", base_url)
   
   model_key <- glue("{sensor_id}/Calibration_Models.obj")
-  
   message(glue("→ Downloading {sensor_id} model from R2 …"))
-  raw_obj <- aws.s3::get_object(
+  raw_obj   <- aws.s3::get_object(
     object   = model_key,
     bucket   = bucket,
     base_url = base_url,
     region   = ""
   )
   
-  ## gzip?  load() or readRDS() -------------------------------------------
-  hdr <- rawToChar(raw_obj[1:3])          # gzip header = 1F 8B 08
-  con <- rawConnection(raw_obj)
-  if (hdr == "\x1f\x8b\b") con <- gzcon(con)
+  # ── NEW implementation that still uses seek() ──────────────────────────
+  hdr        <- rawToChar(raw_obj[1:3])                # gzip header = 1F 8B 08
+  raw_con    <- rawConnection(raw_obj, open = "rb")    # SEEK-ABLE connection
+  load_env   <- new.env(parent = emptyenv())           # sandbox for load()
   
-  ok <- tryCatch({ load(con, verbose = FALSE); TRUE },
-                 error = function(e) FALSE)
-  if (!ok) {
-    seek(con, 0)
-    calibration_models <- readRDS(con)
+  if (hdr == "\x1f\x8b\b") {
+    gz_con  <- gzcon(raw_con)                          # wrap, but keep raw_con
+    ok <- tryCatch({ load(gz_con, envir = load_env); TRUE },
+                   error = function(e) FALSE)
+    close(gz_con)                                      # close wrapper only
+  } else {
+    ok <- tryCatch({ load(raw_con, envir = load_env); TRUE },
+                   error = function(e) FALSE)
   }
-  close(con)
+  
+  # --- fall back to readRDS() if load() failed ---------------------------
+  if (!ok) {
+    seek(raw_con, where = 0, origin = "start")         # ← still using seek()
+    calibration_models <- readRDS(raw_con)
+  } else {
+    calibration_models <- load_env$calibration_models
+  }
+  
+  close(raw_con)
+  
   
   ## 2 ── Libraries for downstream work -----------------------------------
   suppressPackageStartupMessages({
