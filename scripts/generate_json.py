@@ -1,123 +1,204 @@
+#!/usr/bin/env python3
+"""Build a 24-hour JSON snapshot for every calibrated sensor file.
+
+• Walks `calibrated_data/**/<sensor_id>_…_to_….csv`
+• Guarantees the history covers the *exact* last 24 h
+  even if that means reading several daily files.
+• Uses a single, explicit column-map so renaming can
+  never silently fail.
+• Writes `pollutant_data.json` with the structure the
+  dashboard expects.
+"""
+
+# ── standard lib ──────────────────────────────────────────
 import json, glob, os, re, math
-import pandas as pd
 from datetime import datetime, timezone, timedelta
 
-# ───────────────────────── CONFIG ─────────────────────────
-CAL_DIR    = "calibrated_data"         # root with YYYY/ sub-folders
-META_FILE  = "sensor_metadata.csv"     # id,lat,lon,name  (optional)
-OUT_FILE   = "pollutant_data.json"
-LOCAL_TZ   = timezone(timedelta(hours=-7))      # PST (fixed −07:00)
-WINDOW_HRS = 24                                   # rolling window
-# ──────────────────────────────────────────────────────────
+# ── third-party ───────────────────────────────────────────
+import pandas as pd
 
-FNAME_RE = re.compile(                      # 2021_<anything>_YYYY_MM_DD_to_YYYY_MM_DD.csv
+# ───────────────────────── CONFIG ────────────────────────
+CAL_DIR    = "calibrated_data"          # root with YYYY/ sub-folders
+META_FILE  = "sensor_metadata.csv"      # id,lat,lon,name  (optional)
+OUT_FILE   = "pollutant_data.json"
+LOCAL_TZ   = timezone(timedelta(hours=-7))   # fixed PST (UTC-07:00)
+WINDOW_HRS = 24                               # rolling window length
+# ─────────────────────────────────────────────────────────
+
+# CSV file name pattern → extract sensor id and end-date
+FNAME_RE = re.compile(
     r"^(?P<id>\d+)_.*?(?P<y1>\d{4})_(?P<m1>\d{2})_(?P<d1>\d{2})_to_"
     r"(?P<y2>\d{4})_(?P<m2>\d{2})_(?P<d2>\d{2})\.csv$"
 )
 
-# ───────────── helpers ────────────────────────────────────
+# Column map (lower-case originals → JSON names)
+COL_MAP = {
+    "date":                   "date",
+    "aqhi":                   "aqhi",
+    "top_aqhi_contributor":   "primary",
+    "co":                     "co",
+    "no":                     "no",
+    "no2":                    "no2",
+    "o3":                     "o3",
+    "co2":                    "co2",
+    "pm1.0":                  "pm1",
+    "pm2.5":                  "pm25",
+    "pm10":                   "pm10",
+}
+
+# ----------------------------------------------------------------
+# helpers
+# ----------------------------------------------------------------
 def iso(ts: pd.Timestamp) -> str:
+    """Local ISO-8601 string with minute precision: 2025-06-23T13:45-07:00"""
     return ts.astimezone(LOCAL_TZ).isoformat(timespec="minutes")
 
 def safe(val, ndigits=2):
-    """Round number or return None for NaN / missing."""
+    """Round floats; keep None for NaN/missing so JSON has `null`."""
     if pd.isna(val) or (isinstance(val, float) and math.isnan(val)):
         return None
     return round(val, ndigits)
 
-# ───────────── metadata ───────────────────────────────────
+# ----------------------------------------------------------------
+# metadata – build a minimal table if sensor_metadata.csv missing
+# ----------------------------------------------------------------
 def get_meta() -> pd.DataFrame:
     if os.path.exists(META_FILE):
         return pd.read_csv(META_FILE)
 
     sensor_ids = {
         m.group("id")
-        for path in glob.glob(os.path.join(CAL_DIR, "**", "*.csv"), recursive=True)
-        if (m := FNAME_RE.match(os.path.basename(path)))
+        for p in glob.glob(os.path.join(CAL_DIR, "**", "*.csv"), recursive=True)
+        if (m := FNAME_RE.match(os.path.basename(p)))
     }
     return pd.DataFrame(
         {"id": sorted(sensor_ids), "lat": None, "lon": None, "name": None}
     )
 
-# ───────────── file discovery ─────────────────────────────
+# ----------------------------------------------------------------
+# file discovery utilities
+# ----------------------------------------------------------------
 def files_for_sensor(sensor_id: str):
-    paths = glob.glob(os.path.join(CAL_DIR, "**", f"{sensor_id}_*_to_*.csv"), recursive=True)
+    """Return [(end_date, path), …] newest→oldest for one sensor."""
+    paths = glob.glob(
+        os.path.join(CAL_DIR, "**", f"{sensor_id}_*_to_*.csv"), recursive=True
+    )
     out = []
     for p in paths:
-        m = FNAME_RE.match(os.path.basename(p))
-        if m and m.group("id") == sensor_id:
+        if m := FNAME_RE.match(os.path.basename(p)):
+            if m["id"] != sensor_id:
+                continue
             end_date = datetime(int(m["y2"]), int(m["m2"]), int(m["d2"])).date()
             out.append((end_date, p))
     return sorted(out, key=lambda t: t[0], reverse=True)
 
+# ----------------------------------------------------------------
+# read just enough files to cover the last 24 h
+# ----------------------------------------------------------------
 def load_last_24h(sensor_id: str) -> pd.DataFrame:
-    chosen, hrs = [], 0
-    for _end, path in files_for_sensor(sensor_id):
-        chosen.append(path);  hrs += 24
-        if hrs >= WINDOW_HRS: break
-    if not chosen:
+    paths = files_for_sensor(sensor_id)
+    if not paths:
         raise FileNotFoundError(f"No calibrated files for sensor {sensor_id}")
 
-    df = pd.concat(map(pd.read_csv, chosen)).rename(columns=str.lower)
-    df["date"] = pd.to_datetime(df["date"], utc=True).dt.tz_convert(LOCAL_TZ)
-    cutoff = df["date"].max() - pd.Timedelta(hours=WINDOW_HRS)
-    return df[df["date"] >= cutoff]
+    cutoff = pd.Timestamp.now(tz=LOCAL_TZ) - pd.Timedelta(hours=WINDOW_HRS)
 
-# ───────────── main build loop ────────────────────────────
-meta = get_meta()
-sensors = []
+    parts = []
+    for _end, path in paths:                 # newest → older
+        df_part = (
+            pd.read_csv(path)
+              .rename(columns=str.lower)     # standardise headers
+        )
+        # unify timezone → LOCAL_TZ
+        df_part["date"] = (
+            pd.to_datetime(df_part["date"], utc=True).dt.tz_convert(LOCAL_TZ)
+        )
+        parts.append(df_part)
+        # once the *oldest* row we’ve seen is before the cutoff we’re done
+        if df_part["date"].min() <= cutoff:
+            break
 
-for sid, lat, lon, name in meta.itertuples(index=False):
-    try:
-        df = load_last_24h(str(sid))
-    except FileNotFoundError as e:
-        print(f"  – {e}")
-        continue
+    df = pd.concat(parts, ignore_index=True)
 
-    base = ["date", "aqhi", "top_aqhi_contributor", "co", "no", "no2", "o3", "co2"]
-    pm_cols = [c for c in ["pm1.0", "pm2.5", "pm10"] if c in df.columns]
-    df = (df[base + pm_cols]
-          .rename(columns={"top_aqhi_contributor": "primary",
-                           "pm1.0": "pm1", "pm2.5": "pm25"}))
+    # keep only wanted cols and apply JSON-friendly names
+    df = (
+        df
+        .rename(columns=COL_MAP)
+        .loc[:, [c for c in COL_MAP.values() if c in df.columns]]
+    )
 
-    last = df.iloc[-1]
-    latest = {
-        "timestamp": iso(last.date),
-        "aqhi":      safe(last.aqhi, 1),
-        "primary":   str(last.primary) if pd.notna(last.primary) else None,
-        "pollutants": {col: safe(last[col], 2) for col in
-                       ["co","no","no2","o3","co2",
-                        *[c for c in ["pm1","pm25","pm10"] if c in df.columns]]}
+    return df[df["date"] >= cutoff].sort_values("date", ignore_index=True)
+
+# ----------------------------------------------------------------
+# main build loop
+# ----------------------------------------------------------------
+def main():
+    meta = get_meta()
+    sensors_out = []
+
+    for sid, lat, lon, name in meta.itertuples(index=False):
+        try:
+            df = load_last_24h(str(sid))
+        except FileNotFoundError as e:
+            print(f"  – {e}")
+            continue
+
+        # figure out which PM fields are present
+        pm_cols = [c for c in ("pm1", "pm25", "pm10") if c in df.columns]
+
+        last = df.iloc[-1]
+        latest = {
+            "timestamp": iso(last.date),
+            "aqhi":      safe(last.aqhi, 1),
+            "primary":   str(last.primary) if pd.notna(last.primary) else None,
+            "pollutants": {
+                col: safe(last[col], 2)
+                for col in ["co", "no", "no2", "o3", "co2", *pm_cols]
+            },
+        }
+
+        history = []
+        for r in df.itertuples(index=False):
+            row = [
+                iso(r.date),
+                safe(r.aqhi, 2),
+                str(r.primary) if pd.notna(r.primary) else None,
+                safe(r.co, 3),
+                safe(r.no, 3),
+                safe(r.no2, 3),
+                safe(r.o3, 3),
+                safe(r.co2, 1),
+            ]
+            # append PM in declared order if present
+            for c in pm_cols:
+                row.append(safe(getattr(r, c), 2))
+            history.append(row)
+
+        sensors_out.append(
+            {
+                "id": str(sid),
+                "name": name,
+                "lat": lat,
+                "lon": lon,
+                "latest": latest,
+                "history": history,
+            }
+        )
+
+    # ----------------------------------------------------------------
+    # write JSON
+    # ----------------------------------------------------------------
+    payload = {
+        "generated_at": iso(pd.Timestamp.now(tz=LOCAL_TZ)),
+        "sensors": sensors_out,
     }
 
-    history = []
-    for r in df.itertuples(index=False):
-        row = [iso(r.date),
-               safe(r.aqhi, 2),
-               str(r.primary) if pd.notna(r.primary) else None,
-               safe(r.co, 3), safe(r.no, 3), safe(r.no2, 3),
-               safe(r.o3, 3), safe(r.co2, 1)]
-        if "pm1"  in df.columns: row.append(safe(r.pm1, 2))
-        if "pm25" in df.columns: row.append(safe(r.pm25, 2))
-        if "pm10" in df.columns: row.append(safe(r.pm10, 2))
-        history.append(row)
+    os.makedirs(os.path.dirname(OUT_FILE) or ".", exist_ok=True)
+    with open(OUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(payload, f, separators=(",", ":"), ensure_ascii=False)
 
-    sensors.append({
-        "id":   str(sid),
-        "name": name,
-        "lat":  lat,
-        "lon":  lon,
-        "latest": latest,
-        "history": history
-    })
+    total_rows = sum(len(s["history"]) for s in sensors_out)
+    print(f"\n✅  Wrote {OUT_FILE} with {len(sensors_out)} sensors ({total_rows} rows).")
 
-# ───────────── write JSON ─────────────────────────────────
-payload = {"generated_at": iso(pd.Timestamp.now(tz=LOCAL_TZ)),
-           "sensors": sensors}
-
-os.makedirs(os.path.dirname(OUT_FILE) or ".", exist_ok=True)
-with open(OUT_FILE, "w") as f:
-    json.dump(payload, f, separators=(",", ":"), ensure_ascii=False)
-
-print(f"\n✅  Wrote {OUT_FILE} with {len(sensors)} sensors "
-      f"({sum(len(s['history']) for s in sensors)} rows).")
+# ----------------------------------------------------------------
+if __name__ == "__main__":
+    main()
