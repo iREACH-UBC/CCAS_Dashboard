@@ -3,10 +3,10 @@
 Build a 24-hour JSON snapshot for every calibrated sensor file.
 
 • Walks `calibrated_data/**/<sensor_id>_…_to_….csv`
-• Guarantees the history covers the exact last 24 h, even if that
-  means reading several daily files.
-• Uses one explicit column-map so renaming can never silently fail.
-• Writes `pollutant_data.json` with the structure the dashboard expects.
+• Guarantees the history covers the last 24 h, even if that means
+  reading several daily files.
+• Uses one explicit column map so renaming can never silently fail.
+• Writes `pollutant_data.json` for the dashboard.
 """
 
 # ───────────── standard lib ───────────────────────────────
@@ -20,7 +20,7 @@ import pandas as pd
 CAL_DIR    = "calibrated_data"          # root with YYYY/ sub-folders
 META_FILE  = "sensor_metadata.csv"      # id,lat,lon,name (optional)
 OUT_FILE   = "pollutant_data.json"
-LOCAL_TZ   = timezone(timedelta(hours=0))   # fixed PST (UTC-07:00)
+LOCAL_TZ   = timezone(timedelta(hours=-7))  # fixed PST (UTC-07:00)
 WINDOW_HRS = 24                               # rolling window length
 # ──────────────────────────────────────────────────────────
 
@@ -56,7 +56,6 @@ def safe(val, ndigits=2):
         return None
     return round(val, ndigits)
 
-
 # ───────────── metadata (fallback if csv missing) ─────────
 def get_meta() -> pd.DataFrame:
     if os.path.exists(META_FILE):
@@ -86,16 +85,15 @@ def files_for_sensor(sensor_id: str):
             out.append((end_date, p))
     return sorted(out, key=lambda t: t[0], reverse=True)
 
-
-# ───────────── read just enough files to cover 24 h ───────
+# ───────────── read enough rows to cover exactly 24 h ─────
 def load_last_24h(sensor_id: str) -> pd.DataFrame:
     paths = files_for_sensor(sensor_id)
     if not paths:
         raise FileNotFoundError(f"No calibrated files for sensor {sensor_id}")
 
-    cutoff = pd.Timestamp.now(tz=LOCAL_TZ) - pd.Timedelta(hours=WINDOW_HRS)
-
+    want_span = pd.Timedelta(hours=WINDOW_HRS)
     parts = []
+
     for _end, path in paths:                      # newest → older
         df_part = (
             pd.read_csv(path)
@@ -106,19 +104,26 @@ def load_last_24h(sensor_id: str) -> pd.DataFrame:
               .dt.tz_convert(LOCAL_TZ)
         )
         parts.append(df_part)
-        if df_part["date"].min() <= cutoff:       # enough history reached
+
+        # test combined span so far
+        df_tmp = pd.concat(parts, ignore_index=True)
+        if df_tmp["date"].max() - df_tmp["date"].min() >= want_span:
             break
 
     df = pd.concat(parts, ignore_index=True)
+
+    # final trim to the exact last 24 h relative to *data* time
+    last_ts = df["date"].max()
+    cutoff  = last_ts - want_span
+    df = df[df["date"] >= cutoff]
 
     # apply JSON-friendly names + keep only mapped cols present
     df = (
         df.rename(columns=COL_MAP)
           .loc[:, [c for c in COL_MAP.values() if c in df.columns]]
+          .sort_values("date", ignore_index=True)
     )
-
-    return df[df["date"] >= cutoff].sort_values("date", ignore_index=True)
-
+    return df
 
 # ───────────── main build loop ────────────────────────────
 def main():
@@ -175,7 +180,7 @@ def main():
             }
         )
 
-    # ───────────── write JSON ───────────────────────────────
+    # ───────────── write JSON ──────────────────────────────
     payload = {
         "generated_at": iso(pd.Timestamp.now(tz=LOCAL_TZ)),
         "sensors": sensors_out,
@@ -185,9 +190,8 @@ def main():
     with open(OUT_FILE, "w", encoding="utf-8") as f:
         json.dump(payload, f, separators=(",", ":"), ensure_ascii=False)
 
-    total_rows = sum(len(s["history"]) for s in sensors_out)
-    print(f"\n✅  Wrote {OUT_FILE} with {len(sensors_out)} sensors "
-          f"({total_rows} rows).")
+    rows = sum(len(s["history"]) for s in sensors_out)
+    print(f"\n✅  Wrote {OUT_FILE} with {len(sensors_out)} sensors ({rows} rows).")
 
 # ───────────── run as script ──────────────────────────────
 if __name__ == "__main__":
