@@ -1,25 +1,48 @@
-name: Fetch calibration model
-on: workflow_dispatch                         # run manually; add schedule/push if needed
+name: Apply calibration with transient model
+on: workflow_dispatch
 
 jobs:
-  download-model:
+  apply-calibration:
     runs-on: ubuntu-latest
-
-    # Make the R2 credentials available to every step in the job
     env:
+      # R2 creds for every step
       AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}   # ← your secret name
-      AWS_DEFAULT_REGION:    us-east-1          # any real region keeps the CLI happy
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}
+      AWS_DEFAULT_REGION:    us-east-1          # satisfies AWS CLI
 
     steps:
       - uses: actions/checkout@v4
 
-      # Single step: pull the .obj from Cloudflare R2
+      # 1 ▸ Make a temporary directory and expose it to later steps
+      - name: Create temp dir
+        id: mktemp
+        run: |
+          TMP_DIR="$(mktemp -d)"          # e.g. /tmp/tmp.abc123
+          echo "TMP_DIR=$TMP_DIR" >> "$GITHUB_ENV"
+
+      # 2 ▸ Download model into that directory
       - name: Download calibration model
         env:
           R2_ACCOUNT_ID:  ${{ secrets.R2_ACCOUNT_ID }}
           R2_BUCKET:      calibration-models
           R2_OBJ_KEY:     2021/Calibration_Models.obj
-          DEST_PATH:      models                # will create ./models/
+          DEST_PATH:      ${{ env.TMP_DIR }}      # download_r2_obj.sh uses this
         run: |
+          chmod +x scripts/download_r2_obj.sh     # ensure it’s executable
           ./scripts/download_r2_obj.sh
+          # Remember full path for the next step
+          echo "CAL_MODEL=${DEST_PATH}/$(basename "$R2_OBJ_KEY")" >> "$GITHUB_ENV"
+
+      # 3 ▸ Apply calibration (example Rscript call)
+      - name: Apply calibration to fresh data
+        run: |
+          Rscript scripts/apply_calibration.R \
+                 --model "${{ env.CAL_MODEL }}" \
+                 --data  "raw_data/latest.csv" \
+                 --out   "calibrated_data/latest_calibrated.csv"
+
+      # 4 ▸ Clean up the model file immediately
+      - name: Remove temp dir
+        if: always()                        # runs even if previous step fails
+        run: |
+          rm -rf "${{ env.TMP_DIR }}"
