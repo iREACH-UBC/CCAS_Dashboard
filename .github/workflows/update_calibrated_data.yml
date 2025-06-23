@@ -88,14 +88,35 @@ jobs:
       # 8 ▸ Commit & push any updated CSVs
       - name: Commit & push calibrated data (${{ matrix.sid }})
         run: |
+          set -euo pipefail
+      
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
-          git add calibrated_data/${{ matrix.sid }}/*.csv || true
-          git commit -m "Automated RAMP ${{ matrix.sid }} calibration at $(date -u)" || echo "No changes for sensor ${{ matrix.sid }}"
-          for i in {1..5}; do
-            git pull --rebase origin main && git push origin main && break
+      
+          # 1. Stage every CSV created or changed for **this** sensor
+          git add -A calibrated_data/${{ matrix.sid }}/ || true
+      
+          # 2. Skip the rest if nothing staged
+          if git diff --cached --quiet; then
+            echo "No new data for sensor ${{ matrix.sid }} – skipping push."
+            exit 0
+          fi
+      
+          # 3. Commit
+          git commit -m "Automated RAMP ${{ matrix.sid }} calibration at $(date -u)"
+      
+          # 4. Pull-rebase with autostash (avoids “unstaged changes” error)
+          #    Then push; retry a few times in case another matrix job wins the race.
+          for attempt in {1..5}; do
+            git pull --rebase --autostash origin main || true
+            if git push origin HEAD:main; then
+              echo "Push succeeded on attempt ${attempt}"
+              break
+            fi
+            echo "Push failed, retrying in 5 s (${attempt}/5)…"
             sleep 5
           done
+
 
 # ─────────────────────────── QAQ job (Python) ──────────────────────
   calibrate-qaq:
