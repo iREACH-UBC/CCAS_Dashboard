@@ -1,27 +1,25 @@
 name: Fetch calibration model
-on: workflow_dispatch      # run manually; add push/schedule if you like
+on: workflow_dispatch                         # run manually; add schedule/push if needed
 
 jobs:
   download-model:
     runs-on: ubuntu-latest
 
+    # Make the R2 credentials available to every step in the job
+    env:
+      AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}   # ← your secret name
+      AWS_DEFAULT_REGION:    us-east-1          # any real region keeps the CLI happy
+
     steps:
       - uses: actions/checkout@v4
 
-      # 1 ▸ Load credentials into env vars the AWS CLI will pick up
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_ID }}   # ← corrected
-          aws-region:            us-east-1                               # ← real region
-
-      # 2 ▸ Download the .obj file from Cloudflare R2
+      # Single step: pull the .obj from Cloudflare R2
       - name: Download calibration model
         env:
           R2_ACCOUNT_ID:  ${{ secrets.R2_ACCOUNT_ID }}
           R2_BUCKET:      calibration-models
           R2_OBJ_KEY:     2021/Calibration_Models.obj
-          DEST_PATH:      models
+          DEST_PATH:      models                # will create ./models/
         run: |
           ./scripts/download_r2_obj.sh
