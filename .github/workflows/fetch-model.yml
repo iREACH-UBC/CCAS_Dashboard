@@ -13,7 +13,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4  # <— this one *does* exist
         with:
           aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_ID }}
           aws-region: auto       # any value; R2 ignores it
 
       # 2. Pull the .obj file from Cloudflare R2
