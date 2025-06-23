@@ -20,7 +20,7 @@ import pandas as pd
 CAL_DIR    = "calibrated_data"          # root with YYYY/ sub-folders
 META_FILE  = "sensor_metadata.csv"      # id,lat,lon,name (optional)
 OUT_FILE   = "pollutant_data.json"
-LOCAL_TZ   = timezone(timedelta(hours=-7))   # fixed PST (UTC-07:00)
+LOCAL_TZ   = timezone(timedelta(hours=0))   # fixed PST (UTC-07:00)
 WINDOW_HRS = 24                               # rolling window length
 # ──────────────────────────────────────────────────────────
 
