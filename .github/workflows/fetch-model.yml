@@ -1,29 +1,27 @@
 name: Fetch calibration model
-
-on:
-  workflow_dispatch:   # run manually; add schedule/​push triggers as needed
+on: workflow_dispatch
 
 jobs:
   download-model:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # Lightweight AWS CLI install
-      - name: Set up AWS CLI
-        uses: aws-actions/setup-aws-cli@v3
+      # 1. Export AWS creds (also works for R2 because it’s S3-compatible)
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4  # <— this one *does* exist
+        with:
+          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: auto       # any value; R2 ignores it
 
-      - name: Download R object from R2
+      # 2. Pull the .obj file from Cloudflare R2
+      - name: Download calibration model
         env:
-          AWS_ACCESS_KEY_ID:        ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY:    ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          R2_ACCOUNT_ID:            ${{ secrets.R2_ACCOUNT_ID }}   # Cloudflare acct ID
-          R2_BUCKET:                calibration-models
-          R2_OBJ_KEY:               2021/Calibration_Models.obj
-          DEST_PATH:                models              # will create ./models/
-          AWS_DEFAULT_REGION:       auto                # satisfies CLI
+          R2_ACCOUNT_ID:  ${{ secrets.R2_ACCOUNT_ID }}
+          R2_BUCKET:      calibration-models
+          R2_OBJ_KEY:     2021/Calibration_Models.obj
+          DEST_PATH:      models
         run: |
           ./scripts/download_r2_obj.sh
-
-      # (Optional) use the model: readRDS(), commit, upload artifact, etc.
