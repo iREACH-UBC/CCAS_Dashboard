@@ -20,7 +20,7 @@ env:
   RSPM:                  https://packagemanager.posit.co/cran/__linux__/jammy/latest
 
   AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}   # adjust if your secret is named differently
+  AWS_SECRET_ACCESS_ID: ${{ secrets.AWS_SECRET_ACCESS_KEY }}   # adjust if your secret is named differently
   R2_ENDPOINT:           bfde061b9c815bbce1c08766ebac283d.r2.cloudflarestorage.com
 # ────────────────────────────────────────────────────────────────────────────
 
