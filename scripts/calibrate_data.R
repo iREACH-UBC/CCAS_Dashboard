@@ -32,7 +32,7 @@ apply_aqhi_ceiling <- function(aqhi_vec, pm25_1h_vec)
 # ── time window ---------------------------------------------------------------
 now_pst  <- with_tz(Sys.time(), "America/Los_Angeles")
 now_utc  <- with_tz(Sys.time(), "UTC")
-past_24h <- now_pst - hours(24)
+past_24h <- now_pst - hours(48)
 date_window <- seq.Date(as_date(now_utc) - 1, as_date(now_utc), by = "day")  # today + yesterday
 
 # ── MAIN LOOP -----------------------------------------------------------------
