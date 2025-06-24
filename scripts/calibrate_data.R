@@ -13,7 +13,7 @@ suppressPackageStartupMessages({
 source("scripts/apply_caps_calibration.R")
 
 # ── CONFIG --------------------------------------------------------------------
-sensor_ids    <- c("2021")  # extend as needed
+sensor_ids    <- c("2021", "2022", "2040")  # extend as needed
 data_folder   <- "data"                     # raw logger exports live here
 output_folder <- "calibrated_data"          # per-sensor sub-folders
 dir_create(output_folder)

@@ -31,7 +31,7 @@ jobs:
 
     strategy:
       matrix:
-        sid: [2021, 2022, 2023, 2024, 2026, 2030, 2031]
+        sid: [2021, 2022, 2040]
       fail-fast: false
 
     steps:
