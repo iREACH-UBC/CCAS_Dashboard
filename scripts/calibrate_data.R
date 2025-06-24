@@ -46,10 +46,15 @@ for (sid in sensor_ids) {
   ) |> keep(~ grepl(.x, path_file(.)))) |> unlist()
   
   message("  • found ", length(files_raw), " raw file(s) in last 2 days")
-  if (length(files_raw) == 0) {
+  
+  # ── NEW: echo the exact paths we’ll use ───────────────────────────
+  if (length(files_raw)) {
+    message("    ↳ ", paste(files_raw, collapse = "\n    ↳ "))
+  } else {
     warning("No raw data for sensor ", sid, " – skipping calibration.")
     next
   }
+  
   
   files_tbl <- tibble(path = files_raw,
                       date_file = extract_date(files_raw)) |>
