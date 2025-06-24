@@ -1,34 +1,30 @@
 name: Update Calibrated Sensor Data
 
 on:
-  # Trigger automatically when the raw-data workflow completes
   workflow_run:
     workflows: ["Update Sensor Data"]
-    types:     [completed]
+    types: [completed]
 
-  # Manual trigger
   workflow_dispatch:
 
 defaults:
   run:
     shell: bash
 
-# ─── GLOBAL ENV VARS ───────────────────────────────────────
-# Map your existing secret `AWS_SECRET_ACCESS_ID` into the
-# variable name the AWS CLI expects: AWS_SECRET_ACCESS_KEY
+# ─── GLOBAL ENV VARS ──────────────────────────────────────────────
 env:
   R_LIBS_USER: ${{ github.workspace }}/.Rlib
-  RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
   RSPM: https://packagemanager.posit.co/cran/__linux__/jammy/latest
+  RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
 
   AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}   # ← fixed mapping
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}   # ← map secret ➜ AWS var
   R2_ENDPOINT: bfde061b9c815bbce1c08766ebac283d.r2.cloudflarestorage.com
-# ───────────────────────────────────────────────────────────
+# ──────────────────────────────────────────────────────────────────
 
-################################################################
-#                           RAMP JOB                           #
-################################################################
+###################################################################
+#                        1. RAMP CALIBRATION                       #
+###################################################################
 jobs:
   calibrate-ramp:
     runs-on: ubuntu-latest
@@ -39,23 +35,19 @@ jobs:
       fail-fast: false
 
     steps:
-    # 1 ▸ Checkout repository (incl. LFS)
     - uses: actions/checkout@v4
       with:
         lfs: true
         persist-credentials: true
 
-    # 2 ▸ Cache R library
     - uses: actions/cache@v4
       with:
         path: ${{ env.R_LIBS_USER }}
-        key:  ${{ runner.os }}-r-lib-${{ hashFiles('scripts/calibrate_data.R') }}
-        restore-keys: ${{ runner.os }}-r-lib-
+        key:  ${{ runner.os }}-r-${{ hashFiles('scripts/calibrate_data.R') }}
+        restore-keys: ${{ runner.os }}-r-
 
-    # 3 ▸ Set up R
     - uses: r-lib/actions/setup-r@v2
 
-    # 4 ▸ Install CRAN packages (if renv not used)
     - name: Install R packages
       run: |
         Rscript -e '
@@ -67,13 +59,11 @@ jobs:
             install.packages(to_get, repos = Sys.getenv("RSPM"), quiet = TRUE)
         '
 
-    # 5 ▸ Temp directory for model download
-    - name: Create temp dir
+    - name: Make temp dir
       id: mktemp
       run: echo "TMP_DIR=$(mktemp -d)" >> "$GITHUB_ENV"
 
-    # 6 ▸ Download model for current sensor
-    - name: Pull model for ${{ matrix.sid }}
+    - name: Download model (${{ matrix.sid }})
       env:
         R2_ACCOUNT_ID:  ${{ secrets.R2_ACCOUNT_ID }}
         R2_BUCKET:      outdoor-calibrations
@@ -81,36 +71,32 @@ jobs:
         DEST_PATH:      ${{ env.TMP_DIR }}
       run: |
         chmod +x scripts/download_r2_obj.sh
-        ./scripts/download_r2_obj.sh    # sets CAL_MODEL_PATH env var
+        ./scripts/download_r2_obj.sh      # exports CAL_MODEL_PATH
 
-    # 7 ▸ Calibrate
     - name: Calibrate sensor ${{ matrix.sid }}
       run: Rscript scripts/calibrate_data.R "${{ matrix.sid }}"
 
-    # 8 ▸ Commit & push (sentinel guarantees diff)
-    - name: Commit & push calibrated data (${{ matrix.sid }})
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Touch sentinel (RAMP)
+      run: echo "$(date -u)" > calibrated_data/${{ matrix.sid }}/LAST_RUN.txt
+
+    - name: Commit & push (RAMP ${{ matrix.sid }})
+      env: { GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
       run: |
-        set -euo pipefail
         git config --global user.name  "github-actions[bot]"
         git config --global user.email "github-actions@github.com"
 
         git add calibrated_data/${{ matrix.sid }}/
-        git commit -m "Automated RAMP ${{ matrix.sid }} calibration at $(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
-          || echo "Nothing to commit (unexpected)"
+        git commit -m "RAMP ${{ matrix.sid }} calibrated $(date -u +'%FT%TZ')" || true
 
         for i in {1..5}; do
           git pull --rebase --autostash origin main || true
-          if git push origin HEAD:main --force-with-lease; then
-            echo "Push succeeded (attempt $i)"; break
-          fi
-          echo "Push failed – retrying ($i/5)"; sleep 5
+          if git push origin HEAD:main --force-with-lease; then break; fi
+          sleep 5
         done
 
-################################################################
-#                           QAQ JOB                            #
-################################################################
+###################################################################
+#                       2. QAQ CALIBRATION                         #
+###################################################################
   calibrate-qaq:
     runs-on: ubuntu-latest
     needs: calibrate-ramp
@@ -128,24 +114,64 @@ jobs:
     - name: Install Python deps
       run: pip install pandas pytz boto3
 
-    - name: Run QAQ calibration script
+    - name: Calibrate QAQ
       run: python scripts/calibrate_qaq.py
 
-    - name: Commit & push calibrated data (QAQ)
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Touch sentinel (QAQ)
+      run: echo "$(date -u)" > calibrated_data/QAQ_LAST_RUN.txt
+
+    - name: Commit & push (QAQ)
+      env: { GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
       run: |
         git config --global user.name  "github-actions[bot]"
         git config --global user.email "github-actions@github.com"
 
         git add calibrated_data/
-        git commit -m "Automated QAQ calibration at $(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
-          || echo "Nothing to commit (unexpected)"
+        git commit -m "QAQ calibrated $(date -u +'%FT%TZ')" || true
 
         for i in {1..5}; do
           git pull --rebase --autostash origin main || true
-          if git push origin HEAD:main --force-with-lease; then
-            echo "Push succeeded (attempt $i)"; break
-          fi
-          echo "Push failed – retrying ($i/5)"; sleep 5
+          if git push origin HEAD:main --force-with-lease; then break; fi
+          sleep 5
+        done
+
+###################################################################
+#                         3. BUILD JSON                            #
+###################################################################
+  build-json:
+    runs-on: ubuntu-latest
+    needs: calibrate-qaq
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        lfs: true
+        persist-credentials: true
+
+    - uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Install Python deps
+      run: pip install pandas pytz
+
+    - name: Generate dashboard JSON
+      run: python scripts/generate_json.py
+
+    - name: Touch JSON sentinel
+      run: echo "$(date -u)" > LAST_JSON_RUN.txt
+
+    - name: Commit & push JSON
+      env: { GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
+      run: |
+        git config --global user.name  "github-actions[bot]"
+        git config --global user.email "github-actions@github.com"
+
+        git add pollutant_data.json LAST_JSON_RUN.txt
+        git commit -m "Dashboard JSON updated $(date -u +'%FT%TZ')" || true
+
+        for i in {1..5}; do
+          git pull --rebase --autostash origin main || true
+          if git push origin HEAD:main --force-with-lease; then break; fi
+          sleep 5
         done
