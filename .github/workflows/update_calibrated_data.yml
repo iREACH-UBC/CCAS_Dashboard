@@ -1,14 +1,7 @@
-# .github/workflows/update_calibrated_data.yml
-# -----------------------------------------------------------
-# Generates *24-hour* calibrated data for each sensor and pushes
-# a commit every run so downstream deploy workflows (Netlify,
-# data-dashboard builds, etc.) are always triggered.
-# -----------------------------------------------------------
-
 name: Update Calibrated Sensor Data
 
 on:
-  # Kick off automatically when the raw-data workflow finishes
+  # Trigger automatically when the raw-data workflow completes
   workflow_run:
     workflows: ["Update Sensor Data"]
     types:     [completed]
@@ -21,19 +14,22 @@ defaults:
     shell: bash
 
 # ─── GLOBAL ENV VARS ───────────────────────────────────────
+# Map your existing secret `AWS_SECRET_ACCESS_ID` into the
+# variable name the AWS CLI expects: AWS_SECRET_ACCESS_KEY
 env:
-  R_LIBS_USER:           ${{ github.workspace }}/.Rlib
+  R_LIBS_USER: ${{ github.workspace }}/.Rlib
   RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
-  RSPM:                  https://packagemanager.posit.co/cran/__linux__/jammy/latest
+  RSPM: https://packagemanager.posit.co/cran/__linux__/jammy/latest
 
   AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}   # ← corrected name
-  R2_ENDPOINT:           bfde061b9c815bbce1c08766ebac283d.r2.cloudflarestorage.com
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}   # ← fixed mapping
+  R2_ENDPOINT: bfde061b9c815bbce1c08766ebac283d.r2.cloudflarestorage.com
 # ───────────────────────────────────────────────────────────
 
-
+################################################################
+#                           RAMP JOB                           #
+################################################################
 jobs:
-# ──────────────────────────── RAMP job (R) ──────────────────────────
   calibrate-ramp:
     runs-on: ubuntu-latest
 
@@ -43,23 +39,23 @@ jobs:
       fail-fast: false
 
     steps:
-    # 1 ▸ Repo checkout (incl. LFS so calibration models / large data tracked)
+    # 1 ▸ Checkout repository (incl. LFS)
     - uses: actions/checkout@v4
       with:
         lfs: true
         persist-credentials: true
 
-    # 2 ▸ Cache the user-level R library
+    # 2 ▸ Cache R library
     - uses: actions/cache@v4
       with:
         path: ${{ env.R_LIBS_USER }}
         key:  ${{ runner.os }}-r-lib-${{ hashFiles('scripts/calibrate_data.R') }}
         restore-keys: ${{ runner.os }}-r-lib-
 
-    # 3 ▸ Set-up R
+    # 3 ▸ Set up R
     - uses: r-lib/actions/setup-r@v2
 
-    # 4 ▸ Install required CRAN packages (if not using renv)
+    # 4 ▸ Install CRAN packages (if renv not used)
     - name: Install R packages
       run: |
         Rscript -e '
@@ -71,12 +67,12 @@ jobs:
             install.packages(to_get, repos = Sys.getenv("RSPM"), quiet = TRUE)
         '
 
-    # 5 ▸ Create a per-job temp directory (for the .obj model)
-    - name: Make temp dir
+    # 5 ▸ Temp directory for model download
+    - name: Create temp dir
       id: mktemp
       run: echo "TMP_DIR=$(mktemp -d)" >> "$GITHUB_ENV"
 
-    # 6 ▸ Download calibration model for this sensor
+    # 6 ▸ Download model for current sensor
     - name: Pull model for ${{ matrix.sid }}
       env:
         R2_ACCOUNT_ID:  ${{ secrets.R2_ACCOUNT_ID }}
@@ -85,43 +81,36 @@ jobs:
         DEST_PATH:      ${{ env.TMP_DIR }}
       run: |
         chmod +x scripts/download_r2_obj.sh
-        ./scripts/download_r2_obj.sh   # sets CAL_MODEL_PATH env var
+        ./scripts/download_r2_obj.sh    # sets CAL_MODEL_PATH env var
 
     # 7 ▸ Calibrate
     - name: Calibrate sensor ${{ matrix.sid }}
-      run: |
-        Rscript scripts/calibrate_data.R "${{ matrix.sid }}"
+      run: Rscript scripts/calibrate_data.R "${{ matrix.sid }}"
 
-    # 8 ▸ Commit & push (ALWAYS pushes – sentinel file ensures a diff)
+    # 8 ▸ Commit & push (sentinel guarantees diff)
     - name: Commit & push calibrated data (${{ matrix.sid }})
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         set -euo pipefail
-
         git config --global user.name  "github-actions[bot]"
         git config --global user.email "github-actions@github.com"
 
-        # Stage the entire sensor folder (CSV + LAST_RUN.txt)
         git add calibrated_data/${{ matrix.sid }}/
-
-        # Always commit — LAST_RUN.txt is touched every run
-        git commit -m "Automated RAMP ${{
-          matrix.sid }} calibration at $(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+        git commit -m "Automated RAMP ${{ matrix.sid }} calibration at $(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
           || echo "Nothing to commit (unexpected)"
 
-        # Simple push – each matrix job force-leases its push; retry up to 5×
         for i in {1..5}; do
           git pull --rebase --autostash origin main || true
           if git push origin HEAD:main --force-with-lease; then
-            echo "Push succeeded (attempt $i)"
-            break
+            echo "Push succeeded (attempt $i)"; break
           fi
           echo "Push failed – retrying ($i/5)"; sleep 5
         done
 
-
-# ──────────────────────── QAQ job (Python) ───────────────────────
+################################################################
+#                           QAQ JOB                            #
+################################################################
   calibrate-qaq:
     runs-on: ubuntu-latest
     needs: calibrate-ramp
@@ -149,9 +138,7 @@ jobs:
         git config --global user.name  "github-actions[bot]"
         git config --global user.email "github-actions@github.com"
 
-        # Add *everything* under calibrated_data
         git add calibrated_data/
-
         git commit -m "Automated QAQ calibration at $(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
           || echo "Nothing to commit (unexpected)"
 
