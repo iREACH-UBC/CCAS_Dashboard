@@ -156,12 +156,12 @@ def build():
                 to_pacific_iso(r["DATE"]),
                 round(r["AQHI"], 1) if pd.notna(r["AQHI"]) else None,
                 r["PRIMARY"] if isinstance(r["PRIMARY"], str) else None,
-                round(r["CO"],   3) if pd.notna(r["CO"])   else None,
-                round(r["NO"],   3) if pd.notna(r["NO"])   else None,
-                round(r["NO2"],  3) if pd.notna(r["NO2"])  else None,
-                round(r["O3"],   3) if pd.notna(r["O3"])   else None,
-                round(r["CO2"],  3) if pd.notna(r["CO2"])  else None,
-                round(r["PM25"], 3) if pd.notna(r["PM25"]) else None,
+                round(r["CO"],   2) if pd.notna(r["CO"])   else None,
+                round(r["NO"],   2) if pd.notna(r["NO"])   else None,
+                round(r["NO2"],  2) if pd.notna(r["NO2"])  else None,
+                round(r["O3"],   2) if pd.notna(r["O3"])   else None,
+                round(r["CO2"],  2) if pd.notna(r["CO2"])  else None,
+                round(r["PM25"], 2) if pd.notna(r["PM25"]) else None,
             ])
 
         # ── assemble sensor block ────────────────────────────
