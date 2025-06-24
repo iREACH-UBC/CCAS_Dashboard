@@ -1,7 +1,8 @@
 name: Update Calibrated Sensor Data
+run-name: Calibrated sensor data – run #${{ github.run_number }}
 
 on:
-  # Auto-trigger when raw-data workflow finishes
+  # Trigger automatically when the raw-data workflow completes
   workflow_run:
     workflows: ["Update Sensor Data"]
     types: [completed]
@@ -14,14 +15,13 @@ defaults:
     shell: bash
 
 # ─── GLOBAL ENV VARS ──────────────────────────────────────────────
-# Map your existing secret (…ID) into the var AWS CLI expects (…KEY).
 env:
   R_LIBS_USER: ${{ github.workspace }}/.Rlib
   RSPM: https://packagemanager.posit.co/cran/__linux__/jammy/latest
   RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
 
   AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}   # ← mapping fix
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}   # map secret → CLI var
   R2_ENDPOINT: bfde061b9c815bbce1c08766ebac283d.r2.cloudflarestorage.com
 # ──────────────────────────────────────────────────────────────────
 
@@ -39,24 +39,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      with:
-        lfs: true
-        persist-credentials: true
+      with: { lfs: true, persist-credentials: true }
 
     - uses: actions/cache@v4
       with:
         path: ${{ env.R_LIBS_USER }}
-        key:  ${{ runner.os }}-r-lib-${{ hashFiles('scripts/calibrate_data.R') }}
-        restore-keys: ${{ runner.os }}-r-lib-
+        key:  ${{ runner.os }}-r-${{ hashFiles('scripts/calibrate_data.R') }}
+        restore-keys: ${{ runner.os }}-r-
 
     - uses: r-lib/actions/setup-r@v2
 
     - name: Install R packages
       run: |
         Rscript -e '
-          pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble",
-                    "fs","zoo","openair","glue","randomForest","caret",
-                    "gtools","tidyr","aws.s3")
+          pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble","fs",
+                    "zoo","openair","glue","randomForest","caret","gtools",
+                    "tidyr","aws.s3")
           to_get <- setdiff(pkgs, rownames(installed.packages()))
           if (length(to_get))
             install.packages(to_get, repos = Sys.getenv("RSPM"), quiet = TRUE)
@@ -74,12 +72,11 @@ jobs:
         DEST_PATH:      ${{ env.TMP_DIR }}
       run: |
         chmod +x scripts/download_r2_obj.sh
-        ./scripts/download_r2_obj.sh    # exports CAL_MODEL_PATH
+        ./scripts/download_r2_obj.sh      # sets CAL_MODEL_PATH
 
     - name: Calibrate sensor ${{ matrix.sid }}
       run: Rscript scripts/calibrate_data.R "${{ matrix.sid }}"
 
-    # Sentinel guarantees a diff even if CSV unchanged
     - name: Touch sentinel (RAMP)
       run: echo "$(date -u)" > calibrated_data/${{ matrix.sid }}/LAST_RUN.txt
 
@@ -105,13 +102,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-      with:
-        lfs: true
-        persist-credentials: true
+      with: { lfs: true, persist-credentials: true }
 
     - uses: actions/setup-python@v4
-      with:
-        python-version: "3.11"
+      with: { python-version: "3.11" }
 
     - name: Install Python deps
       run: pip install pandas pytz boto3
