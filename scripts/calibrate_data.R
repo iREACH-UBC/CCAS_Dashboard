@@ -39,21 +39,27 @@ date_window <- seq.Date(as_date(now_utc) - 1, as_date(now_utc), by = "day")  # t
 for (sid in sensor_ids) {
   message("── Sensor ", sid, " ────────────────────────────────────────────")
   
-  # (1) find all raw files for the two-day window -----------------------------
+  # (1) find all raw files for the two-day window -------------------------------
   pattern_vec <- glue("^{sid}_{date_window}\\.csv$")
   files_raw <- map(pattern_vec, ~ dir_ls(
     data_folder, recurse = TRUE
   ) |> keep(~ grepl(.x, path_file(.)))) |> unlist()
   
-  message("  • found ", length(files_raw), " raw file(s) in last 2 days")
-  
-  # ── NEW: echo the exact paths we’ll use ───────────────────────────
-  if (length(files_raw)) {
-    message("    ↳ ", paste(files_raw, collapse = "\n    ↳ "))
-  } else {
-    warning("No raw data for sensor ", sid, " – skipping calibration.")
+  if (length(files_raw) == 0) {
+    # build the exact filenames we expected to see
+    expected <- file.path(data_folder,
+                          glue("{sid}_{date_window}.csv"))
+    warning(
+      "No raw data for sensor ", sid, " – looked for:\n  ",
+      paste(expected, collapse = "\n  ")
+    )
     next
   }
+  
+  message(
+    "  • found ", length(files_raw), " raw file(s):\n  ",
+    paste(files_raw, collapse = "\n  ")
+  )
   
   
   files_tbl <- tibble(path = files_raw,
