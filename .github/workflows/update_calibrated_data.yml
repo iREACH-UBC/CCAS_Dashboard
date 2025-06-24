@@ -1,14 +1,10 @@
 name: Update Calibrated Sensor Data
-run-name: Calibrated sensor data – run #${{ github.run_number }}
-
 
 on:
-  # Trigger automatically when the raw-data workflow completes
   workflow_run:
     workflows: ["Update Sensor Data"]
     types: [completed]
 
-  # Manual trigger
   workflow_dispatch:
 
 defaults:
@@ -39,60 +35,60 @@ jobs:
       fail-fast: false
 
     steps:
-    - uses: actions/checkout@v4
-      with: { lfs: true, persist-credentials: true }
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: true
 
-    - uses: actions/cache@v4
-      with:
-        path: ${{ env.R_LIBS_USER }}
-        key:  ${{ runner.os }}-r-${{ hashFiles('scripts/calibrate_data.R') }}
-        restore-keys: ${{ runner.os }}-r-
+      - uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key:  ${{ runner.os }}-r-lib-${{ hashFiles('scripts/calibrate_data.R') }}
+          restore-keys: ${{ runner.os }}-r-lib-
 
-    - uses: r-lib/actions/setup-r@v2
+      - uses: r-lib/actions/setup-r@v2
 
-    - name: Install R packages
-      run: |
-        Rscript -e '
-          pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble","fs",
-                    "zoo","openair","glue","randomForest","caret","gtools",
-                    "tidyr","aws.s3")
-          to_get <- setdiff(pkgs, rownames(installed.packages()))
-          if (length(to_get))
-            install.packages(to_get, repos = Sys.getenv("RSPM"), quiet = TRUE)
-        '
+      - name: Install R packages
+        run: |
+          Rscript -e '
+            pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble",
+                      "fs","zoo","openair","glue","randomForest","caret",
+                      "gtools","tidyr","aws.s3")
+            to_get <- setdiff(pkgs, rownames(installed.packages()))
+            if (length(to_get))
+              install.packages(to_get, repos = Sys.getenv("RSPM"), quiet = TRUE)
+          '
 
-    - name: Create temp dir
-      id: mktemp
-      run: echo "TMP_DIR=$(mktemp -d)" >> "$GITHUB_ENV"
+      - name: Create temp dir
+        id: mktemp
+        run: echo "TMP_DIR=$(mktemp -d)" >> "$GITHUB_ENV"
 
-    - name: Download model (${{ matrix.sid }})
-      env:
-        R2_ACCOUNT_ID:  ${{ secrets.R2_ACCOUNT_ID }}
-        R2_BUCKET:      outdoor-calibrations
-        R2_OBJ_KEY:     ${{ matrix.sid }}/Calibration_Models.obj
-        DEST_PATH:      ${{ env.TMP_DIR }}
-      run: |
-        chmod +x scripts/download_r2_obj.sh
-        ./scripts/download_r2_obj.sh      # sets CAL_MODEL_PATH
+      - name: Download model (${{ matrix.sid }})
+        env:
+          R2_ACCOUNT_ID:  ${{ secrets.R2_ACCOUNT_ID }}
+          R2_BUCKET:      outdoor-calibrations
+          R2_OBJ_KEY:     ${{ matrix.sid }}/Calibration_Models.obj
+          DEST_PATH:      ${{ env.TMP_DIR }}
+        run: |
+          chmod +x scripts/download_r2_obj.sh
+          ./scripts/download_r2_obj.sh      # sets CAL_MODEL_PATH
 
-    - name: Calibrate sensor ${{ matrix.sid }}
-      run: Rscript scripts/calibrate_data.R "${{ matrix.sid }}"
+      - name: Calibrate sensor ${{ matrix.sid }}
+        run: Rscript scripts/calibrate_data.R "${{ matrix.sid }}"
 
-    - name: Touch sentinel (RAMP)
-      run: echo "$(date -u)" > calibrated_data/${{ matrix.sid }}/LAST_RUN.txt
-
-    - name: Commit & push (RAMP ${{ matrix.sid }})
-      env: { GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
-      run: |
-        git config --global user.name  "github-actions[bot]"
-        git config --global user.email "github-actions@github.com"
-        git add calibrated_data/${{ matrix.sid }}/
-        git commit -m "RAMP ${{ matrix.sid }} calibrated $(date -u +'%FT%TZ')" || true
-        for i in {1..5}; do
-          git pull --rebase --autostash origin main || true
-          if git push origin HEAD:main --force-with-lease; then break; fi
-          sleep 5
-        done
+      - name: Commit & push (RAMP ${{ matrix.sid }})
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add calibrated_data/${{ matrix.sid }}/
+          git commit --allow-empty -m "RAMP ${{ matrix.sid }} calibrated $(date -u +'%FT%TZ')" || true
+          for i in {1..5}; do
+            git pull --rebase --autostash origin main || true
+            if git push origin HEAD:main --force-with-lease; then break; fi
+            sleep 5
+          done
 
 ###################################################################
 #                     2.  QAQ  CALIBRATION  (Python)              #
@@ -102,30 +98,31 @@ jobs:
     needs: calibrate-ramp
 
     steps:
-    - uses: actions/checkout@v4
-      with: { lfs: true, persist-credentials: true }
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: true
 
-    - uses: actions/setup-python@v4
-      with: { python-version: "3.11" }
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
 
-    - name: Install Python deps
-      run: pip install pandas pytz boto3
+      - name: Install Python deps
+        run: pip install pandas pytz boto3
 
-    - name: Calibrate QAQ
-      run: python scripts/calibrate_qaq.py
+      - name: Calibrate QAQ
+        run: python scripts/calibrate_qaq.py
 
-    - name: Touch sentinel (QAQ)
-      run: echo "$(date -u)" > calibrated_data/QAQ_LAST_RUN.txt
-
-    - name: Commit & push (QAQ)
-      env: { GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
-      run: |
-        git config --global user.name  "github-actions[bot]"
-        git config --global user.email "github-actions@github.com"
-        git add calibrated_data/
-        git commit -m "QAQ calibrated $(date -u +'%FT%TZ')" || true
-        for i in {1..5}; do
-          git pull --rebase --autostash origin main || true
-          if git push origin HEAD:main --force-with-lease; then break; fi
-          sleep 5
-        done
+      - name: Commit & push (QAQ)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name  "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add calibrated_data/
+          git commit --allow-empty -m "QAQ calibrated $(date -u +'%FT%TZ')" || true
+          for i in {1..5}; do
+            git pull --rebase --autostash origin main || true
+            if git push origin HEAD:main --force-with-lease; then break; fi
+            sleep 5
+          done
