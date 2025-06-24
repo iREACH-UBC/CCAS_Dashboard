@@ -1,13 +1,6 @@
 #!/usr/bin/env python3
 # build_sensor_json.py  –  v2025-06-23 (hard-coded sensor list)
 # -------------------------------------------------------------
-# Walk  calibrated_data/<sensor_id>/, take the newest calibrated
-# CSV for each sensor in  SENSORS_WANTED,  and emit a dashboard-
-# ready sensors.json.
-#
-#  ✱  Edit  SENSORS_WANTED  below.  Leave it  None  to process
-#    every folder automatically, or list the exact IDs you want.
-# -------------------------------------------------------------
 
 from __future__ import annotations
 import json, re, sys
@@ -36,7 +29,7 @@ META_CSV = Path("sensor_metadata.csv")
 HISTORY_HOURS = 24
 
 # output file
-OUTPUT_JSON = Path("sensors.json")
+OUTPUT_JSON = Path("pollutant_data.json")
 
 # ───────────────────────────────────────────────────────────────
 PACIFIC = pytz.timezone("America/Vancouver")
@@ -77,12 +70,19 @@ def read_meta(meta_path: Path) -> dict[str, dict]:
     return {str(r.id): r.to_dict() for _, r in df.iterrows()}
 
 
-def iso_local(ts) -> str | None:
+def iso_local(ts):
+    """
+    Convert pandas Timestamp → ISO-8601 string in America/Vancouver.
+    If ts is naïve, treat it as already Pacific (NO extra shift).
+    """
     if pd.isna(ts):
         return None
     if ts.tzinfo is None:
-        ts = ts.tz_localize("UTC")
-    return ts.astimezone(PACIFIC).isoformat(timespec="minutes")
+        ts = PACIFIC.localize(ts)          # ← change is here
+    else:
+        ts = ts.astimezone(PACIFIC)
+    return ts.isoformat(timespec="minutes")   # 2025-06-23T14:15-07:00
+
 
 
 # ── main builder ───────────────────────────────────────────────
