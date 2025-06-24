@@ -39,29 +39,40 @@ date_window <- seq.Date(as_date(now_utc) - 1, as_date(now_utc), by = "day")  # t
 for (sid in sensor_ids) {
   message("── Sensor ", sid, " ────────────────────────────────────────────")
   
-  # (1) find all raw files for the two-day window -------------------------------
-  pattern_vec <- glue("^{sid}_{date_window}\\.csv$")
-  files_raw <- map(pattern_vec, ~ dir_ls(
-    data_folder, recurse = TRUE
-  ) |> keep(~ grepl(.x, path_file(.)))) |> unlist()
+  # ─── file discovery (robust) ────────────────────────────────────────
+  # 1) yesterday + today in LOCAL time
+  date_window <- seq.Date(as_date(now_pst) - 1,
+                          as_date(now_pst),
+                          by = "day")
+  
+  target_files <- glue("{sid}_{format(date_window, '%Y-%m-%d')}.csv")
+  
+  message("    expecting files: ", paste(target_files, collapse = ", "))
+  message("    working dir:      ", getwd())
+  message("    data folder:      ", fs::path_abs(data_folder))
+  
+  # 2) list every file under data/, match basenames case-insensitively
+  all_paths  <- dir_ls(data_folder, recurse = TRUE, type = "file")
+  base_lower <- tolower(path_file(all_paths))
+  
+  files_raw <- all_paths[base_lower %in% tolower(target_files)]
   
   if (length(files_raw) == 0) {
-    # build the exact filenames we expected to see
-    expected <- file.path(data_folder,
-                          glue("{sid}_{date_window}.csv"))
+    # show a quick snapshot of what *was* in the folder for troubleshooting
+    snapshot <- head(path_file(all_paths), 20)
     warning(
       "No raw data for sensor ", sid, " – looked for:\n  ",
-      paste(expected, collapse = "\n  ")
+      paste(file.path(data_folder, target_files), collapse = "\n  "),
+      "\n  ── directory snapshot ──\n  ",
+      paste(snapshot, collapse = "\n  ")
     )
     next
   }
   
-  message(
-    "  • found ", length(files_raw), " raw file(s):\n  ",
-    paste(files_raw, collapse = "\n  ")
-  )
+  message("  • found ", length(files_raw), " raw file(s):\n  ",
+          paste(files_raw, collapse = "\n  "))
   
-  
+  # turn into a tibble for later steps
   files_tbl <- tibble(path = files_raw,
                       date_file = extract_date(files_raw)) |>
     filter(!is.na(date_file)) |>
