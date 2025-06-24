@@ -1,35 +1,35 @@
 #!/usr/bin/env python3
-# build_sensor_json.py  –  v2025-06-23 (hard-coded sensor list)
-# -------------------------------------------------------------
+# build_sensor_json.py  –  2025-06-23  (CSV timestamps assumed LOCAL Pacific)
+# ---------------------------------------------------------------------------
+# * Walk calibrated_data/<sensor_id>/
+# * For each ID in SENSORS_WANTED, grab the newest “…_calibrated_…csv”
+# * Keep the last HISTORY_HOURS of data (local time)
+# * Emit a dashboard-ready JSON to OUTPUT_JSON
+#
+# If a timestamp string in the CSV is already offset-aware (e.g. “…Z”),
+# it is converted to America/Vancouver; naïve strings are *localised*
+# to America/Vancouver — no unintended time-shifts.
+# ---------------------------------------------------------------------------
 
 from __future__ import annotations
 import json, re, sys
 from datetime import datetime
 from pathlib import Path
 
-import pandas as pd      # pip install pandas
-import pytz              # pip install pytz
+import pandas as pd               # pip install pandas
+import pytz                       # pip install pytz
 
 # ───────────────────────────────────────────────────────────────
-# 0️⃣  EDIT HERE  –  sensor IDs you care about
-#     None   → all sub-folders in calibrated_data/
-#     set()  → only those IDs
+# EDIT ME
 # ───────────────────────────────────────────────────────────────
-SENSORS_WANTED = {
-    "2021", "2040", "2022"        # ← update as needed, or set to None
+SENSORS_WANTED: set[str] | None = {  # set to None to auto-discover all
+    "2021", "2040", "2022"
 }
 
-# top-level folder; change if your layout differs
-BASE_DIR = Path("calibrated_data")
-
-# optional meta CSV with columns  id,name,lat,lon
-META_CSV = Path("sensor_metadata.csv")
-
-# history window in hours; 0 = keep whole file
-HISTORY_HOURS = 24
-
-# output file
-OUTPUT_JSON = Path("pollutant_data.json")
+BASE_DIR     = Path("calibrated_data")   # where each sensor sub-dir lives
+META_CSV     = Path("sensor_metadata.csv")
+HISTORY_HOURS = 24                       # 0 → keep whole file
+OUTPUT_JSON   = Path("pollutant_data.json")
 
 # ───────────────────────────────────────────────────────────────
 PACIFIC = pytz.timezone("America/Vancouver")
@@ -39,18 +39,17 @@ KEEP_COLS = [
     "AQHI", "Top_AQHI_Contributor",
 ]
 
-PAT = re.compile(
+FILE_RE = re.compile(
     r"^(?P<id>\d+)_?calibrated_\d{4}_\d{2}_\d{2}_to_"
     r"(?P<y>\d{4})_(?P<m>\d{2})_(?P<d>\d{2})\.csv$"
 )
 
-
 # ── helpers ────────────────────────────────────────────────────
 def newest_csv(sensor_dir: Path, sid: str) -> Path | None:
-    best = None
-    best_date = None
+    """Return newest calibrated CSV by its ‘…_to_YYYY_MM_DD’ date."""
+    best, best_date = None, None
     for p in sensor_dir.glob(f"{sid}*calibrated_*.csv"):
-        m = PAT.match(p.name)
+        m = FILE_RE.match(p.name)
         if not m:
             continue
         ts = datetime(int(m["y"]), int(m["m"]), int(m["d"]))
@@ -63,29 +62,19 @@ def newest_csv(sensor_dir: Path, sid: str) -> Path | None:
     return best
 
 
-def read_meta(meta_path: Path) -> dict[str, dict]:
-    if not meta_path.exists():
+def read_meta(meta_csv: Path) -> dict[str, dict]:
+    if not meta_csv.exists():
         return {}
-    df = pd.read_csv(meta_path, dtype={"id": str})
+    df = pd.read_csv(meta_csv, dtype={"id": str})
     return {str(r.id): r.to_dict() for _, r in df.iterrows()}
 
 
-def iso_local(ts):
-    """
-    Convert pandas Timestamp → ISO-8601 string in America/Vancouver.
-    If ts is naïve, treat it as already Pacific (NO extra shift).
-    """
-    if pd.isna(ts):
-        return None
-    if ts.tzinfo is None:
-        ts = PACIFIC.localize(ts)          # ← change is here
-    else:
-        ts = ts.astimezone(PACIFIC)
-    return ts.isoformat(timespec="minutes")   # 2025-06-23T14:15-07:00
+def to_pacific_iso(ts) -> str | None:
+    """Return ISO-8601 string in America/Vancouver; ts already Pacific."""
+    return None if pd.isna(ts) else ts.isoformat(timespec="minutes")
 
 
-
-# ── main builder ───────────────────────────────────────────────
+# ── core builder ───────────────────────────────────────────────
 def build():
     meta = read_meta(META_CSV)
     sensors = []
@@ -94,11 +83,11 @@ def build():
         if not sensor_dir.is_dir():
             continue
         sid = sensor_dir.name
-        if SENSORS_WANTED is not None and sid not in SENSORS_WANTED:
+        if SENSORS_WANTED and sid not in SENSORS_WANTED:
             continue
 
         csv_path = newest_csv(sensor_dir, sid)
-        if csv_path is None:
+        if not csv_path:
             continue
 
         try:
@@ -107,25 +96,47 @@ def build():
             print(f"[ERROR] {csv_path}: {e}", file=sys.stderr)
             continue
 
+        # rename columns & ensure presence
         df.rename(columns={"Top_AQHI_Contributor": "PRIMARY",
                            "PM2.5": "PM25"}, inplace=True)
         for col in ("PRIMARY", "PM25"):
             if col not in df.columns:
                 df[col] = None
 
-        df["DATE"] = pd.to_datetime(df["DATE"], errors="coerce")
-        df = df.dropna(subset=["DATE"]).sort_values("DATE")
+        # ── timestamp handling (strip stray “Z”, parse, localise) ─────────────
+        #
+        # Your CSV clock-faces are already Pacific but sometimes end with “Z”.
+        # We drop that single trailing “Z”, parse the string → naïve datetime,
+        # then *localise* every row to America/Vancouver (no time-shift).
+        #
+        df["DATE"] = (
+            df["DATE"]
+              .astype(str)                 # ensure str for regex
+              .str.replace(r"Z$", "", regex=True)   # 1️⃣ remove lone trailing Z
+        )
+        
+        df["DATE"] = pd.to_datetime(df["DATE"], errors="coerce")  # 2️⃣ parse
+        
+        df["DATE"] = df["DATE"].map(                              # 3️⃣ localise
+            lambda t: pd.NaT if pd.isna(t) else PACIFIC.localize(t)
+        )
+        
+        df = df.dropna(subset=["DATE"]).sort_values("DATE")       # clean + sort
 
-        if HISTORY_HOURS > 0:
-            df = df[df["DATE"] >= df["DATE"].max() -
-                    pd.Timedelta(hours=HISTORY_HOURS)]
+
+        # ── apply 24-hour window (local time) ────────────────
+        if HISTORY_HOURS > 0 and not df.empty:
+            cutoff = df["DATE"].max() - pd.Timedelta(hours=HISTORY_HOURS)
+            df = df[df["DATE"] >= cutoff]
+
         if df.empty:
             print(f"[WARN] {sid}: dataframe empty", file=sys.stderr)
             continue
 
+        # ── latest record ────────────────────────────────────
         last = df.iloc[-1]
         latest = {
-            "timestamp": iso_local(last["DATE"]),
+            "timestamp": to_pacific_iso(last["DATE"]),
             "aqhi": round(last["AQHI"], 1) if pd.notna(last["AQHI"]) else None,
             "primary": last["PRIMARY"] if isinstance(last["PRIMARY"], str) else None,
             "pollutants": {
@@ -138,10 +149,11 @@ def build():
             },
         }
 
+        # ── history rows ─────────────────────────────────────
         history = []
         for _, r in df.iterrows():
             history.append([
-                iso_local(r["DATE"]),
+                to_pacific_iso(r["DATE"]),
                 round(r["AQHI"], 1) if pd.notna(r["AQHI"]) else None,
                 r["PRIMARY"] if isinstance(r["PRIMARY"], str) else None,
                 round(r["CO"],   3) if pd.notna(r["CO"])   else None,
@@ -152,6 +164,7 @@ def build():
                 round(r["PM25"], 3) if pd.notna(r["PM25"]) else None,
             ])
 
+        # ── assemble sensor block ────────────────────────────
         m = meta.get(sid, {})
         sensors.append({
             "id": sid,
@@ -175,8 +188,8 @@ if __name__ == "__main__":
     if not BASE_DIR.is_dir():
         sys.exit(f"[FATAL] {BASE_DIR} is not a directory")
 
-    data = build()
+    result = build()
     OUTPUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_JSON.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
-    print(f"[SUCCESS] {OUTPUT_JSON} written ({len(data['sensors'])} sensors)",
-          file=sys.stderr)
+    OUTPUT_JSON.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    print(f"[SUCCESS] {OUTPUT_JSON} written "
+          f"({len(result['sensors'])} sensors)", file=sys.stderr)
