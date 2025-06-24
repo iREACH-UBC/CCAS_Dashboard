@@ -31,8 +31,9 @@ apply_aqhi_ceiling <- function(aqhi_vec, pm25_1h_vec)
 
 # ── time window ---------------------------------------------------------------
 now_pst  <- with_tz(Sys.time(), "America/Los_Angeles")
+now_utc  <- with_tz(Sys.time(), "UTC")
 past_24h <- now_pst - hours(24)
-date_window <- seq.Date(as_date(now_pst) - 1, as_date(now_pst), by = "day")  # today + yesterday
+date_window <- seq.Date(as_date(now_utc) - 1, as_date(now_utc), by = "day")  # today + yesterday
 
 # ── MAIN LOOP -----------------------------------------------------------------
 for (sid in sensor_ids) {
@@ -41,8 +42,8 @@ for (sid in sensor_ids) {
   # (1) find all raw files for the two-day window -----------------------------
   pattern_vec <- glue("^{sid}_{date_window}\\.csv$")
   files_raw <- map(pattern_vec, ~ dir_ls(
-    data_folder, recurse = TRUE, regexp = .x, ignore.case = TRUE
-  )) |> unlist()
+    data_folder, recurse = TRUE
+  ) |> keep(~ grepl(.x, path_file(.)))) |> unlist()
   
   message("  • found ", length(files_raw), " raw file(s) in last 2 days")
   if (length(files_raw) == 0) {
