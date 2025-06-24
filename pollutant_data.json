@@ -1,11 +1,11 @@
 {
-  "generated_at": "2025-06-23T20:57-07:00",
+  "generated_at": "2025-06-23T21:01-07:00",
   "sensors": [
     {
       "id": "2021",
       "name": "West Vancouver Memorial Library (Sensor 1)",
       "lat": 49.328887,
-      "lon": null,
+      "lon": -123.1658402,
       "latest": {
         "timestamp": "2025-06-23T20:26-07:00",
         "aqhi": 2.0,
@@ -774,7 +774,7 @@
       "id": "2040",
       "name": "Gillies Bay Public Library (Sensor 2)",
       "lat": 49.680288,
-      "lon": null,
+      "lon": -124.4786294,
       "latest": {
         "timestamp": "2025-06-23T20:28-07:00",
         "aqhi": 2.0,
