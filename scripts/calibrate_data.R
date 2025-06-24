@@ -1,4 +1,9 @@
 # ─── calibrate_data.R ─────────────────────────────────────────────────────────
+# Calibrate raw logger exports and write a CSV that ALWAYS contains a continuous
+# 24-hour window ending “now” (PST).  A tiny sentinel file is also touched so
+# GitHub Actions always commits/pushes, even when the calibrated rows are
+# identical to the previous run.
+
 suppressPackageStartupMessages({
   library(dplyr);  library(readr);  library(lubridate);  library(stringr)
   library(purrr);  library(tibble); library(fs);          library(zoo)
@@ -8,9 +13,9 @@ suppressPackageStartupMessages({
 source("scripts/apply_caps_calibration.R")
 
 # ── CONFIG --------------------------------------------------------------------
-sensor_ids    <- c("2021","2040", "2022")            # add more as needed
-data_folder   <- "data"               # raw logger exports
-output_folder <- "calibrated_data"    # per-sensor sub-folders
+sensor_ids    <- c("2021", "2040", "2022")  # extend as needed
+data_folder   <- "data"                     # raw logger exports live here
+output_folder <- "calibrated_data"          # per-sensor sub-folders
 dir_create(output_folder)
 
 model_path <- Sys.getenv("CAL_MODEL_PATH")
@@ -18,42 +23,47 @@ if (model_path == "" || !file.exists(model_path))
   stop("CAL_MODEL_PATH env-var not set or file missing – aborting run.")
 
 # ── helpers -------------------------------------------------------------------
-extract_date <- function(paths) as.Date(str_extract(path_file(paths), "\\d{4}-\\d{2}-\\d{2}"))
+extract_date <- function(paths)
+  as.Date(str_extract(path_file(paths), "\\d{4}-\\d{2}-\\d{2}"))
+
 apply_aqhi_ceiling <- function(aqhi_vec, pm25_1h_vec)
   pmax(round(aqhi_vec), ceiling(pm25_1h_vec / 10)) |> as.integer()
 
-# ── MAIN LOOP -----------------------------------------------------------------
+# ── time window ---------------------------------------------------------------
 now_pst  <- with_tz(Sys.time(), "America/Los_Angeles")
 past_24h <- now_pst - hours(24)
+date_window <- seq.Date(as_date(now_pst) - 1, as_date(now_pst), by = "day")  # today + yesterday
 
+# ── MAIN LOOP -----------------------------------------------------------------
 for (sid in sensor_ids) {
   message("── Sensor ", sid, " ────────────────────────────────────────────")
   
-  # (1) list all raw files newest → oldest ------------------------------------
-  files_raw <- dir_ls(
-    data_folder,
-    recurse   = TRUE,
-    regexp    = paste0("^", sid, "_\\d{4}-\\d{2}-\\d{2}\\.csv$"),
-    ignore.case = TRUE
-  )
-  message("  • found ", length(files_raw), " raw file(s)")
-  if (length(files_raw) == 0) next
+  # (1) find all raw files for the two-day window -----------------------------
+  pattern_vec <- glue("^{sid}_{date_window}\\.csv$")
+  files_raw <- map(pattern_vec, ~ dir_ls(
+    data_folder, recurse = TRUE, regexp = .x, ignore.case = TRUE
+  )) |> unlist()
   
-  files_tbl <- tibble(path = files_raw, date_file = extract_date(files_raw)) |>
+  message("  • found ", length(files_raw), " raw file(s) in last 2 days")
+  if (length(files_raw) == 0) {
+    warning("No raw data for sensor ", sid, " – skipping calibration.")
+    next
+  }
+  
+  files_tbl <- tibble(path = files_raw,
+                      date_file = extract_date(files_raw)) |>
     filter(!is.na(date_file)) |>
     arrange(desc(date_file))
   
-  # (2) calibrate files *until* we cover 24 h -------------------------------
+  # (2) calibrate files until ≥ 24 h span -------------------------------------
   calib_parts <- list()
   earliest_ts <- now_pst
   
   for (p in files_tbl$path) {
     message("  • calibrating ", path_file(p))
-    df_part <- apply_caps_calibration(
-      sensor_id  = sid,
-      data_file  = p,
-      model_path = model_path
-    )
+    df_part <- apply_caps_calibration(sensor_id = sid,
+                                      data_file  = p,
+                                      model_path = model_path)
     calib_parts <- append(calib_parts, list(df_part))
     earliest_ts <- min(earliest_ts, min(df_part$date, na.rm = TRUE))
     if (earliest_ts <= past_24h) break   # ✅ 24-hour span reached
@@ -61,10 +71,11 @@ for (sid in sensor_ids) {
   
   calibrated <- bind_rows(calib_parts)
   if (nrow(calibrated) == 0) {
-    message("  • no calibrated rows – skipping"); next
+    warning("  • no calibrated rows after processing – skipping write.")
+    next
   }
   
-  # (3) tidy + local time + 24-h filter ---------------------------------------
+  # (3) tidy + local time + strict 24-h filter ---------------------------------
   calib <- calibrated |>
     mutate(
       DATE = with_tz(date, "America/Los_Angeles") + hours(2),  # device clock +2 h
@@ -112,12 +123,15 @@ for (sid in sensor_ids) {
     ) |>
     select(-ends_with("_3h"), -PM25_1h, -AQHI_raw)
   
-  # (5) write out --------------------------------------------------------------
+  # (5) write calibrated CSV ---------------------------------------------------
   sensor_dir <- path(output_folder, sid); dir_create(sensor_dir)
   outfile <- path(
     sensor_dir,
-    glue("{sid}_calibrated_{format(min(extract_date(files_tbl$path)), '%Y_%m_%d')}_to_{format(max(extract_date(files_tbl$path)), '%Y_%m_%d')}.csv")
+    glue("{sid}_calibrated_{format(min(files_tbl$date_file), '%Y_%m_%d')}_to_{format(max(files_tbl$date_file), '%Y_%m_%d')}.csv")
   )
   write_csv(calib, outfile, na = "")
   message("  ✔ wrote ", outfile, " (", nrow(calib), " rows)")
+  
+  # (6) touch sentinel so Git detects a change every run ----------------------
+  write_lines(as.character(now_pst), path(sensor_dir, "LAST_RUN.txt"))
 }
