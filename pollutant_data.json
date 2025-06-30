@@ -1,11 +1,11 @@
 {
-  "generated_at": "2025-06-30T13:29-07:00",
+  "generated_at": "2025-06-30T13:39-07:00",
   "sensors": [
     {
       "id": "2021",
-      "name": "West Vancouver Memorial Library (Sensor 1)",
-      "lat": 49.328887,
-      "lon": -123.1658402,
+      "name": null,
+      "lat": null,
+      "lon": null,
       "latest": {
         "timestamp": "2025-06-30T13:14-07:00",
         "aqhi": 3.0,
@@ -1091,9 +1091,9 @@
     },
     {
       "id": "2022",
-      "name": "Powell River Public Library (Sensor 3)",
-      "lat": 49.845966,
-      "lon": -124.5218536,
+      "name": null,
+      "lat": null,
+      "lon": null,
       "latest": {
         "timestamp": "2025-06-30T13:14-07:00",
         "aqhi": 2.0,
@@ -2179,9 +2179,9 @@
     },
     {
       "id": "2040",
-      "name": "Gillies Bay Public Library (Sensor 2)",
-      "lat": 49.680288,
-      "lon": -124.4786294,
+      "name": null,
+      "lat": null,
+      "lon": null,
       "latest": {
         "timestamp": "2025-06-30T13:10-07:00",
         "aqhi": 2.0,
