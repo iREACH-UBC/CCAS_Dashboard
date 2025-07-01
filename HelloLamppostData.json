@@ -1,202 +1,26 @@
-[
-    {
-        "Location 1": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
+{
+    "2021": {
+        "name": "2021",
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "O3",
+        "pollutant_concentration": 43.48,
+        "aq_advisory": false
     },
-    {
-        "Location 2": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
+    "2022": {
+        "name": "2022",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 17.44,
+        "aq_advisory": false
     },
-    {
-        "Location 3": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 4": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 5": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 6": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 7": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 8": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 9": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 10": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 11": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 12": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 13": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 14": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 15": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 16": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 17": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 18": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 19": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 20": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 21": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 22": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 23": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 24": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
-    },
-    {
-        "Location 25": {
-            "label": "no data",
-            "value": "N/A",
-            "top_contributor": "N/A",
-            "pollutant_concentration": "N/A"
-        }
+    "2040": {
+        "name": "2040",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 14.71,
+        "aq_advisory": false
     }
-]
+}
