@@ -1,26 +1,26 @@
 {
-    "2021": {
-        "name": "2021",
+    "Sensor 1": {
+        "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.48,
+        "pollutant_concentration": 43.36,
         "aq_advisory": false
     },
-    "2022": {
-        "name": "2022",
-        "label": "Low health risk",
-        "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 17.44,
-        "aq_advisory": false
-    },
-    "2040": {
-        "name": "2040",
+    "Sensor 3": {
+        "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.71,
+        "pollutant_concentration": 19.07,
+        "aq_advisory": false
+    },
+    "Sensor 2": {
+        "name": "Gillies Bay Public Library",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 20.86,
         "aq_advisory": false
     }
 }
