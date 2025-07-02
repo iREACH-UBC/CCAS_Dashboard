@@ -3,8 +3,8 @@
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 7.82,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 14.18,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.73,
+        "pollutant_concentration": 25.77,
         "aq_advisory": false
     },
     "Sensor 2": {
