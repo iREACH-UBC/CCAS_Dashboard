@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-07-03 11:08:14",
+  "lastChecked": "2025-07-03 12:07:10",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -55,7 +55,7 @@
     },
     {
       "Region": "Fraser Canyon - south including Lytton, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Lake Winnipegosis, Man.",
@@ -63,7 +63,7 @@
     },
     {
       "Region": "The Pas Cormorant Westray and Wanless, Man.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Westgate Red Deer Lake and Barrows, Man.",
@@ -75,15 +75,15 @@
     },
     {
       "Region": "Thompson Thicket Portage and Pikwitonei, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Nelson House, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Flin Flon Cranberry Portage and Grass River Prov. Park, Man.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     }
   ]
 }
