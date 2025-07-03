@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.76,
+        "pollutant_concentration": 31.74,
         "aq_advisory": false
     },
     "Sensor 3": {
