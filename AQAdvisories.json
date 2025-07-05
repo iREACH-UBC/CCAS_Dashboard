@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-07-04 16:07:22",
+  "lastChecked": "2025-07-04 17:16:21",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -67,11 +67,11 @@
     },
     {
       "Region": "Westgate Red Deer Lake and Barrows, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Porcupine Prov. Forest, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Thompson Thicket Portage and Pikwitonei, Man.",
