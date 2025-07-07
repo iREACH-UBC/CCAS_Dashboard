@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-07-07 10:08:18",
+  "lastChecked": "2025-07-07 11:08:50",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -75,11 +75,11 @@
     },
     {
       "Region": "Thompson Thicket Portage and Pikwitonei, Man.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Nelson House, Man.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Flin Flon Cranberry Portage and Grass River Prov. Park, Man.",
