@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-07-12 14:09:00",
+  "lastChecked": "2025-07-12 15:08:28",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -63,7 +63,7 @@
     },
     {
       "Region": "The Pas Cormorant Westray and Wanless, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Westgate Red Deer Lake and Barrows, Man.",
