@@ -6,10 +6,13 @@ id,lat,lon,name,sensor_number,region
 2025,0,0,0,0,0
 2030,0,0,0,0,0
 2031,0,0,0,0,0
+2032,0,0,0,0,0
 2033,0,0,0,0,0
 2034,0,0,0,0,0
 2039,0,0,0,0,0
 2040,49.680288,-124.4786294,Gillies Bay Public Library,Sensor 2,"Sunshine Coast - Saltery Bay to Powell River, B.C."
 2041,0,0,0,0,0
-2042,0,0,0,0,0
-2043,0,0,0,0,0
+2042,50.318678,-122.800427,Pemberton Community Centre,Sensor 7,"Whistler, B.C."
+2043,50.117361,-122.956237,Whistler Public Library,Sensor 8,"Whistler, B.C."
+MOD-00632,49.326636,-123.121436,Lions Gate Rec Center,Sensor 4,"Metro Vancouver - NW, B.C."
+MOD-00616,50.318678,-122.800427,Pemberton Community Centre,Sensor 7,"Whistler, B.C."
