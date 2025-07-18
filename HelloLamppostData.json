@@ -2,17 +2,17 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
-        "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 24.1,
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 10.52,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 8.76,
+        "top_contributor": "O3",
+        "pollutant_concentration": 25.16,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.03,
+        "pollutant_concentration": 23.12,
         "aq_advisory": false
     }
 }
