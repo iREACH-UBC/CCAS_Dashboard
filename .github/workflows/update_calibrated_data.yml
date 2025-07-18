@@ -31,7 +31,7 @@ jobs:
 
     strategy:
       matrix:
-        sid: [2021, 2022, 2040]
+        sid: [2021, 2022, 2040, 2032, 2042, 2043, MOD-00632, MOD-00616]
       fail-fast: false
 
     steps:
