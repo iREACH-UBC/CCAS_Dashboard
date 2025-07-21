@@ -4,23 +4,23 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.89,
+        "pollutant_concentration": 32.06,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 19.09,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 13.27,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 19.04,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 12.96,
         "aq_advisory": false
     }
 }
