@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 42.99,
+        "pollutant_concentration": 42.95,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,15 +12,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.24,
+        "pollutant_concentration": 13.78,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 11.01,
+        "top_contributor": "O3",
+        "pollutant_concentration": 25.66,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.25,
+        "pollutant_concentration": 37.58,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.41,
+        "pollutant_concentration": 19.25,
         "aq_advisory": false
     }
 }
