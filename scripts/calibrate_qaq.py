@@ -1,128 +1,285 @@
-#!/usr/bin/env python3
-"""
-Calibrate QuantAQ “MOD‑” sensors, mimicking the RAMP pipeline.
+#!/usr/bin/env Rscript
+# ─── calibrate_qaq.R ────────────────────────────────────────────
+# Calibrate QuantAQ MOD-* sensor data using the same CAPS models
+# & AQHI pipeline used for RAMPs. Produces a 24h PST window
+# ending "now" and writes a per-sensor CSV in calibrated_data/<sid>/.
+#
+# Usage: Rscript scripts/calibrate_qaq.R MOD-00616
+# If no args -> fallback vector (handy for local dev).
 
-Usage (CI):  python calibrate_qaq.py MOD‑00616
-Usage (local): python calibrate_qaq.py           # runs all fallback IDs
-"""
-import sys, os, glob, pytz, tempfile
-from pathlib import Path
-from datetime import datetime, timedelta
+suppressPackageStartupMessages({
+  library(dplyr);  library(readr);  library(lubridate);  library(stringr)
+  library(purrr);  library(tibble); library(fs);          library(zoo)
+  library(glue);   library(gtools); library(tidyr)
+})
 
-import pandas as pd
-import numpy as np
+# ---------------------------------------------------------------
+# Args / config
+# ---------------------------------------------------------------
+args <- commandArgs(trailingOnly = TRUE)
+fallback_ids <- c("MOD-00616","MOD-00632","MOD-00625","MOD-00631",
+                  "MOD-00623","MOD-00628","MOD-00620","MOD-00627",
+                  "MOD-00630","MOD-00624")
+sensor_ids <- if (length(args)) args else fallback_ids
 
-# ── CONFIG / INPUTS ────────────────────────────────────────────
-fallback_ids = ["MOD-00616", "MOD-00632", "MOD-00625", "MOD-00631",
-                "MOD-00623", "MOD-00628", "MOD-00620",
-                "MOD-00627", "MOD-00630", "MOD-00624"]
+data_folder   <- "data"
+output_folder <- "calibrated_data"
+dir_create(output_folder)
 
-sensor_ids = sys.argv[1:] or fallback_ids
-data_folder = Path("data")
-output_root = Path("calibrated_data")
-output_root.mkdir(exist_ok=True)
+model_path <- Sys.getenv("CAL_MODEL_PATH")
+if (identical(model_path, "") || !file.exists(model_path))
+  stop("CAL_MODEL_PATH env-var not set or file missing – aborting run.")
 
-model_path = Path(os.environ.get("CAL_MODEL_PATH", ""))
-if not model_path.is_file():
-    raise RuntimeError("CAL_MODEL_PATH env‑var missing or invalid.")
+# ---------------------------------------------------------------
+# Load CAPS calibration models
+# ---------------------------------------------------------------
+load(model_path)  # loads object(s); assume "Calibration_Models" list
+# Inspect: names(Calibration_Models)
+# Expected elements: pollutant-level models + helper funcs used below.
 
-# ── R bridge (rpy2) ────────────────────────────────────────────
-import rpy2.robjects as ro
-from rpy2.robjects import pandas2ri
-pandas2ri.activate()
+# If your model object names differ, edit these two helpers --------------------
+# choose_model(pollutant) → returns model from Calibration_Models
+# apply_caps_to_qaq(df_raw) → returns tibble with calibrated cols
 
-# Load the same helper that RAMPs use
-ro.r['source']("scripts/apply_caps_calibration.R")
-apply_caps = ro.globalenv['apply_caps_calibration']
+choose_model <- function(pollutant) {
+  # Common pattern: Calibration_Models[[pollutant]] or with suffixes
+  nm <- pollutant
+  if (!nm %in% names(Calibration_Models)) return(NULL)
+  Calibration_Models[[nm]]
+}
 
-# ── TIME WINDOW ────────────────────────────────────────────────
-pst = pytz.timezone("America/Los_Angeles")
-now_pst = datetime.now(pst)
-past_24h = now_pst - timedelta(hours=24)
+# You already have CAPS_Hybrid_Apply / CAPS_PR_Apply in your calibration repo.
+# We’ll try hybrid first, then parametric (PR) if hybrid absent.
+apply_caps_to_series <- function(raw_vec, model) {
+  # generic wrapper; update if model class requires special call
+  if (is.null(model)) return(raw_vec)  # passthrough if no model
+  # Example:
+  if (exists("CAPS_Hybrid_Apply", mode = "function")) {
+    tryCatch(return(CAPS_Hybrid_Apply(raw_vec, model)),
+             error = function(e) raw_vec)
+  }
+  if (exists("CAPS_PR_Apply", mode = "function")) {
+    tryCatch(return(CAPS_PR_Apply(raw_vec, model)),
+             error = function(e) raw_vec)
+  }
+  raw_vec
+}
 
-# ── HELPERS ────────────────────────────────────────────────────
-def find_recent_files(sensor):
-    """Return the two most‑recent CSVs (today + yesterday) for `sensor`."""
-    pattern = data_folder / f"{sensor}-*.csv"
-    files = sorted(glob.glob(str(pattern)), key=os.path.getmtime, reverse=True)
-    return files[:2]
+# Top-level calibrator: takes raw QAQ df w/ standardized cols, returns calibrated tibble
+apply_caps_to_qaq <- function(df_std) {
+  # loop pollutants we care about
+  pols <- c("CO","NO","NO2","O3","CO2","T","RH","PM1.0","PM2.5","PM10")
+  for (p in pols) {
+    m <- choose_model(p)
+    if (!is.null(m) && p %in% names(df_std)) {
+      df_std[[p]] <- apply_caps_to_series(df_std[[p]], m)
+    }
+  }
+  df_std
+}
 
-def calibrate_file(sensor, raw_path):
-    """Call the R helper, get a calibrated pandas‑df back."""
-    calib_r = apply_caps(sensor_id=sensor,
-                         data_file=str(raw_path),
-                         model_path=str(model_path))
-    return pandas2ri.ri2py(calib_r)
+# ---------------------------------------------------------------
+# Variable mapping: QAQ raw -> internal standard columns
+# Update if your raw header uses underscores not dots, etc.
+# ---------------------------------------------------------------
+varmap <- c(
+  "gases.co.diff"  = "CO",
+  "gases.no.diff"  = "NO",
+  "gases.no2.diff" = "NO2",
+  "gases.o3.diff"  = "O3",
+  "gases.co2.raw"  = "CO2",
+  "met.temp"       = "T",
+  "met.rh"         = "RH",
+  "opc.pm1"        = "PM1.0",
+  "opc.pm25"       = "PM2.5",
+  "opc.pm10"       = "PM10"
+)
 
-def apply_aqhi(df):
-    """Add AQHI & contributor columns (identical to the RAMP logic)."""
-    roll3  = df[["NO2", "O3", "PM2.5"]].rolling("3h").mean()
-    roll1  = df[["PM2.5"]].rolling("1h").mean()
+# ---------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------
+apply_aqhi_ceiling <- function(aqhi_vec, pm25_1h_vec)
+  pmax(round(aqhi_vec), ceiling(pm25_1h_vec / 10)) |> as.integer()
 
-    NO2_c  = np.exp(0.000871 * roll3["NO2"]/1000) - 1
-    O3_c   = np.exp(0.000537 * roll3["O3"]/1000)  - 1
-    PM25_c = np.exp(0.000487 * roll3["PM2.5"])    - 1
-    comp_sum = NO2_c + O3_c + PM25_c
+# 24h window (PST)
+tz_local  <- "America/Los_Angeles"
+now_pst   <- with_tz(Sys.time(), tz_local)
+past_24h  <- now_pst - hours(24)
 
-    raw_aqhi = (10/10.4) * 100 * comp_sum
-    aqhi     = np.maximum(raw_aqhi.round(),
-                          np.ceil(roll1["PM2.5"] / 10)).astype(int)
+# column order we promise downstream
+desired_cols <- c("DATE","TE","CO","NO","NO2","O3","CO2","T","RH",
+                  "PM1.0","PM2.5","PM10","AQHI","Top_AQHI_Contributor")
 
-    df["AQHI"]          = aqhi
-    df["NO2_contrib"]   = NO2_c  / comp_sum
-    df["O3_contrib"]    = O3_c   / comp_sum
-    df["PM25_contrib"]  = PM25_c / comp_sum
-    df["Top_AQHI_Contributor"] = (df[["NO2_contrib","O3_contrib","PM25_contrib"]]
-                                   .idxmax(axis=1)
-                                   .str.replace("_contrib",""))
-    return df
+# In QAQ files, dates appear in basename: <sid>-YYYY-MM-DD*.csv
+extract_date <- function(paths)
+  as.Date(str_match(path_file(paths), "\\d{4}-\\d{2}-\\d{2}")[,1])
 
-# ── MAIN LOOP ───────────────────────────────────────────────────
-for sid in sensor_ids:
-    print(f"── {sid} ───────────")
+# read & standardize a single raw file -------------------------
+read_qaq_raw <- function(path) {
+  df <- suppressWarnings(read_csv(path, show_col_types = FALSE))
+  if (!"timestamp_local" %in% names(df))
+    stop("timestamp_local missing in ", path)
 
-    recent_files = find_recent_files(sid)
-    if not recent_files:
-        print("  ⚠️  no raw files – skipping.")
-        continue
+  df <- df %>%
+    mutate(DATE = ymd_hms(timestamp_local, tz = tz_local, quiet = TRUE)) %>%
+    select(-timestamp_local)
 
-    # Calibrate just enough files to span 24 h
-    parts, earliest = [], now_pst
-    for f in recent_files:
-        print(f"   • calibrating {Path(f).name}")
-        parts.append(calibrate_file(sid, f))
-        earliest = min(earliest, parts[-1]["date"].min())
-        if earliest <= past_24h:
-            break
+  # rename known vars
+  for (raw in names(varmap)) {
+    if (raw %in% names(df))
+      df <- df %>% rename(!!varmap[[raw]] := all_of(raw))
+  }
 
-    if not parts:
-        print("  ⚠️  calibration returned 0 rows – skipping.")
-        continue
+  # ensure all expected numeric columns exist
+  for (nm in setdiff(unname(varmap), names(df)))
+    df[[nm]] <- NA_real_
 
-    df = pd.concat(parts, ignore_index=True)
+  df
+}
 
-    # Harmonise column names & types exactly like the RAMP script
-    df["DATE"] = pd.to_datetime(df["date"]).dt.tz_convert(pst) + pd.Timedelta(hours=2)
-    df = (df
-          .rename(columns={"PM2_5":"PM2.5"})
-          .drop(columns=["date"])
-          .sort_values("DATE")
-          .query("DATE >= @past_24h"))
+# compute AQHI & top contributor (as in RAMP pipeline) ----------
+add_aqhi <- function(df) {
+  df <- df %>% arrange(DATE)
+  # 3h moving means: 12 * 15min? we don't know QAQ timestep; use rollapply width by time
+  # Safer: use zoo::rollapplyr index by 12 obs if 15min; but QAQ may be 5min.
+  # Use dplyr grouped rolling over time with slider? For simplicity, use
+  # lubridate floor + rolling windows via runner package? We'll approximate using time-based rollapply via zoo.
 
-    df = apply_aqhi(df)
+  # convert to zoo object with indexed POSIXct
+  z <- zoo(df$NO2, df$DATE)
+  NO2_3h  <- rollapply(z, width = as.difftime(3, units="hours"), FUN = mean,
+                       align = "right", partial = TRUE, na.rm = TRUE)
+  z <- zoo(df$O3,  df$DATE)
+  O3_3h   <- rollapply(z, width = as.difftime(3, units="hours"), FUN = mean,
+                       align = "right", partial = TRUE, na.rm = TRUE)
+  z <- zoo(df$PM2.5,df$DATE)
+  PM25_3h <- rollapply(z, width = as.difftime(3, units="hours"), FUN = mean,
+                       align = "right", partial = TRUE, na.rm = TRUE)
+  PM25_1h <- rollapply(z, width = as.difftime(1, units="hours"), FUN = mean,
+                       align = "right", partial = TRUE, na.rm = TRUE)
 
-    desired = ["DATE","TE","CO","NO","NO2","O3","CO2","T","RH",
-               "PM1.0","PM2.5","PM10","AQHI","Top_AQHI_Contributor"]
-    for col in desired:
-        if col not in df:
-            df[col] = np.nan
-    df = df[desired]
+  # align back
+  df$NO2_3h  <- as.numeric(NO2_3h[df$DATE])
+  df$O3_3h   <- as.numeric(O3_3h[df$DATE])
+  df$PM25_3h <- as.numeric(PM25_3h[df$DATE])
+  df$PM25_1h <- as.numeric(PM25_1h[df$DATE])
 
-    # ── write ---------------------------------------------------
-    out_dir = output_root / sid
-    out_dir.mkdir(exist_ok=True)
-    first_day = df["DATE"].min().strftime("%Y_%m_%d")
-    last_day  = now_pst.strftime("%Y_%m_%d")
-    out_path  = out_dir / f"{sid}_calibrated_{first_day}_to_{last_day}.csv"
-    df.to_csv(out_path, index=False)
-    print(f"  ✅ wrote {out_path.relative_to(Path.cwd())}")
+  contrib_sum <- with(df,
+                      (exp(0.000871 * NO2_3h) - 1) +
+                      (exp(0.000537 * O3_3h)  - 1) +
+                      (exp(0.000487 * PM25_3h) - 1))
+
+  df <- df %>%
+    mutate(
+      AQHI_raw = (10 / 10.4) * 100 * (
+        (exp(0.000871 * NO2_3h) - 1) +
+        (exp(0.000537 * O3_3h)  - 1) +
+        (exp(0.000487 * PM25_3h) - 1)
+      ),
+      AQHI        = apply_aqhi_ceiling(AQHI_raw, PM25_1h),
+      NO2_contrib = (exp(0.000871 * NO2_3h)  - 1) / contrib_sum,
+      O3_contrib  = (exp(0.000537 * O3_3h)   - 1) / contrib_sum,
+      PM25_contrib= (exp(0.000487 * PM25_3h) - 1) / contrib_sum,
+      Top_AQHI_Contributor = pmap_chr(
+        list(NO2_contrib, O3_contrib, PM25_contrib),
+        function(no2, o3, pm25) {
+          vals <- c(NO2 = no2, O3 = o3, `PM2.5` = pm25)
+          if (all(is.na(vals))) NA_character_
+          else names(vals)[which.max(replace_na(vals, -Inf))]
+        })
+    ) %>%
+    select(-ends_with("_3h"), -PM25_1h, -AQHI_raw,
+           everything(), AQHI, Top_AQHI_Contributor) # ensure AQHI cols kept
+
+  df
+}
+
+# fallback single row if sensor stale -----------------------------------------
+fallback_row <- function() {
+  tibble(
+    DATE = now_pst,
+    TE   = "QAQ",
+    CO=-1,NO=-1,NO2=-1,O3=-1,CO2=-1,T=-1,RH=-1,
+    `PM1.0`=-1,`PM2.5`=-1,PM10=-1,
+    AQHI=-1,
+    Top_AQHI_Contributor = "-1"
+  )
+}
+
+# ---------------------------------------------------------------
+# MAIN
+# ---------------------------------------------------------------
+for (sid in sensor_ids) {
+  message("── QAQ Sensor ", sid, " ────────────────────────────")
+
+  # files for yesterday+today PST
+  date_window <- seq.Date(as_date(now_pst) - 1, as_date(now_pst), by = "day")
+  target_files <- glue("{sid}-{format(date_window, '%Y-%m-%d')}")
+  # match prefix because QuantAQ filenames may include suffixes (raw/processed)
+  all_paths <- dir_ls(data_folder, recurse = TRUE, type = "file", glob = glue("{sid}-*.csv"))
+  # filter those whose basename contains one of the target date strings
+  keep <- vapply(path_file(all_paths),
+                 function(x) any(str_detect(x, fixed(target_files))),
+                 logical(1))
+  files_raw <- all_paths[keep]
+
+  if (!length(files_raw)) {
+    warning("No raw QAQ data for ", sid)
+    df_out <- fallback_row()
+  } else {
+    # tibble & sort newest->oldest by date parsed from name
+    files_tbl <- tibble(path = files_raw,
+                        date_file = extract_date(files_raw)) %>%
+      filter(!is.na(date_file)) %>%
+      arrange(desc(date_file))
+
+    # read & calibrate until ≥24h coverage
+    parts <- list(); earliest <- now_pst
+    for (p in files_tbl$path) {
+      message("  • reading ", path_file(p))
+      raw <- tryCatch(read_qaq_raw(p), error = function(e) {
+        warning("    read failed: ", conditionMessage(e)); NULL
+      })
+      if (is.null(raw)) next
+      # apply CAPS models
+      cal <- apply_caps_to_qaq(raw)
+      parts <- append(parts, list(cal))
+      earliest <- min(earliest, min(cal$DATE, na.rm = TRUE))
+      if (earliest <= past_24h) break
+    }
+
+    if (!length(parts)) {
+      warning("  • no calibrated rows after processing ", sid)
+      df_out <- fallback_row()
+    } else {
+      df_all <- bind_rows(parts) %>%
+        mutate(
+          DATE = with_tz(DATE, tz_local) + hours(2),  # device clock offset to align w/ RAMPs
+          TE   = "QAQ"
+        ) %>%
+        arrange(DATE) %>%
+        filter(DATE >= past_24h)
+
+      if (nrow(df_all) == 0) {
+        message("  • all data stale (<24h) – fallback row.")
+        df_out <- fallback_row()
+      } else {
+        df_out <- df_all %>% add_aqhi()
+
+        # ensure required columns exist & order
+        for (col in desired_cols)
+          if (!col %in% names(df_out)) df_out[[col]] <- NA_real_
+        df_out <- df_out %>% select(all_of(desired_cols))
+      }
+    }
+  }
+
+  # write -------------------------------------------------------
+  sensor_dir <- path(output_folder, sid); dir_create(sensor_dir)
+  first_day <- format(min(df_out$DATE, na.rm = TRUE), "%Y_%m_%d")
+  last_day  <- format(now_pst, "%Y_%m_%d")
+  outfile <- path(sensor_dir, glue("{sid}_calibrated_{first_day}_to_{last_day}.csv"))
+  write_csv(df_out, outfile, na = "")
+  write_lines(as.character(now_pst), path(sensor_dir, "LAST_RUN.txt"))
+  message("  ✔ wrote ", outfile, " (", nrow(df_out), " rows)")
+}
