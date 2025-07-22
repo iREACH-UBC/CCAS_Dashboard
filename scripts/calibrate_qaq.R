@@ -216,12 +216,18 @@ for (sid in sensor_ids) {
   date_window <- seq.Date(as_date(now_pst) - 1, as_date(now_pst), by = "day")
   target_files <- glue("{sid}-{format(date_window, '%Y-%m-%d')}")
   # match prefix because QuantAQ filenames may include suffixes (raw/processed)
-  all_paths <- dir_ls(data_folder, recurse = TRUE, type = "file", glob = glue("{sid}-*.csv"))
-  # filter those whose basename contains one of the target date strings
-  keep <- vapply(path_file(all_paths),
-                 function(x) any(str_detect(x, fixed(target_files))),
-                 logical(1))
-  files_raw <- all_paths[keep]
+  # ── robust file discovery ──────────────────────────────────────
+  # • **/ prefix ⇒ match at any depth under data/
+  # • no further filtering needed; we’ll sort by date in the filename
+  all_paths <- dir_ls(
+    data_folder,
+    recurse = TRUE,
+    type    = "file",
+    glob    = glue("**/{sid}-*.csv")   # <── key fix
+  )
+  
+  files_raw <- all_paths
+  
 
   if (!length(files_raw)) {
     warning("No raw QAQ data for ", sid)
@@ -283,3 +289,5 @@ for (sid in sensor_ids) {
   write_lines(as.character(now_pst), path(sensor_dir, "LAST_RUN.txt"))
   message("  ✔ wrote ", outfile, " (", nrow(df_out), " rows)")
 }
+
+
