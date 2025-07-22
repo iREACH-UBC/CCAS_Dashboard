@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.86,
+        "pollutant_concentration": 16.26,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 18.5,
+        "pollutant_concentration": 16.19,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.16,
+        "pollutant_concentration": 23.34,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 30.54,
+        "pollutant_concentration": 25.47,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.4,
+        "pollutant_concentration": 33.73,
         "aq_advisory": false
     }
 }
