@@ -13,7 +13,17 @@ suppressPackageStartupMessages({
 source("scripts/apply_caps_calibration.R")
 
 # ── CONFIG --------------------------------------------------------------------
-sensor_ids    <- c("2021", "2022", "2040", "2032", "2042", "2043", "MOD-00632", "MOD-00616")  # extend as needed
+args <- commandArgs(trailingOnly = TRUE)
+
+if (length(args) > 0) {
+  # run only the sensor(s) supplied on the command line
+  sensor_ids <- args
+} else {
+  # fallback list for ad‑hoc local runs
+  sensor_ids <- c("2021", "2022", "2040", "2032", "2042",
+                  "2043", "2024")
+}
+
 data_folder   <- "data"                     # raw logger exports live here
 output_folder <- "calibrated_data"          # per-sensor sub-folders
 dir_create(output_folder)
