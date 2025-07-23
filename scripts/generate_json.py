@@ -24,7 +24,7 @@ import pytz
 # EDIT ME
 # ───────────────────────────────────────────────────────────────
 SENSORS_WANTED: set[str] | None = {
-    "2021", "2022", "2040", "MOD-00632", "MOD-00616", "2032", "2042", "2043", "2024"    # set to None ⇒ auto‑discover all sub‑folders
+    None    # set to None ⇒ auto‑discover all sub‑folders
 }
 
 BASE_DIR       = Path("calibrated_data")          # per‑sensor sub‑folders
