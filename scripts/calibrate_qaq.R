@@ -33,7 +33,10 @@ if (identical(model_path, "") || !file.exists(model_path))
 # ---------------------------------------------------------------
 # Load CAPS calibration models
 # ---------------------------------------------------------------
-load(model_path)  # loads object(s); assume "Calibration_Models" list
+obj_names <- load(model_path)
+if (!"Calibration_Models" %in% obj_names) {
+  Calibration_Models <- get(obj_names[1], envir = .GlobalEnv)
+}
 # Inspect: names(Calibration_Models)
 # Expected elements: pollutant-level models + helper funcs used below.
 
