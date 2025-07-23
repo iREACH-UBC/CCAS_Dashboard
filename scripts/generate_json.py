@@ -24,7 +24,7 @@ import pytz
 # EDIT ME
 # ───────────────────────────────────────────────────────────────
 SENSORS_WANTED: set[str] | None = {
-    None    # set to None ⇒ auto‑discover all sub‑folders
+    "2021", "2022", "2040", "MOD-00632", "MOD-00616", "2032", "2042", "2043", "2024"    # set to None ⇒ auto‑discover all sub‑folders
 }
 
 BASE_DIR       = Path("calibrated_data")          # per‑sensor sub‑folders
@@ -41,9 +41,17 @@ KEEP_COLS = [
     "AQHI", "Top_AQHI_Contributor",
 ]
 
+# Accept purely‑numeric IDs (“2040”) **and** alphanumeric ones with dashes
+# (“MOD‑00616”, “AIR‑123” …)
 FILE_RE = re.compile(
-    r"^(?P<id>\d+)_?calibrated_\d{4}_\d{2}_\d{2}_to_"
-    r"(?P<y>\d{4})_(?P<m>\d{2})_(?P<d>\d{2})\.csv$"
+    r"""
+    ^(?P<id>[\w-]+)              # sensor id  (letters / digits / _ / -)
+    _calibrated_                 # literal
+    \d{4}_\d{2}_\d{2}_to_        # “YYYY_MM_DD_to_”
+    (?P<y>\d{4})_(?P<m>\d{2})_(?P<d>\d{2})  # end‑date “YYYY_MM_DD”
+    \.csv$
+    """,
+    re.VERBOSE,
 )
 
 # ── helpers ────────────────────────────────────────────────────
