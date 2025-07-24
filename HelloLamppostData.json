@@ -1,1 +1,58 @@
-{}
+{
+    "Sensor 1": {
+        "name": "West Vancouver Memorial Library",
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "O3",
+        "pollutant_concentration": 33.91,
+        "aq_advisory": false
+    },
+    "Sensor 3": {
+        "name": "Powell River Public Library",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 18.67,
+        "aq_advisory": false
+    },
+    "Sensor 5": {
+        "name": "Chief Joe Mathias Centre",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 26.19,
+        "aq_advisory": false
+    },
+    "Sensor 2": {
+        "name": "Gillies Bay Public Library",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 21.27,
+        "aq_advisory": false
+    },
+    "Sensor 7": {
+        "name": "Pemberton Community Centre",
+        "label": "Low health risk",
+        "value": 1,
+        "top_contributor": "NO2",
+        "pollutant_concentration": -4.8,
+        "aq_advisory": false
+    },
+    "Sensor 8": {
+        "name": "Whistler Public Library",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 13.58,
+        "aq_advisory": false
+    },
+    "Sensor 4": {
+        "name": "Lions Gate Rec Center",
+        "label": "Low health risk",
+        "value": 1,
+        "top_contributor": "O3",
+        "pollutant_concentration": 9.0,
+        "aq_advisory": false
+    }
+}
