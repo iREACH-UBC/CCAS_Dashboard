@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-07-25 15:09:00",
+  "lastChecked": "2025-07-25 16:08:53",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -63,15 +63,15 @@
     },
     {
       "Region": "The Pas Cormorant Westray and Wanless, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Westgate Red Deer Lake and Barrows, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Porcupine Prov. Forest, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Thompson Thicket Portage and Pikwitonei, Man.",
