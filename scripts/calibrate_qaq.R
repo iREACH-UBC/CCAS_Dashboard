@@ -252,6 +252,13 @@ for (sid in sensor_ids) {
       if (is.null(raw)) next
       # apply CAPS models
       cal <- apply_caps_to_qaq(raw)
+      
+      cal <- cal %>%
+        mutate(DATE = lubridate::floor_date(DATE, "15 minutes")) %>%  # bucket start
+        group_by(DATE) %>%
+        summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)),
+                  .groups = "drop")
+      
       parts <- append(parts, list(cal))
       earliest <- min(earliest, min(cal$DATE, na.rm = TRUE))
       if (earliest <= past_24h) break
