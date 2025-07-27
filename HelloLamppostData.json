@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.8,
+        "pollutant_concentration": 16.99,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.88,
+        "pollutant_concentration": 12.19,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.05,
+        "pollutant_concentration": 30.8,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.95,
+        "pollutant_concentration": 12.11,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -43,8 +43,8 @@
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 21.35,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 14.4,
         "aq_advisory": false
     },
     "Sensor 4": {
