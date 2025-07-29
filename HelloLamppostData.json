@@ -4,23 +4,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 34.68,
+        "pollutant_concentration": 34.54,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 18.49,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 15.3,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.26,
+        "pollutant_concentration": 12.81,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -28,23 +28,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.89,
+        "pollutant_concentration": 21.01,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": -3.43,
+        "top_contributor": "O3",
+        "pollutant_concentration": 4.53,
         "aq_advisory": false
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 18.36,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 16.93,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 8.02,
+        "pollutant_concentration": 8.36,
         "aq_advisory": false
     }
 }
