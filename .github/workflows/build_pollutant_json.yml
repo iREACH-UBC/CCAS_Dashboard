@@ -43,12 +43,33 @@ jobs:
 
       - name: Commit and push artefact
         run: |
+          set -e                               # stop on any unhandled error
           git config --global user.name  "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
+      
+          # 1️⃣  Stage the generated files
           git add pollutant_data.json sensor_metadata.csv || true
-          if ! git diff --cached --quiet; then
-            git commit -m "Automated pollutant_data.json update ($(date -u +'%Y-%m-%dT%H:%M:%SZ'))"
-            git push
-          else
+      
+          # 2️⃣  Exit early if nothing changed
+          if git diff --cached --quiet; then
             echo "No changes to commit."
+            exit 0
           fi
+      
+          # 3️⃣  Commit once
+          git commit -m "Automated pollutant_data.json update ($(date -u +'%Y-%m-%dT%H:%M:%SZ'))"
+      
+          # 4️⃣  Push, retrying up to 5× in case someone updated main meanwhile
+          for i in {1..5}; do
+            # Re‑sync with the latest main while keeping our commit on top
+            git pull --rebase --autostash origin main || true
+      
+            # Only overwrite our own tip; fail if main advanced meanwhile
+            if git push origin HEAD:main --force-with-lease; then
+              echo "Push succeeded on attempt $i"
+              break
+            fi
+      
+            echo "Push failed on attempt $i – retrying in 5 s..."
+            sleep 5
+          done
