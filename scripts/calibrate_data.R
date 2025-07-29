@@ -21,7 +21,7 @@ if (length(args) > 0) {
 } else {
   # fallback list for ad‑hoc local runs
   sensor_ids <- c("2021", "2022", "2040", "2032", "2042",
-                  "2043", "2024")
+                  "2043", "2024", "2030")
 }
 
 data_folder   <- "data"                     # raw logger exports live here
