@@ -43,8 +43,8 @@
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "O3",
-        "pollutant_concentration": 6.22,
+        "top_contributor": "NO2",
+        "pollutant_concentration": -5.83,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 10.44,
+        "pollutant_concentration": 10.67,
         "aq_advisory": false
     }
 }
