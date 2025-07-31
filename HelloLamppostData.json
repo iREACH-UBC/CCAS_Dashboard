@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 5.87,
+        "pollutant_concentration": 6.8,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -59,8 +59,8 @@
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": -4.52,
+        "top_contributor": "O3",
+        "pollutant_concentration": 4.63,
         "aq_advisory": false
     }
 }
