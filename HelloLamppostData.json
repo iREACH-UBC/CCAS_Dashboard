@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.26,
+        "pollutant_concentration": 29.48,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,15 +12,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.45,
+        "pollutant_concentration": 20.3,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.69,
+        "pollutant_concentration": 34.04,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 34.3,
+        "pollutant_concentration": 37.13,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -36,23 +36,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 30.25,
+        "pollutant_concentration": 33.38,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "PM2.5",
-        "pollutant_concentration": "N/A",
+        "top_contributor": "O3",
+        "pollutant_concentration": 5.01,
         "aq_advisory": false
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 34.14,
+        "pollutant_concentration": 30.24,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 4.08,
+        "pollutant_concentration": 5.02,
         "aq_advisory": false
     }
 }
