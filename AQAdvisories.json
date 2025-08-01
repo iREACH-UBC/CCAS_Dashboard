@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-08-01 10:12:05",
+  "lastChecked": "2025-08-01 11:10:43",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -55,7 +55,7 @@
     },
     {
       "Region": "Fraser Canyon - south including Lytton, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Lake Winnipegosis, Man.",
