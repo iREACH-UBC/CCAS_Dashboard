@@ -1,10 +1,11 @@
 # ─── apply_caps_calibration.R ────────────────────────────────────────────────
 apply_caps_calibration <- function(sensor_id,
                                    data_file,
-                                   model_s_obj,
+                                   models_obj,          
                                    tz_raw   = "Etc/GMT-8",
                                    avg_time = "15 min",
                                    out_dir  = NULL) {
+  
   
   ## 1 ── Load the calibration object -----------------------------------------
   # Two formats are used in the project: a plain RDS or an .RData with
