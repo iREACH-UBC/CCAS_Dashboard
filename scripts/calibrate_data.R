@@ -4,11 +4,14 @@
 # GitHub Actions always commits/pushes, even when the calibrated rows are
 # identical to the previous run.
 
+# ─── calibrate_data.R ───────────────────────────────────────────────────
 suppressPackageStartupMessages({
   library(dplyr);  library(readr);  library(lubridate);  library(stringr)
   library(purrr);  library(tibble); library(fs);          library(zoo)
-  library(glue);   library(gtools); library(tidyr)
+  library(glue);   library(gtools); library(tidyr);       library(randomForest)
 })
+source("scripts/apply_caps_calibration.R")
+
 
 source("scripts/apply_caps_calibration.R")
 
@@ -31,6 +34,17 @@ dir_create(output_folder)
 model_path <- Sys.getenv("CAL_MODEL_PATH")
 if (model_path == "" || !file.exists(model_path))
   stop("CAL_MODEL_PATH env-var not set or file missing – aborting run.")
+
+# ── load calibration models once ──────────────────────────────────────────────
+message("→ loading CAPS models into memory …")
+calibration_models <- local({
+  env <- new.env(parent = emptyenv())
+  ok  <- try(load(model_path, envir = env), silent = TRUE)
+  if (!inherits(ok, "try-error") && exists("calibration_models", envir = env))
+    env$calibration_models
+  else
+    readRDS(model_path)
+})
 
 # ── helpers -------------------------------------------------------------------
 extract_date <- function(paths)
@@ -94,9 +108,11 @@ for (sid in sensor_ids) {
   
   for (p in files_tbl$path) {
     message("  • calibrating ", path_file(p))
-    df_part <- apply_caps_calibration(sensor_id = sid,
-                                      data_file  = p,
-                                      model_path = model_path)
+    df_part <- apply_caps_calibration(
+                sensor_id  = sid,
+                data_file  = p,
+                models_obj = calibration_models)
+    
     calib_parts <- append(calib_parts, list(df_part))
     earliest_ts <- min(earliest_ts, min(df_part$date, na.rm = TRUE))
     if (earliest_ts <= past_24h) break   # ✅ 24-hour span reached

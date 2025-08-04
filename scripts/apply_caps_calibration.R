@@ -1,29 +1,16 @@
 # ─── apply_caps_calibration.R ────────────────────────────────────────────────
 apply_caps_calibration <- function(sensor_id,
                                    data_file,
-                                   model_path,
+                                   model_s_obj,
                                    tz_raw   = "Etc/GMT-8",
                                    avg_time = "15 min",
                                    out_dir  = NULL) {
-  
-  if (missing(model_path) || !file.exists(model_path))
-    stop("model_path must point to a local *.obj file already downloaded.")
   
   ## 1 ── Load the calibration object -----------------------------------------
   # Two formats are used in the project: a plain RDS or an .RData with
   # 'calibration_models' in the workspace.  Try both transparently.
   
-  load_env <- new.env(parent = emptyenv())
-  try_ok <- tryCatch({
-    load(model_path, envir = load_env)
-    TRUE
-  }, error = function(e) FALSE)
-  
-  if (try_ok && exists("calibration_models", envir = load_env, inherits = FALSE)) {
-    calibration_models <- load_env$calibration_models
-  } else {
-    calibration_models <- readRDS(model_path)
-  }
+  calibration_models <- models_obj
   
   ## 2 ── Libraries for downstream work ---------------------------------------
   suppressPackageStartupMessages({
