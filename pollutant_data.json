@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-08-04T14:03-07:00",
+  "generated_at": "2025-08-04T14:16-07:00",
   "sensors": [
     {
       "id": "2021",
@@ -10,7 +10,7 @@
       "lon": -123.1658402,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-08-04T13:40-07:00",
+        "timestamp": "2025-08-04T13:55-07:00",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -23,17 +23,6 @@
         }
       },
       "history": [
-        [
-          "2025-08-03T13:45-07:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-08-03T14:00-07:00",
           null,
@@ -1089,6 +1078,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-08-04T13:55-07:00",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -1101,7 +1101,7 @@
       "lon": -124.5218536,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-08-04T13:43-07:00",
+        "timestamp": "2025-08-04T13:58-07:00",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -1114,17 +1114,6 @@
         }
       },
       "history": [
-        [
-          "2025-08-03T13:57-07:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-08-03T14:12-07:00",
           null,
@@ -2180,6 +2169,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-08-04T13:58-07:00",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -2192,7 +2192,7 @@
       "lon": -123.1326337,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-08-04T13:44-07:00",
+        "timestamp": "2025-08-04T13:59-07:00",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -2205,17 +2205,6 @@
         }
       },
       "history": [
-        [
-          "2025-08-03T13:57-07:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-08-03T14:12-07:00",
           null,
@@ -3263,6 +3252,17 @@
         ],
         [
           "2025-08-04T13:44-07:00",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-08-04T13:59-07:00",
           null,
           null,
           null,
@@ -3283,7 +3283,7 @@
       "lon": -123.3381594,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-08-04T13:44-07:00",
+        "timestamp": "2025-08-04T13:59-07:00",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -3296,17 +3296,6 @@
         }
       },
       "history": [
-        [
-          "2025-08-03T13:57-07:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-08-03T14:12-07:00",
           null,
@@ -4362,6 +4351,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-08-04T13:59-07:00",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -4374,7 +4374,7 @@
       "lon": 0.0,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-08-04T13:43-07:00",
+        "timestamp": "2025-08-04T13:58-07:00",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -4387,17 +4387,6 @@
         }
       },
       "history": [
-        [
-          "2025-08-03T13:43-07:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-08-03T13:58-07:00",
           null,
@@ -5453,6 +5442,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-08-04T13:58-07:00",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -5465,7 +5465,7 @@
       "lon": -124.4786294,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-08-04T13:42-07:00",
+        "timestamp": "2025-08-04T13:57-07:00",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -5478,17 +5478,6 @@
         }
       },
       "history": [
-        [
-          "2025-08-03T13:56-07:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-08-03T14:11-07:00",
           null,
@@ -6544,6 +6533,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-08-04T13:57-07:00",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -6556,7 +6556,7 @@
       "lon": -122.800427,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-08-04T13:40-07:00",
+        "timestamp": "2025-08-04T13:55-07:00",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -6569,17 +6569,6 @@
         }
       },
       "history": [
-        [
-          "2025-08-03T13:41-07:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-08-03T13:56-07:00",
           null,
@@ -7635,6 +7624,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-08-04T13:55-07:00",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -7647,7 +7647,7 @@
       "lon": -122.956237,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-08-04T13:43-07:00",
+        "timestamp": "2025-08-04T13:58-07:00",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -7660,17 +7660,6 @@
         }
       },
       "history": [
-        [
-          "2025-08-03T13:44-07:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-08-03T13:59-07:00",
           null,
@@ -8726,6 +8715,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-08-04T13:58-07:00",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -8738,30 +8738,19 @@
       "lon": -122.800427,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-08-04T22:45-07:00",
+        "timestamp": "2025-08-04T23:00-07:00",
         "aqhi": 1.0,
         "primary": "O3",
         "pollutants": {
-          "co": 22.7,
-          "no": 6.5,
-          "no2": -1.833,
-          "o3": 2.733,
-          "co2": 1195.067,
-          "pm25": 2.68
+          "co": 21.85,
+          "no": 6.75,
+          "no2": -1.925,
+          "o3": 3.35,
+          "co2": 1194.075,
+          "pm25": 2.675
         }
       },
       "history": [
-        [
-          "2025-08-03T22:45-07:00",
-          1.0,
-          "O3",
-          29.23,
-          6.3,
-          -1.71,
-          5.15,
-          1186.7,
-          2.18
-        ],
         [
           "2025-08-03T23:00-07:00",
           1.0,
@@ -9811,12 +9800,23 @@
           "2025-08-04T22:45-07:00",
           1.0,
           "O3",
-          22.7,
-          6.5,
-          -1.83,
-          2.73,
-          1195.07,
-          2.68
+          22.09,
+          6.65,
+          -1.92,
+          2.98,
+          1195.79,
+          2.81
+        ],
+        [
+          "2025-08-04T23:00-07:00",
+          1.0,
+          "O3",
+          21.85,
+          6.75,
+          -1.92,
+          3.35,
+          1194.08,
+          2.67
         ]
       ]
     },
@@ -9829,30 +9829,19 @@
       "lon": -123.121436,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-08-04T22:45-07:00",
+        "timestamp": "2025-08-04T23:00-07:00",
         "aqhi": 1.0,
         "primary": "O3",
         "pollutants": {
-          "co": 26.933,
-          "no": 8.8,
-          "no2": -3.767,
-          "o3": 6.067,
-          "co2": 1320.633,
-          "pm25": 2.617
+          "co": 28.0,
+          "no": 8.375,
+          "no2": -3.225,
+          "o3": 6.05,
+          "co2": 1322.825,
+          "pm25": 2.92
         }
       },
       "history": [
-        [
-          "2025-08-03T22:45-07:00",
-          1.0,
-          "O3",
-          31.42,
-          7.72,
-          -2.77,
-          5.83,
-          1316.32,
-          2.98
-        ],
         [
           "2025-08-03T23:00-07:00",
           1.0,
@@ -10902,12 +10891,23 @@
           "2025-08-04T22:45-07:00",
           1.0,
           "O3",
-          26.93,
-          8.8,
-          -3.77,
-          6.07,
-          1320.63,
-          2.62
+          25.8,
+          8.66,
+          -3.6,
+          6.04,
+          1320.5,
+          2.87
+        ],
+        [
+          "2025-08-04T23:00-07:00",
+          1.0,
+          "O3",
+          28.0,
+          8.38,
+          -3.23,
+          6.05,
+          1322.83,
+          2.92
         ]
       ]
     }
