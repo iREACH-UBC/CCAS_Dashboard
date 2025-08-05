@@ -41,13 +41,6 @@ apply_caps_calibration <- function(sensor_id,
   
   raw$date <- force_tz(raw$date, tz_raw)
   
-  ## daylight-saving shim ------------------------------------------------------
-  raw <- bind_rows(
-    filter(raw, date < "2025-03-09 02:00:00"),
-    filter(raw, date >= "2025-03-09 02:00:00") |>
-      mutate(date = date - 3600)
-  )
-  
   ## 4 ── 15-min averages ------------------------------------------------------
   ramp_15 <- openair::timeAverage(raw, avg.time = avg_time)
   
@@ -63,6 +56,8 @@ apply_caps_calibration <- function(sensor_id,
              (log(RH_RAMP/100) + 17.62*T_RAMP / (243.12 + T_RAMP)) /
              (17.62 - (log(RH_RAMP/100) + 17.62*T_RAMP / (243.12 + T_RAMP)))) |>
     as.matrix()
+  colnames(gas_mat) <- paste0("input", seq_len(ncol(gas_mat)))
+  colnames(pm_mat)  <- paste0("input", seq_len(ncol(pm_mat)))
   
   ## 5 ── Apply CAPS models ----------------------------------------------------
   message("→ Applying calibration …")
