@@ -28,7 +28,7 @@ now_pst = datetime.now(timezone.utc).astimezone(pst)
 file_date = now_pst.date()
 
 
-print(f"📡 Downloading data for date {file_date} (PST) for sensors: {sensor_ids}")
+print(f"Downloading data for date {file_date} (PST) for sensors: {sensor_ids}")
 
 # -------------------------------
 # OUTPUT DIRECTORY: Relative path "data"
@@ -60,33 +60,35 @@ def parse_file_data(text):
 # PROCESS EACH SENSOR
 # -------------------------------
 # ...
+eastern = pytz.timezone("US/Eastern")
+
 for sensor_id in sensor_ids:
-    file_date_str = file_date.strftime("%Y-%m-%d")
+    file_date_str = datetime.now(eastern).strftime("%Y-%m-%d")
     filename = f"{file_date_str}-{sensor_id}.txt"
     sensor_url = f"{base_url}/{sensor_id}/data"
     file_url = f"{sensor_url}/{filename}"
     
-    print(f"\n🔍 Processing sensor {sensor_id}")
+    print(f"\nProcessing sensor {sensor_id}")
     print(f"Downloading file from: {file_url}")
     
     # 🔧 Add this missing line
     response = requests.get(file_url)
     
     if response.status_code != 200:
-        print(f"❌ Failed to download {file_url} (status code: {response.status_code})")
+        print(f"Failed to download {file_url} (status code: {response.status_code})")
         continue
 
     header, all_data = parse_file_data(response.text)
     if not all_data:
-        print(f"⚠️ No data found in file {filename}")
+        print(f"No data found in file {filename}")
         continue
 
     csv_filename = os.path.join(output_dir, f"{sensor_id}_{file_date_str}.csv")
-    print(f"💾 Saving data to {csv_filename}")
+    print(f"Saving data to {csv_filename}")
     
     with open(csv_filename, mode='w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(header)
         writer.writerows(all_data)
     
-    print(f"✅ Data for sensor {sensor_id} saved successfully.")
+    print(f"Data for sensor {sensor_id} saved successfully.")
