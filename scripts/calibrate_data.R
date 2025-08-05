@@ -14,7 +14,7 @@ args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 1) stop("Usage: Rscript calibrate_caps_sensor.R <sensor_id>")
 sensor_id <- args[1]
 
-model_path <- file.path("RAMP_Calibration_Models", sensor_id, "Calibration_Models.obj")
+model_path <- Sys.getenv("CAL_MODEL_PATH", unset = file.path("RAMP_Calibration_Models", sensor_id, "Calibration_Models.obj"))
 data_dir   <- "data"
 out_dir    <- file.path("calibrated_data", sensor_id)
 dir_create(out_dir)
