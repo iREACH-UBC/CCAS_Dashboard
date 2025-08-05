@@ -15,9 +15,17 @@ apply_caps_calibration <- function(sensor_id,
   
   ## 2 ── Libraries for downstream work ---------------------------------------
   suppressPackageStartupMessages({
-    library(dplyr);  library(readr);  library(lubridate); library(tibble)
-    library(openair); library(fs);    library(gtools);    library(tidyr)
-    library(purrr);   library(randomForest)
+    library(dplyr)
+    library(readr)
+    library(lubridate)
+    library(purrr)
+    library(tidyr)
+    library(fs)
+    library(glue)
+    library(stringr)   # ← this was missing
+    library(zoo)
+    library(openair)
+    library(randomForest)
   })
   
   message("→ CAPS helpers and models loaded")
