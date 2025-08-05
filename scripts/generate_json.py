@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# build_sensor_json.py  –  2025-06-30 (patched)
+# generate_json.py –  2025-08-04 (patched by HDR)
 # ---------------------------------------------------------------------------
 # * Walk calibrated_data/<sensor_id>/
 # * For each ID in SENSORS_WANTED, grab the newest “…_calibrated_…csv”
@@ -24,7 +24,7 @@ import pytz
 # EDIT ME
 # ───────────────────────────────────────────────────────────────
 SENSORS_WANTED: set[str] | None = {
-    "2021", "2022", "2040", "MOD-00632", "MOD-00616", "2032", "2042", "2043", "2024", "2030"    # set to None ⇒ auto‑discover all sub‑folders
+    "2021", "2022","2032", "2040", "2042", "2043", "2024", "2030", "MOD-00632", "MOD-00616"    # set to None ⇒ auto‑discover all sub‑folders
 }
 
 BASE_DIR       = Path("calibrated_data")          # per‑sensor sub‑folders
@@ -38,7 +38,7 @@ PACIFIC = pytz.timezone("America/Vancouver")
 
 KEEP_COLS = [
     "DATE", "CO", "NO", "NO2", "O3", "CO2", "PM2.5",
-    "AQHI", "Top_AQHI_Contributor",
+    "AQHI", "Top_AQHI_contributor",
 ]
 
 # Accept purely‑numeric IDs (“2040”) **and** alphanumeric ones with dashes
@@ -163,20 +163,19 @@ def build() -> dict:
             continue
 
         # ── rename / sanity‑check columns ──────────────────────
-        df.rename(columns={"Top_AQHI_Contributor": "PRIMARY", "PM2.5": "PM25"}, inplace=True)
+        df.rename(columns={"Top_AQHI_contributor": "PRIMARY", "PM2.5": "PM25"}, inplace=True)
         for col in ("PRIMARY", "PM25"):
             if col not in df.columns:
                 df[col] = None
 
         # ── timestamp handling ────────────────────────────────
-        df["DATE"] = (
-            df["DATE"].astype(str)
-                       .str.replace(r"Z$", "", regex=True)       # 1️⃣ strip stray Z
-        )
-        df["DATE"] = pd.to_datetime(df["DATE"], errors="coerce")  # 2️⃣ parse
-        df["DATE"] = df["DATE"].map(lambda t: pd.NaT if pd.isna(t) else PACIFIC.localize(t))  # 3️⃣ localise
+        df["DATE"] = pd.to_datetime(df["DATE"])
+        if df["DATE"].dt.tz is None:
+            df["DATE"] = df["DATE"].dt.tz_localize("UTC").dt.tz_convert("America/Vancouver")
+        else:
+            df["DATE"] = df["DATE"].dt.tz_convert("America/Vancouver")
 
-        df = df.dropna(subset=["DATE"]).sort_values("DATE")
+
 
         # ── apply rolling window ──────────────────────────────
         if HISTORY_HOURS > 0 and not df.empty:
@@ -189,6 +188,8 @@ def build() -> dict:
 
         # ── latest record ─────────────────────────────────────
         last = df.iloc[-1]
+        print(f"[DEBUG] {sid}: Final NO value: {last['NO']} → rounded: {round(float(last['NO']), 3) if pd.notna(last['NO']) else None}")
+
         latest = {
             "timestamp": to_pacific_iso(last["DATE"]),
             "aqhi": round(float(last["AQHI"]), 1) if pd.notna(last["AQHI"]) else None,
