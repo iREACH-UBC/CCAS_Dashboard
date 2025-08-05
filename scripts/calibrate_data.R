@@ -55,8 +55,7 @@ files_tbl <- tibble(path = matches, date_file = extract_date(matches)) %>%
 
 if (nrow(files_tbl) < 2)
   stop("Need at least 2 days of data for sensor ", sensor_id)
-if (files_tbl$date_file[1] != as_date(now_pst))
-  stop("No data for today found")
+
 
 # ── Load and combine ─────────────────────────────────────────────
 today     <- read_csv(files_tbl$path[1])
