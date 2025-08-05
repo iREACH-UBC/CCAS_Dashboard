@@ -3,7 +3,9 @@
 # ────────────────────────────────────────────────────────────────
 suppressPackageStartupMessages({
   library(dplyr); library(lubridate); library(randomForest); library(openair)
-  library(readr); library(purrr); library(tidyr); library(fs); library(glue)
+  library(readr); library(purrr); library(tidyr); library(fs); library(glue); 
+  library(stringr)
+
 })
 
 source("caps_core.R", local = TRUE)
