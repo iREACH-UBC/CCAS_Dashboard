@@ -170,11 +170,12 @@ def build() -> dict:
 
         # ── timestamp handling ────────────────────────────────
         df["DATE"] = pd.to_datetime(df["DATE"])
+        '''
         if df["DATE"].dt.tz is None:
             df["DATE"] = df["DATE"].dt.tz_localize("UTC").dt.tz_convert("America/Vancouver")
         else:
             df["DATE"] = df["DATE"].dt.tz_convert("America/Vancouver")
-
+        '''
 
 
         # ── apply rolling window ──────────────────────────────
