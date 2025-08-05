@@ -139,7 +139,7 @@ calibrated_data <- as_tibble(cbind(
   aqhi_df
 )) %>%
   mutate(across(where(is.matrix), as.vector)) %>%
-  mutate(DATE = with_tz(DATE, "America/Los_Angeles"))
+  mutate(DATE = format(with_tz(DATE, "America/Los_Angeles"), "%Y-%m-%d %H:%M:%S"))
 
 start_str <- format(past_48h, "%Y_%m_%d")
 end_str   <- format(now_pst, "%Y_%m_%d")
