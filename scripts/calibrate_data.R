@@ -4,7 +4,7 @@
 suppressPackageStartupMessages({
   library(dplyr); library(lubridate); library(randomForest); library(openair)
   library(readr); library(purrr); library(tidyr); library(fs); library(glue); 
-  library(stringr); library(gtools)
+  library(stringr); library(gtools); library(zoo)
 
 })
 
