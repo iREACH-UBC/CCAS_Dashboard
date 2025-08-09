@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.27,
+        "pollutant_concentration": 7.89,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,15 +12,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.35,
+        "pollutant_concentration": 24.33,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 6.98,
+        "top_contributor": "O3",
+        "pollutant_concentration": 26.86,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 6.37,
+        "pollutant_concentration": 6.54,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,15 +36,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 5.29,
+        "pollutant_concentration": 4.94,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.15,
+        "pollutant_concentration": 24.49,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 36.57,
+        "pollutant_concentration": 40.45,
         "aq_advisory": false
     },
     "Sensor 4": {
