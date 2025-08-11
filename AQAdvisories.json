@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-08-11 02:15:11",
+  "lastChecked": "2025-08-11 03:12:59",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -67,19 +67,19 @@
     },
     {
       "Region": "Westgate Red Deer Lake and Barrows, Man.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Porcupine Prov. Forest, Man.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Thompson Thicket Portage and Pikwitonei, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Nelson House, Man.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Flin Flon Cranberry Portage and Grass River Prov. Park, Man.",
