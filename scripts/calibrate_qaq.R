@@ -86,16 +86,16 @@ apply_caps_to_qaq <- function(df_std) {
 # Update if your raw header uses underscores not dots, etc.
 # ---------------------------------------------------------------
 varmap <- c(
-  "gases.co.diff"  = "CO",
-  "gases.no.diff"  = "NO",
-  "gases.no2.diff" = "NO2",
-  "gases.o3.diff"  = "O3",
-  "gases.co2.raw"  = "CO2",
-  "met.temp"       = "T",
-  "met.rh"         = "RH",
-  "opc.pm1"        = "PM1.0",
-  "opc.pm25"       = "PM2.5",
-  "opc.pm10"       = "PM10"
+  "co"   = "CO",
+  "no"   = "NO",
+  "no2"  = "NO2",
+  "o3"   = "O3",
+  "co2"  = "CO2",
+  "temp" = "T",
+  "rh"   = "RH",
+  "pm1"  = "PM1.0",
+  "pm25" = "PM2.5",
+  "pm10" = "PM10"
 )
 
 # ---------------------------------------------------------------
@@ -217,7 +217,7 @@ for (sid in sensor_ids) {
 
   # files for yesterday+today PST
   date_window <- seq.Date(as_date(now_pst) - 1, as_date(now_pst), by = "day")
-  target_files <- glue("{sid}-{format(date_window, '%Y-%m-%d')}")
+  target_files <- glue("{sid}_{format(date_window, '%Y-%m-%d')}")
   # match prefix because QuantAQ filenames may include suffixes (raw/processed)
   # ── robust file discovery ──────────────────────────────────────
   # • **/ prefix ⇒ match at any depth under data/
