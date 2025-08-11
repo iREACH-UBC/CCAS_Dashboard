@@ -8,7 +8,7 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 suppressPackageStartupMessages({
-  library(dplyr); library(lubridate); library(openair); library(readr)
+  library(dplyr); library(lubridate); library(readr)
   library(purrr); library(tidyr); library(fs); library(glue); library(stringr)
   library(zoo);  library(tibble)
 })
@@ -140,8 +140,27 @@ df_avg <- raw_all %>%
   mutate(date = DATE) %>%
   select(date, CO, NO, NO2, O3, CO2, `PM2.5`, `PM1.0`, PM10, TE, RH)
 
-df_15 <- timeAverage(as.data.frame(df_avg), avg.time = "15 min") %>%
-  as_tibble()
+df_15 <- raw_all %>%
+  transmute(
+    date = DATE,
+    CO, NO, NO2, O3, CO2, `PM2.5`, `PM1.0`, PM10, TE, RH
+  ) %>%
+  mutate(bin = lubridate::floor_date(date, "15 minutes")) %>%
+  group_by(bin) %>%
+  summarise(
+    CO   = mean(CO,   na.rm = TRUE),
+    NO   = mean(NO,   na.rm = TRUE),
+    NO2  = mean(NO2,  na.rm = TRUE),
+    O3   = mean(O3,   na.rm = TRUE),
+    CO2  = mean(CO2,  na.rm = TRUE),
+    `PM2.5` = mean(`PM2.5`, na.rm = TRUE),
+    `PM1.0` = mean(`PM1.0`, na.rm = TRUE),
+    PM10 = mean(PM10, na.rm = TRUE),
+    TE   = mean(TE,   na.rm = TRUE),
+    RH   = mean(RH,   na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  rename(date = bin)
 
 # ── Build predictor matrices (RAMP-style) -------------------------------------
 datetime   <- df_15$date
