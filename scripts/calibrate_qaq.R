@@ -1,303 +1,256 @@
 #!/usr/bin/env Rscript
-# ─── calibrate_qaq.R ────────────────────────────────────────────
-# Calibrate QuantAQ MOD-* sensor data using the same CAPS models
-# & AQHI pipeline used for RAMPs. Produces a 24h PST window
-# ending "now" and writes a per-sensor CSV in calibrated_data/<sid>/.
-#
-# Usage: Rscript scripts/calibrate_qaq.R MOD-00616
-# If no args -> fallback vector (handy for local dev).
+# ─────────────────────────────────────────────────────────────────────────────
+#  Calibrate QuantAQ MOD-* data (QAQ format) using RAMP-style pipeline
+#  - Expects columns: co, co2, no, no2, o3, pm1, pm10, pm25, temp, rh,
+#                     timestamp_local (ISO8601), sn (sensor id)
+#  - 48h window, 15-min timeAverage, explicit CAPS_* calls per pollutant
+#  - Output: calibrated_data/<sid>/<sid>_calibrated_<start>_to_<end>.csv
+# ─────────────────────────────────────────────────────────────────────────────
 
 suppressPackageStartupMessages({
-  library(dplyr);  library(readr);  library(lubridate);  library(stringr)
-  library(purrr);  library(tibble); library(fs);          library(zoo)
-  library(glue);   library(gtools); library(tidyr)
+  library(dplyr); library(lubridate); library(openair); library(readr)
+  library(purrr); library(tidyr); library(fs); library(glue); library(stringr)
+  library(zoo);  library(tibble)
 })
 
-# ---------------------------------------------------------------
-# Args / config
-# ---------------------------------------------------------------
+# ── CONFIG -------------------------------------------------------------------
 args <- commandArgs(trailingOnly = TRUE)
-fallback_ids <- c("MOD-00616","MOD-00632","MOD-00625","MOD-00631",
-                  "MOD-00623","MOD-00628","MOD-00620","MOD-00627",
-                  "MOD-00630","MOD-00624")
-sensor_ids <- if (length(args)) args else fallback_ids
-
-data_folder   <- "data"
-output_folder <- "calibrated_data"
-dir_create(output_folder)
-
-model_path <- Sys.getenv("CAL_MODEL_PATH")
-if (identical(model_path, "") || !file.exists(model_path))
-  stop("CAL_MODEL_PATH env-var not set or file missing – aborting run.")
-
-# ---------------------------------------------------------------
-# Load CAPS calibration models
-# ---------------------------------------------------------------
-obj_names <- load(model_path)
-if (!"Calibration_Models" %in% obj_names) {
-  Calibration_Models <- get(obj_names[1], envir = .GlobalEnv)
+if (length(args) < 1 || is.na(args[1]) || args[1] == "") {
+  stop("Usage: Rscript scripts/calibrate_qaq_rampish.R MOD-00616")
 }
-# Inspect: names(Calibration_Models)
-# Expected elements: pollutant-level models + helper funcs used below.
+sensor_id <- args[1]
 
-# If your model object names differ, edit these two helpers --------------------
-# choose_model(pollutant) → returns model from Calibration_Models
-# apply_caps_to_qaq(df_raw) → returns tibble with calibrated cols
+data_dir <- "data"
+out_dir  <- file.path("calibrated_data", sensor_id); dir_create(out_dir)
 
-choose_model <- function(pollutant) {
-  # Common pattern: Calibration_Models[[pollutant]] or with suffixes
-  nm <- pollutant
-  if (!nm %in% names(Calibration_Models)) return(NULL)
-  Calibration_Models[[nm]]
-}
-
-# You already have CAPS_Hybrid_Apply / CAPS_PR_Apply in your calibration repo.
-# We’ll try hybrid first, then parametric (PR) if hybrid absent.
-apply_caps_to_series <- function(raw_vec, model) {
-  # generic wrapper; update if model class requires special call
-  if (is.null(model)) return(raw_vec)  # passthrough if no model
-  # Example:
-  if (exists("CAPS_Hybrid_Apply", mode = "function")) {
-    tryCatch(return(CAPS_Hybrid_Apply(raw_vec, model)),
-             error = function(e) raw_vec)
-  }
-  if (exists("CAPS_PR_Apply", mode = "function")) {
-    tryCatch(return(CAPS_PR_Apply(raw_vec, model)),
-             error = function(e) raw_vec)
-  }
-  raw_vec
-}
-
-# Top-level calibrator: takes raw QAQ df w/ standardized cols, returns calibrated tibble
-apply_caps_to_qaq <- function(df_std) {
-  # loop pollutants we care about
-  pols <- c("CO","NO","NO2","O3","CO2","T","RH","PM1.0","PM2.5","PM10")
-  for (p in pols) {
-    m <- choose_model(p)
-    if (!is.null(m) && p %in% names(df_std)) {
-      df_std[[p]] <- apply_caps_to_series(df_std[[p]], m)
-    }
-  }
-  df_std
-}
-
-# ---------------------------------------------------------------
-# Variable mapping: QAQ raw -> internal standard columns
-# Update if your raw header uses underscores not dots, etc.
-# ---------------------------------------------------------------
-varmap <- c(
-  "co"   = "CO",
-  "no"   = "NO",
-  "no2"  = "NO2",
-  "o3"   = "O3",
-  "co2"  = "CO2",
-  "temp" = "T",
-  "rh"   = "RH",
-  "pm1"  = "PM1.0",
-  "pm25" = "PM2.5",
-  "pm10" = "PM10"
+# Model path: prefer env var, else per-sensor default (like RAMP script)
+model_path <- Sys.getenv(
+  "CAL_MODEL_PATH",
+  unset = file.path("RAMP_Calibration_Models", sensor_id, "Calibration_Models.obj")
 )
 
-# ---------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------
+if (!file.exists(model_path)) stop("Model not found: ", model_path)
+
+# Optional device clock offset (hours) to align with RAMPs if needed
+clock_offset_hours <- suppressWarnings(as.numeric(Sys.getenv("CLOCK_OFFSET_HOURS", "0")))
+if (is.na(clock_offset_hours)) clock_offset_hours <- 0
+
+# ── Load CAPS models ----------------------------------------------------------
+message("→ loading CAPS models …")
+calibration_models <- local({
+  env <- new.env(parent = emptyenv())
+  ok  <- try(load(model_path, envir = env), silent = TRUE)
+  if (!inherits(ok, "try-error")) {
+    # Support both styles:
+    if (exists("calibration_models", envir = env)) env$calibration_models
+    else if (exists("Calibration_Models", envir = env)) env$Calibration_Models
+    else {
+      # Try RDS fallback
+      readRDS(model_path)
+    }
+  } else {
+    readRDS(model_path)
+  }
+})
+
+# Helper to fetch a model regardless of object layout
+get_model <- function(tree, group, key) {
+  # Try RAMP-style: $gas$Hybrid$CO or $pm$Regression$PM2_5
+  try1 <- try(tree[[group]][["Hybrid"]][[key]], silent = TRUE)
+  if (!inherits(try1, "try-error") && !is.null(try1)) return(try1)
+  try2 <- try(tree[[group]][["Regression"]][[key]], silent = TRUE)
+  if (!inherits(try2, "try-error") && !is.null(try2)) return(try2)
+  # Try flat Calibration_Models[["CO"]], etc.
+  try3 <- try(tree[[key]], silent = TRUE)
+  if (!inherits(try3, "try-error") && !is.null(try3)) return(try3)
+  NULL
+}
+
+# ── AQHI helpers --------------------------------------------------------------
 apply_aqhi_ceiling <- function(aqhi_vec, pm25_1h_vec)
   pmax(round(aqhi_vec), ceiling(pm25_1h_vec / 10)) |> as.integer()
 
-# 24h window (PST)
+# ── Time window: past 48 h in PST/PDT ----------------------------------------
 tz_local  <- "America/Los_Angeles"
 now_pst   <- with_tz(Sys.time(), tz_local)
-past_24h  <- now_pst - hours(24)
+past_48h  <- now_pst - hours(48)
 
-# column order we promise downstream
-desired_cols <- c("DATE","TE","CO","NO","NO2","O3","CO2","T","RH",
-                  "PM1.0","PM2.5","PM10","AQHI","Top_AQHI_Contributor")
+# ── File discovery: accept hyphen or underscore date separator ----------------
+all_files <- dir_ls(data_dir, recurse = TRUE, type = "file", glob = "*.csv")
 
-# In QAQ files, dates appear in basename: <sid>-YYYY-MM-DD*.csv
-extract_date <- function(paths)
-  as.Date(str_match(path_file(paths), "\\d{4}-\\d{2}-\\d{2}")[,1])
+# Match MOD-00616-YYYY-MM-DD*.csv or MOD-00616_YYYY-MM-DD*.csv
+pattern <- glue("^{sensor_id}[-_](\\d{{4}}-\\d{{2}}-\\d{{2}}).*\\.csv$")
+matches <- all_files[str_detect(path_file(all_files), pattern)]
 
-# read & standardize a single raw file -------------------------
-read_qaq_raw <- function(path) {
-  df <- suppressWarnings(read_csv(path, show_col_types = FALSE))
-  if (!"timestamp_local" %in% names(df))
-    stop("timestamp_local missing in ", path)
+if (!length(matches)) stop("No QAQ files found for ", sensor_id)
 
-  df <- df %>%
-    mutate(DATE = ymd_hms(timestamp_local, tz = tz_local, quiet = TRUE)) %>%
-    select(-timestamp_local)
-
-  # rename known vars
-  for (raw in names(varmap)) {
-    if (raw %in% names(df))
-      df <- df %>% rename(!!varmap[[raw]] := all_of(raw))
-  }
-
-  # ensure all expected numeric columns exist
-  for (nm in setdiff(unname(varmap), names(df)))
-    df[[nm]] <- NA_real_
-
-  df
+extract_date <- function(p) {
+  m <- str_match(path_file(p), "[-_](\\d{4}-\\d{2}-\\d{2})")
+  if (is.na(m[1,2])) NA_Date_ else ymd(m[1,2])
 }
 
-# compute AQHI & top contributor (as in RAMP pipeline) ----------
-add_aqhi <- function(df) {
-  df <- df %>% arrange(DATE)
-  # 3h moving means: 12 * 15min? we don't know QAQ timestep; use rollapply width by time
-  # Safer: use zoo::rollapplyr index by 12 obs if 15min; but QAQ may be 5min.
-  # Use dplyr grouped rolling over time with slider? For simplicity, use
-  # lubridate floor + rolling windows via runner package? We'll approximate using time-based rollapply via zoo.
+files_tbl <- tibble(path = matches, date_file = map(matches, extract_date) |> unlist()) %>%
+  filter(!is.na(date_file)) %>%
+  arrange(desc(date_file))
 
-  # convert to zoo object with indexed POSIXct
-  z <- zoo(df$NO2, df$DATE)
-  NO2_3h  <- rollapply(z, width = as.difftime(3, units="hours"), FUN = mean,
-                       align = "right", partial = TRUE, na.rm = TRUE)
-  z <- zoo(df$O3,  df$DATE)
-  O3_3h   <- rollapply(z, width = as.difftime(3, units="hours"), FUN = mean,
-                       align = "right", partial = TRUE, na.rm = TRUE)
-  z <- zoo(df$PM2.5,df$DATE)
-  PM25_3h <- rollapply(z, width = as.difftime(3, units="hours"), FUN = mean,
-                       align = "right", partial = TRUE, na.rm = TRUE)
-  PM25_1h <- rollapply(z, width = as.difftime(1, units="hours"), FUN = mean,
-                       align = "right", partial = TRUE, na.rm = TRUE)
+if (nrow(files_tbl) < 1) stop("No dated QAQ files found for ", sensor_id)
 
-  # align back
-  df$NO2_3h  <- as.numeric(NO2_3h[df$DATE])
-  df$O3_3h   <- as.numeric(O3_3h[df$DATE])
-  df$PM25_3h <- as.numeric(PM25_3h[df$DATE])
-  df$PM25_1h <- as.numeric(PM25_1h[df$DATE])
-
-  contrib_sum <- with(df,
-                      (exp(0.000871 * NO2_3h) - 1) +
-                      (exp(0.000537 * O3_3h)  - 1) +
-                      (exp(0.000487 * PM25_3h) - 1))
-
-  df <- df %>%
-    mutate(
-      AQHI_raw = (10 / 10.4) * 100 * (
-        (exp(0.000871 * NO2_3h) - 1) +
-        (exp(0.000537 * O3_3h)  - 1) +
-        (exp(0.000487 * PM25_3h) - 1)
-      ),
-      AQHI        = apply_aqhi_ceiling(AQHI_raw, PM25_1h),
-      NO2_contrib = (exp(0.000871 * NO2_3h)  - 1) / contrib_sum,
-      O3_contrib  = (exp(0.000537 * O3_3h)   - 1) / contrib_sum,
-      PM25_contrib= (exp(0.000487 * PM25_3h) - 1) / contrib_sum,
-      Top_AQHI_Contributor = pmap_chr(
-        list(NO2_contrib, O3_contrib, PM25_contrib),
-        function(no2, o3, pm25) {
-          vals <- c(NO2 = no2, O3 = o3, `PM2.5` = pm25)
-          if (all(is.na(vals))) NA_character_
-          else names(vals)[which.max(replace_na(vals, -Inf))]
-        })
+# ── Reader that maps QAQ → working columns -----------------------------------
+read_qaq <- function(path) {
+  # Expect: co, co2, no, no2, o3, pm1, pm10, pm25, temp, rh, timestamp_local, sn
+  df <- read_csv(path, show_col_types = FALSE, na = c("", "NA", "NaN")) %>%
+    # Filter this sensor only (defensive)
+    filter(is.na(sn) | sn == sensor_id) %>%
+    transmute(
+      DATE = ymd_hms(timestamp_local, tz = tz_local, quiet = TRUE) + hours(clock_offset_hours),
+      CO   = as.numeric(co),
+      NO   = as.numeric(no),
+      NO2  = as.numeric(no2),
+      O3   = as.numeric(o3),
+      CO2  = as.numeric(co2),
+      `PM1.0` = as.numeric(pm1),
+      PM10 = as.numeric(pm10),
+      `PM2.5` = as.numeric(pm25),
+      TE   = as.numeric(temp),   # RAMP uses TE for temperature (°C)
+      RH   = as.numeric(rh)      # (%)
     ) %>%
-    select(-ends_with("_3h"), -PM25_1h, -AQHI_raw,
-           everything(), AQHI, Top_AQHI_Contributor) # ensure AQHI cols kept
-
+    arrange(DATE) %>%
+    filter(!is.na(DATE))
   df
 }
 
-# fallback single row if sensor stale -----------------------------------------
-fallback_row <- function() {
-  tibble(
-    DATE = now_pst,
-    TE   = "QAQ",
-    CO=-1,NO=-1,NO2=-1,O3=-1,CO2=-1,T=-1,RH=-1,
-    `PM1.0`=-1,`PM2.5`=-1,PM10=-1,
-    AQHI=-1,
-    Top_AQHI_Contributor = "-1"
-  )
+# Read newest two days (or more) until we cover past_48h
+parts <- list(); earliest <- now_pst
+for (p in files_tbl$path) {
+  message("  • reading ", path_file(p))
+  raw <- tryCatch(read_qaq(p), error = function(e) { warning(conditionMessage(e)); NULL })
+  if (is.null(raw) || nrow(raw) == 0) next
+  parts <- append(parts, list(raw))
+  earliest <- min(earliest, min(raw$DATE, na.rm = TRUE))
+  if (earliest <= past_48h) break
+}
+if (!length(parts)) stop("No usable rows after parsing for ", sensor_id)
+
+raw_all <- bind_rows(parts) %>%
+  filter(DATE >= past_48h) %>%
+  distinct(DATE, .keep_all = TRUE)
+
+# ── 15-min averaging (RAMP-style with openair) --------------------------------
+df_avg <- raw_all %>%
+  mutate(date = DATE) %>%
+  select(date, CO, NO, NO2, O3, CO2, `PM2.5`, `PM1.0`, PM10, TE, RH)
+
+df_15 <- timeAverage(as.data.frame(df_avg), avg.time = "15 min") %>%
+  as_tibble()
+
+# ── Build predictor matrices (RAMP-style) -------------------------------------
+datetime   <- df_15$date
+CO_RAMP    <- matrix(df_15$CO, ncol = 1)
+NO_RAMP    <- matrix(df_15$NO, ncol = 1)
+NO2_RAMP   <- matrix(df_15$NO2, ncol = 1)
+O3_RAMP    <- matrix(df_15$O3, ncol = 1)
+CO2_RAMP   <- matrix(df_15$CO2, ncol = 1)
+PM2_5_RAMP <- matrix(df_15$`PM2.5`, ncol = 1)
+T_RAMP     <- matrix(df_15$TE, ncol = 1)
+RH_RAMP    <- matrix(df_15$RH, ncol = 1)
+
+# Dew point (°C) from T (°C) and RH (%)
+DP_RAMP <- 243.12 * (log(RH_RAMP / 100) + (17.62 * T_RAMP) / (243.12 + T_RAMP)) /
+  (17.62 - log(RH_RAMP / 100) - (17.62 * T_RAMP) / (243.12 + T_RAMP))
+
+data_gas <- cbind(CO_RAMP, NO_RAMP, NO2_RAMP, O3_RAMP, CO2_RAMP, T_RAMP, RH_RAMP)
+data_pm  <- cbind(PM2_5_RAMP, T_RAMP, RH_RAMP, DP_RAMP)
+
+# ── Apply calibrations (explicit, with graceful fallback) ---------------------
+# Prefer Hybrid for gases, Regression for PM2.5 if available
+m_CO   <- get_model(calibration_models, "gas", "CO")
+m_NO   <- get_model(calibration_models, "gas", "NO")
+m_NO2  <- get_model(calibration_models, "gas", "NO2")
+m_O3   <- get_model(calibration_models, "gas", "O3")
+m_CO2  <- get_model(calibration_models, "gas", "CO2")
+m_PM25 <- get_model(calibration_models, "pm",  "PM2_5")
+
+apply_safe <- function(fun, ...) {
+  tryCatch(fun(...), error = function(e) { warning(conditionMessage(e)); NULL })
 }
 
-# ---------------------------------------------------------------
-# MAIN
-# ---------------------------------------------------------------
-for (sid in sensor_ids) {
-  message("── QAQ Sensor ", sid, " ────────────────────────────")
+# If CAPS_* not present, pass through raw
+cap_or_raw <- function(model, x_raw, x_mat, fun) {
+  if (is.null(model) || !exists(fun, mode = "function")) return(as.numeric(x_raw))
+  res <- apply_safe(get(fun), model, x_mat)
+  if (is.null(res)) as.numeric(x_raw) else as.numeric(res)
+}
 
-  # files for yesterday+today PST
-  date_window <- seq.Date(as_date(now_pst) - 1, as_date(now_pst), by = "day")
-  target_files <- glue("{sid}_{format(date_window, '%Y-%m-%d')}")
-  # match prefix because QuantAQ filenames may include suffixes (raw/processed)
-  # ── robust file discovery ──────────────────────────────────────
-  # • **/ prefix ⇒ match at any depth under data/
-  # • no further filtering needed; we’ll sort by date in the filename
-  all_paths <- dir_ls(
-    data_folder,
-    recurse = TRUE,
-    type    = "file",
-    glob    = glue("**/{sid}-*.csv")   # <── key fix
-  )
-  
-  files_raw <- all_paths
-  
-
-  if (!length(files_raw)) {
-    warning("No raw QAQ data for ", sid)
-    df_out <- fallback_row()
+CO_cal    <- cap_or_raw(m_CO,   df_15$CO,    data_gas, "CAPS_Hybrid_Apply")
+NO_cal    <- cap_or_raw(m_NO,   df_15$NO,    data_gas, "CAPS_Hybrid_Apply")
+NO2_cal   <- cap_or_raw(m_NO2,  df_15$NO2,   data_gas, "CAPS_Hybrid_Apply")
+O3_cal    <- cap_or_raw(m_O3,   df_15$O3,    data_gas, "CAPS_Hybrid_Apply")
+CO2_cal   <- cap_or_raw(m_CO2,  df_15$CO2,   data_gas, "CAPS_Hybrid_Apply")
+PM2_5_cal <- {
+  # Try Regression first (common for PM), then Hybrid if only that exists
+  if (!is.null(m_PM25) && exists("CAPS_PR_Apply", mode = "function")) {
+    res <- apply_safe(CAPS_PR_Apply, m_PM25, data_pm)
+    if (!is.null(res)) as.numeric(res) else as.numeric(df_15$`PM2.5`)
+  } else if (!is.null(m_PM25) && exists("CAPS_Hybrid_Apply", mode = "function")) {
+    res <- apply_safe(CAPS_Hybrid_Apply, m_PM25, data_pm)
+    if (!is.null(res)) as.numeric(res) else as.numeric(df_15$`PM2.5`)
   } else {
-    # tibble & sort newest->oldest by date parsed from name
-    files_tbl <- tibble(path = files_raw,
-                        date_file = extract_date(files_raw)) %>%
-      filter(!is.na(date_file)) %>%
-      arrange(desc(date_file))
-
-    # read & calibrate until ≥24h coverage
-    parts <- list(); earliest <- now_pst
-    for (p in files_tbl$path) {
-      message("  • reading ", path_file(p))
-      raw <- tryCatch(read_qaq_raw(p), error = function(e) {
-        warning("    read failed: ", conditionMessage(e)); NULL
-      })
-      if (is.null(raw)) next
-      # apply CAPS models
-      cal <- apply_caps_to_qaq(raw)
-      
-      cal <- cal %>%
-        mutate(DATE = lubridate::floor_date(DATE, "15 minutes")) %>%  # bucket start
-        group_by(DATE) %>%
-        summarise(across(where(is.numeric), ~ mean(.x, na.rm = TRUE)),
-                  .groups = "drop")
-      
-      parts <- append(parts, list(cal))
-      earliest <- min(earliest, min(cal$DATE, na.rm = TRUE))
-      if (earliest <= past_24h) break
-    }
-
-    if (!length(parts)) {
-      warning("  • no calibrated rows after processing ", sid)
-      df_out <- fallback_row()
-    } else {
-      df_all <- bind_rows(parts) %>%
-        mutate(
-          DATE = with_tz(DATE, tz_local) + hours(2),  # device clock offset to align w/ RAMPs
-          TE   = "QAQ"
-        ) %>%
-        arrange(DATE) %>%
-        filter(DATE >= past_24h)
-
-      if (nrow(df_all) == 0) {
-        message("  • all data stale (<24h) – fallback row.")
-        df_out <- fallback_row()
-      } else {
-        df_out <- df_all %>% add_aqhi()
-
-        # ensure required columns exist & order
-        for (col in desired_cols)
-          if (!col %in% names(df_out)) df_out[[col]] <- NA_real_
-        df_out <- df_out %>% select(all_of(desired_cols))
-      }
-    }
+    as.numeric(df_15$`PM2.5`)
   }
-
-  # write -------------------------------------------------------
-  sensor_dir <- path(output_folder, sid); dir_create(sensor_dir)
-  first_day <- format(min(df_out$DATE, na.rm = TRUE), "%Y_%m_%d")
-  last_day  <- format(now_pst, "%Y_%m_%d")
-  outfile <- path(sensor_dir, glue("{sid}_calibrated_{first_day}_to_{last_day}.csv"))
-  write_csv(df_out, outfile, na = "")
-  write_lines(as.character(now_pst), path(sensor_dir, "LAST_RUN.txt"))
-  message("  ✔ wrote ", outfile, " (", nrow(df_out), " rows)")
 }
 
+# ── AQHI (RAMP-style: counts for 15-min cadence) ------------------------------
+NO2_3h   <- rollapply(NO2_cal,   12, mean, fill = NA, align = "right", na.rm = TRUE)
+O3_3h    <- rollapply(O3_cal,    12, mean, fill = NA, align = "right", na.rm = TRUE)
+PM2_5_3h <- rollapply(PM2_5_cal, 12, mean, fill = NA, align = "right", na.rm = TRUE)
+PM2_5_1h <- rollapply(PM2_5_cal,  4, mean, fill = NA, align = "right", na.rm = TRUE)
 
+aqhi_val <- (10 / 10.4) * 100 * (
+  (exp(0.000871 * NO2_3h) - 1) +
+    (exp(0.000537 * O3_3h)  - 1) +
+    (exp(0.000487 * PM2_5_3h) - 1)
+)
+
+aqhi_df <- tibble(
+  AQHI = mapply(apply_aqhi_ceiling, aqhi_val, PM2_5_1h),
+  NO2_contrib_raw   = (exp(0.000871 * NO2_3h) - 1),
+  O3_contrib_raw    = (exp(0.000537 * O3_3h)  - 1),
+  PM2_5_contrib_raw = (exp(0.000487 * PM2_5_3h) - 1)
+) %>%
+  mutate(
+    contrib_sum = NO2_contrib_raw + O3_contrib_raw + PM2_5_contrib_raw,
+    NO2_contrib = NO2_contrib_raw   / contrib_sum,
+    O3_contrib  = O3_contrib_raw    / contrib_sum,
+    PM2_5_contrib = PM2_5_contrib_raw / contrib_sum,
+    Top_AQHI_Contributor = pmap_chr(
+      list(NO2_contrib, O3_contrib, PM2_5_contrib),
+      function(no2, o3, pm25) {
+        vals <- c(NO2 = no2, O3 = o3, `PM2.5` = pm25)
+        if (all(is.na(vals))) NA_character_
+        else names(vals)[which.max(replace_na(vals, -Inf))]
+      }
+    )
+  ) %>%
+  select(AQHI, NO2_contrib, O3_contrib, PM2_5_contrib, Top_AQHI_Contributor)
+
+# ── Final output ---------------------------------------------------------------
+calibrated <- tibble(
+  DATE   = datetime,           # POSIXct
+  CO     = CO_cal,
+  NO     = NO_cal,
+  NO2    = NO2_cal,
+  O3     = O3_cal,
+  CO2    = CO2_cal,
+  `PM2.5`= PM2_5_cal,
+  T     = df_15$TE,
+  RH     = df_15$RH
+) %>%
+  bind_cols(aqhi_df) %>%
+  mutate(DATE = format(with_tz(DATE, tz_local), "%Y-%m-%d %H:%M:%S"))
+
+start_str <- format(past_48h, "%Y_%m_%d")
+end_str   <- format(now_pst,  "%Y_%m_%d")
+outfile   <- file.path(out_dir, glue("{sensor_id}_calibrated_{start_str}_to_{end_str}.csv"))
+
+write_csv(calibrated, outfile, na = "")
+message("✔ Calibrated data written to ", outfile, " (", nrow(calibrated), " rows)")
