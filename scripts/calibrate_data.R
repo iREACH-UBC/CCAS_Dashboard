@@ -58,15 +58,24 @@ if (nrow(files_tbl) < 2)
 
 
 # ── Load and combine ─────────────────────────────────────────────
-today     <- read_csv(files_tbl$path[1])
-yesterday <- read_csv(files_tbl$path[2])
-col_names <- c("DATE", "CO", "NO", "NO2", "O3", "CO2", "PM2.5", "TE", "RH")
+keep_cols <- c("DATE", "CO", "NO", "NO2", "O3", "CO2", "PM2.5", "TE", "RH")
 
-df <- bind_rows(today, yesterday) %>%
-  select(all_of(col_names)) %>%
-  rename(date = DATE) %>%
-  mutate(date = as.POSIXct(date, format = "%m/%d/%y %H:%M:%S", tz = "UTC"))
+read_select <- function(path) {
+  readr::read_csv(path, na = c("", "NA", "NaN"),
+                  guess_max = 100000, show_col_types = FALSE) |>
+    dplyr::select(dplyr::any_of(keep_cols)) |>              # ignore weird extras like `-9`, `0...27`
+    dplyr::mutate(dplyr::across(-DATE, ~ as.character(.x))) # unify to character pre-bind
+}
 
+today     <- read_select(files_tbl$path[1])
+yesterday <- read_select(files_tbl$path[2])
+
+df <- dplyr::bind_rows(today, yesterday) |>
+  dplyr::mutate(
+    dplyr::across(-DATE, ~ readr::parse_double(.x)),        # consistent numeric after bind
+    date = as.POSIXct(DATE, format = "%m/%d/%y %H:%M:%S", tz = "UTC")
+  ) |>
+  dplyr::select(-DATE)
 df_15min <- timeAverage(df, avg.time = "15 min")
 
 # ── Build predictor matrices ─────────────────────────────────────
