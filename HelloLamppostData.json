@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.05,
+        "pollutant_concentration": 23.56,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.54,
+        "pollutant_concentration": 15.66,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,31 +20,31 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 12.19,
+        "pollutant_concentration": 8.25,
         "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 22.24,
+        "pollutant_concentration": 17.07,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 10.12,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 15.13,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.26,
+        "pollutant_concentration": 26.69,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.06,
+        "pollutant_concentration": 18.98,
         "aq_advisory": false
     },
     "Sensor 4": {
