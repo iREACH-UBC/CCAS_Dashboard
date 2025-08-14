@@ -49,8 +49,8 @@
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
