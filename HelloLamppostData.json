@@ -42,7 +42,7 @@
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "High health risk",
-        "value": 9,
+        "value": 7,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
