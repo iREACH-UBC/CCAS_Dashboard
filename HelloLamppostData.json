@@ -9,8 +9,8 @@
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
-        "label": "High health risk",
-        "value": 7,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -42,7 +42,7 @@
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "High health risk",
-        "value": 8,
+        "value": 7,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 30.82,
+        "pollutant_concentration": 31.62,
         "aq_advisory": false
     },
     "Sensor 4": {
