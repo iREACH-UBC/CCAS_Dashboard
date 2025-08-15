@@ -3,16 +3,16 @@
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 20.64,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 19.85,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
-        "label": "Low health risk",
-        "value": 2,
+        "label": "Moderate health risk",
+        "value": 5,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.46,
+        "pollutant_concentration": 20.3,
         "aq_advisory": true
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.13,
+        "pollutant_concentration": 24.49,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.6,
+        "pollutant_concentration": 25.52,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,21 +36,21 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.54,
+        "pollutant_concentration": 26.54,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
-        "label": "Moderate health risk",
-        "value": 4,
-        "top_contributor": "O3",
-        "pollutant_concentration": 34.08,
+        "label": "High health risk",
+        "value": 10,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": true
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -60,13 +60,13 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 40.63,
+        "pollutant_concentration": 33.92,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
