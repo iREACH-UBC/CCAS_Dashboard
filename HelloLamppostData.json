@@ -28,23 +28,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.89,
+        "pollutant_concentration": 6.88,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.95,
+        "pollutant_concentration": 7.22,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 5.95,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 7.96,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 13.96,
+        "pollutant_concentration": 13.77,
         "aq_advisory": false
     },
     "Sensor 4": {
