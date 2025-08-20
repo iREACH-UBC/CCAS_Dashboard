@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.4,
+        "pollutant_concentration": 30.21,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.25,
+        "pollutant_concentration": 33.53,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.96,
+        "pollutant_concentration": 32.84,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.73,
+        "pollutant_concentration": 22.12,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,13 +44,13 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 45.87,
+        "pollutant_concentration": 45.59,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 55.83,
+        "pollutant_concentration": 51.88,
         "aq_advisory": false
     },
     "Sensor 4": {
