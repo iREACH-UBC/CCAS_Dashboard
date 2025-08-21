@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.57,
+        "pollutant_concentration": 14.45,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -20,15 +20,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.23,
+        "pollutant_concentration": 12.14,
         "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 16.94,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 11.68,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -42,9 +42,9 @@
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 14.65,
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 14.61,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.73,
+        "pollutant_concentration": 30.05,
         "aq_advisory": false
     },
     "Sensor 4": {
