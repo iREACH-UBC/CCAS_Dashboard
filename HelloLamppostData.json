@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.61,
+        "pollutant_concentration": 31.92,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 51.74,
+        "pollutant_concentration": 50.2,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.63,
+        "pollutant_concentration": 36.29,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 44.84,
+        "pollutant_concentration": 40.41,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 37.64,
+        "pollutant_concentration": 37.9,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 45.68,
+        "pollutant_concentration": 46.02,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,7 +60,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 76.87,
+        "pollutant_concentration": 73.21,
         "aq_advisory": false
     },
     "Sensor 4": {
