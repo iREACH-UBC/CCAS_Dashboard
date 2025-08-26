@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.01,
+        "pollutant_concentration": 28.58,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.14,
+        "pollutant_concentration": 36.69,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 24.3,
+        "pollutant_concentration": 14.84,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,15 +28,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.91,
+        "pollutant_concentration": 32.44,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 4.96,
+        "top_contributor": "O3",
+        "pollutant_concentration": 32.61,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 36.09,
+        "pollutant_concentration": 37.35,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,13 +60,13 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 91.06,
+        "pollutant_concentration": 44.42,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
