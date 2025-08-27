@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-08-27 15:10:49",
+  "lastChecked": "2025-08-27 16:13:28",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -35,7 +35,7 @@
     },
     {
       "Region": "Central Fraser Valley, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "North Harrison Lake, B.C.",
@@ -43,7 +43,7 @@
     },
     {
       "Region": "Eastern Fraser Valley, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Fraser Canyon - north including Lillooet, B.C.",
