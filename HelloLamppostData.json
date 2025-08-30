@@ -19,8 +19,8 @@
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 8.08,
+        "top_contributor": "O3",
+        "pollutant_concentration": 21.96,
         "aq_advisory": false
     },
     "Sensor 9": {
