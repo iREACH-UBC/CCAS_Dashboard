@@ -1,26 +1,26 @@
 {
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.66,
+        "pollutant_concentration": 30.93,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 44.32,
+        "pollutant_concentration": 70.41,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 39.14,
+        "pollutant_concentration": 30.07,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 40.5,
+        "pollutant_concentration": 54.42,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 42.33,
+        "pollutant_concentration": 40.85,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,13 +44,13 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.64,
+        "pollutant_concentration": 42.33,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.92,
+        "pollutant_concentration": 30.92,
         "aq_advisory": false
     },
     "Sensor 4": {
