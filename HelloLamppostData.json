@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 37.53,
+        "pollutant_concentration": 35.49,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -60,7 +60,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 72.29,
+        "pollutant_concentration": 71.1,
         "aq_advisory": false
     },
     "Sensor 4": {
