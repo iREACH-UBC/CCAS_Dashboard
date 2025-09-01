@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.88,
+        "pollutant_concentration": 11.05,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.65,
+        "pollutant_concentration": 24.1,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.56,
+        "pollutant_concentration": 22.74,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.3,
+        "pollutant_concentration": 8.71,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -59,8 +59,8 @@
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 13.29,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 13.19,
         "aq_advisory": false
     },
     "Sensor 4": {
