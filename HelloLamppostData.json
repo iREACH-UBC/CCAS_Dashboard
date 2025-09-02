@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.18,
+        "pollutant_concentration": 26.16,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -35,8 +35,8 @@
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 6.7,
+        "top_contributor": "O3",
+        "pollutant_concentration": 22.1,
         "aq_advisory": false
     },
     "Sensor 2": {
