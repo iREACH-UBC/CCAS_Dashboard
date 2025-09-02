@@ -4,15 +4,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.85,
+        "pollutant_concentration": 11.27,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 9.58,
+        "top_contributor": "O3",
+        "pollutant_concentration": 22.67,
         "aq_advisory": false
     },
     "Sensor 5": {
