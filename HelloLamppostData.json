@@ -27,8 +27,8 @@
         "name": "Bowen Island",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 13.7,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 12.09,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.11,
+        "pollutant_concentration": 18.4,
         "aq_advisory": false
     },
     "Sensor 4": {
