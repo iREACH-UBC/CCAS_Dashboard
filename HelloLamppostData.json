@@ -4,15 +4,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 34.12,
+        "pollutant_concentration": 22.67,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 41.86,
+        "pollutant_concentration": 30.48,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.21,
+        "pollutant_concentration": 36.55,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.48,
+        "pollutant_concentration": 27.05,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.6,
+        "pollutant_concentration": 34.78,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 44.03,
+        "pollutant_concentration": 42.59,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,7 +60,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 52.48,
+        "pollutant_concentration": 49.13,
         "aq_advisory": false
     },
     "Sensor 4": {
