@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Moderate health risk",
-        "value": 4,
+        "value": 5,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.21,
+        "pollutant_concentration": 19.05,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.25,
+        "pollutant_concentration": 10.03,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.02,
+        "pollutant_concentration": 7.92,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -59,14 +59,14 @@
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 8.19,
+        "top_contributor": "O3",
+        "pollutant_concentration": 34.28,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "High health risk",
-        "value": 8,
+        "value": 9,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
