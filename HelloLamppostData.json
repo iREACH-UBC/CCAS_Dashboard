@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.13,
+        "pollutant_concentration": 20.53,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.69,
+        "pollutant_concentration": 11.27,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.13,
+        "pollutant_concentration": 13.98,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.92,
+        "pollutant_concentration": 12.17,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,13 +44,13 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.83,
+        "pollutant_concentration": 8.69,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Moderate health risk",
-        "value": 5,
+        "value": 6,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -59,8 +59,8 @@
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 20.2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 13.79,
         "aq_advisory": false
     },
     "Sensor 4": {
