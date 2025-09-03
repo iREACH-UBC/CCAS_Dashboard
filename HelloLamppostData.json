@@ -4,7 +4,7 @@
         "label": "Moderate health risk",
         "value": 5,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.56,
+        "pollutant_concentration": 23.32,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,15 +12,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.79,
+        "pollutant_concentration": 8.77,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Moderate health risk",
         "value": 4,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 18.15,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -34,7 +34,7 @@
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "High health risk",
-        "value": 9,
+        "value": 10,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.86,
+        "pollutant_concentration": 7.74,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 37.49,
+        "pollutant_concentration": 38.29,
         "aq_advisory": false
     },
     "Sensor 4": {
