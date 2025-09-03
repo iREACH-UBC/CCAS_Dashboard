@@ -1,10 +1,10 @@
 {
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
-        "label": "Moderate health risk",
-        "value": 4,
-        "top_contributor": "PM2.5",
-        "pollutant_concentration": "N/A",
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "O3",
+        "pollutant_concentration": 28.22,
         "aq_advisory": true
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 41.17,
+        "pollutant_concentration": 43.61,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,13 +20,13 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.3,
+        "pollutant_concentration": 25.87,
         "aq_advisory": true
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "High health risk",
-        "value": 10,
+        "value": 8,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -34,7 +34,7 @@
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Very high health risk",
-        "value": 12,
+        "value": 11,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.95,
+        "pollutant_concentration": 35.14,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,13 +60,13 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.34,
+        "pollutant_concentration": 94.68,
         "aq_advisory": true
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
-        "label": "High health risk",
-        "value": 7,
+        "label": "Moderate health risk",
+        "value": 6,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
