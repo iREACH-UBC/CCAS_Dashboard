@@ -3,8 +3,8 @@
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 28.47,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 23.16,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.36,
+        "pollutant_concentration": 27.91,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -41,16 +41,16 @@
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.48,
+        "pollutant_concentration": 42.41,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Moderate health risk",
-        "value": 6,
+        "value": 5,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -66,7 +66,7 @@
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
