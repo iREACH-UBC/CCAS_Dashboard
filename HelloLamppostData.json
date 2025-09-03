@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Moderate health risk",
-        "value": 5,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 23.32,
+        "value": 6,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,29 +12,29 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.77,
+        "pollutant_concentration": 8.35,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Moderate health risk",
-        "value": 4,
+        "value": 5,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
-        "label": "High health risk",
-        "value": 10,
+        "label": "Very high health risk",
+        "value": 11,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
-        "label": "High health risk",
-        "value": 10,
+        "label": "Very high health risk",
+        "value": 12,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.74,
+        "pollutant_concentration": 7.24,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.29,
+        "pollutant_concentration": 38.92,
         "aq_advisory": false
     },
     "Sensor 4": {
