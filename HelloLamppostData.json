@@ -9,10 +9,10 @@
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 42.93,
+        "pollutant_concentration": 39.57,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.32,
+        "pollutant_concentration": 35.43,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.13,
+        "pollutant_concentration": 19.67,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -58,9 +58,9 @@
     "Sensor 8": {
         "name": "Whistler Public Library",
         "label": "Moderate health risk",
-        "value": 5,
+        "value": 6,
         "top_contributor": "O3",
-        "pollutant_concentration": 66.3,
+        "pollutant_concentration": 42.93,
         "aq_advisory": false
     },
     "Sensor 4": {
