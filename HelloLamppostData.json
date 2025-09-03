@@ -1,8 +1,8 @@
 {
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
-        "label": "High health risk",
-        "value": 7,
+        "label": "Moderate health risk",
+        "value": 5,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -11,14 +11,14 @@
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 6.81,
+        "top_contributor": "O3",
+        "pollutant_concentration": 32.32,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Moderate health risk",
-        "value": 5,
+        "value": 4,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -43,8 +43,8 @@
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 6.64,
+        "top_contributor": "O3",
+        "pollutant_concentration": 25.39,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -57,10 +57,10 @@
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.3,
+        "pollutant_concentration": 43.37,
         "aq_advisory": true
     },
     "Sensor 4": {
