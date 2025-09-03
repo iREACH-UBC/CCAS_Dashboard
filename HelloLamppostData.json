@@ -1,18 +1,18 @@
 {
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
-        "label": "Moderate health risk",
-        "value": 6,
+        "label": "High health risk",
+        "value": 7,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.35,
+        "pollutant_concentration": 6.81,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -21,30 +21,30 @@
         "value": 5,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Very high health risk",
-        "value": 11,
+        "value": 12,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Very high health risk",
-        "value": 12,
+        "value": 14,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.24,
+        "pollutant_concentration": 6.64,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -53,22 +53,22 @@
         "value": 5,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.92,
-        "aq_advisory": false
+        "pollutant_concentration": 43.3,
+        "aq_advisory": true
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
-        "label": "High health risk",
-        "value": 10,
+        "label": "Very high health risk",
+        "value": 13,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     }
 }
