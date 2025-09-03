@@ -10,9 +10,9 @@
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 40.12,
+        "pollutant_concentration": 41.17,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,13 +20,13 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.53,
+        "pollutant_concentration": 31.3,
         "aq_advisory": true
     },
     "Sensor 9": {
         "name": "Bowen Island",
-        "label": "Very high health risk",
-        "value": 11,
+        "label": "High health risk",
+        "value": 10,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -34,7 +34,7 @@
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Very high health risk",
-        "value": 13,
+        "value": 12,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.53,
+        "pollutant_concentration": 33.95,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,13 +60,13 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.48,
+        "pollutant_concentration": 43.34,
         "aq_advisory": true
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "High health risk",
-        "value": 9,
+        "value": 7,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
