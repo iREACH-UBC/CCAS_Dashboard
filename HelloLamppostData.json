@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.9,
+        "pollutant_concentration": 40.61,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -34,7 +34,7 @@
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Very high health risk",
-        "value": 14,
+        "value": 13,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -44,13 +44,13 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.86,
+        "pollutant_concentration": 33.53,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Moderate health risk",
-        "value": 5,
+        "value": 4,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -60,13 +60,13 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 42.53,
+        "pollutant_concentration": 43.48,
         "aq_advisory": true
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
-        "label": "Very high health risk",
-        "value": 12,
+        "label": "High health risk",
+        "value": 9,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
