@@ -34,7 +34,7 @@
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "High health risk",
-        "value": 9,
+        "value": 8,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 39.28,
+        "pollutant_concentration": 36.83,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,13 +60,13 @@
         "label": "Moderate health risk",
         "value": 5,
         "top_contributor": "O3",
-        "pollutant_concentration": 94.13,
+        "pollutant_concentration": 91.99,
         "aq_advisory": true
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Moderate health risk",
-        "value": 5,
+        "value": 4,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
