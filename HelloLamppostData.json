@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.05,
+        "pollutant_concentration": 27.74,
         "aq_advisory": true
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 44.07,
+        "pollutant_concentration": 57.84,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.98,
+        "pollutant_concentration": 31.09,
         "aq_advisory": true
     },
     "Sensor 9": {
@@ -34,7 +34,7 @@
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "High health risk",
-        "value": 10,
+        "value": 9,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -42,9 +42,9 @@
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.07,
+        "pollutant_concentration": 39.28,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -58,9 +58,9 @@
     "Sensor 8": {
         "name": "Whistler Public Library",
         "label": "Moderate health risk",
-        "value": 4,
+        "value": 5,
         "top_contributor": "O3",
-        "pollutant_concentration": 91.77,
+        "pollutant_concentration": 94.13,
         "aq_advisory": true
     },
     "Sensor 4": {
