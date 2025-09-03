@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.79,
+        "pollutant_concentration": 21.8,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,21 +12,21 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.93,
+        "pollutant_concentration": 11.2,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.82,
+        "pollutant_concentration": 18.72,
         "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
-        "label": "Moderate health risk",
-        "value": 5,
+        "label": "High health risk",
+        "value": 8,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -34,7 +34,7 @@
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Moderate health risk",
-        "value": 5,
+        "value": 6,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -44,13 +44,13 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.05,
+        "pollutant_concentration": 10.15,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Moderate health risk",
-        "value": 4,
+        "value": 5,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.05,
+        "pollutant_concentration": 13.81,
         "aq_advisory": false
     },
     "Sensor 4": {
