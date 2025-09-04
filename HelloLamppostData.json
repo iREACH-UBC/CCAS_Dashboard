@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.9,
+        "pollutant_concentration": 11.24,
         "aq_advisory": true
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.23,
+        "pollutant_concentration": 37.89,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.32,
+        "pollutant_concentration": 9.08,
         "aq_advisory": true
     },
     "Sensor 9": {
@@ -28,15 +28,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.73,
+        "pollutant_concentration": 12.64,
         "aq_advisory": true
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
-        "label": "Moderate health risk",
-        "value": 4,
-        "top_contributor": "PM2.5",
-        "pollutant_concentration": "N/A",
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 13.02,
         "aq_advisory": true
     },
     "Sensor 2": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.45,
+        "pollutant_concentration": 33.49,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -52,7 +52,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.03,
+        "pollutant_concentration": 43.17,
         "aq_advisory": true
     },
     "Sensor 8": {
@@ -60,7 +60,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 82.98,
+        "pollutant_concentration": 44.05,
         "aq_advisory": true
     },
     "MOD-00616": {
