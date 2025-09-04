@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.6,
+        "pollutant_concentration": 16.36,
         "aq_advisory": true
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.59,
+        "pollutant_concentration": 10.88,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.04,
+        "pollutant_concentration": 12.91,
         "aq_advisory": true
     },
     "Sensor 9": {
@@ -44,13 +44,13 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.2,
+        "pollutant_concentration": 9.23,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.57,
+        "pollutant_concentration": 15.04,
         "aq_advisory": true
     },
     "Sensor 4": {
