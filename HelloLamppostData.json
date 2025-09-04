@@ -4,23 +4,23 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.76,
+        "pollutant_concentration": 21.94,
         "aq_advisory": true
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 37.48,
+        "pollutant_concentration": 24.26,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.21,
+        "pollutant_concentration": 7.3,
         "aq_advisory": true
     },
     "Sensor 9": {
@@ -34,7 +34,7 @@
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Moderate health risk",
-        "value": 5,
+        "value": 6,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -60,7 +60,7 @@
         "label": "Moderate health risk",
         "value": 5,
         "top_contributor": "O3",
-        "pollutant_concentration": 44.53,
+        "pollutant_concentration": 72.06,
         "aq_advisory": true
     },
     "Sensor 4": {
