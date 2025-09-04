@@ -15,4 +15,4 @@ id,lat,lon,name,sensor_number,region
 2042,50.318678,-122.800427,Pemberton Community Centre,Sensor 7,"Whistler, B.C."
 2043,50.117361,-122.956237,Whistler Public Library,Sensor 8,"Whistler, B.C."
 MOD-00632,49.326636,-123.121436,Lions Gate Rec Center,Sensor 4,"Metro Vancouver - NW, B.C."
-MOD-00616,50.318678,-122.800427,Pemberton Community Centre,Sensor 7,"Whistler, B.C."
+MOD-00616,0,0,0,0,0
