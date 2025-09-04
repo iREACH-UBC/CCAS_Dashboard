@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-09-04 15:11:20",
+  "lastChecked": "2025-09-04 16:11:44",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -39,7 +39,7 @@
     },
     {
       "Region": "North Harrison Lake, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Eastern Fraser Valley, B.C.",
@@ -55,7 +55,7 @@
     },
     {
       "Region": "Fraser Canyon - south including Lytton, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Lake Winnipegosis, Man.",
