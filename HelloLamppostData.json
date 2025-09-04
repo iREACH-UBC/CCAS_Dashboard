@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.94,
+        "pollutant_concentration": 25.31,
         "aq_advisory": true
     },
     "Sensor 3": {
@@ -12,23 +12,23 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 24.26,
+        "pollutant_concentration": 14.19,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.3,
+        "pollutant_concentration": 25.96,
         "aq_advisory": true
     },
     "Sensor 9": {
         "name": "Bowen Island",
-        "label": "Moderate health risk",
-        "value": 4,
-        "top_contributor": "O3",
-        "pollutant_concentration": 17.81,
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 17.53,
         "aq_advisory": true
     },
     "Sensor 6": {
@@ -44,13 +44,13 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 40.09,
+        "pollutant_concentration": 7.33,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 5,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -60,13 +60,13 @@
         "label": "Moderate health risk",
         "value": 5,
         "top_contributor": "O3",
-        "pollutant_concentration": 72.06,
+        "pollutant_concentration": 37.25,
         "aq_advisory": true
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
