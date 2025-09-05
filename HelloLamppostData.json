@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.67,
+        "pollutant_concentration": 32.61,
         "aq_advisory": true
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 44.39,
+        "pollutant_concentration": 47.46,
         "aq_advisory": true
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.7,
+        "pollutant_concentration": 38.64,
         "aq_advisory": true
     },
     "Sensor 9": {
@@ -28,39 +28,39 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.01,
+        "pollutant_concentration": 27.74,
         "aq_advisory": true
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "PM2.5",
-        "pollutant_concentration": "N/A",
+        "top_contributor": "O3",
+        "pollutant_concentration": 28.26,
         "aq_advisory": true
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 37.47,
+        "pollutant_concentration": 35.42,
         "aq_advisory": true
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "High health risk",
-        "value": 8,
+        "value": 7,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
-        "label": "Moderate health risk",
-        "value": 6,
-        "top_contributor": "O3",
-        "pollutant_concentration": 43.34,
+        "label": "High health risk",
+        "value": 9,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": true
     },
     "Sensor 10": {
