@@ -4,15 +4,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.63,
+        "pollutant_concentration": 15.9,
         "aq_advisory": true
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 7.57,
+        "top_contributor": "O3",
+        "pollutant_concentration": 27.9,
         "aq_advisory": true
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.77,
+        "pollutant_concentration": 12.55,
         "aq_advisory": true
     },
     "Sensor 9": {
@@ -43,17 +43,17 @@
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 4.93,
+        "top_contributor": "O3",
+        "pollutant_concentration": 19.64,
         "aq_advisory": true
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "High health risk",
-        "value": 10,
+        "value": 9,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
@@ -61,6 +61,14 @@
         "value": 4,
         "top_contributor": "O3",
         "pollutant_concentration": 43.3,
+        "aq_advisory": true
+    },
+    "Sensor 10": {
+        "name": "Evelyne Saller Centre",
+        "label": "Moderate health risk",
+        "value": 6,
+        "top_contributor": null,
+        "pollutant_concentration": "N/A",
         "aq_advisory": true
     },
     "Sensor 4": {
