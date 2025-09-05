@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-09-05T12:15-07:00",
+  "generated_at": "2025-09-05T12:24-07:00",
   "sensors": [
     {
       "id": "2021",
@@ -8731,12 +8731,12 @@
     },
     {
       "id": "MOD-00616",
-      "name": null,
-      "sensor_number": null,
-      "region": null,
-      "lat": null,
-      "lon": null,
-      "active_alert": false,
+      "name": "Pemberton Community Centre",
+      "sensor_number": "Sensor 7",
+      "region": "Whistler, B.C.",
+      "lat": 50.318678,
+      "lon": -122.800427,
+      "active_alert": true,
       "latest": {
         "timestamp": "2025-09-05T12:00",
         "aqhi": 10.0,
