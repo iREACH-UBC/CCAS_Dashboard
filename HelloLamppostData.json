@@ -65,8 +65,8 @@
     },
     "MOD-00616": {
         "name": "MOD-00616",
-        "label": "Moderate health risk",
-        "value": 6,
+        "label": "High health risk",
+        "value": 7,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
