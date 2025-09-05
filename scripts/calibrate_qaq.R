@@ -206,7 +206,7 @@ NO2_cal   <- cap_or_raw(m_NO2,  df_15$NO2,   data_gas, "CAPS_Hybrid_Apply")
 O3_cal    <- cap_or_raw(m_O3,   df_15$O3,    data_gas, "CAPS_Hybrid_Apply")
 CO2_cal   <- cap_or_raw(m_CO2,  df_15$CO2,   data_gas, "CAPS_Hybrid_Apply")
 PM2_5_cal <- {
-  # Try Regression first (common for PM), then Hybrid if only that exists
+  # Do regression, but Hybrid if only that exists
   if (!is.null(m_PM25) && exists("CAPS_PR_Apply", mode = "function")) {
     res <- apply_safe(CAPS_PR_Apply, m_PM25, data_pm)
     if (!is.null(res)) as.numeric(res) else as.numeric(df_15$`PM2.5`)
@@ -255,7 +255,7 @@ aqhi_df <- tibble(
 # ── Final output ---------------------------------------------------------------
 calibrated <- tibble(
   DATE   = datetime,           # POSIXct
-  CO     = CO_cal,
+  CO     = CO_cal/1000,
   NO     = NO_cal,
   NO2    = NO2_cal,
   O3     = O3_cal,
