@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.27,
+        "pollutant_concentration": 13.23,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,7 +60,7 @@
         "label": "High health risk",
         "value": 7,
         "top_contributor": "O3",
-        "pollutant_concentration": 74.52,
+        "pollutant_concentration": 67.3,
         "aq_advisory": true
     },
     "MOD-00616": {
