@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.26,
+        "pollutant_concentration": 20.13,
         "aq_advisory": true
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.29,
+        "pollutant_concentration": 27.49,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,15 +20,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.05,
+        "pollutant_concentration": 11.62,
         "aq_advisory": true
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 20.84,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 14.16,
         "aq_advisory": true
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.55,
+        "pollutant_concentration": 22.85,
         "aq_advisory": true
     },
     "Sensor 2": {
@@ -44,29 +44,29 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.43,
+        "pollutant_concentration": 31.27,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Moderate health risk",
-        "value": 6,
+        "value": 5,
         "top_contributor": "O3",
-        "pollutant_concentration": 70.38,
+        "pollutant_concentration": 38.88,
         "aq_advisory": true
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
-        "label": "Moderate health risk",
-        "value": 6,
+        "label": "High health risk",
+        "value": 7,
         "top_contributor": "O3",
-        "pollutant_concentration": 80.76,
+        "pollutant_concentration": 74.52,
         "aq_advisory": true
     },
     "MOD-00616": {
         "name": "MOD-00616",
-        "label": "Moderate health risk",
-        "value": 6,
+        "label": "High health risk",
+        "value": 7,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
