@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
-        "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 6.88,
+        "value": 3,
+        "top_contributor": "O3",
+        "pollutant_concentration": 24.72,
         "aq_advisory": true
     },
     "Sensor 3": {
@@ -33,8 +33,8 @@
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
