@@ -20,13 +20,13 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.19,
+        "pollutant_concentration": 19.05,
         "aq_advisory": true
     },
     "Sensor 9": {
         "name": "Bowen Island",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
