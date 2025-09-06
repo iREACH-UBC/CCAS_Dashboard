@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 16.27,
+        "pollutant_concentration": 15.54,
         "aq_advisory": true
     },
     "Sensor 3": {
@@ -12,23 +12,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.44,
+        "pollutant_concentration": 12.31,
         "aq_advisory": true
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.94,
+        "pollutant_concentration": 16.16,
         "aq_advisory": true
     },
     "Sensor 9": {
         "name": "Bowen Island",
-        "label": "Low health risk",
-        "value": 3,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 13.01,
+        "label": "Moderate health risk",
+        "value": 4,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": true
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.68,
+        "pollutant_concentration": 10.62,
         "aq_advisory": true
     },
     "Sensor 7": {
