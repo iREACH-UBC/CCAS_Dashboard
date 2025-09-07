@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.72,
+        "pollutant_concentration": 14.2,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.91,
+        "pollutant_concentration": 38.17,
         "aq_advisory": true
     },
     "Sensor 5": {
@@ -20,48 +20,48 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.06,
+        "pollutant_concentration": 20.22,
         "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 19.65,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 10.5,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 9.22,
-        "aq_advisory": true
+        "top_contributor": "O3",
+        "pollutant_concentration": 20.48,
+        "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.08,
+        "pollutant_concentration": 37.36,
         "aq_advisory": true
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Very high health risk",
-        "value": 12,
+        "value": 15,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
-        "aq_advisory": true
+        "aq_advisory": false
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 34.01,
-        "aq_advisory": true
+        "pollutant_concentration": 39.26,
+        "aq_advisory": false
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
@@ -74,7 +74,7 @@
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": false
