@@ -4,15 +4,15 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "NO2",
-        "pollutant_concentration": 30.62,
+        "pollutant_concentration": 31.08,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 10.02,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 12.99,
         "aq_advisory": true
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 24.28,
+        "pollutant_concentration": 22.98,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.27,
+        "pollutant_concentration": 12.59,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.83,
+        "pollutant_concentration": 12.52,
         "aq_advisory": true
     },
     "Sensor 2": {
@@ -44,13 +44,13 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 6.95,
+        "pollutant_concentration": 8.61,
         "aq_advisory": true
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "High health risk",
-        "value": 7,
+        "value": 8,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -60,7 +60,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.27,
+        "pollutant_concentration": 35.61,
         "aq_advisory": true
     },
     "Sensor 10": {
