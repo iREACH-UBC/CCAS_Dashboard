@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.73,
+        "pollutant_concentration": 23.37,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.65,
+        "pollutant_concentration": 43.79,
         "aq_advisory": true
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 39.74,
+        "pollutant_concentration": 34.85,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.55,
+        "pollutant_concentration": 35.21,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,21 +36,21 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.57,
+        "pollutant_concentration": 33.03,
         "aq_advisory": true
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 42.98,
+        "pollutant_concentration": 42.12,
         "aq_advisory": true
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Very high health risk",
-        "value": 26,
+        "value": 21,
         "top_contributor": null,
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -59,8 +59,8 @@
         "name": "Whistler Public Library",
         "label": "Moderate health risk",
         "value": 5,
-        "top_contributor": "PM2.5",
-        "pollutant_concentration": "N/A",
+        "top_contributor": "O3",
+        "pollutant_concentration": 42.43,
         "aq_advisory": true
     },
     "Sensor 10": {
