@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-09-07 13:11:52",
+  "lastChecked": "2025-09-07 14:09:52",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -11,7 +11,7 @@
     },
     {
       "Region": "Whistler, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Metro Vancouver - NW, B.C.",
@@ -23,7 +23,7 @@
     },
     {
       "Region": "Howe Sound, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Metro Vancouver - SE, B.C.",
@@ -39,7 +39,7 @@
     },
     {
       "Region": "North Harrison Lake, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Eastern Fraser Valley, B.C.",
