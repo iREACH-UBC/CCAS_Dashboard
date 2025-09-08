@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2025-09-08 11:12:18",
+  "lastChecked": "2025-09-08 12:12:48",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -51,7 +51,7 @@
     },
     {
       "Region": "Nicola, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Fraser Canyon - south including Lytton, B.C.",
