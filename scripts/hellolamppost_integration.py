@@ -4,6 +4,8 @@
 # Create HelloLamppostData.json from:
 #   • pollutant_data.json      (AQHI, pollutants, advisory flag)
 #   • sensor_metadata.csv      (id, name, sensor_number)
+#
+# Note that the data is imported from the pollutant_data.json, not directly from the calibrated data files.
 
 from __future__ import annotations
 import json, sys

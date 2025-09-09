@@ -260,9 +260,7 @@ calibrated <- tibble(
   NO2    = NO2_cal,
   O3     = O3_cal,
   CO2    = CO2_cal,
-  `PM2.5`= PM2_5_cal,
-  T     = df_15$TE,
-  RH     = df_15$RH
+  `PM2.5`= PM2_5_cal
 ) %>%
   bind_cols(aqhi_df) %>%
   mutate(DATE = format(with_tz(DATE, tz_local), "%Y-%m-%d %H:%M:%S"))
