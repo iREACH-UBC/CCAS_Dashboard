@@ -5,7 +5,7 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # - Connects to Yahoo IMAP (INBOX)
 # - Finds emails with subject containing "Alert for AQ Alerts"
-# - Parses MIME safely to extract text/plain
+# - Extracts text via mRpostman::fetch_text() + clean_msg_text()
 # - Extracts advisory blocks, expands umbrella regions to specific sub-regions
 # - Maintains a duplicate-safe history log and an active-alerts state
 # - Writes a compact AQAdvisories.json with booleans per target region
@@ -13,12 +13,14 @@
 
 suppressPackageStartupMessages({
   library(mRpostman)
-  library(mime)
   library(stringr)
   library(jsonlite)
   library(lubridate)
   library(dplyr)
 })
+
+# If using renv in CI, restore first
+if (requireNamespace("renv", quietly = TRUE)) renv::restore()
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Config / Files
@@ -81,7 +83,6 @@ REGIONS_FOR_JSON <- TARGETS$Region
 normalize_key <- function(x) {
   x <- ifelse(is.na(x), "", x)
   x <- stringr::str_replace_all(x, "[\u2010-\u2015]", "-")  # any dash → "-"
-  x <- stringr::str_replace_all(x, "[“”]", "\"")
   x <- gsub("\\s+", " ", trimws(tolower(x)))
   x
 }
@@ -93,41 +94,32 @@ clean_plain_text <- function(text) {
   trimws(text)
 }
 
-# Recursively extract the first text/plain part from a parsed MIME object
-get_text_plain <- function(node) {
-  ct <- node$headers$`content-type`
-  if (!is.null(ct) && grepl("^text/plain", tolower(ct))) {
-    # node$body is raw; convert to character
-    return(clean_plain_text(rawToChar(node$body)))
-  }
-  if (!is.null(node$parts)) {
-    for (p in node$parts) {
-      got <- get_text_plain(p)
-      if (!is.null(got) && nzchar(got)) return(got)
-    }
-  }
-  NULL
-}
-
 # Extract advisory info (time/status/regions) from a plain-text email
-extract_info <- function(raw_mime, plain_text, email_id) {
-  # Attempt to find "Issued at 2025-09-09 10:23 AM PDT" (variants tolerated)
-  time_of_issue <- str_match(raw_mime, "Issued at ([0-9\\-]{10}\\s+[0-9:APM ]+\\s+[A-Z]{2,4})")
-  if (is.na(time_of_issue[1, 2])) {
-    # fallback: use now
-    dt <- with_tz(Sys.time(), TIMEZONE_OUT)
-  } else {
-    datetime_str <- time_of_issue[1, 2]
+# plain_text: decoded text body
+# email_id:   original message id (string)
+# date_hdr:   optional Date header string for fallback timestamp
+extract_info <- function(plain_text, email_id, date_hdr = NULL) {
+  # 1) Timestamp: prefer "Issued at ..." in body; else fall back to Date header; else now
+  # Examples: "Issued at 2025-09-09 10:23 AM PDT"
+  time_of_issue <- str_match(plain_text, "Issued at ([0-9\\-]{10}\\s+[0-9:APM ]+\\s+[A-Z]{2,4})")[,2]
+  if (!is.na(time_of_issue)) {
     dt <- suppressWarnings(parse_date_time(
-      datetime_str,
+      time_of_issue,
       orders = c("Y-m-d I:M p z", "Y-m-d H:M:S z", "Y-m-d H:M z", "Y-m-d H:M:S")
     ))
-    if (is.na(dt)) dt <- Sys.time()
-    dt <- with_tz(dt, TIMEZONE_OUT)
+  } else if (!is.null(date_hdr) && !is.na(date_hdr)) {
+    dt <- suppressWarnings(parse_date_time(
+      date_hdr,
+      orders = c("a, d b Y H:M:S z", "d b Y H:M:S z", "a, d b Y H:M z", "d b Y H:M z", "Y-m-d H:M:S z")
+    ))
+  } else {
+    dt <- Sys.time()
   }
+  if (is.na(dt)) dt <- Sys.time()
+  dt <- with_tz(dt, TIMEZONE_OUT)
   dt_str <- format(dt, "%Y-%m-%d %H:%M:%S")
   
-  # Find blocks like: "Air quality statement - issued for:\n<locations...>"
+  # 2) Find blocks like: "Air quality statement - issued for:\n<locations...>"
   pattern <- "(?is)air\\s+quality\\s+(warning|statement)\\s*[-–—]\\s*(issued|ended|continued)\\s*for:\\s*([\\s\\S]+?)(?=\\n{2,}|The\\s+above\\s+alert|Current\\s+details|Air\\s+quality\\s+(warning|statement)|\\z)"
   alert_matches <- str_match_all(plain_text, pattern)[[1]]
   if (is.null(alert_matches) || nrow(alert_matches) == 0) {
@@ -138,7 +130,6 @@ extract_info <- function(raw_mime, plain_text, email_id) {
   all_dfs <- list()
   
   for (j in seq_len(nrow(alert_matches))) {
-    status <- tolower(alert_matches[j, 2])  # warning/statement (not used)
     action <- tolower(alert_matches[j, 3])  # issued/ended/continued
     locations_block <- alert_matches[j, 4]
     
@@ -146,7 +137,6 @@ extract_info <- function(raw_mime, plain_text, email_id) {
     lines <- str_split(locations_block, "\n")[[1]]
     lines <- trimws(lines)
     lines <- lines[nzchar(lines)]
-    
     if (!length(lines)) next
     
     # Extract Region and Code if present
@@ -176,7 +166,6 @@ extract_info <- function(raw_mime, plain_text, email_id) {
 expand_umbrella_regions <- function(df) {
   if (is.null(df) || !nrow(df)) return(df)
   
-  # Pre-compute for TARGETS
   TARGETS$RegionKey <<- normalize_key(TARGETS$Region)
   
   out_list <- vector("list", nrow(df))
@@ -330,20 +319,33 @@ all_updates <- list()
 
 if (length(new_emails)) {
   for (email_id in new_emails) {
-    # Full RFC822 message → parse MIME → extract text/plain
-    raw_msg  <- con$fetch_msg(msg_id = email_id)
-    eml      <- mime::parse_email(raw_msg)
-    plain_tx <- get_text_plain(eml)
+    # Get decoded text body
+    txt_list <- con$fetch_text(
+      msg_id        = as.numeric(email_id),
+      keep_in_mem   = TRUE,
+      write_to_disk = FALSE
+    )
+    plain_tx <- tryCatch(mRpostman::clean_msg_text(txt_list)[[1]], error = function(e) "")
+    plain_tx <- clean_plain_text(plain_tx)
     
-    if (is.null(plain_tx) || !nzchar(plain_tx)) {
+    # Pull header Date as fallback timestamp
+    hdr <- con$fetch_header(
+      msg_id        = as.numeric(email_id),
+      fields        = c("DATE","SUBJECT"),
+      keep_in_mem   = TRUE,
+      write_to_disk = FALSE
+    )
+    date_hdr <- tryCatch(hdr[[1]]$header[["DATE"]], error = function(e) NA_character_)
+    
+    if (!nzchar(plain_tx)) {
       message("No text/plain body found for email ID: ", email_id, " — skipping.")
-      write(email_id, file = LOG_FILE, append = TRUE)
+      write(as.character(email_id), file = LOG_FILE, append = TRUE)
       next
     }
     
-    temp_df <- extract_info(raw_msg, plain_tx, email_id)
+    temp_df <- extract_info(plain_tx, email_id, date_hdr)
     if (is.null(temp_df) || !nrow(temp_df)) {
-      write(email_id, file = LOG_FILE, append = TRUE)
+      write(as.character(email_id), file = LOG_FILE, append = TRUE)
       next
     }
     
@@ -357,7 +359,7 @@ if (length(new_emails)) {
     all_updates[[length(all_updates) + 1]] <- temp_df
     
     # Mark as processed
-    write(email_id, file = LOG_FILE, append = TRUE)
+    write(as.character(email_id), file = LOG_FILE, append = TRUE)
   }
 } else {
   message("No new emails to process.")
@@ -388,7 +390,7 @@ if (length(all_updates)) {
       }
     } else if (action %in% c("issued", "continued")) {
       if (length(match_idx)) {
-        active_alerts[match_idx, c("EmailTimestamp","Status","EmailID")] <- 
+        active_alerts[match_idx, c("EmailTimestamp","Status","EmailID")] <-
           as_char_df(row[c("EmailTimestamp","Status","EmailID")])
       } else {
         active_alerts <- rbind(active_alerts, as_char_df(row))
@@ -404,8 +406,6 @@ if (length(all_updates)) {
 # ──────────────────────────────────────────────────────────────────────────────
 # Build output JSON (booleans per target region)
 # ──────────────────────────────────────────────────────────────────────────────
-clean_region <- function(x) gsub("\\s+", " ", trimws(x))
-
 active_regions_norm <- normalize_key(active_alerts$Region)
 targets_norm        <- normalize_key(REGIONS_FOR_JSON)
 
