@@ -1,13 +1,13 @@
 {
-  "lastChecked": "2025-09-09 14:14:22",
+  "lastChecked": "2025-09-09 16:59:58",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Sunshine Coast - Saltery Bay to Powell River, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Whistler, B.C.",
@@ -47,7 +47,7 @@
     },
     {
       "Region": "Fraser Canyon - north including Lillooet, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Nicola, B.C.",
@@ -55,34 +55,6 @@
     },
     {
       "Region": "Fraser Canyon - south including Lytton, B.C.",
-      "ActiveAlert": true
-    },
-    {
-      "Region": "Lake Winnipegosis, Man.",
-      "ActiveAlert": false
-    },
-    {
-      "Region": "The Pas Cormorant Westray and Wanless, Man.",
-      "ActiveAlert": false
-    },
-    {
-      "Region": "Westgate Red Deer Lake and Barrows, Man.",
-      "ActiveAlert": false
-    },
-    {
-      "Region": "Porcupine Prov. Forest, Man.",
-      "ActiveAlert": false
-    },
-    {
-      "Region": "Thompson Thicket Portage and Pikwitonei, Man.",
-      "ActiveAlert": false
-    },
-    {
-      "Region": "Nelson House, Man.",
-      "ActiveAlert": false
-    },
-    {
-      "Region": "Flin Flon Cranberry Portage and Grass River Prov. Park, Man.",
       "ActiveAlert": false
     }
   ]
