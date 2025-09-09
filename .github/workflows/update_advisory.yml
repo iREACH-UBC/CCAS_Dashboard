@@ -29,26 +29,30 @@ jobs:
           sudo apt-get install -y libcurl4-openssl-dev
 
       - name: Install minimal R packages
-        run: |
-          Rscript -e 'pkgs <- c("mRpostman","stringr","jsonlite","lubridate","dplyr"); \
-                      inst <- rownames(installed.packages()); \
-                      need <- setdiff(pkgs, inst); \
-                      if (length(need)) install.packages(need, repos="https://cloud.r-project.org")'
+        env:
+          RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"   # prevent renv autoload
+        run: >
+          Rscript -e 'pkgs <- c("mRpostman","stringr","jsonlite","lubridate","dplyr");
+          inst <- rownames(installed.packages());
+          need <- setdiff(pkgs, inst);
+          if (length(need)) install.packages(need, repos="https://cloud.r-project.org")'
 
       - name: Run email scraper
         env:
           YAHOO_USER: ${{ secrets.YAHOO_USER }}
           YAHOO_PASS: ${{ secrets.YAHOO_PASS }}
-          CCAS_SKIP_RENV: "1"   # tell the script to skip full renv restore
+          CCAS_SKIP_RENV: "1"                    # tell the script to skip renv::restore()
+          RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE" # double-lock renv autoload
         run: Rscript scripts/email_scraper.R
 
       - name: Commit and push if AQAdvisories.json changed
         run: |
+          set -e
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add AQAdvisories.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Update AQAdvisories.json"
-            git pull --rebase origin main
-            git push origin HEAD:main
-          fi
+          git diff --cached --quiet && echo "No changes to commit." || {
+            git commit -m "Update AQAdvisories.json";
+            git pull --rebase origin main;
+            git push origin HEAD:main;
+          }

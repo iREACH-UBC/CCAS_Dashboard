@@ -19,8 +19,17 @@ suppressPackageStartupMessages({
   library(dplyr)
 })
 
-# If using renv in CI, restore first
-if (requireNamespace("renv", quietly = TRUE)) renv::restore()
+needed <- c("mRpostman","stringr","jsonlite","lubridate","dplyr")
+
+if (nzchar(Sys.getenv("CCAS_SKIP_RENV"))) {
+  # CI/lightweight mode: ensure deps without renv
+  miss <- needed[!vapply(needed, requireNamespace, logical(1), quietly = TRUE)]
+  if (length(miss)) install.packages(miss, repos = "https://cloud.r-project.org")
+} else if (requireNamespace("renv", quietly = TRUE)) {
+  # Dev mode: restore only the needed pkgs
+  renv::restore(packages = needed)
+}
+
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Config / Files
