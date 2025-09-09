@@ -41,6 +41,9 @@ KEEP_COLS = [
     "AQHI", "Top_AQHI_contributor",
 ]
 
+KEEP_COLS_LC = {c.lower() for c in KEEP_COLS}
+CANON_MAP    = {c.lower(): c for c in KEEP_COLS}
+
 # Accept purely‑numeric IDs (“2040”) **and** alphanumeric ones with dashes
 # (“MOD‑00616”, “AIR‑123” …)
 FILE_RE = re.compile(
@@ -157,13 +160,19 @@ def build() -> dict:
             continue
 
         try:
-            df = pd.read_csv(csv_path, usecols=lambda c: c in KEEP_COLS)
+            # read only wanted columns, case-insensitive
+            df = pd.read_csv(csv_path, usecols=lambda c: c.lower() in KEEP_COLS_LC)
         except ValueError as e:
             print(f"[ERROR] {csv_path}: {e}", file=sys.stderr)
             continue
-
-        # ── rename / sanity‑check columns ──────────────────────
+        
+        # normalize all headers to canonical spellings (DATE, AQHI, Top_AQHI_contributor, PM2.5, …)
+        df.rename(columns=lambda c: CANON_MAP.get(c.lower(), c), inplace=True)
+        
+        # now do your semantic renames
         df.rename(columns={"Top_AQHI_contributor": "PRIMARY", "PM2.5": "PM25"}, inplace=True)
+        
+        # ensure expected columns exist even if missing in the CSV
         for col in ("PRIMARY", "PM25"):
             if col not in df.columns:
                 df[col] = None
