@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.63,
+        "pollutant_concentration": 25.12,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 18.83,
+        "pollutant_concentration": 20.25,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.42,
+        "pollutant_concentration": 22.13,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.57,
+        "pollutant_concentration": 16.16,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -66,9 +66,9 @@
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.11,
+        "pollutant_concentration": 19.22,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 9.09,
+        "pollutant_concentration": 13.89,
         "aq_advisory": false
     }
 }
