@@ -79,10 +79,20 @@ def main():
         latest   = s.get("latest", {})
         aqhi_val = latest.get("aqhi", "N/A")
         primary  = latest.get("primary", "N/A")
-        conc     = (
-            latest.get("pollutants", {}).get(str(primary).lower(), "N/A")
-            if isinstance(primary, str) else "N/A"
-        )
+        val = None
+        if isinstance(primary, str) and "pollutants" in latest:
+            # try multiple forms of the key
+            keys_to_try = [primary, primary.lower(), primary.strip().lower()]
+            for k in keys_to_try:
+                if k in latest["pollutants"]:
+                    val = latest["pollutants"][k]
+                    break
+        
+        # decide what to display
+        if isinstance(val, (int, float)) and not pd.isna(val):
+            conc = round(val, 2)
+        else:
+            conc = "N/A"
 
         kiosk_out[sensor_number] = {
             "name":                    site_name,
