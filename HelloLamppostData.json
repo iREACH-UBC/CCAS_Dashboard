@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.2,
+        "pollutant_concentration": 15.82,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 46.81,
+        "pollutant_concentration": 43.72,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.8,
+        "pollutant_concentration": 26.39,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.87,
+        "pollutant_concentration": 23.65,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 24.74,
+        "pollutant_concentration": 27.46,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 41.91,
+        "pollutant_concentration": 41.47,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -52,15 +52,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.91,
+        "pollutant_concentration": 23.53,
         "aq_advisory": false
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 39.12,
+        "pollutant_concentration": 40.63,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.83,
+        "pollutant_concentration": 19.08,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.79,
+        "pollutant_concentration": 14.79,
         "aq_advisory": false
     }
 }
