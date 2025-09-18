@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.94,
+        "pollutant_concentration": 29.36,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 41.9,
+        "pollutant_concentration": 39.02,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,23 +20,23 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.75,
+        "pollutant_concentration": 31.43,
         "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.54,
+        "pollutant_concentration": 36.46,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.27,
+        "pollutant_concentration": 31.36,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,15 +44,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 44.49,
+        "pollutant_concentration": 39.77,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 46.64,
+        "pollutant_concentration": 47.62,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -60,7 +60,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 54.63,
+        "pollutant_concentration": 43.91,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -68,15 +68,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.7,
+        "pollutant_concentration": 41.99,
         "aq_advisory": false
     },
     "Sensor 11": {
         "name": "Lynn Valley Community Recreation Centre",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 48.13,
+        "pollutant_concentration": 48.71,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 30.26,
+        "pollutant_concentration": 26.55,
         "aq_advisory": false
     }
 }
