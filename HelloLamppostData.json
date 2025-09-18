@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 16.16,
+        "pollutant_concentration": 12.15,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.44,
+        "pollutant_concentration": 21.1,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.75,
+        "pollutant_concentration": 8.92,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.42,
+        "pollutant_concentration": 18.79,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.53,
+        "pollutant_concentration": 9.12,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,23 +44,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 17.62,
+        "pollutant_concentration": 15.15,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.84,
+        "pollutant_concentration": 29.16,
         "aq_advisory": false
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 13.04,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 10.09,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -68,15 +68,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.15,
+        "pollutant_concentration": 9.36,
         "aq_advisory": false
     },
     "Sensor 11": {
         "name": "Lynn Valley Community Recreation Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 12.32,
+        "pollutant_concentration": 13.02,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 5.09,
+        "pollutant_concentration": 4.59,
         "aq_advisory": false
     }
 }
