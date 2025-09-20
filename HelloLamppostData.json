@@ -3,8 +3,8 @@
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 16.59,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 18.74,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -19,8 +19,8 @@
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 14.79,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 14.69,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.98,
+        "pollutant_concentration": 45.6,
         "aq_advisory": false
     },
     "Sensor 12": {
