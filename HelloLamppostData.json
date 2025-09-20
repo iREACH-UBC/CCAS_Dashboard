@@ -4,15 +4,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.34,
+        "pollutant_concentration": 20.47,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 5.65,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 10.6,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.01,
+        "pollutant_concentration": 15.89,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,15 +28,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.97,
+        "pollutant_concentration": 17.9,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 11.78,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 13.79,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,15 +44,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.57,
+        "pollutant_concentration": 11.86,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 15.53,
+        "pollutant_concentration": 16.14,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.32,
+        "pollutant_concentration": 34.14,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.46,
+        "pollutant_concentration": 14.43,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -76,15 +76,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.56,
+        "pollutant_concentration": 16.54,
         "aq_advisory": false
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
-        "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 17.75,
+        "value": 3,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 15.38,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": "N/A",
+        "pollutant_concentration": 13.32,
         "aq_advisory": false
     }
 }
