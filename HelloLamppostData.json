@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 45.91,
+        "pollutant_concentration": 35.32,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -66,17 +66,17 @@
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Moderate health risk",
-        "value": 5,
+        "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.33,
+        "pollutant_concentration": 24.48,
         "aq_advisory": false
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.12,
+        "pollutant_concentration": 13.2,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -84,7 +84,7 @@
         "label": "Moderate health risk",
         "value": 5,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.19,
+        "pollutant_concentration": 24.79,
         "aq_advisory": false
     },
     "Sensor 4": {
