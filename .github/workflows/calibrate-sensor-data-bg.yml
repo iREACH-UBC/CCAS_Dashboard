@@ -1,0 +1,181 @@
+name: Update Calibrated Sensor Data (background → R2)
+
+on:
+  workflow_run:
+    workflows: ["Update Sensor Data (background, no commits)"]
+    types: [completed]
+  workflow_dispatch: {}
+
+defaults:
+  run:
+    shell: bash
+
+permissions:
+  contents: read
+
+env:
+  R_LIBS_USER: ${{ github.workspace }}/.Rlib
+  RSPM: https://packagemanager.posit.co/cran/__linux__/jammy/latest
+  RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
+
+  # Cloudflare R2 / S3 credentials (REQUIRED)
+  R2_ENDPOINT:           ${{ secrets.R2_ENDPOINT }}
+  R2_BUCKET:             ${{ secrets.R2_BUCKET }}
+  AWS_ACCESS_KEY_ID:     ${{ secrets.R2_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+
+  # Optional: force which UTC date to process (YYYY-MM-DD). If empty, we do "yesterday UTC".
+  UTC_TARGET_DATE:       ""
+
+jobs:
+  calibrate-ramp-bg:
+    name: RAMP calibration (BG) → R2
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    strategy:
+      matrix:
+        sid: [2021, 2022, 2040, 2032, 2042, 2043, 2024, 2030]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+
+      - name: Download raw CSVs from triggering fetch run
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repo: ${{ github.repository }}
+          run_id: ${{ github.event.workflow_run.id }}
+          path: data_bg
+          if_no_artifact_found: warn
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key:  ${{ runner.os }}-r-lib-bg-${{ hashFiles('scripts/calibrate_data_bg.R') }}
+          restore-keys: ${{ runner.os }}-r-lib-bg-
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install R packages (RAMP BG)
+        run: |
+          Rscript -e 'pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble","fs","zoo","openair","glue","randomForest","gtools","tidyr");
+                      missing <- setdiff(pkgs, rownames(installed.packages()));
+                      if (length(missing)) install.packages(missing, repos=Sys.getenv("RSPM"), quiet=TRUE)'
+
+      - name: Create temp dir
+        run: echo "TMP_DIR=$(mktemp -d)" >> "$GITHUB_ENV"
+
+      - name: Download model (${{ matrix.sid }})
+        env:
+          R2_ACCOUNT_ID:  ${{ secrets.R2_ACCOUNT_ID }}
+          R2_BUCKET:      ${{ env.R2_BUCKET }}
+          R2_OBJ_KEY:     ${{ matrix.sid }}/Calibration_Models.obj
+          DEST_PATH:      ${{ env.TMP_DIR }}
+        run: |
+          chmod +x scripts/download_r2_obj.sh
+          ./scripts/download_r2_obj.sh   # must export CAL_MODEL_PATH
+
+      - name: Determine UTC date to process
+        id: datepick
+        run: |
+          if [ -n "${UTC_TARGET_DATE}" ]; then
+            echo "DATE_UTC=${UTC_TARGET_DATE}" >> "$GITHUB_OUTPUT"
+          else
+            echo "DATE_UTC=$(date -u -d 'yesterday' +%F)" >> "$GITHUB_OUTPUT"
+          fi
+          echo "Processing UTC date: $(cat $GITHUB_OUTPUT)"
+
+      - name: Calibrate RAMP ${{ matrix.sid }} (BG)
+        run: Rscript scripts/calibrate_data_bg.R "${{ matrix.sid }}" "${{ steps.datepick.outputs.DATE_UTC }}"
+
+      - name: Upload to R2 (RAMP ${{ matrix.sid }})
+        run: |
+          sudo apt-get update && sudo apt-get install -y rclone
+          rclone config create r2 s3 provider Cloudflare env_auth true endpoint "$R2_ENDPOINT" --non-interactive
+          # push single-day UTC file(s) for this sensor to data/<sid>/
+          rclone copy "calibrated_data_bg/${{ matrix.sid }}/" "r2:${R2_BUCKET}/data/${{ matrix.sid }}/" \
+            --include "*_${{ steps.datepick.outputs.DATE_UTC }}_UTC.csv" \
+            --s3-no-check-bucket --checkers 16 --transfers 8 --fast-list --checksum
+
+  calibrate-qaq-bg:
+    name: QAQ calibration (BG) → R2
+    runs-on: ubuntu-latest
+    needs: calibrate-ramp-bg
+    if: always()
+    timeout-minutes: 45
+
+    strategy:
+      matrix:
+        sid: [MOD-00616, MOD-00632, MOD-00625, MOD-00631, MOD-00623, MOD-00628, MOD-00620, MOD-00627, MOD-00630, MOD-00624]
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+
+      - name: Download raw CSVs from triggering fetch run
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repo: ${{ github.repository }}
+          run_id: ${{ github.event.workflow_run.id }}
+          path: data_bg
+          if_no_artifact_found: warn
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key:  ${{ runner.os }}-r-lib-qaq-bg-${{ hashFiles('scripts/calibrate_qaq_bg.R') }}
+          restore-keys: ${{ runner.os }}-r-lib-qaq-bg-
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - name: Install R packages (QAQ BG)
+        run: |
+          Rscript -e 'pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble","fs","zoo","glue","gtools","tidyr");
+                      missing <- setdiff(pkgs, rownames(installed.packages()));
+                      if (length(missing)) install.packages(missing, repos=Sys.getenv("RSPM"), quiet=TRUE)'
+
+      - name: Create temp dir
+        run: echo "TMP_DIR=$(mktemp -d)" >> "$GITHUB_ENV"
+
+      - name: Download model (${{ matrix.sid }})
+        env:
+          R2_ACCOUNT_ID:  ${{ secrets.R2_ACCOUNT_ID }}
+          R2_BUCKET:      ${{ env.R2_BUCKET }}
+          R2_OBJ_KEY:     ${{ matrix.sid }}/Calibration_Models.obj
+          DEST_PATH:      ${{ env.TMP_DIR }}
+        run: |
+          chmod +x scripts/download_r2_obj.sh
+          ./scripts/download_r2_obj.sh   # must export CAL_MODEL_PATH
+
+      - name: Determine UTC date to process
+        id: datepick
+        run: |
+          if [ -n "${UTC_TARGET_DATE}" ]; then
+            echo "DATE_UTC=${UTC_TARGET_DATE}" >> "$GITHUB_OUTPUT"
+          else
+            echo "DATE_UTC=$(date -u -d 'yesterday' +%F)" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Calibrate QAQ ${{ matrix.sid }} (BG)
+        run: Rscript scripts/calibrate_qaq_bg.R "${{ matrix.sid }}" "${{ steps.datepick.outputs.DATE_UTC }}"
+
+      - name: Upload to R2 (QAQ ${{ matrix.sid }})
+        run: |
+          sudo apt-get update && sudo apt-get install -y rclone
+          rclone config create r2 s3 provider Cloudflare env_auth true endpoint "$R2_ENDPOINT" --non-interactive
+          rclone copy "calibrated_data_bg/${{ matrix.sid }}/" "r2:${R2_BUCKET}/data/${{ matrix.sid }}/" \
+            --include "*_${{ steps.datepick.outputs.DATE_UTC }}_UTC.csv" \
+            --s3-no-check-bucket --checkers 16 --transfers 8 --fast-list --checksum

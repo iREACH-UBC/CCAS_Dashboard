@@ -1,0 +1,60 @@
+name: Update Sensor Data (background, no commits)
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  fetch-ramp-bg:
+    name: RAMP scrape → artifact
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install requests pytz pandas numpy
+
+      - name: Run background RAMP
+        run: python scripts/fetch_ramp_data_bg.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ramp-bg-${{ github.run_id }}
+          path: data/*.csv
+          if-no-files-found: ignore
+
+  fetch-qaq-bg:
+    name: QuantAQ API → artifact
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - run: pip install requests pytz pandas numpy
+
+      - name: Run background QAQ
+        env:
+          QUANTAQ_API_KEY: ${{ secrets.QUANTAQ_API_KEY }}
+        run: python scripts/fetch_qaq_data_bg.py
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: qaq-bg-${{ github.run_id }}
+          path: data/*.csv
+          if-no-files-found: ignore
