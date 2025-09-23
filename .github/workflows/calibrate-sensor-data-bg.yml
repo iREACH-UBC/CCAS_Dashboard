@@ -21,8 +21,8 @@ env:
   # Cloudflare R2 / S3 credentials
   R2_ENDPOINT:           ${{ secrets.R2_ENDPOINT }}
   R2_BUCKET:             outdoor-calibrations
-  R2_ACCESS_KEY_ID:     ${{ secrets.R2_ACCESS_KEY_ID }}
-  R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
   # Optional: set a specific UTC date (YYYY-MM-DD). If empty, we auto-pick.
   UTC_TARGET_DATE:       ""
