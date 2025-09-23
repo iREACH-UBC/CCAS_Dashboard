@@ -23,6 +23,7 @@ env:
   R2_BUCKET:             outdoor-calibrations
   AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION:    auto   # quiets awscli region warnings
 
   # Optional: set a specific UTC date (YYYY-MM-DD). If empty, we auto-pick.
   UTC_TARGET_DATE:       ""
@@ -76,10 +77,14 @@ jobs:
                       miss <- setdiff(pkgs, rownames(installed.packages()));
                       if (length(miss)) install.packages(miss, repos=Sys.getenv("RSPM"), quiet=TRUE)'
 
+      # Install AWS CLI v2 (official installer) – apt/aws-actions not available on 24.04
       - name: Install AWS CLI
         run: |
           sudo apt-get update
-          sudo apt-get install -y awscli
+          sudo apt-get install -y unzip curl
+          curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
+          unzip -q awscliv2.zip
+          sudo ./aws/install --update
           aws --version
 
       - name: Create temp dir
@@ -174,7 +179,10 @@ jobs:
       - name: Install AWS CLI
         run: |
           sudo apt-get update
-          sudo apt-get install -y awscli
+          sudo apt-get install -y unzip curl
+          curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
+          unzip -q awscliv2.zip
+          sudo ./aws/install --update
           aws --version
 
       - name: Create temp dir
