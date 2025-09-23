@@ -27,11 +27,17 @@ jobs:
       - name: Run background RAMP
         run: python scripts/fetch_ramp_data_bg.py
 
+      - name: List files to upload (RAMP)
+        run: |
+          echo "Expecting CSVs under data_bg/:"
+          find data_bg -type f -maxdepth 3 -name '*.csv' -print || true
+
       - uses: actions/upload-artifact@v4
         with:
           name: ramp-bg-${{ github.run_id }}
-          path: data/*.csv
-          if-no-files-found: ignore
+          path: data_bg/*.csv        # <-- was data/*.csv
+          if-no-files-found: error   # be loud if nothing produced
+          retention-days: 30
 
   fetch-qaq-bg:
     name: QuantAQ API → artifact
@@ -53,8 +59,14 @@ jobs:
           QUANTAQ_API_KEY: ${{ secrets.QUANTAQ_API_KEY }}
         run: python scripts/fetch_qaq_data_bg.py
 
+      - name: List files to upload (QAQ)
+        run: |
+          echo "Expecting CSVs under data_bg/:"
+          find data_bg -type f -maxdepth 3 -name '*.csv' -print || true
+
       - uses: actions/upload-artifact@v4
         with:
           name: qaq-bg-${{ github.run_id }}
-          path: data/*.csv
-          if-no-files-found: ignore
+          path: data_bg/*.csv        # <-- was data/*.csv
+          if-no-files-found: error
+          retention-days: 30

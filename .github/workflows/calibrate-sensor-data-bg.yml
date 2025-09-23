@@ -20,11 +20,11 @@ env:
 
   # Cloudflare R2 / S3 credentials (REQUIRED)
   R2_ENDPOINT:           ${{ secrets.R2_ENDPOINT }}
-  R2_BUCKET:             ${{ secrets.R2_BUCKET }}
-  AWS_ACCESS_KEY_ID:     ${{ secrets.R2_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+  R2_BUCKET:             outdoor-calibrations   # set here to avoid missing secret
+  R2_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+  R2_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-  # Optional: force which UTC date to process (YYYY-MM-DD). If empty, we do "yesterday UTC".
+  # Optional: set a specific UTC date (YYYY-MM-DD). If empty, we auto-pick.
   UTC_TARGET_DATE:       ""
 
 jobs:
@@ -44,6 +44,7 @@ jobs:
           lfs: true
           persist-credentials: false
 
+      # Pull raw CSV artifacts from the triggering fetch run
       - name: Download raw CSVs from triggering fetch run
         uses: dawidd6/action-download-artifact@v3
         with:
@@ -51,7 +52,12 @@ jobs:
           repo: ${{ github.repository }}
           run_id: ${{ github.event.workflow_run.id }}
           path: data_bg
-          if_no_artifact_found: warn
+          if_no_artifact_found: error
+
+      - name: Inspect downloaded artifacts
+        run: |
+          echo "Downloaded files under data_bg/:"
+          find data_bg -type f -maxdepth 4 -print || true
 
       - uses: actions/cache@v4
         with:
@@ -65,9 +71,14 @@ jobs:
 
       - name: Install R packages (RAMP BG)
         run: |
-          Rscript -e 'pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble","fs","zoo","openair","glue","randomForest","gtools","tidyr");
-                      missing <- setdiff(pkgs, rownames(installed.packages()));
-                      if (length(missing)) install.packages(missing, repos=Sys.getenv("RSPM"), quiet=TRUE)'
+          Rscript -e 'pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble",
+                                "fs","zoo","openair","glue","randomForest","gtools",
+                                "tidyr","caret");  # caret needed by saved models
+                          missing <- setdiff(pkgs, rownames(installed.packages()));
+                          if (length(missing)) install.packages(missing, repos=Sys.getenv("RSPM"), quiet=TRUE)'
+
+      # Ensure AWS CLI if your download script uses aws s3 cp
+      - uses: aws-actions/setup-aws-cli@v2
 
       - name: Create temp dir
         run: echo "TMP_DIR=$(mktemp -d)" >> "$GITHUB_ENV"
@@ -82,15 +93,23 @@ jobs:
           chmod +x scripts/download_r2_obj.sh
           ./scripts/download_r2_obj.sh   # must export CAL_MODEL_PATH
 
+      # Choose UTC date: explicit > latest < today from artifacts > yesterday
       - name: Determine UTC date to process
         id: datepick
         run: |
           if [ -n "${UTC_TARGET_DATE}" ]; then
             echo "DATE_UTC=${UTC_TARGET_DATE}" >> "$GITHUB_OUTPUT"
           else
-            echo "DATE_UTC=$(date -u -d 'yesterday' +%F)" >> "$GITHUB_OUTPUT"
+            TODAY=$(date -u +%F)
+            # extract dates from filenames in data_bg
+            DATES=$(find data_bg -type f -name '*.csv' -print0 | xargs -0 -n1 basename | grep -Eo '[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort -u)
+            PICK=$(echo "$DATES" | awk -v today="$TODAY" '$0<today{print}' | tail -n1)
+            if [ -z "$PICK" ]; then
+              PICK=$(date -u -d 'yesterday' +%F)
+            fi
+            echo "DATE_UTC=$PICK" >> "$GITHUB_OUTPUT"
           fi
-          echo "Processing UTC date: $(cat $GITHUB_OUTPUT)"
+          echo "Processing UTC date: ${{ steps.datepick.outputs.DATE_UTC }}"
 
       - name: Calibrate RAMP ${{ matrix.sid }} (BG)
         run: Rscript scripts/calibrate_data_bg.R "${{ matrix.sid }}" "${{ steps.datepick.outputs.DATE_UTC }}"
@@ -99,7 +118,6 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y rclone
           rclone config create r2 s3 provider Cloudflare env_auth true endpoint "$R2_ENDPOINT" --non-interactive
-          # push single-day UTC file(s) for this sensor to data/<sid>/
           rclone copy "calibrated_data_bg/${{ matrix.sid }}/" "r2:${R2_BUCKET}/data/${{ matrix.sid }}/" \
             --include "*_${{ steps.datepick.outputs.DATE_UTC }}_UTC.csv" \
             --s3-no-check-bucket --checkers 16 --transfers 8 --fast-list --checksum
@@ -129,7 +147,12 @@ jobs:
           repo: ${{ github.repository }}
           run_id: ${{ github.event.workflow_run.id }}
           path: data_bg
-          if_no_artifact_found: warn
+          if_no_artifact_found: error
+
+      - name: Inspect downloaded artifacts
+        run: |
+          echo "Downloaded files under data_bg/:"
+          find data_bg -type f -maxdepth 4 -print || true
 
       - uses: actions/cache@v4
         with:
@@ -146,6 +169,8 @@ jobs:
           Rscript -e 'pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble","fs","zoo","glue","gtools","tidyr");
                       missing <- setdiff(pkgs, rownames(installed.packages()));
                       if (length(missing)) install.packages(missing, repos=Sys.getenv("RSPM"), quiet=TRUE)'
+
+      - uses: aws-actions/setup-aws-cli@v2
 
       - name: Create temp dir
         run: echo "TMP_DIR=$(mktemp -d)" >> "$GITHUB_ENV"
@@ -166,8 +191,15 @@ jobs:
           if [ -n "${UTC_TARGET_DATE}" ]; then
             echo "DATE_UTC=${UTC_TARGET_DATE}" >> "$GITHUB_OUTPUT"
           else
-            echo "DATE_UTC=$(date -u -d 'yesterday' +%F)" >> "$GITHUB_OUTPUT"
+            TODAY=$(date -u +%F)
+            DATES=$(find data_bg -type f -name '*.csv' -print0 | xargs -0 -n1 basename | grep -Eo '[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort -u)
+            PICK=$(echo "$DATES" | awk -v today="$TODAY" '$0<today{print}' | tail -n1)
+            if [ -z "$PICK" ]; then
+              PICK=$(date -u -d 'yesterday' +%F)
+            fi
+            echo "DATE_UTC=$PICK" >> "$GITHUB_OUTPUT"
           fi
+          echo "Processing UTC date: ${{ steps.datepick.outputs.DATE_UTC }}"
 
       - name: Calibrate QAQ ${{ matrix.sid }} (BG)
         run: Rscript scripts/calibrate_qaq_bg.R "${{ matrix.sid }}" "${{ steps.datepick.outputs.DATE_UTC }}"
