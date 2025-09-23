@@ -27,16 +27,22 @@ jobs:
       - name: Run background RAMP
         run: python scripts/fetch_ramp_data_bg.py
 
-      - name: List files to upload (RAMP)
+      # Normalize outputs: move any files from data/ → data_bg/ (don’t change scripts)
+      - name: Normalize output folder (RAMP)
         run: |
-          echo "Expecting CSVs under data_bg/:"
-          find data_bg -type f -maxdepth 3 -name '*.csv' -print || true
+          mkdir -p data_bg
+          shopt -s nullglob
+          for f in data/*.csv; do
+            echo "Moving $f → data_bg/"; mv "$f" data_bg/;
+          done
+          echo "Contents of data_bg/:"
+          find data_bg -maxdepth 2 -type f -name '*.csv' -print || true
 
       - uses: actions/upload-artifact@v4
         with:
           name: ramp-bg-${{ github.run_id }}
-          path: data_bg/*.csv        # <-- was data/*.csv
-          if-no-files-found: error   # be loud if nothing produced
+          path: data_bg/*.csv
+          if-no-files-found: error
           retention-days: 30
 
   fetch-qaq-bg:
@@ -59,14 +65,20 @@ jobs:
           QUANTAQ_API_KEY: ${{ secrets.QUANTAQ_API_KEY }}
         run: python scripts/fetch_qaq_data_bg.py
 
-      - name: List files to upload (QAQ)
+      # Normalize outputs: move any files from data/ → data_bg/ (don’t change scripts)
+      - name: Normalize output folder (QAQ)
         run: |
-          echo "Expecting CSVs under data_bg/:"
-          find data_bg -type f -maxdepth 3 -name '*.csv' -print || true
+          mkdir -p data_bg
+          shopt -s nullglob
+          for f in data/*.csv; do
+            echo "Moving $f → data_bg/"; mv "$f" data_bg/;
+          done
+          echo "Contents of data_bg/:"
+          find data_bg -maxdepth 2 -type f -name '*.csv' -print || true
 
       - uses: actions/upload-artifact@v4
         with:
           name: qaq-bg-${{ github.run_id }}
-          path: data_bg/*.csv        # <-- was data/*.csv
+          path: data_bg/*.csv
           if-no-files-found: error
           retention-days: 30

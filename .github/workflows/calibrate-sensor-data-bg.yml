@@ -18,11 +18,11 @@ env:
   RSPM: https://packagemanager.posit.co/cran/__linux__/jammy/latest
   RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
 
-  # Cloudflare R2 / S3 credentials (REQUIRED)
+  # Cloudflare R2 / S3 credentials
   R2_ENDPOINT:           ${{ secrets.R2_ENDPOINT }}
-  R2_BUCKET:             outdoor-calibrations   # set here to avoid missing secret
-  R2_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-  R2_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  R2_BUCKET:             outdoor-calibrations
+  R2_ACCESS_KEY_ID:     ${{ secrets.R2_ACCESS_KEY_ID }}
+  R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
 
   # Optional: set a specific UTC date (YYYY-MM-DD). If empty, we auto-pick.
   UTC_TARGET_DATE:       ""
@@ -44,7 +44,6 @@ jobs:
           lfs: true
           persist-credentials: false
 
-      # Pull raw CSV artifacts from the triggering fetch run
       - name: Download raw CSVs from triggering fetch run
         uses: dawidd6/action-download-artifact@v3
         with:
@@ -56,8 +55,8 @@ jobs:
 
       - name: Inspect downloaded artifacts
         run: |
-          echo "Downloaded files under data_bg/:"
-          find data_bg -type f -maxdepth 4 -print || true
+          echo "Files in data_bg/:"
+          find data_bg -maxdepth 4 -type f -name '*.csv' -print || true
 
       - uses: actions/cache@v4
         with:
@@ -73,11 +72,10 @@ jobs:
         run: |
           Rscript -e 'pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble",
                                 "fs","zoo","openair","glue","randomForest","gtools",
-                                "tidyr","caret");  # caret needed by saved models
-                          missing <- setdiff(pkgs, rownames(installed.packages()));
-                          if (length(missing)) install.packages(missing, repos=Sys.getenv("RSPM"), quiet=TRUE)'
+                                "tidyr","caret");
+                      miss <- setdiff(pkgs, rownames(installed.packages()));
+                      if (length(miss)) install.packages(miss, repos=Sys.getenv("RSPM"), quiet=TRUE)'
 
-      # Ensure AWS CLI if your download script uses aws s3 cp
       - uses: aws-actions/setup-aws-cli@v2
 
       - name: Create temp dir
@@ -91,9 +89,9 @@ jobs:
           DEST_PATH:      ${{ env.TMP_DIR }}
         run: |
           chmod +x scripts/download_r2_obj.sh
-          ./scripts/download_r2_obj.sh   # must export CAL_MODEL_PATH
+          ./scripts/download_r2_obj.sh   # exports CAL_MODEL_PATH
 
-      # Choose UTC date: explicit > latest < today from artifacts > yesterday
+      # Choose UTC date: explicit > latest date found in artifacts (< today) > yesterday
       - name: Determine UTC date to process
         id: datepick
         run: |
@@ -101,7 +99,6 @@ jobs:
             echo "DATE_UTC=${UTC_TARGET_DATE}" >> "$GITHUB_OUTPUT"
           else
             TODAY=$(date -u +%F)
-            # extract dates from filenames in data_bg
             DATES=$(find data_bg -type f -name '*.csv' -print0 | xargs -0 -n1 basename | grep -Eo '[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort -u)
             PICK=$(echo "$DATES" | awk -v today="$TODAY" '$0<today{print}' | tail -n1)
             if [ -z "$PICK" ]; then
@@ -151,8 +148,8 @@ jobs:
 
       - name: Inspect downloaded artifacts
         run: |
-          echo "Downloaded files under data_bg/:"
-          find data_bg -type f -maxdepth 4 -print || true
+          echo "Files in data_bg/:"
+          find data_bg -maxdepth 4 -type f -name '*.csv' -print || true
 
       - uses: actions/cache@v4
         with:
@@ -167,8 +164,8 @@ jobs:
       - name: Install R packages (QAQ BG)
         run: |
           Rscript -e 'pkgs <- c("dplyr","readr","lubridate","stringr","purrr","tibble","fs","zoo","glue","gtools","tidyr");
-                      missing <- setdiff(pkgs, rownames(installed.packages()));
-                      if (length(missing)) install.packages(missing, repos=Sys.getenv("RSPM"), quiet=TRUE)'
+                      miss <- setdiff(pkgs, rownames(installed.packages()));
+                      if (length(miss)) install.packages(miss, repos=Sys.getenv("RSPM"), quiet=TRUE)'
 
       - uses: aws-actions/setup-aws-cli@v2
 
@@ -183,7 +180,7 @@ jobs:
           DEST_PATH:      ${{ env.TMP_DIR }}
         run: |
           chmod +x scripts/download_r2_obj.sh
-          ./scripts/download_r2_obj.sh   # must export CAL_MODEL_PATH
+          ./scripts/download_r2_obj.sh   # exports CAL_MODEL_PATH
 
       - name: Determine UTC date to process
         id: datepick
