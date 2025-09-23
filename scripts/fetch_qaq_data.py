@@ -6,7 +6,8 @@ from requests.auth import HTTPBasicAuth
 
 SENSOR_IDS = [
     "MOD-00616","MOD-00632","MOD-00625","MOD-00631","MOD-00623",
-    "MOD-00628","MOD-00620","MOD-00627","MOD-00630","MOD-00624"
+    "MOD-00628","MOD-00620","MOD-00627","MOD-00630","MOD-00624",
+    "MOD-00629", "MOD-00614","MOD-00624", "MOD-00617", "MOD-00618", "MOD-00613"
 ]
 
 OUTPUT_DIR = "data"          # flat folder in repo root
