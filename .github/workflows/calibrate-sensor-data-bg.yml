@@ -76,7 +76,11 @@ jobs:
                       miss <- setdiff(pkgs, rownames(installed.packages()));
                       if (length(miss)) install.packages(miss, repos=Sys.getenv("RSPM"), quiet=TRUE)'
 
-      - uses: aws-actions/setup-aws-cli@v2
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+          aws --version
 
       - name: Create temp dir
         run: echo "TMP_DIR=$(mktemp -d)" >> "$GITHUB_ENV"
@@ -96,17 +100,17 @@ jobs:
         id: datepick
         run: |
           if [ -n "${UTC_TARGET_DATE}" ]; then
-            echo "DATE_UTC=${UTC_TARGET_DATE}" >> "$GITHUB_OUTPUT"
+            PICK="${UTC_TARGET_DATE}"
           else
             TODAY=$(date -u +%F)
-            DATES=$(find data_bg -type f -name '*.csv' -print0 | xargs -0 -n1 basename | grep -Eo '[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort -u)
+            DATES=$(find data_bg -type f -name '*.csv' -print0 | xargs -0 -n1 basename | grep -Eo '[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort -u || true)
             PICK=$(echo "$DATES" | awk -v today="$TODAY" '$0<today{print}' | tail -n1)
             if [ -z "$PICK" ]; then
               PICK=$(date -u -d 'yesterday' +%F)
             fi
-            echo "DATE_UTC=$PICK" >> "$GITHUB_OUTPUT"
           fi
-          echo "Processing UTC date: ${{ steps.datepick.outputs.DATE_UTC }}"
+          echo "DATE_UTC=$PICK" >> "$GITHUB_OUTPUT"
+          echo "Processing UTC date: $PICK"
 
       - name: Calibrate RAMP ${{ matrix.sid }} (BG)
         run: Rscript scripts/calibrate_data_bg.R "${{ matrix.sid }}" "${{ steps.datepick.outputs.DATE_UTC }}"
@@ -167,7 +171,11 @@ jobs:
                       miss <- setdiff(pkgs, rownames(installed.packages()));
                       if (length(miss)) install.packages(miss, repos=Sys.getenv("RSPM"), quiet=TRUE)'
 
-      - uses: aws-actions/setup-aws-cli@v2
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
+          aws --version
 
       - name: Create temp dir
         run: echo "TMP_DIR=$(mktemp -d)" >> "$GITHUB_ENV"
@@ -186,17 +194,17 @@ jobs:
         id: datepick
         run: |
           if [ -n "${UTC_TARGET_DATE}" ]; then
-            echo "DATE_UTC=${UTC_TARGET_DATE}" >> "$GITHUB_OUTPUT"
+            PICK="${UTC_TARGET_DATE}"
           else
             TODAY=$(date -u +%F)
-            DATES=$(find data_bg -type f -name '*.csv' -print0 | xargs -0 -n1 basename | grep -Eo '[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort -u)
+            DATES=$(find data_bg -type f -name '*.csv' -print0 | xargs -0 -n1 basename | grep -Eo '[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort -u || true)
             PICK=$(echo "$DATES" | awk -v today="$TODAY" '$0<today{print}' | tail -n1)
             if [ -z "$PICK" ]; then
               PICK=$(date -u -d 'yesterday' +%F)
             fi
-            echo "DATE_UTC=$PICK" >> "$GITHUB_OUTPUT"
           fi
-          echo "Processing UTC date: ${{ steps.datepick.outputs.DATE_UTC }}"
+          echo "DATE_UTC=$PICK" >> "$GITHUB_OUTPUT"
+          echo "Processing UTC date: $PICK"
 
       - name: Calibrate QAQ ${{ matrix.sid }} (BG)
         run: Rscript scripts/calibrate_qaq_bg.R "${{ matrix.sid }}" "${{ steps.datepick.outputs.DATE_UTC }}"
