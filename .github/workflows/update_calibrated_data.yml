@@ -18,8 +18,9 @@ env:
   RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE"
 
   AWS_ACCESS_KEY_ID:     ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_ID }}   # map secret → CLI var
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}   # map secret → CLI var
   R2_ENDPOINT: bfde061b9c815bbce1c08766ebac283d.r2.cloudflarestorage.com
+  
 # ──────────────────────────────────────────────────────────────────
 
 ###################################################################
