@@ -3,6 +3,11 @@ name: Update Sensor Data
 on:
   schedule:
     - cron: "*/15 * * * *"  # Runs every 15 minutes
+
+  workflow_run:
+    workflows: ["Update Calibrated Sensor Data"]
+    types: [completed]
+
   workflow_dispatch:         # Allows manual triggering
 
 jobs:
