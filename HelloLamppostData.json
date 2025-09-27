@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.0,
+        "pollutant_concentration": 15.59,
         "aq_advisory": false
     }
 }
