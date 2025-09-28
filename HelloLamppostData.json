@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.63,
+        "pollutant_concentration": 11.33,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,15 +12,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.66,
+        "pollutant_concentration": 14.88,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 17.28,
+        "top_contributor": "O3",
+        "pollutant_concentration": 26.45,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.61,
+        "pollutant_concentration": 29.97,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.36,
+        "pollutant_concentration": 7.62,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.66,
+        "pollutant_concentration": 17.0,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 17.16,
+        "pollutant_concentration": 11.82,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.65,
+        "pollutant_concentration": 19.41,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.61,
+        "pollutant_concentration": 12.7,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.39,
+        "pollutant_concentration": 26.66,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -84,15 +84,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.61,
+        "pollutant_concentration": 17.23,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 13.79,
+        "top_contributor": "O3",
+        "pollutant_concentration": 21.57,
         "aq_advisory": false
     }
 }
