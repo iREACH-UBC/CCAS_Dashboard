@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.0,
+        "pollutant_concentration": 22.47,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 12.71,
+        "pollutant_concentration": 17.92,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.91,
+        "pollutant_concentration": 20.37,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 18.02,
+        "pollutant_concentration": 12.85,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 4.91,
+        "pollutant_concentration": 5.5,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,15 +44,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.92,
+        "pollutant_concentration": 8.32,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 22.89,
+        "pollutant_concentration": 12.31,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.97,
+        "pollutant_concentration": 23.48,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.03,
+        "pollutant_concentration": 8.93,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -84,15 +84,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 3.64,
+        "pollutant_concentration": 3.78,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
-        "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 6.05,
+        "value": 2,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     }
 }
