@@ -4,15 +4,15 @@ name: Append daily calibrated rows to monthly R2 CSVs (R)
 on:
   # Run at 00:15 America/Vancouver (handles DST via two UTC crons + a guard check)
   schedule:
-    - cron: "15 7 * * *"  # 00:15 PT when UTC-7 (DST)
-    - cron: "15 8 * * *"  # 00:15 PT when UTC-8 (standard)
+    - cron: '15 7 * * *'  # 00:15 PT when UTC-7 (DST)
+    - cron: '15 8 * * *'  # 00:15 PT when UTC-8 (standard)
   workflow_dispatch:
     inputs:
       sensors:
-        description: "Comma-separated sensor IDs (e.g., 2021,2022,2040)"
+        description: 'Comma-separated sensor IDs (e.g., 2021,2022,2040)'
         required: false
       focus_date:
-        description: "Override focus date (YYYY_MM_DD). If empty, uses yesterday in America/Vancouver."
+        description: 'Override focus date (YYYY_MM_DD). If empty, uses yesterday in America/Vancouver.'
         required: false
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Default sensors for scheduled runs (edit this line)
-      SENSORS: "2021,2022,2032,2040,2042,2043"
+      SENSORS: '2021,2022,2032,2040,2042,2043'
       # R2 creds (repo → Settings → Secrets and variables → Actions)
       R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
       R2_BUCKET:   ${{ secrets.R2_BUCKET }}
@@ -32,7 +32,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Guard: only run at 00:15 America/Vancouver
+      - name: "Guard: only run at 00:15 America/Vancouver"
         shell: bash
         run: |
           NOW_HM=$(TZ=America/Vancouver date +%H%M)
@@ -56,16 +56,16 @@ jobs:
           # Sensors: workflow input overrides default
           SENS_RUN="${{ github.event.inputs.sensors }}"
           if [[ -z "$SENS_RUN" ]]; then SENS_RUN="${SENSORS}"; fi
-          echo "sensors=$SENS_RUN" >> $GITHUB_OUTPUT
+          echo "sensors=$SENS_RUN" >> "$GITHUB_OUTPUT"
 
           # Focus date: workflow input overrides calculation
-          FD_IN="${{ github.event.inputs.focus_date }}";
+          FD_IN="${{ github.event.inputs.focus_date }}"
           if [[ -z "$FD_IN" ]]; then
             FOCUS=$(TZ=America/Vancouver date -d "yesterday" +%Y_%m_%d)
           else
             FOCUS="$FD_IN"
           fi
-          echo "focus=$FOCUS" >> $GITHUB_OUTPUT
+          echo "focus=$FOCUS" >> "$GITHUB_OUTPUT"
           echo "Using sensors: $SENS_RUN"
           echo "Using focus date: $FOCUS"
 
