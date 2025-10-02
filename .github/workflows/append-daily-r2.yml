@@ -34,6 +34,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: "Guard: only run at 00:15 America/Vancouver"
+        if: github.event_name == 'schedule'
         shell: bash
         run: |
           NOW_HM=$(TZ=America/Vancouver date +%H%M)
