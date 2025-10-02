@@ -1,0 +1,117 @@
+name: Append CSV portion to R2 (R)
+
+on:
+  workflow_dispatch:
+    inputs:
+      sensors:
+        description: "Comma-separated sensor IDs (e.g., 2021,2022,2040)"
+        required: true
+      mode:
+        description: "input mode: template | single"
+        required: true
+        default: "template"
+      input_template:
+        description: "For template mode: path with {sensor} placeholder (e.g., calibrated_data/{sensor}/latest.csv)"
+        required: false
+      input_file:
+        description: "For single mode: path to CSV containing all sensors"
+        required: false
+      sensor_col:
+        description: "For single mode: column name for sensor ID"
+        required: false
+      key_template:
+        description: "R2 key template with {sensor} and {yyyymm}, e.g., cc/data/{sensor}/{yyyymm}.csv"
+        required: true
+        default: "cc/data/{sensor}/{yyyymm}.csv"
+      date_col:
+        description: "Date/time column name (used for monthly partitioning)"
+        required: true
+        default: "DATE"
+      tail:
+        description: "Keep last N rows"
+        required: false
+      head:
+        description: "Keep first N rows"
+        required: false
+      since:
+        description: "Inclusive start datetime (e.g., 2025-09-01)"
+        required: false
+      until:
+        description: "Exclusive end datetime"
+        required: false
+      keep_cols:
+        description: "Comma-separated columns to keep"
+        required: false
+      dedupe_on:
+        description: "Comma-separated key columns to de-duplicate on"
+        required: false
+      sort_by:
+        description: "Column to sort by after merge"
+        required: false
+      dry_run:
+        description: "Set to true to preview without upload"
+        required: false
+        default: "false"
+
+  schedule:
+    - cron: "0 * * * *" # hourly example
+
+jobs:
+  append:
+    runs-on: ubuntu-latest
+    env:
+      R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: auto
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages(c("paws.storage","readr","dplyr","lubridate"), repos="https://cloud.r-project.org")'
+
+      - name: Build args and run (template or single mode)
+        shell: bash
+        run: |
+          SENSORS="${{ github.event.inputs.sensors }}"
+          MODE="${{ github.event.inputs.mode }}"
+          KEY_TMPL="${{ github.event.inputs.key_template }}"
+          DATE_COL="${{ github.event.inputs.date_col }}"
+          [[ -z "$SENSORS" ]] && { echo "Missing sensors"; exit 1; }
+          [[ -z "$KEY_TMPL" ]] && { echo "Missing key_template"; exit 1; }
+          [[ -z "$DATE_COL" ]] && { echo "Missing date_col"; exit 1; }
+
+          ARGS="--sensors \"$SENSORS\" --key-template \"$KEY_TMPL\" --date-col \"$DATE_COL\""
+
+          if [[ "$MODE" == "template" ]]; then
+            IT="${{ github.event.inputs.input_template }}"
+            [[ -z "$IT" ]] && { echo "Mode 'template' requires input_template"; exit 1; }
+            ARGS+=" --input-template \"$IT\""
+          elif [[ "$MODE" == "single" ]]; then
+            IF="${{ github.event.inputs.input_file }}"
+            SC="${{ github.event.inputs.sensor_col }}"
+            [[ -z "$IF" || -z "$SC" ]] && { echo "Mode 'single' requires input_file and sensor_col"; exit 1; }
+            ARGS+=" --input \"$IF\" --sensor-col \"$SC\""
+          else
+            echo "Unknown mode: $MODE"; exit 1
+          fi
+
+          # Optional flags
+          [[ -n "${{ github.event.inputs.tail }}"     ]] && ARGS+=" --tail ${{ github.event.inputs.tail }}"
+          [[ -n "${{ github.event.inputs.head }}"     ]] && ARGS+=" --head ${{ github.event.inputs.head }}"
+          [[ -n "${{ github.event.inputs.since }}"    ]] && ARGS+=" --since '${{ github.event.inputs.since }}'"
+          [[ -n "${{ github.event.inputs.until }}"    ]] && ARGS+=" --until '${{ github.event.inputs.until }}'"
+          [[ -n "${{ github.event.inputs.keep_cols }}" ]] && ARGS+=" --keep-cols '${{ github.event.inputs.keep_cols }}'"
+          [[ -n "${{ github.event.inputs.dedupe_on }}" ]] && ARGS+=" --dedupe-on '${{ github.event.inputs.dedupe_on }}'"
+          [[ -n "${{ github.event.inputs.sort_by }}"  ]] && ARGS+=" --sort-by '${{ github.event.inputs.sort_by }}'"
+          [[ "${{ github.event.inputs.dry_run }}" == "true" ]] && ARGS+=" --dry-run"
+
+          echo "Running with args: $ARGS"
+          Rscript scripts/append_to_r2_csv_multi.R $ARGS
