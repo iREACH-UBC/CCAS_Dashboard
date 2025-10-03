@@ -43,6 +43,7 @@ opt <- list(
   keep_cols     = parse_cols(get_val("--keep-cols", NULL)),
   dedupe_on     = parse_cols(get_val("--dedupe-on", NULL)),
   sort_by       = get_val("--sort-by", NULL),
+  focus_date    = get_val("--focus-date", NULL),   # NEW: used to pick correct ranged file
   dry_run       = has_flag("--dry-run")
 )
 
@@ -97,6 +98,39 @@ headers_match <- function(df, expected_names) {
   # Consider it a headered file if a reasonable portion of names overlap
   overlap <- sum(names(df) %in% expected_names)
   overlap >= max(2, floor(length(expected_names) / 2))
+}
+
+# Parse "<sensor>_calibrated_YYYY_MM_DD_to_YYYY_MM_DD.csv"
+extract_range_from_name <- function(p) {
+  b <- basename(p)
+  m <- stringr::str_match(b, "(\\d{4}_\\d{2}_\\d{2})_to_(\\d{4}_\\d{2}_\\d{2})")
+  if (is.na(m[1,1])) return(c(NA, NA))
+  s <- suppressWarnings(lubridate::ymd(gsub("_","-", m[1,2])))
+  e <- suppressWarnings(lubridate::ymd(gsub("_","-", m[1,3])))
+  c(s, e)
+}
+
+pick_file_for_focus <- function(candidates, focus_date = NULL) {
+  if (length(candidates) == 0) return(character(0))
+  if (length(candidates) == 1) return(candidates)
+  
+  if (!is.null(focus_date) && nzchar(focus_date)) {
+    fd <- suppressWarnings(lubridate::ymd(gsub("_","-", focus_date)))
+    if (!is.na(fd)) {
+      covered <- vapply(candidates, function(p) {
+        rng <- extract_range_from_name(p)
+        !any(is.na(rng)) && fd >= rng[1] && fd <= rng[2]
+      }, logical(1))
+      if (any(covered)) {
+        cand <- candidates[covered]
+        mt <- file.info(cand)$mtime
+        return(cand[which.max(mt)])  # if multiple cover, take most recent
+      }
+    }
+  }
+  # fallback: most recently modified
+  mt <- file.info(candidates)$mtime
+  candidates[which.max(mt)]
 }
 
 # Portion select
@@ -156,13 +190,27 @@ td <- tempfile("r2csv"); dir.create(td, recursive = TRUE, showWarnings = FALSE)
 # ── Input loader per sensor --------------------------------------------------
 load_input_for_sensor <- function(sensor_id) {
   if (mode == "template") {
-    path <- gsub("\\{sensor\\}", sensor_id, opt$input_tmpl, fixed = TRUE)
-    message("[info] reading input for sensor ", sensor_id, ": ", path)
+    # FIX: {sensor} literal substitution with fixed=TRUE
+    path <- gsub("{sensor}", sensor_id, opt$input_tmpl, fixed = TRUE)
+    message("[info] input template for sensor ", sensor_id, ": ", path)
+    
+    # Wildcards? Resolve and pick by focus-date (or latest)
+    if (grepl("[*?\\[\\]]", path)) {
+      candidates <- Sys.glob(path)
+      if (!length(candidates)) {
+        stop("No files matched pattern for sensor ", sensor_id, ": ", path)
+      }
+      chosen <- pick_file_for_focus(candidates, opt$focus_date)
+      message("[info] resolved to: ", chosen)
+      path <- chosen
+    }
+    
     df <- tryCatch(
       read_any(path, encoding = opt$encoding, col_names = TRUE),
       error = function(e) stop("Failed to read input CSV for sensor ", sensor_id, ": ", e$message)
     )
   } else {
+    # single-file mode, filter by sensor_col
     if (is.null(opt$input) || is.null(opt$sensor_col)) stop("single-file mode requires --input and --sensor-col")
     message("[info] reading input file (single mode): ", opt$input)
     df_all <- tryCatch(
@@ -189,8 +237,8 @@ merge_and_upload <- function(df_in, sensor_id) {
   
   split(df_in, df_in$.__yyyymm) %>% imap(function(chunk, ym) {
     key <- opt$key_tmpl %>%
-      gsub("\\{sensor\\}", sensor_id, ., fixed = TRUE) %>%
-      gsub("\\{yyyymm\\}", ym, ., fixed = TRUE)
+      gsub("{sensor}", sensor_id, ., fixed = TRUE) %>%
+      gsub("{yyyymm}", ym, ., fixed = TRUE)           # FIX: literal substitution
     message("[info] sensor ", sensor_id, " -> ", key, " (rows: ", nrow(chunk), ")")
     
     chunk <- dplyr::select(chunk, -.__yyyymm)
