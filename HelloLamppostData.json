@@ -10,17 +10,17 @@
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
-        "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 5.0,
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 29.8,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 23.14,
+        "pollutant_concentration": 23.05,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.13,
+        "pollutant_concentration": 9.0,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -51,8 +51,8 @@
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 4.55,
+        "top_contributor": "O3",
+        "pollutant_concentration": 15.66,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 12.51,
+        "pollutant_concentration": 11.42,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -82,9 +82,9 @@
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
-        "value": 1,
-        "top_contributor": "O3",
-        "pollutant_concentration": 11.09,
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 13.96,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 6.79,
+        "pollutant_concentration": 4.65,
         "aq_advisory": false
     }
 }
