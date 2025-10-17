@@ -3,8 +3,8 @@
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 7.76,
+        "top_contributor": "O3",
+        "pollutant_concentration": 20.47,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.98,
+        "pollutant_concentration": 33.68,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.37,
+        "pollutant_concentration": 26.72,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.88,
+        "pollutant_concentration": 27.51,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.31,
+        "pollutant_concentration": 8.2,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,15 +44,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.05,
+        "pollutant_concentration": 31.51,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 4.0,
+        "top_contributor": "O3",
+        "pollutant_concentration": 17.07,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -60,15 +60,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.59,
+        "pollutant_concentration": 27.31,
         "aq_advisory": false
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 15.49,
+        "pollutant_concentration": 20.2,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.03,
+        "pollutant_concentration": 24.44,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -84,15 +84,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 18.53,
+        "pollutant_concentration": 23.87,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.29,
+        "pollutant_concentration": 21.36,
         "aq_advisory": false
     }
 }
