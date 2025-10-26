@@ -3,16 +3,16 @@
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 13.64,
+        "top_contributor": "O3",
+        "pollutant_concentration": 22.02,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
-        "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 7.49,
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 30.91,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.88,
+        "pollutant_concentration": 31.85,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,31 +28,31 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.7,
+        "pollutant_concentration": 22.96,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 8.52,
+        "top_contributor": "O3",
+        "pollutant_concentration": 19.35,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 6.32,
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 29.43,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": "N/A",
+        "pollutant_concentration": 28.61,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.35,
+        "pollutant_concentration": 30.66,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -68,23 +68,31 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.28,
+        "pollutant_concentration": 28.07,
         "aq_advisory": false
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 16.72,
+        "top_contributor": "O3",
+        "pollutant_concentration": 33.09,
+        "aq_advisory": false
+    },
+    "Sensor 11": {
+        "name": "NVDPL Capilano Branch",
+        "label": "Moderate health risk",
+        "value": 4,
+        "top_contributor": "O3",
+        "pollutant_concentration": 36.87,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 8.01,
+        "top_contributor": "O3",
+        "pollutant_concentration": 19.83,
         "aq_advisory": false
     }
 }
