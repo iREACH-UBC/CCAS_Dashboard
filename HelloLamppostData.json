@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.06,
+        "pollutant_concentration": 18.53,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 8.86,
+        "pollutant_concentration": 19.37,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.45,
+        "pollutant_concentration": 11.25,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,15 +28,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.48,
+        "pollutant_concentration": 10.93,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.46,
+        "pollutant_concentration": 11.1,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.47,
+        "pollutant_concentration": 9.78,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 30.38,
+        "pollutant_concentration": 26.08,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -60,15 +60,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.97,
+        "pollutant_concentration": 22.06,
         "aq_advisory": false
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 15.96,
+        "pollutant_concentration": 17.0,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -76,15 +76,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.15,
+        "pollutant_concentration": 22.84,
         "aq_advisory": false
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.34,
+        "pollutant_concentration": 14.15,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.78,
+        "pollutant_concentration": 10.26,
         "aq_advisory": false
     }
 }
