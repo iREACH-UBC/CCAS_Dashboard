@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.37,
+        "pollutant_concentration": 10.6,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.36,
+        "pollutant_concentration": 20.48,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.96,
+        "pollutant_concentration": 10.05,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.97,
+        "pollutant_concentration": 8.08,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -36,15 +36,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.21,
+        "pollutant_concentration": 6.11,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 17.19,
+        "pollutant_concentration": 20.13,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 7.75,
+        "pollutant_concentration": 11.61,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 5.21,
+        "pollutant_concentration": 5.15,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 6.1,
+        "pollutant_concentration": 6.87,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 5.47,
+        "pollutant_concentration": 6.22,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 6.28,
+        "pollutant_concentration": 8.57,
         "aq_advisory": false
     }
 }
