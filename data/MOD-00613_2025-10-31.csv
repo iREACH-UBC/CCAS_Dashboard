@@ -1,0 +1,2 @@
+co,co2,geo,met,model,no,no2,o3,pm1,pm10,pm25,raw_data_id,rh,sn,temp,timestamp,timestamp_local,url
+946.34,623.99,"{'lat': None, 'lon': None}","{'rh': 33.8, 'temp': 25.5, 'wd': 0.0, 'ws': 0.0, 'ws_scalar': 0.0}","{'gas': {'co': 13498, 'co2': 13260, 'no': 13586, 'no2': 13765, 'o3': 13745}, 'pm': {'pm1': 13200, 'pm10': 13202, 'pm25': 13201}}",2.48,24.45,26.59,1.23,1.62,1.3,529899573,33.8,MOD-00613,25.5,2025-10-31T00:00:54,2025-10-30T17:00:54,https://api.quant-aq.com/v1/devices/MOD-00613/data/529899426
