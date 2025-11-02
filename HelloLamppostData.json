@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.23,
+        "pollutant_concentration": 20.42,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.84,
+        "pollutant_concentration": 9.25,
         "aq_advisory": false
     },
     "Metro Vancouver - NW, B.C.": {
@@ -20,23 +20,23 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 12.9,
+        "pollutant_concentration": 13.21,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.51,
+        "pollutant_concentration": 19.67,
         "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.75,
+        "pollutant_concentration": 9.37,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.45,
+        "pollutant_concentration": 9.76,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.06,
+        "pollutant_concentration": 9.54,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 14.78,
+        "pollutant_concentration": 9.71,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 22.5,
+        "pollutant_concentration": 26.88,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.02,
+        "pollutant_concentration": 4.52,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.67,
+        "pollutant_concentration": 18.51,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.31,
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -100,7 +100,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": "N/A",
+        "pollutant_concentration": 3.97,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -108,7 +108,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 5.57,
+        "pollutant_concentration": 12.55,
         "aq_advisory": false
     }
 }
