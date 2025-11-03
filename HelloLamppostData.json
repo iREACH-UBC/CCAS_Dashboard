@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.88,
+        "pollutant_concentration": 9.97,
         "aq_advisory": false
     },
     "Metro Vancouver - NW, B.C.": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.71,
+        "pollutant_concentration": 14.34,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 15.83,
+        "pollutant_concentration": 15.06,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.62,
+        "pollutant_concentration": 9.68,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 8.2,
+        "pollutant_concentration": 7.27,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.64,
+        "pollutant_concentration": 9.91,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -100,7 +100,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.88,
+        "pollutant_concentration": 7.81,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -108,7 +108,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.64,
+        "pollutant_concentration": 10.9,
         "aq_advisory": false
     }
 }
