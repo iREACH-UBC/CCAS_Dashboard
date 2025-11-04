@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.25,
+        "pollutant_concentration": 13.08,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.9,
+        "pollutant_concentration": 9.77,
         "aq_advisory": false
     },
     "Metro Vancouver - NW, B.C.": {
@@ -20,15 +20,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 6.22,
+        "pollutant_concentration": 5.53,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.77,
+        "pollutant_concentration": 11.59,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.81,
+        "pollutant_concentration": 9.66,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.72,
+        "pollutant_concentration": 10.11,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,13 +52,13 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.12,
+        "pollutant_concentration": 10.17,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -68,15 +68,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.07,
+        "pollutant_concentration": 10.84,
         "aq_advisory": false
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.53,
+        "pollutant_concentration": 7.05,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.29,
+        "pollutant_concentration": 18.44,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -100,7 +100,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.87,
+        "pollutant_concentration": 9.35,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -108,7 +108,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 5.23,
+        "pollutant_concentration": 6.75,
         "aq_advisory": false
     }
 }
