@@ -1,7 +1,7 @@
 id,lat,lon,name,sensor_number,region
 2021,49.328887,-123.1658402,West Vancouver Memorial Library,Sensor 1,"Metro Vancouver - NW, B.C."
 2022,49.845966,-124.5218536,Powell River Public Library,Sensor 3,"Sunshine Coast - Saltery Bay to Powell River, B.C."
-2023,49.279798,-123.1157590,VPL - Central Library,"Metro Vancouver - NW, B.C."
+2023,49.279798,-123.1157590,VPL - Central Library,Sensor 13,"Metro Vancouver - NW, B.C."
 2024,49.320416,-123.1326337,Chief Joe Mathias Centre,Sensor 5,"Metro Vancouver - NW, B.C."
 2025,0,0,0,0,0
 2030,49.380893,-123.3381594,Bowen Island,Sensor 9,"Metro Vancouver - NW, B.C."
@@ -19,4 +19,4 @@ MOD-00616,50.318678,-122.800427,Pemberton Community Centre,Sensor 7,"Whistler, B
 MOD-00625,49.283711,-123.094927,Evelyne Saller Centre,Sensor 10,"Metro Vancouver - NW, B.C."
 MOD-00631,49.337256,-123.102730,NVDPL Capilano Branch,Sensor 11,"Metro Vancouver - NW, B.C."
 MOD-00623,49.336187,-123.038952,NVDPL Lynn Valley Branch,Sensor 12,"Metro Vancouver - NW, B.C."
-MOD-00627,49.290013,-123.136143,West End Community Centre,"Metro Vancouver - NW, B.C."
+MOD-00627,49.290013,-123.136143,West End Community Centre,Sensor 14,"Metro Vancouver - NW, B.C."
