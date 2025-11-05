@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.64,
+        "pollutant_concentration": 17.6,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,15 +12,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.21,
+        "pollutant_concentration": 7.48,
         "aq_advisory": false
     },
-    "Metro Vancouver - NW, B.C.": {
-        "name": "West End Community Centre",
+    "Sensor 13": {
+        "name": "VPL - Central Library",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.03,
+        "pollutant_concentration": 11.53,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.93,
+        "pollutant_concentration": 16.14,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.49,
+        "pollutant_concentration": 21.38,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.43,
+        "pollutant_concentration": 10.82,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.09,
+        "pollutant_concentration": 10.23,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.55,
+        "pollutant_concentration": 11.57,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.96,
+        "pollutant_concentration": 8.17,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -84,7 +84,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.54,
+        "pollutant_concentration": 23.1,
+        "aq_advisory": false
+    },
+    "Sensor 14": {
+        "name": "West End Community Centre",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 7.09,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -92,7 +100,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.44,
+        "pollutant_concentration": 7.35,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -100,7 +108,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.73,
+        "pollutant_concentration": 13.96,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -108,7 +116,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.28,
+        "pollutant_concentration": 8.94,
         "aq_advisory": false
     }
 }
