@@ -11,11 +11,11 @@
     },
     {
       "Region": "Whistler, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Metro Vancouver - NW, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Metro Vancouver - NE, B.C.",
