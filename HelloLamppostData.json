@@ -4,15 +4,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.26,
-        "aq_advisory": false
+        "pollutant_concentration": 17.54,
+        "aq_advisory": true
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 24.81,
+        "pollutant_concentration": 22.67,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,31 +20,31 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 24.13,
-        "aq_advisory": false
+        "pollutant_concentration": 19.73,
+        "aq_advisory": true
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.18,
-        "aq_advisory": false
+        "pollutant_concentration": 11.97,
+        "aq_advisory": true
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.6,
-        "aq_advisory": false
+        "pollutant_concentration": 14.65,
+        "aq_advisory": true
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 16.58,
+        "pollutant_concentration": 14.17,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,15 +52,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 36.47,
+        "pollutant_concentration": 37.95,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 10.3,
+        "pollutant_concentration": 9.68,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.27,
+        "pollutant_concentration": 16.93,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -76,8 +76,8 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.96,
-        "aq_advisory": false
+        "pollutant_concentration": 27.77,
+        "aq_advisory": true
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
@@ -85,15 +85,15 @@
         "value": 2,
         "top_contributor": "NO2",
         "pollutant_concentration": 17.69,
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 14": {
         "name": "West End Community Centre",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.65,
-        "aq_advisory": false
+        "pollutant_concentration": 34.53,
+        "aq_advisory": true
     },
     "MOD-00628": {
         "name": "MOD-00628",
@@ -108,15 +108,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.35,
-        "aq_advisory": false
+        "pollutant_concentration": 12.25,
+        "aq_advisory": true
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.29,
-        "aq_advisory": false
+        "pollutant_concentration": 9.28,
+        "aq_advisory": true
     }
 }
