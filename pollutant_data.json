@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-11-05T19:54-08:00",
+  "generated_at": "2025-11-05T19:58-08:00",
   "sensors": [
     {
       "id": "2021",
@@ -7645,7 +7645,7 @@
       "region": "Whistler, B.C.",
       "lat": 50.318678,
       "lon": -122.800427,
-      "active_alert": false,
+      "active_alert": true,
       "latest": {
         "timestamp": "2025-11-05T19:27",
         "aqhi": 2.0,
@@ -8736,7 +8736,7 @@
       "region": "Whistler, B.C.",
       "lat": 50.117361,
       "lon": -122.956237,
-      "active_alert": false,
+      "active_alert": true,
       "latest": {
         "timestamp": "2025-11-05T19:28",
         "aqhi": 2.0,
@@ -9827,7 +9827,7 @@
       "region": "Whistler, B.C.",
       "lat": 50.318678,
       "lon": -122.800427,
-      "active_alert": false,
+      "active_alert": true,
       "latest": {
         "timestamp": "2025-11-05T19:30",
         "aqhi": 2.0,
