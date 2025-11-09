@@ -82,9 +82,9 @@
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.58,
+        "pollutant_concentration": 10.28,
         "aq_advisory": false
     },
     "Sensor 14": {
