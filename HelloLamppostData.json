@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.12,
+        "pollutant_concentration": 19.43,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 13.8,
+        "pollutant_concentration": 14.67,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -107,8 +107,8 @@
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 8.84,
+        "top_contributor": "O3",
+        "pollutant_concentration": 16.44,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -116,7 +116,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 13.06,
+        "pollutant_concentration": 12.49,
         "aq_advisory": false
     }
 }
