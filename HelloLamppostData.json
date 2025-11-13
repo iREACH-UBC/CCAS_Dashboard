@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.09,
+        "pollutant_concentration": 13.34,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.5,
+        "pollutant_concentration": 20.86,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -28,15 +28,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.58,
+        "pollutant_concentration": 10.58,
         "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 15.6,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 10.96,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.39,
+        "pollutant_concentration": 12.69,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.35,
+        "pollutant_concentration": 8.22,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.33,
+        "pollutant_concentration": 11.81,
         "aq_advisory": false
     },
     "Sensor 12": {
