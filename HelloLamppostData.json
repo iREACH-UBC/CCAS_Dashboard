@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 14.46,
+        "pollutant_concentration": 15.37,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.04,
+        "pollutant_concentration": 12.66,
         "aq_advisory": false
     },
     "MOD-00628": {
