@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.44,
+        "pollutant_concentration": 10.46,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 22.32,
+        "pollutant_concentration": 15.77,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.75,
+        "pollutant_concentration": 11.9,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.92,
+        "pollutant_concentration": 20.77,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.62,
+        "pollutant_concentration": 17.47,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -50,9 +50,9 @@
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 18.36,
+        "pollutant_concentration": 19.01,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,15 +68,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.19,
+        "pollutant_concentration": 27.85,
         "aq_advisory": false
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 11.73,
+        "top_contributor": "O3",
+        "pollutant_concentration": 21.89,
         "aq_advisory": false
     },
     "Sensor 10": {
