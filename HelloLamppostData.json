@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.5,
+        "pollutant_concentration": 13.09,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.98,
+        "pollutant_concentration": 8.37,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -26,9 +26,9 @@
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.53,
+        "pollutant_concentration": 10.42,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,15 +36,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.95,
+        "pollutant_concentration": 10.36,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 14.3,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 11.47,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.53,
+        "pollutant_concentration": 10.0,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,23 +68,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.33,
+        "pollutant_concentration": 23.3,
         "aq_advisory": false
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 5.33,
-        "aq_advisory": false
-    },
-    "Sensor 10": {
-        "name": "Evelyne Saller Centre",
-        "label": "Low health risk",
-        "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 14.32,
+        "top_contributor": "O3",
+        "pollutant_concentration": 11.85,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -98,25 +90,17 @@
     "MOD-00628": {
         "name": "MOD-00628",
         "label": "Low health risk",
-        "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 17.96,
-        "aq_advisory": false
-    },
-    "Sensor 11": {
-        "name": "NVDPL Capilano Branch",
-        "label": "Low health risk",
         "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 12.38,
+        "top_contributor": "O3",
+        "pollutant_concentration": 9.31,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
-        "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 7.33,
+        "value": 1,
+        "top_contributor": "O3",
+        "pollutant_concentration": 8.31,
         "aq_advisory": false
     }
 }
