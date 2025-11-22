@@ -10,9 +10,9 @@
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.45,
+        "pollutant_concentration": 14.07,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -27,8 +27,8 @@
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 9.67,
+        "top_contributor": "O3",
+        "pollutant_concentration": 16.09,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.7,
+        "pollutant_concentration": 9.11,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.55,
+        "pollutant_concentration": 9.06,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.13,
+        "pollutant_concentration": 9.53,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -67,8 +67,8 @@
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 9.66,
+        "top_contributor": "O3",
+        "pollutant_concentration": 16.04,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 14.6,
+        "pollutant_concentration": 20.89,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -93,14 +93,6 @@
         "value": 1,
         "top_contributor": "O3",
         "pollutant_concentration": 7.89,
-        "aq_advisory": false
-    },
-    "MOD-00628": {
-        "name": "MOD-00628",
-        "label": "Low health risk",
-        "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 3.78,
         "aq_advisory": false
     },
     "Sensor 11": {
