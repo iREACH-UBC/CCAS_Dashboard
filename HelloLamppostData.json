@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.14,
+        "pollutant_concentration": 13.48,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 13.65,
+        "pollutant_concentration": 13.86,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.0,
+        "pollutant_concentration": 11.82,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.09,
+        "pollutant_concentration": 13.81,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.4,
+        "pollutant_concentration": 12.06,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.54,
+        "pollutant_concentration": 9.49,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,15 +68,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.5,
+        "pollutant_concentration": 9.77,
         "aq_advisory": false
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 5.92,
+        "top_contributor": "O3",
+        "pollutant_concentration": 14.84,
         "aq_advisory": false
     },
     "Sensor 10": {
