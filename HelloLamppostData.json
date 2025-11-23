@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.68,
+        "pollutant_concentration": 19.54,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -27,8 +27,8 @@
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 9.88,
+        "top_contributor": "O3",
+        "pollutant_concentration": 25.1,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -67,8 +67,8 @@
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 17.59,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 10.47,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -76,23 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.7,
-        "aq_advisory": false
-    },
-    "Sensor 14": {
-        "name": "West End Community Centre",
-        "label": "Low health risk",
-        "value": 1,
-        "top_contributor": "O3",
-        "pollutant_concentration": 7.89,
-        "aq_advisory": false
-    },
-    "Sensor 4": {
-        "name": "Lions Gate Rec Center",
-        "label": "Low health risk",
-        "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 3.75,
+        "pollutant_concentration": 25.12,
         "aq_advisory": false
     }
 }
