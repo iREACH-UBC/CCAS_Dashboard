@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.5,
+        "pollutant_concentration": 20.58,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 14.64,
+        "pollutant_concentration": 18.6,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -28,15 +28,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.9,
+        "pollutant_concentration": 10.31,
         "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.9,
+        "pollutant_concentration": 14.49,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.43,
+        "pollutant_concentration": 12.55,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.35,
+        "pollutant_concentration": 31.32,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.48,
+        "pollutant_concentration": 10.75,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.36,
+        "pollutant_concentration": 26.94,
         "aq_advisory": false
     },
     "Sensor 10": {
