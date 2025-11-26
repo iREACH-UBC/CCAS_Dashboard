@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-11-26T11:24-08:00",
+  "generated_at": "2025-11-26T11:33-08:00",
   "sensors": [
     {
       "id": "2021",
@@ -10,30 +10,19 @@
       "lon": -123.1658402,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-26T10:55",
+        "timestamp": "2025-11-26T11:10",
         "aqhi": 2.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.243,
-          "no": 104.754,
-          "no2": 22.11,
-          "o3": 0.157,
-          "co2": 466.177,
-          "pm25": 2.195
+          "co": 0.28,
+          "no": 32.903,
+          "no2": 20.958,
+          "o3": 1.334,
+          "co2": 453.95,
+          "pm25": 2.735
         }
       },
       "history": [
-        [
-          "2025-11-25T10:55",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-11-25T11:10",
           null,
@@ -1083,12 +1072,23 @@
           "2025-11-26T10:55",
           2.0,
           "NO2",
-          0.24,
-          104.75,
-          22.11,
-          0.16,
-          466.18,
-          2.2
+          0.23,
+          100.07,
+          21.95,
+          0.15,
+          464.43,
+          2.21
+        ],
+        [
+          "2025-11-26T11:10",
+          2.0,
+          "NO2",
+          0.28,
+          32.9,
+          20.96,
+          1.33,
+          453.95,
+          2.73
         ]
       ]
     },
@@ -3283,30 +3283,19 @@
       "lon": -123.1326337,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-26T10:59",
-        "aqhi": 1.0,
+        "timestamp": "2025-11-26T11:14",
+        "aqhi": 2.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.24,
-          "no": 15.419,
-          "no2": 15.191,
-          "o3": 1.52,
-          "co2": 462.233,
-          "pm25": 2.835
+          "co": 0.226,
+          "no": 16.298,
+          "no2": 17.442,
+          "o3": 2.129,
+          "co2": 459.33,
+          "pm25": 3.142
         }
       },
       "history": [
-        [
-          "2025-11-25T10:59",
-          2.0,
-          "NO2",
-          0.21,
-          3.25,
-          14.99,
-          16.78,
-          450.39,
-          1.9
-        ],
         [
           "2025-11-25T11:14",
           2.0,
@@ -4356,12 +4345,23 @@
           "2025-11-26T10:59",
           1.0,
           "NO2",
-          0.24,
-          15.42,
-          15.19,
-          1.52,
-          462.23,
-          2.83
+          0.23,
+          18.88,
+          15.68,
+          2.67,
+          463.0,
+          2.9
+        ],
+        [
+          "2025-11-26T11:14",
+          2.0,
+          "NO2",
+          0.23,
+          16.3,
+          17.44,
+          2.13,
+          459.33,
+          3.14
         ]
       ]
     },
@@ -4374,30 +4374,19 @@
       "lon": -123.3381594,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-26T10:59",
+        "timestamp": "2025-11-26T11:14",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.144,
-          "no": 5.535,
-          "no2": 9.718,
-          "o3": 9.136,
-          "co2": 446.15,
-          "pm25": 1.598
+          "co": 0.143,
+          "no": 5.174,
+          "no2": 9.446,
+          "o3": 8.186,
+          "co2": 446.102,
+          "pm25": 1.672
         }
       },
       "history": [
-        [
-          "2025-11-25T10:59",
-          1.0,
-          "NO2",
-          0.16,
-          6.09,
-          10.82,
-          5.39,
-          450.49,
-          1.99
-        ],
         [
           "2025-11-25T11:14",
           1.0,
@@ -5447,12 +5436,23 @@
           "2025-11-26T10:59",
           1.0,
           "NO2",
+          0.15,
+          6.34,
+          10.04,
+          7.55,
+          446.82,
+          1.63
+        ],
+        [
+          "2025-11-26T11:14",
+          1.0,
+          "NO2",
           0.14,
-          5.54,
-          9.72,
-          9.14,
-          446.15,
-          1.6
+          5.17,
+          9.45,
+          8.19,
+          446.1,
+          1.67
         ]
       ]
     },
@@ -5465,30 +5465,19 @@
       "lon": -123.147833,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-26T10:53",
+        "timestamp": "2025-11-26T11:08",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.187,
-          "no": 6.047,
-          "no2": 10.709,
-          "o3": 8.629,
-          "co2": 525.123,
-          "pm25": 1.609
+          "co": 0.186,
+          "no": 2.851,
+          "no2": 10.204,
+          "o3": 3.853,
+          "co2": 526.519,
+          "pm25": 1.86
         }
       },
       "history": [
-        [
-          "2025-11-25T10:53",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-11-25T11:08",
           null,
@@ -6539,11 +6528,22 @@
           1.0,
           "NO2",
           0.19,
-          6.05,
-          10.71,
-          8.63,
-          525.12,
-          1.61
+          5.49,
+          10.63,
+          8.58,
+          526.46,
+          1.64
+        ],
+        [
+          "2025-11-26T11:08",
+          1.0,
+          "NO2",
+          0.19,
+          2.85,
+          10.2,
+          3.85,
+          526.52,
+          1.86
         ]
       ]
     },
@@ -6556,758 +6556,32 @@
       "lon": -124.4786294,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-25T18:39",
+        "timestamp": "2025-11-26T11:07",
         "aqhi": 2.0,
-        "primary": "O3",
+        "primary": "NO2",
         "pollutants": {
-          "co": 0.151,
-          "no": 5.219,
-          "no2": 10.969,
-          "o3": 29.128,
-          "co2": 439.886,
-          "pm25": 1.463
+          "co": 0.146,
+          "no": 2.697,
+          "no2": 9.417,
+          "o3": 10.541,
+          "co2": 450.745,
+          "pm25": 2.154
         }
       },
       "history": [
         [
-          "2025-11-24T18:39",
-          1.0,
-          "NO2",
+          "2025-11-25T11:07",
           null,
           null,
           null,
           null,
           null,
-          null
-        ],
-        [
-          "2025-11-24T18:54",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T19:09",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T19:24",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T19:39",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T19:54",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T20:09",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T20:24",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T20:39",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T20:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T21:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T21:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T21:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T21:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T22:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T22:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T22:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T22:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T23:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T23:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T23:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-24T23:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T00:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T00:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T00:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T00:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T01:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T01:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T01:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T01:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T02:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T02:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T02:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T02:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T03:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T03:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T03:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T03:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T04:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T04:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T04:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T04:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T05:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T05:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T05:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T05:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T06:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T06:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T06:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T06:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T07:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T07:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T07:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T07:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T08:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T08:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T08:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T08:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T09:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T09:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T09:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T09:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T10:09",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T10:24",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T10:39",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T10:54",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-25T11:09",
-          null,
-          null,
-          null,
-          null,
-          null,
           null,
           null,
           null
         ],
         [
-          "2025-11-25T11:24",
+          "2025-11-25T11:22",
           null,
           null,
           null,
@@ -7318,323 +6592,1049 @@
           null
         ],
         [
-          "2025-11-25T11:39",
+          "2025-11-25T11:37",
           2.0,
           "O3",
           0.15,
-          3.38,
-          8.38,
-          30.15,
-          438.83,
-          1.29
+          3.22,
+          7.63,
+          30.33,
+          438.8,
+          1.3
         ],
         [
-          "2025-11-25T11:54",
+          "2025-11-25T11:52",
           2.0,
           "O3",
           0.15,
-          4.66,
-          7.85,
-          30.72,
-          441.88,
-          1.33
+          5.17,
+          7.88,
+          30.71,
+          442.81,
+          1.32
         ],
         [
-          "2025-11-25T12:09",
+          "2025-11-25T12:07",
           2.0,
           "O3",
           0.15,
-          5.16,
-          8.12,
+          5.17,
+          8.13,
           30.69,
-          441.94,
-          1.39
+          442.02,
+          1.38
         ],
         [
-          "2025-11-25T12:24",
+          "2025-11-25T12:22",
           2.0,
           "O3",
           0.15,
-          3.67,
-          8.8,
-          30.03,
-          440.02,
+          4.7,
+          8.87,
+          30.02,
+          439.62,
           1.4
         ],
         [
-          "2025-11-25T12:39",
+          "2025-11-25T12:37",
           2.0,
           "O3",
           0.15,
-          5.13,
-          7.47,
-          30.75,
-          442.89,
-          1.48
+          4.57,
+          7.34,
+          30.7,
+          442.06,
+          1.47
         ],
         [
-          "2025-11-25T12:54",
+          "2025-11-25T12:52",
           2.0,
           "O3",
           0.15,
           5.28,
-          7.28,
-          31.31,
-          439.6,
+          7.34,
+          30.82,
+          440.32,
           1.48
         ],
         [
-          "2025-11-25T13:09",
+          "2025-11-25T13:07",
           2.0,
           "O3",
           0.15,
-          3.97,
-          8.55,
-          29.82,
-          438.77,
+          3.9,
+          8.44,
+          29.87,
+          439.04,
           1.46
         ],
         [
-          "2025-11-25T13:24",
+          "2025-11-25T13:22",
           2.0,
           "O3",
           0.15,
-          3.65,
-          8.57,
-          28.76,
-          439.03,
+          4.84,
+          8.54,
+          28.74,
+          439.21,
           1.45
         ],
         [
-          "2025-11-25T13:39",
+          "2025-11-25T13:37",
           2.0,
           "O3",
           0.15,
-          5.19,
-          8.72,
-          29.5,
-          438.41,
+          5.14,
+          7.94,
+          29.82,
+          438.7,
           1.52
         ],
         [
-          "2025-11-25T13:54",
-          2.0,
-          "O3",
-          0.15,
-          4.44,
-          9.84,
-          25.94,
-          438.95,
-          1.65
-        ],
-        [
-          "2025-11-25T14:09",
-          2.0,
-          "O3",
-          0.15,
-          5.1,
-          9.11,
-          26.88,
-          438.69,
-          1.52
-        ],
-        [
-          "2025-11-25T14:24",
-          2.0,
-          "O3",
-          0.15,
-          4.02,
-          7.49,
-          31.42,
-          439.17,
-          1.52
-        ],
-        [
-          "2025-11-25T14:39",
-          2.0,
-          "O3",
-          0.15,
-          5.25,
-          9.49,
-          28.7,
-          438.93,
-          1.46
-        ],
-        [
-          "2025-11-25T14:54",
+          "2025-11-25T13:52",
           2.0,
           "O3",
           0.15,
           4.81,
-          7.57,
-          32.38,
-          439.33,
+          9.89,
+          26.05,
+          438.9,
+          1.64
+        ],
+        [
+          "2025-11-25T14:07",
+          2.0,
+          "O3",
+          0.15,
+          5.4,
+          9.22,
+          26.06,
+          439.06,
+          1.51
+        ],
+        [
+          "2025-11-25T14:22",
+          2.0,
+          "O3",
+          0.15,
+          4.79,
+          7.47,
+          31.44,
+          439.05,
           1.53
         ],
         [
-          "2025-11-25T15:09",
+          "2025-11-25T14:37",
+          2.0,
+          "O3",
+          0.15,
+          5.21,
+          9.4,
+          28.89,
+          439.4,
+          1.47
+        ],
+        [
+          "2025-11-25T14:52",
+          2.0,
+          "O3",
+          0.15,
+          4.8,
+          7.88,
+          31.43,
+          438.92,
+          1.52
+        ],
+        [
+          "2025-11-25T15:07",
           2.0,
           "O3",
           0.17,
-          5.5,
-          9.95,
+          5.25,
+          9.66,
           30.11,
-          440.69,
-          1.47
-        ],
-        [
-          "2025-11-25T15:24",
-          2.0,
-          "O3",
-          0.15,
-          5.2,
-          8.63,
-          31.3,
-          439.37,
-          1.54
-        ],
-        [
-          "2025-11-25T15:39",
-          2.0,
-          "O3",
-          0.15,
-          3.89,
-          8.14,
-          31.36,
-          439.26,
-          1.49
-        ],
-        [
-          "2025-11-25T15:54",
-          2.0,
-          "O3",
-          0.15,
-          6.04,
-          8.17,
-          30.66,
-          439.94,
+          440.36,
           1.48
         ],
         [
-          "2025-11-25T16:09",
-          2.0,
-          "O3",
-          0.15,
-          3.42,
-          9.96,
-          23.09,
-          444.78,
-          1.43
-        ],
-        [
-          "2025-11-25T16:24",
-          2.0,
-          "O3",
-          0.15,
-          6.03,
-          11.4,
-          21.34,
-          446.12,
-          1.44
-        ],
-        [
-          "2025-11-25T16:39",
-          2.0,
-          "O3",
-          0.15,
-          2.78,
-          11.19,
-          18.73,
-          447.18,
-          1.4
-        ],
-        [
-          "2025-11-25T16:54",
-          2.0,
-          "O3",
-          0.15,
-          2.69,
-          8.19,
-          31.08,
-          439.89,
-          1.47
-        ],
-        [
-          "2025-11-25T17:09",
-          2.0,
-          "O3",
-          0.15,
-          3.28,
-          7.43,
-          34.36,
-          437.91,
-          1.5
-        ],
-        [
-          "2025-11-25T17:24",
-          2.0,
-          "O3",
-          0.15,
-          3.89,
-          7.17,
-          33.93,
-          438.03,
-          1.5
-        ],
-        [
-          "2025-11-25T17:39",
-          2.0,
-          "O3",
-          0.15,
-          3.32,
-          8.72,
-          28.95,
-          439.25,
-          1.47
-        ],
-        [
-          "2025-11-25T17:54",
-          2.0,
-          "O3",
-          0.15,
-          3.75,
-          10.38,
-          20.34,
-          446.67,
-          1.41
-        ],
-        [
-          "2025-11-25T18:09",
-          2.0,
-          "O3",
-          0.15,
-          3.68,
-          7.99,
-          31.99,
-          440.29,
-          1.46
-        ],
-        [
-          "2025-11-25T18:24",
-          2.0,
-          "O3",
-          0.15,
-          2.93,
-          8.51,
-          31.28,
-          440.28,
-          1.43
-        ],
-        [
-          "2025-11-25T18:39",
+          "2025-11-25T15:22",
           2.0,
           "O3",
           0.15,
           5.22,
-          10.97,
-          29.13,
-          439.89,
+          8.61,
+          31.23,
+          439.45,
+          1.54
+        ],
+        [
+          "2025-11-25T15:37",
+          2.0,
+          "O3",
+          0.15,
+          3.81,
+          8.07,
+          31.43,
+          439.85,
+          1.49
+        ],
+        [
+          "2025-11-25T15:52",
+          2.0,
+          "O3",
+          0.15,
+          6.0,
+          8.29,
+          30.59,
+          441.11,
+          1.49
+        ],
+        [
+          "2025-11-25T16:07",
+          2.0,
+          "O3",
+          0.15,
+          3.45,
+          9.81,
+          25.58,
+          444.12,
+          1.43
+        ],
+        [
+          "2025-11-25T16:22",
+          2.0,
+          "O3",
+          0.15,
+          5.98,
+          11.59,
+          21.41,
+          445.69,
+          1.45
+        ],
+        [
+          "2025-11-25T16:37",
+          2.0,
+          "O3",
+          0.15,
+          2.83,
+          11.15,
+          15.51,
+          447.21,
+          1.39
+        ],
+        [
+          "2025-11-25T16:52",
+          2.0,
+          "O3",
+          0.15,
+          2.49,
+          8.2,
+          30.62,
+          442.39,
+          1.47
+        ],
+        [
+          "2025-11-25T17:07",
+          2.0,
+          "O3",
+          0.15,
+          3.2,
+          7.5,
+          34.35,
+          438.06,
+          1.5
+        ],
+        [
+          "2025-11-25T17:22",
+          2.0,
+          "O3",
+          0.15,
+          3.67,
+          7.12,
+          33.84,
+          438.12,
+          1.49
+        ],
+        [
+          "2025-11-25T17:37",
+          2.0,
+          "O3",
+          0.15,
+          3.68,
+          7.98,
+          30.33,
+          439.61,
+          1.49
+        ],
+        [
+          "2025-11-25T17:52",
+          2.0,
+          "O3",
+          0.15,
+          3.2,
+          10.8,
+          18.68,
+          446.76,
+          1.4
+        ],
+        [
+          "2025-11-25T18:07",
+          2.0,
+          "O3",
+          0.15,
+          3.91,
+          7.97,
+          32.01,
+          440.6,
           1.46
+        ],
+        [
+          "2025-11-25T18:22",
+          2.0,
+          "O3",
+          0.15,
+          3.26,
+          8.22,
+          31.41,
+          440.23,
+          1.44
+        ],
+        [
+          "2025-11-25T18:37",
+          2.0,
+          "O3",
+          0.15,
+          4.22,
+          10.4,
+          29.05,
+          439.97,
+          1.45
+        ],
+        [
+          "2025-11-25T18:52",
+          2.0,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T19:07",
+          2.0,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T19:22",
+          2.0,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T19:37",
+          null,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T19:52",
+          null,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T20:07",
+          null,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T20:22",
+          null,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T20:37",
+          null,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T20:52",
+          null,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T21:07",
+          null,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T21:22",
+          null,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T21:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T21:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T22:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T22:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T22:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T22:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T23:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T23:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T23:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-25T23:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T00:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T00:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T00:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T00:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T01:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T01:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T01:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T01:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T02:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T02:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T02:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T02:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T03:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T03:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T03:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T03:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T04:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T04:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T04:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T04:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T05:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T05:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T05:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T05:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T06:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T06:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T06:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T06:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T07:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T07:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T07:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T07:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T08:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T08:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T08:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T08:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T09:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T09:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T09:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T09:52",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T10:07",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T10:22",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T10:37",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-26T10:52",
+          2.0,
+          "O3",
+          0.17,
+          3.09,
+          9.71,
+          16.19,
+          467.9,
+          2.13
+        ],
+        [
+          "2025-11-26T11:07",
+          2.0,
+          "NO2",
+          0.15,
+          2.7,
+          9.42,
+          10.54,
+          450.74,
+          2.15
         ]
       ]
     },
@@ -7647,30 +7647,19 @@
       "lon": -122.800427,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-26T11:00",
+        "timestamp": "2025-11-26T11:15",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.216,
-          "no": 10.296,
-          "no2": 12.001,
-          "o3": 3.952,
-          "co2": 463.333,
-          "pm25": 6.699
+          "co": 0.171,
+          "no": 6.257,
+          "no2": 10.029,
+          "o3": 4.567,
+          "co2": 458.822,
+          "pm25": 4.732
         }
       },
       "history": [
-        [
-          "2025-11-25T11:00",
-          1.0,
-          "NO2",
-          0.16,
-          6.33,
-          9.11,
-          5.69,
-          449.42,
-          2.73
-        ],
         [
           "2025-11-25T11:15",
           1.0,
@@ -8720,12 +8709,23 @@
           "2025-11-26T11:00",
           1.0,
           "NO2",
-          0.22,
-          10.3,
-          12.0,
-          3.95,
-          463.33,
-          6.7
+          0.21,
+          9.91,
+          11.87,
+          4.19,
+          460.24,
+          6.27
+        ],
+        [
+          "2025-11-26T11:15",
+          1.0,
+          "NO2",
+          0.17,
+          6.26,
+          10.03,
+          4.57,
+          458.82,
+          4.73
         ]
       ]
     },
@@ -8738,30 +8738,19 @@
       "lon": -122.956237,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-26T10:59",
+        "timestamp": "2025-11-26T11:14",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.165,
-          "no": 5.962,
-          "no2": 10.54,
-          "o3": 4.757,
-          "co2": 458.963,
-          "pm25": 2.595
+          "co": 0.169,
+          "no": 5.212,
+          "no2": 10.769,
+          "o3": 4.393,
+          "co2": 461.012,
+          "pm25": 3.119
         }
       },
       "history": [
-        [
-          "2025-11-25T10:59",
-          1.0,
-          "NO2",
-          0.18,
-          6.56,
-          12.25,
-          4.47,
-          452.48,
-          3.55
-        ],
         [
           "2025-11-25T11:14",
           1.0,
@@ -9812,11 +9801,22 @@
           1.0,
           "NO2",
           0.16,
-          5.96,
-          10.54,
-          4.76,
-          458.96,
-          2.59
+          5.48,
+          10.56,
+          4.94,
+          458.1,
+          2.73
+        ],
+        [
+          "2025-11-26T11:14",
+          1.0,
+          "NO2",
+          0.17,
+          5.21,
+          10.77,
+          4.39,
+          461.01,
+          3.12
         ]
       ]
     },
@@ -9829,7 +9829,7 @@
       "lon": -122.800427,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-26T11:00",
+        "timestamp": "2025-11-26T11:15",
         "aqhi": 1.0,
         "primary": "O3",
         "pollutants": {
@@ -9837,8 +9837,8 @@
           "no": null,
           "no2": null,
           "o3": null,
-          "co2": 758.64,
-          "pm25": 5.45
+          "co2": 748.72,
+          "pm25": 4.437
         }
       },
       "history": [
@@ -9883,8 +9883,19 @@
           null,
           null,
           null,
-          758.64,
-          5.45
+          755.34,
+          5.27
+        ],
+        [
+          "2025-11-26T11:15",
+          1.0,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          748.72,
+          4.44
         ]
       ]
     },
@@ -9897,30 +9908,19 @@
       "lon": -123.038952,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-26T11:00",
+        "timestamp": "2025-11-26T11:15",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.373,
-          "no": 5.647,
-          "no2": 9.46,
-          "o3": 6.713,
-          "co2": 747.92,
-          "pm25": 3.23
+          "co": 0.334,
+          "no": 4.378,
+          "no2": 7.144,
+          "o3": 6.52,
+          "co2": 737.768,
+          "pm25": 2.25
         }
       },
       "history": [
-        [
-          "2025-11-25T11:00",
-          2.0,
-          "O3",
-          0.27,
-          1.96,
-          5.97,
-          20.45,
-          738.3,
-          1.03
-        ],
         [
           "2025-11-25T11:15",
           2.0,
@@ -10970,12 +10970,23 @@
           "2025-11-26T11:00",
           1.0,
           "NO2",
-          0.37,
-          5.65,
-          9.46,
-          6.71,
-          747.92,
-          3.23
+          0.36,
+          4.86,
+          8.14,
+          6.95,
+          742.81,
+          2.61
+        ],
+        [
+          "2025-11-26T11:15",
+          1.0,
+          "NO2",
+          0.33,
+          4.38,
+          7.14,
+          6.52,
+          737.77,
+          2.25
         ]
       ]
     },
@@ -10988,7 +10999,7 @@
       "lon": -123.136143,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-26T11:00",
+        "timestamp": "2025-11-26T11:15",
         "aqhi": 2.0,
         "primary": "O3",
         "pollutants": {
@@ -10996,8 +11007,8 @@
           "no": null,
           "no2": null,
           "o3": null,
-          "co2": 705.913,
-          "pm25": 2.84
+          "co2": 725.421,
+          "pm25": 4.349
         }
       },
       "history": [
@@ -11108,8 +11119,19 @@
           null,
           null,
           null,
-          705.91,
-          2.84
+          711.31,
+          3.67
+        ],
+        [
+          "2025-11-26T11:15",
+          2.0,
+          "O3",
+          null,
+          null,
+          null,
+          null,
+          725.42,
+          4.35
         ]
       ]
     }
