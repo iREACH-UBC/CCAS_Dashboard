@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-11-30T01:52-08:00",
+  "generated_at": "2025-11-30T02:04-08:00",
   "sensors": [
     {
       "id": "2021",
@@ -10,7 +10,7 @@
       "lon": -123.1658402,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-30T01:25",
+        "timestamp": "2025-11-30T01:40",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -23,17 +23,6 @@
         }
       },
       "history": [
-        [
-          "2025-11-29T01:25",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-11-29T01:40",
           null,
@@ -1081,6 +1070,17 @@
         ],
         [
           "2025-11-30T01:25",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-30T01:40",
           null,
           null,
           null,
