@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-11-30T11:25-08:00",
+  "generated_at": "2025-11-30T11:33-08:00",
   "sensors": [
     {
       "id": "2021",
@@ -10,7 +10,7 @@
       "lon": -123.1658402,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-30T10:55",
+        "timestamp": "2025-11-30T11:10",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -23,17 +23,6 @@
         }
       },
       "history": [
-        [
-          "2025-11-29T10:55",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-11-29T11:10",
           null,
@@ -1089,6 +1078,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-11-30T11:10",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -1101,7 +1101,7 @@
       "lon": -124.5218536,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-30T10:59",
+        "timestamp": "2025-11-30T11:14",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -1114,17 +1114,6 @@
         }
       },
       "history": [
-        [
-          "2025-11-29T10:59",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-11-29T11:14",
           null,
@@ -2180,6 +2169,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-11-30T11:14",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -2192,7 +2192,7 @@
       "lon": -123.115759,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-30T10:45",
+        "timestamp": "2025-11-30T11:15",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -2205,28 +2205,6 @@
         }
       },
       "history": [
-        [
-          "2025-11-29T10:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-11-29T11:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-11-29T11:15",
           null,
@@ -3263,6 +3241,28 @@
         ],
         [
           "2025-11-30T10:45",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-30T11:00",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-11-30T11:15",
           null,
           null,
           null,
@@ -5465,30 +5465,19 @@
       "lon": -123.147833,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-11-30T10:58",
+        "timestamp": "2025-11-30T11:13",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.257,
-          "no": 13.8,
-          "no2": 12.384,
-          "o3": -1.897,
-          "co2": 460.744,
-          "pm25": 2.262
+          "co": 0.24,
+          "no": 13.518,
+          "no2": 12.395,
+          "o3": -1.065,
+          "co2": 459.687,
+          "pm25": 2.311
         }
       },
       "history": [
-        [
-          "2025-11-29T10:58",
-          1.0,
-          "NO2",
-          0.16,
-          6.69,
-          11.28,
-          4.7,
-          449.66,
-          2.99
-        ],
         [
           "2025-11-29T11:13",
           1.0,
@@ -6539,11 +6528,22 @@
           1.0,
           "NO2",
           0.26,
-          13.8,
-          12.38,
-          -1.9,
-          460.74,
-          2.26
+          13.45,
+          13.66,
+          -1.16,
+          459.93,
+          2.42
+        ],
+        [
+          "2025-11-30T11:13",
+          1.0,
+          "NO2",
+          0.24,
+          13.52,
+          12.4,
+          -1.07,
+          459.69,
+          2.31
         ]
       ]
     },
