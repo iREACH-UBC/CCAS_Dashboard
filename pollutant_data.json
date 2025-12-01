@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-01T13:26-08:00",
+  "generated_at": "2025-12-01T13:34-08:00",
   "sensors": [
     {
       "id": "2021",
@@ -10,7 +10,7 @@
       "lon": -123.1658402,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-01T12:58",
+        "timestamp": "2025-12-01T13:13",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -23,17 +23,6 @@
         }
       },
       "history": [
-        [
-          "2025-11-30T12:58",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-11-30T13:13",
           null,
@@ -1089,6 +1078,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-12-01T13:13",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -1101,7 +1101,7 @@
       "lon": -124.5218536,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-01T12:53",
+        "timestamp": "2025-12-01T13:08",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -1114,17 +1114,6 @@
         }
       },
       "history": [
-        [
-          "2025-11-30T12:53",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-11-30T13:08",
           null,
@@ -2180,6 +2169,17 @@
           null,
           null,
           null
+        ],
+        [
+          "2025-12-01T13:08",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       ]
     },
@@ -2192,7 +2192,7 @@
       "lon": -123.115759,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-01T13:02",
+        "timestamp": "2025-12-01T13:17",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -2205,17 +2205,6 @@
         }
       },
       "history": [
-        [
-          "2025-11-30T13:02",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-11-30T13:17",
           null,
@@ -3263,6 +3252,17 @@
         ],
         [
           "2025-12-01T13:02",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-01T13:17",
           null,
           null,
           null,
@@ -5465,30 +5465,19 @@
       "lon": -123.147833,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-01T12:57",
+        "timestamp": "2025-12-01T13:12",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.173,
-          "no": 12.195,
-          "no2": 11.357,
-          "o3": -3.461,
-          "co2": 459.386,
-          "pm25": 4.535
+          "co": 0.184,
+          "no": 14.777,
+          "no2": 12.872,
+          "o3": -3.906,
+          "co2": 460.876,
+          "pm25": 4.436
         }
       },
       "history": [
-        [
-          "2025-11-30T12:57",
-          1.0,
-          "NO2",
-          0.18,
-          14.1,
-          11.22,
-          10.08,
-          462.06,
-          3.31
-        ],
         [
           "2025-11-30T13:12",
           1.0,
@@ -6538,12 +6527,23 @@
           "2025-12-01T12:57",
           1.0,
           "NO2",
-          0.17,
-          12.2,
-          11.36,
-          -3.46,
-          459.39,
-          4.53
+          0.22,
+          13.25,
+          12.76,
+          -3.45,
+          462.06,
+          4.46
+        ],
+        [
+          "2025-12-01T13:12",
+          1.0,
+          "NO2",
+          0.18,
+          14.78,
+          12.87,
+          -3.91,
+          460.88,
+          4.44
         ]
       ]
     },
