@@ -69,6 +69,8 @@ read_select <- function(path) {
 
 today     <- read_select(files_tbl$path[1])
 yesterday <- read_select(files_tbl$path[2])
+today <- today[1:21]
+yesterday <- yesterday[1:21]
 
 df <- dplyr::bind_rows(today, yesterday) |>
   dplyr::mutate(
