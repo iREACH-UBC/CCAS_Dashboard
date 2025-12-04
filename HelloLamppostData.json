@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.81,
+        "pollutant_concentration": 10.62,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -58,9 +58,9 @@
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 2,
-        "top_contributor": "PM2.5",
-        "pollutant_concentration": "N/A",
+        "value": 1,
+        "top_contributor": "O3",
+        "pollutant_concentration": 7.48,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -75,8 +75,8 @@
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "PM2.5",
-        "pollutant_concentration": "N/A",
+        "top_contributor": "NO2",
+        "pollutant_concentration": 3.13,
         "aq_advisory": false
     },
     "Sensor 10": {
