@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 22.85,
+        "pollutant_concentration": 22.2,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 30.8,
+        "pollutant_concentration": 30.97,
         "aq_advisory": false
     },
     "Sensor 12": {
