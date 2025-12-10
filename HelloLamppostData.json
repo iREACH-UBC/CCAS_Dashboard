@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.93,
+        "pollutant_concentration": 23.24,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.62,
+        "pollutant_concentration": 19.84,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 24.64,
+        "pollutant_concentration": 22.68,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,15 +36,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.46,
+        "pollutant_concentration": 22.21,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.67,
+        "pollutant_concentration": 14.66,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.11,
+        "pollutant_concentration": 7.83,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.85,
+        "pollutant_concentration": 18.22,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -84,6 +84,22 @@
         "label": "Not Available",
         "value": "N/A",
         "top_contributor": "Sensor Currently Offline",
+        "pollutant_concentration": "N/A",
+        "aq_advisory": false
+    },
+    "Sensor 14": {
+        "name": "West End Community Centre",
+        "label": "Not Available",
+        "value": "N/A",
+        "top_contributor": "Not Available",
+        "pollutant_concentration": "N/A",
+        "aq_advisory": false
+    },
+    "MOD-00628": {
+        "name": "MOD-00628",
+        "label": "Not Available",
+        "value": "N/A",
+        "top_contributor": "Not Available",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
