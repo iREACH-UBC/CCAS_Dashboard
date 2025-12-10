@@ -142,7 +142,27 @@ def to_pacific_iso(ts) -> str | None:
     """Return ISO‑8601 string in America/Vancouver; ts already Pacific."""
     return None if pd.isna(ts) else ts.isoformat(timespec="minutes")
 
-# -------------------- OFFLINE SENSOR HANDLING -----------------------
+
+# -------------------- NEGATIVE CONC HANDLING ------------------------|
+
+
+def safe_round(val, ndigits: int, *, allow_negative: bool = False):
+    """
+    Round numeric values safely:
+    - return None if NaN / non-numeric
+    - return None if value < 0 and allow_negative=False
+    """
+    if pd.isna(val):
+        return None
+    try:
+        v = float(val)
+    except (TypeError, ValueError):
+        return None
+    if (not allow_negative) and v < 0:
+        return None
+    return round(v, ndigits)
+
+# -------------------- OFFLINE SENSOR HANDLING -----------------------|
 
 OFFLINE_PRIMARY   = "Not Available"
 OFFLINE_POLLUTANT = "N/A"
@@ -291,30 +311,32 @@ def build() -> dict:
 
             latest = {
                 "timestamp": to_pacific_iso(last["DATE"]),
-                "aqhi": round(float(last["AQHI"]), 1) if pd.notna(last["AQHI"]) else None,
+                # If you also want to suppress negative AQHI, leave allow_negative=False
+                "aqhi": safe_round(last["AQHI"], 1, allow_negative=False) if "AQHI" in df.columns else None,
                 "primary": last["PRIMARY"] if isinstance(last["PRIMARY"], str) else None,
                 "pollutants": {
-                    "co":   round(float(last["CO"]),   3) if pd.notna(last["CO"])   else None,
-                    "no":   round(float(last["NO"]),   3) if pd.notna(last["NO"])   else None,
-                    "no2":  round(float(last["NO2"]),  3) if pd.notna(last["NO2"])  else None,
-                    "o3":   round(float(last["O3"]),   3) if pd.notna(last["O3"])   else None,
-                    "co2":  round(float(last["CO2"]),  3) if pd.notna(last["CO2"])  else None,
-                    "pm25": round(float(last["PM25"]), 3) if pd.notna(last["PM25"]) else None,
+                    "co":   safe_round(last["CO"],   3) if "CO"   in df.columns else None,
+                    "no":   safe_round(last["NO"],   3) if "NO"   in df.columns else None,
+                    "no2":  safe_round(last["NO2"],  3) if "NO2"  in df.columns else None,
+                    "o3":   safe_round(last["O3"],   3) if "O3"   in df.columns else None,
+                    "co2":  safe_round(last["CO2"],  3) if "CO2"  in df.columns else None,
+                    "pm25": safe_round(last["PM25"], 3) if "PM25" in df.columns else None,
                 },
             }
+
 
             # ── history list ─────────────────────────────────
             history = [
                 [
                     to_pacific_iso(r["DATE"]),
-                    round(float(r["AQHI"]), 1) if pd.notna(r["AQHI"]) else None,
+                    safe_round(r["AQHI"], 1, allow_negative=False) if "AQHI" in df.columns else None,
                     r["PRIMARY"] if isinstance(r["PRIMARY"], str) else None,
-                    round(float(r["CO"]),   2) if pd.notna(r["CO"])   else None,
-                    round(float(r["NO"]),   2) if pd.notna(r["NO"])   else None,
-                    round(float(r["NO2"]),  2) if pd.notna(r["NO2"])  else None,
-                    round(float(r["O3"]),   2) if pd.notna(r["O3"])   else None,
-                    round(float(r["CO2"]),  2) if pd.notna(r["CO2"])  else None,
-                    round(float(r["PM25"]), 2) if pd.notna(r["PM25"]) else None,
+                    safe_round(r["CO"],   2) if "CO"   in df.columns else None,
+                    safe_round(r["NO"],   2) if "NO"   in df.columns else None,
+                    safe_round(r["NO2"],  2) if "NO2"  in df.columns else None,
+                    safe_round(r["O3"],   2) if "O3"   in df.columns else None,
+                    safe_round(r["CO2"],  2) if "CO2"  in df.columns else None,
+                    safe_round(r["PM25"], 2) if "PM25" in df.columns else None,
                 ]
                 for _, r in df.iterrows()
             ]
