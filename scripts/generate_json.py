@@ -13,7 +13,7 @@
 
 from __future__ import annotations
 import json, re, sys
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -21,7 +21,7 @@ import pandas as pd
 import pytz
 
 # ───────────────────────────────────────────────────────────────
-# EDIT ME
+# EDIT ME with sensors
 # ───────────────────────────────────────────────────────────────
 SENSORS_WANTED: set[str] | None = {
     "2021", "2022","2032", "2040", "2042", "2043", "2024", "2030", 
@@ -164,14 +164,47 @@ def safe_round(val, ndigits: int, *, allow_negative: bool = False):
 
 # -------------------- OFFLINE SENSOR HANDLING -----------------------|
 
+
+def make_offline_history(now_ts: datetime, history_hours: int) -> list[list[Any]]:
+    """
+    Build a synthetic history timeline for an offline sensor:
+    - One point per hour over the past `history_hours`
+    - All values are None (JSON null)
+    """
+    if history_hours <= 0:
+        return []
+
+    history: list[list[Any]] = []
+    # Generate timestamps from (now - history_hours + 1 h) up to now
+    for i in range(history_hours):
+        ts = now_ts - timedelta(hours=history_hours - 1 - i)
+        history.append([
+            to_pacific_iso(ts),  # timestamp
+            None,                # AQHI
+            None,                # PRIMARY (top contributor)
+            None,                # CO
+            None,                # NO
+            None,                # NO2
+            None,                # O3
+            None,                # CO2
+            None,                # PM25
+        ])
+    return history
+
+
 OFFLINE_PRIMARY   = "Not Available"
 OFFLINE_POLLUTANT = "N/A"
 
 
-def make_offline_sensor(sid: str,
-                        meta: dict[str, dict],
-                        alerts: dict[str, bool],
-                        reason: str | None = None) -> dict:
+def make_offline_sensor(
+    sid: str,
+    meta: dict[str, dict],
+    alerts: dict[str, bool],
+    *,
+    now_ts: datetime,
+    history_hours: int,
+    reason: str | None = None,
+) -> dict:
     """Build a sensor block for an offline / no-data sensor."""
     m = meta.get(sid, {}) or {}
 
@@ -180,6 +213,8 @@ def make_offline_sensor(sid: str,
 
     if reason:
         print(f"[WARN] {sid}: marked offline – {reason}", file=sys.stderr)
+
+    offline_history = make_offline_history(now_ts, history_hours)
 
     return {
         "id":            sid,
@@ -202,8 +237,9 @@ def make_offline_sensor(sid: str,
                 "pm25": OFFLINE_POLLUTANT,
             },
         },
-        "history": [],
+        "history": offline_history,
     }
+
 
 # ── core builder ───────────────────────────────────────────────
 
@@ -211,6 +247,8 @@ def build() -> dict:
     meta   = read_meta(META_CSV)
     alerts = read_advisories(ADVISORY_JSON)
     sensors_js: list[dict] = []
+    
+    now_ts = datetime.now(PACIFIC).replace(second=0, microsecond=0)
 
     # Decide which sensor IDs we’re going to emit
     if SENSORS_WANTED is not None:
@@ -228,6 +266,8 @@ def build() -> dict:
             sensors_js.append(
                 make_offline_sensor(
                     sid, meta, alerts,
+                    now_ts=now_ts,
+                    history_hours=HISTORY_HOURS,
                     reason="no directory under calibrated_data"
                 )
             )
@@ -240,6 +280,8 @@ def build() -> dict:
                 sensors_js.append(
                     make_offline_sensor(
                         sid, meta, alerts,
+                        now_ts=now_ts,
+                        history_hours=HISTORY_HOURS,
                         reason="no calibrated CSVs found"
                     )
                 )
@@ -253,6 +295,8 @@ def build() -> dict:
                 sensors_js.append(
                     make_offline_sensor(
                         sid, meta, alerts,
+                        now_ts=now_ts,
+                        history_hours=HISTORY_HOURS,
                         reason="CSV read failed"
                     )
                 )
@@ -272,6 +316,8 @@ def build() -> dict:
                 sensors_js.append(
                     make_offline_sensor(
                         sid, meta, alerts,
+                        now_ts=now_ts,
+                        history_hours=HISTORY_HOURS,
                         reason="DATE column missing"
                     )
                 )
@@ -296,6 +342,8 @@ def build() -> dict:
                 sensors_js.append(
                     make_offline_sensor(
                         sid, meta, alerts,
+                        now_ts=now_ts,
+                        history_hours=HISTORY_HOURS,
                         reason=reason
                     )
                 )
@@ -370,6 +418,8 @@ def build() -> dict:
             sensors_js.append(
                 make_offline_sensor(
                     sid, meta, alerts,
+                    now_ts=now_ts,
+                    history_hours=HISTORY_HOURS,
                     reason="unexpected exception during build()"
                 )
             )
