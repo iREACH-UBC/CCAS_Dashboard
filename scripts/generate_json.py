@@ -142,123 +142,222 @@ def to_pacific_iso(ts) -> str | None:
     """Return ISO‑8601 string in America/Vancouver; ts already Pacific."""
     return None if pd.isna(ts) else ts.isoformat(timespec="minutes")
 
+# -------------------- OFFLINE SENSOR HANDLING -----------------------
+
+OFFLINE_PRIMARY   = "Not Available"
+OFFLINE_POLLUTANT = "N/A"
+
+
+def make_offline_sensor(sid: str,
+                        meta: dict[str, dict],
+                        alerts: dict[str, bool],
+                        reason: str | None = None) -> dict:
+    """Build a sensor block for an offline / no-data sensor."""
+    m = meta.get(sid, {}) or {}
+
+    region = _clean_str(m.get("region")) or None
+    active_alert = alerts.get(region, False)
+
+    if reason:
+        print(f"[WARN] {sid}: marked offline – {reason}", file=sys.stderr)
+
+    return {
+        "id":            sid,
+        "name":          _clean_str(m.get("name")),
+        "sensor_number": _clean_str(m.get("sensor_number")),
+        "region":        region,
+        "lat":           float(m.get("lat")) if m.get("lat") else None,
+        "lon":           float(m.get("lon")) if m.get("lon") else None,
+        "active_alert":  active_alert,
+        "latest": {
+            "timestamp": None,
+            "aqhi":      None,
+            "primary":   OFFLINE_PRIMARY,
+            "pollutants": {
+                "co":   OFFLINE_POLLUTANT,
+                "no":   OFFLINE_POLLUTANT,
+                "no2":  OFFLINE_POLLUTANT,
+                "o3":   OFFLINE_POLLUTANT,
+                "co2":  OFFLINE_POLLUTANT,
+                "pm25": OFFLINE_POLLUTANT,
+            },
+        },
+        "history": [],
+    }
 
 # ── core builder ───────────────────────────────────────────────
 
 def build() -> dict:
-    meta       = read_meta(META_CSV)
-    alerts     = read_advisories(ADVISORY_JSON)
-    sensors_js = []
+    meta   = read_meta(META_CSV)
+    alerts = read_advisories(ADVISORY_JSON)
+    sensors_js: list[dict] = []
 
-    for sensor_dir in sorted(BASE_DIR.iterdir()):
+    # Decide which sensor IDs we’re going to emit
+    if SENSORS_WANTED is not None:
+        sensor_ids = sorted(SENSORS_WANTED)
+    else:
+        sensor_ids = sorted(
+            p.name for p in BASE_DIR.iterdir() if p.is_dir()
+        )
+
+    for sid in sensor_ids:
+        sensor_dir = BASE_DIR / sid
+
+        # If there’s not even a directory, still emit an offline sensor
         if not sensor_dir.is_dir():
-            continue
-        sid = sensor_dir.name
-        if SENSORS_WANTED and sid not in SENSORS_WANTED:
-            continue
-
-        csv_path = newest_csv(sensor_dir, sid)
-        if not csv_path:
+            sensors_js.append(
+                make_offline_sensor(
+                    sid, meta, alerts,
+                    reason="no directory under calibrated_data"
+                )
+            )
             continue
 
         try:
-            # read only wanted columns, case-insensitive
-            df = pd.read_csv(csv_path, usecols=lambda c: c.lower() in KEEP_COLS_LC)
-        except ValueError as e:
-            print(f"[ERROR] {csv_path}: {e}", file=sys.stderr)
-            continue
-        
-        # normalize all headers to canonical spellings (DATE, AQHI, Top_AQHI_contributor, PM2.5, …)
-        df.rename(columns=lambda c: CANON_MAP.get(c.lower(), c), inplace=True)
-        
-        # now do your semantic renames
-        df.rename(columns={"Top_AQHI_contributor": "PRIMARY", "PM2.5": "PM25"}, inplace=True)
-        
-        # ensure expected columns exist even if missing in the CSV
-        for col in ("PRIMARY", "PM25"):
-            if col not in df.columns:
-                df[col] = None
+            csv_path = newest_csv(sensor_dir, sid)
+            if not csv_path:
+                # No calibrated CSVs found – offline
+                sensors_js.append(
+                    make_offline_sensor(
+                        sid, meta, alerts,
+                        reason="no calibrated CSVs found"
+                    )
+                )
+                continue
 
-        # ── timestamp handling ────────────────────────────────
-        df["DATE"] = pd.to_datetime(df["DATE"])
-        '''
-        if df["DATE"].dt.tz is None:
-            df["DATE"] = df["DATE"].dt.tz_localize("UTC").dt.tz_convert("America/Vancouver")
-        else:
-            df["DATE"] = df["DATE"].dt.tz_convert("America/Vancouver")
-        '''
+            try:
+                # read only wanted columns, case-insensitive
+                df = pd.read_csv(csv_path, usecols=lambda c: c.lower() in KEEP_COLS_LC)
+            except ValueError as e:
+                print(f"[ERROR] {csv_path}: {e}", file=sys.stderr)
+                sensors_js.append(
+                    make_offline_sensor(
+                        sid, meta, alerts,
+                        reason="CSV read failed"
+                    )
+                )
+                continue
 
+            # normalise headers
+            df.rename(columns=lambda c: CANON_MAP.get(c.lower(), c), inplace=True)
+            df.rename(columns={"Top_AQHI_contributor": "PRIMARY", "PM2.5": "PM25"},
+                      inplace=True)
 
-        # ── apply rolling window ──────────────────────────────
-        if HISTORY_HOURS > 0 and not df.empty:
-            cutoff = df["DATE"].max() - pd.Timedelta(hours=HISTORY_HOURS)
-            df = df[df["DATE"] >= cutoff]
+            for col in ("PRIMARY", "PM25"):
+                if col not in df.columns:
+                    df[col] = None
 
-        if df.empty:
-            print(f"[WARN] {sid}: dataframe empty", file=sys.stderr)
-            continue
+            # timestamp handling
+            if "DATE" not in df.columns:
+                sensors_js.append(
+                    make_offline_sensor(
+                        sid, meta, alerts,
+                        reason="DATE column missing"
+                    )
+                )
+                continue
 
-        # ── latest record ─────────────────────────────────────
-        last = df.iloc[-1]
-        print(f"[DEBUG] {sid}: Final NO value: {last['NO']} → rounded: {round(float(last['NO']), 3) if pd.notna(last['NO']) else None}")
+            df["DATE"] = pd.to_datetime(df["DATE"])
 
-        latest = {
-            "timestamp": to_pacific_iso(last["DATE"]),
-            "aqhi": round(float(last["AQHI"]), 1) if pd.notna(last["AQHI"]) else None,
-            "primary": last["PRIMARY"] if isinstance(last["PRIMARY"], str) else None,
-            "pollutants": {
-                "co":   round(float(last["CO"]),   3) if pd.notna(last["CO"])   else None,
-                "no":   round(float(last["NO"]),   3) if pd.notna(last["NO"])   else None,
-                "no2":  round(float(last["NO2"]),  3) if pd.notna(last["NO2"])  else None,
-                "o3":   round(float(last["O3"]),   3) if pd.notna(last["O3"])   else None,
-                "co2":  round(float(last["CO2"]),  3) if pd.notna(last["CO2"])  else None,
-                "pm25": round(float(last["PM25"]), 3) if pd.notna(last["PM25"]) else None,
-            },
-        }
+            # full_df for “do we have any data at all?”
+            full_df = df.copy()
 
-        # ── history list ──────────────────────────────────────
-        history = [
-            [
-                to_pacific_iso(r["DATE"]),
-                round(float(r["AQHI"]), 1) if pd.notna(r["AQHI"]) else None,
-                r["PRIMARY"] if isinstance(r["PRIMARY"], str) else None,
-                round(float(r["CO"]),   2) if pd.notna(r["CO"])   else None,
-                round(float(r["NO"]),   2) if pd.notna(r["NO"])   else None,
-                round(float(r["NO2"]),  2) if pd.notna(r["NO2"])  else None,
-                round(float(r["O3"]),   2) if pd.notna(r["O3"])   else None,
-                round(float(r["CO2"]),  2) if pd.notna(r["CO2"])  else None,
-                round(float(r["PM25"]), 2) if pd.notna(r["PM25"]) else None,
+            # apply rolling window
+            if HISTORY_HOURS > 0 and not df.empty:
+                cutoff = df["DATE"].max() - pd.Timedelta(hours=HISTORY_HOURS)
+                df = df[df["DATE"] >= cutoff]
+
+            # If no rows survive the time window, mark as offline (no stale values)
+            if df.empty:
+                if full_df.empty:
+                    reason = "no rows in CSV"
+                else:
+                    reason = f"no rows in last {HISTORY_HOURS}h (stale data suppressed)"
+                sensors_js.append(
+                    make_offline_sensor(
+                        sid, meta, alerts,
+                        reason=reason
+                    )
+                )
+                continue
+
+            # ── latest record ─────────────────────────────────
+            last = df.iloc[-1]
+            print(
+                f"[DEBUG] {sid}: Final NO value: {last.get('NO')} → "
+                f"rounded: {round(float(last['NO']), 3) if pd.notna(last['NO']) else None}",
+                file=sys.stderr,
+            )
+
+            latest = {
+                "timestamp": to_pacific_iso(last["DATE"]),
+                "aqhi": round(float(last["AQHI"]), 1) if pd.notna(last["AQHI"]) else None,
+                "primary": last["PRIMARY"] if isinstance(last["PRIMARY"], str) else None,
+                "pollutants": {
+                    "co":   round(float(last["CO"]),   3) if pd.notna(last["CO"])   else None,
+                    "no":   round(float(last["NO"]),   3) if pd.notna(last["NO"])   else None,
+                    "no2":  round(float(last["NO2"]),  3) if pd.notna(last["NO2"])  else None,
+                    "o3":   round(float(last["O3"]),   3) if pd.notna(last["O3"])   else None,
+                    "co2":  round(float(last["CO2"]),  3) if pd.notna(last["CO2"])  else None,
+                    "pm25": round(float(last["PM25"]), 3) if pd.notna(last["PM25"]) else None,
+                },
+            }
+
+            # ── history list ─────────────────────────────────
+            history = [
+                [
+                    to_pacific_iso(r["DATE"]),
+                    round(float(r["AQHI"]), 1) if pd.notna(r["AQHI"]) else None,
+                    r["PRIMARY"] if isinstance(r["PRIMARY"], str) else None,
+                    round(float(r["CO"]),   2) if pd.notna(r["CO"])   else None,
+                    round(float(r["NO"]),   2) if pd.notna(r["NO"])   else None,
+                    round(float(r["NO2"]),  2) if pd.notna(r["NO2"])  else None,
+                    round(float(r["O3"]),   2) if pd.notna(r["O3"])   else None,
+                    round(float(r["CO2"]),  2) if pd.notna(r["CO2"])  else None,
+                    round(float(r["PM25"]), 2) if pd.notna(r["PM25"]) else None,
+                ]
+                for _, r in df.iterrows()
             ]
-            for _, r in df.iterrows()
-        ]
 
-        # ── assemble sensor block ─────────────────────────────
-        m = meta.get(sid, {})
-        region        = _clean_str(m.get("region")) or None
-        active_alert  = alerts.get(region, False)
+            # ── assemble sensor block ─────────────────────────
+            m = meta.get(sid, {}) or {}
+            region       = _clean_str(m.get("region")) or None
+            active_alert = alerts.get(region, False)
 
-        sensors_js.append({
-            "id":            sid,
-            "name":          _clean_str(m.get("name")),
-            "sensor_number": _clean_str(m.get("sensor_number")),
-            "region":        region,
-            "lat":           float(m.get("lat")) if m.get("lat") else None,
-            "lon":           float(m.get("lon")) if m.get("lon") else None,
-            "active_alert":  active_alert,
-            "latest":        latest,
-            "history":       history,
-        })
+            sensors_js.append({
+                "id":            sid,
+                "name":          _clean_str(m.get("name")),
+                "sensor_number": _clean_str(m.get("sensor_number")),
+                "region":        region,
+                "lat":           float(m.get("lat")) if m.get("lat") else None,
+                "lon":           float(m.get("lon")) if m.get("lon") else None,
+                "active_alert":  active_alert,
+                "latest":        latest,
+                "history":       history,
+            })
 
-        print(
-            f"[INFO] {sid}: wrote {len(history)} rows (to {latest['timestamp']}), "
-            f"alert={active_alert}",
-            file=sys.stderr,
-        )
+            print(
+                f"[INFO] {sid}: wrote {len(history)} rows (to {latest['timestamp']}), "
+                f"alert={active_alert}",
+                file=sys.stderr,
+            )
+
+        except Exception as e:
+            # Last-resort safety: never crash the whole JSON build for one bad sensor
+            print(f"[ERROR] {sid}: unexpected failure {e!r} → marking offline", file=sys.stderr)
+            sensors_js.append(
+                make_offline_sensor(
+                    sid, meta, alerts,
+                    reason="unexpected exception during build()"
+                )
+            )
+            continue
 
     return {
         "generated_at": datetime.now(PACIFIC).isoformat(timespec="minutes"),
         "sensors":      sensors_js,
     }
+
 
 
 # ── run ────────────────────────────────────────────────────────
