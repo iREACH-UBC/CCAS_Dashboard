@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 18.7,
+        "pollutant_concentration": 17.86,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 24.09,
+        "pollutant_concentration": 18.62,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.89,
+        "pollutant_concentration": 24.64,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.4,
+        "pollutant_concentration": 18.46,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 16.44,
+        "pollutant_concentration": 13.67,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.83,
+        "pollutant_concentration": 9.11,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.29,
+        "pollutant_concentration": 21.85,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -83,15 +83,7 @@
         "name": "Evelyne Saller Centre",
         "label": "Not Available",
         "value": "N/A",
-        "top_contributor": "Not Available",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false
-    },
-    "Sensor 14": {
-        "name": "West End Community Centre",
-        "label": "Not Available",
-        "value": "N/A",
-        "top_contributor": "Not Available",
+        "top_contributor": "Sensor Currently Offline",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
@@ -99,7 +91,7 @@
         "name": "NVDPL Capilano Branch",
         "label": "Not Available",
         "value": "N/A",
-        "top_contributor": "Not Available",
+        "top_contributor": "Sensor Currently Offline",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
@@ -107,7 +99,7 @@
         "name": "Lions Gate Rec Center",
         "label": "Not Available",
         "value": "N/A",
-        "top_contributor": "Not Available",
+        "top_contributor": "Sensor Currently Offline",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     }
