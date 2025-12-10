@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 17.86,
+        "pollutant_concentration": 17.69,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -81,10 +81,10 @@
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
-        "label": "Not Available",
-        "value": "N/A",
-        "top_contributor": "Sensor Currently Offline",
-        "pollutant_concentration": "N/A",
+        "label": "Moderate health risk",
+        "value": 5,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 25.39,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -105,10 +105,10 @@
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
-        "label": "Not Available",
-        "value": "N/A",
-        "top_contributor": "Sensor Currently Offline",
-        "pollutant_concentration": "N/A",
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "O3",
+        "pollutant_concentration": 25.13,
         "aq_advisory": false
     },
     "Sensor 4": {
