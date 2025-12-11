@@ -20,25 +20,28 @@ OUTPUT_FILE    = Path("HelloLamppostData.json")
 
 KEEP: set[str] | None = None        # whitelist if needed
 
+# Max age before we consider data "stale"
+STALE_MAX_AGE_HOURS = 2.0
+
 # ───────── helpers ─────────────────────────────────────────────
 def aqhi_label(v):
     """
     Map AQHI numeric value → health risk label.
-    If v is None / NaN / non-numeric / N/A-like, return 'Not Available'.
+    If v is None / NaN / non-numeric / N/A-like, return 'Sensor is Temporarily Offline'.
     """
     # Treat missing / NA as not available
     if v is None or pd.isna(v):
-        return "Not Available"
+        return "Sensor is Temporarily Offline"
 
     # Handle string forms like "N/A", "5", " 7 "
     if isinstance(v, str):
         v_str = v.strip()
         if not v_str or v_str.upper() in {"N/A", "NA", "NONE"}:
-            return "Not Available"
+            return "Sensor is Temporarily Offline"
         try:
             v = float(v_str)
         except ValueError:
-            return "Not Available"
+            return "Sensor is Temporarily Offline"
 
     # From here we expect numeric; if not, fall back
     try:
@@ -93,6 +96,33 @@ def load_metadata() -> dict[str, dict]:
     return df.set_index("id").to_dict(orient="index")
 
 
+def is_stale(latest: dict, max_age_hours: float = STALE_MAX_AGE_HOURS) -> bool:
+    """
+    Return True if the latest reading is older than max_age_hours,
+    or if we cannot determine a valid timestamp.
+    """
+    if not latest:
+        return True
+
+    # Try multiple possible timestamp keys
+    ts_str = (
+        latest.get("timestamp_utc")
+        or latest.get("timestamp")
+        or latest.get("time")
+    )
+
+    if not ts_str:
+        return True
+
+    ts = pd.to_datetime(ts_str, utc=True, errors="coerce")
+    if pd.isna(ts):
+        return True
+
+    now = pd.Timestamp.utcnow()
+    age_hours = (now - ts).total_seconds() / 3600.0
+    return age_hours > max_age_hours
+
+
 # ───────── main build ──────────────────────────────────────────
 def main():
     if not POLLUTANT_FILE.exists():
@@ -112,13 +142,22 @@ def main():
         if KEEP and sensor_number not in KEEP and sid not in KEEP:
             continue
 
-        latest   = s.get("latest", {}) or {}
-        aqhi_val = latest.get("aqhi", "N/A")
-        primary  = latest.get("primary", "N/A")
+        latest = s.get("latest", {}) or {}
+        stale  = is_stale(latest)
+
+        # Raw values from the JSON
+        aqhi_val   = latest.get("aqhi", "N/A")
+        primary    = latest.get("primary", "N/A")
+        pollutants = latest.get("pollutants") or {}
+
+        # If stale, treat as unavailable / offline
+        if stale:
+            aqhi_val   = None
+            primary    = None
+            pollutants = {}
 
         # ── pollutant concentration safely ─────────────────────
         val = None
-        pollutants = latest.get("pollutants") or {}
         if isinstance(primary, str) and isinstance(pollutants, dict):
             # try multiple forms of the key
             keys_to_try = [primary, primary.lower(), primary.strip().lower()]
@@ -153,6 +192,7 @@ def main():
             "top_contributor":         primary_out,
             "pollutant_concentration": conc if conc == "N/A" else round(conc, 2),
             "aq_advisory":             bool(s.get("active_alert", False)),
+            "is_stale":                bool(stale),
         }
 
     OUTPUT_FILE.write_text(json.dumps(kiosk_out, indent=4) + "\n", encoding="utf-8")
