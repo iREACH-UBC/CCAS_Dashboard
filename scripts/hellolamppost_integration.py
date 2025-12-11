@@ -27,21 +27,21 @@ STALE_MAX_AGE_HOURS = 2.0
 def aqhi_label(v):
     """
     Map AQHI numeric value → health risk label.
-    If v is None / NaN / non-numeric / N/A-like, return 'Sensor is Temporarily Offline'.
+    If v is None / NaN / non-numeric / N/A-like, return 'Sensor is temporarily offline'.
     """
     # Treat missing / NA as not available
     if v is None or pd.isna(v):
-        return "Sensor is Temporarily Offline"
+        return "Sensor is temporarily offline"
 
     # Handle string forms like "N/A", "5", " 7 "
     if isinstance(v, str):
         v_str = v.strip()
         if not v_str or v_str.upper() in {"N/A", "NA", "NONE"}:
-            return "Sensor is Temporarily Offline"
+            return "Sensor is temporarily offline"
         try:
             v = float(v_str)
         except ValueError:
-            return "Sensor is Temporarily Offline"
+            return "Sensor is temporarily offline"
 
     # From here we expect numeric; if not, fall back
     try:
@@ -181,7 +181,7 @@ def main():
 
         # ── primary pollutant for display ──────────────────────
         if primary is None or (isinstance(primary, str) and not primary.strip()):
-            primary_out = "Sensor Temporarily Offline"
+            primary_out = "Sensor is temporarily offline"
         else:
             primary_out = primary
 
