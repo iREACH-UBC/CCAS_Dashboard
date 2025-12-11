@@ -181,7 +181,7 @@ def main():
 
         # ── primary pollutant for display ──────────────────────
         if primary is None or (isinstance(primary, str) and not primary.strip()):
-            primary_out = "Sensor Currently Offline"
+            primary_out = "Sensor Temporarily Offline"
         else:
             primary_out = primary
 
