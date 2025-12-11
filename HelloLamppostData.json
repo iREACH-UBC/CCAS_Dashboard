@@ -67,8 +67,8 @@
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 14.74,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 9.83,
         "aq_advisory": false
     },
     "Sensor 12": {
