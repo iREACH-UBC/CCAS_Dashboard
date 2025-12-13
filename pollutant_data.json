@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-12-13T09:52-08:00",
+  "generated_at": "2025-12-13T10:05-08:00",
   "sensors": [
     {
       "id": "2021",
@@ -10,30 +10,19 @@
       "lon": -123.1658402,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-13T09:18",
+        "timestamp": "2025-12-13T09:33",
         "aqhi": 2.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.166,
-          "no": 29.883,
-          "no2": 12.619,
-          "o3": 11.903,
-          "co2": 445.997,
-          "pm25": 3.16
+          "co": 0.149,
+          "no": 1.54,
+          "no2": 7.031,
+          "o3": 11.76,
+          "co2": 432.246,
+          "pm25": 3.127
         }
       },
       "history": [
-        [
-          "2025-12-12T09:18",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-12-12T09:33",
           null,
@@ -1089,6 +1078,17 @@
           11.9,
           446.0,
           3.16
+        ],
+        [
+          "2025-12-13T09:33",
+          2.0,
+          "NO2",
+          0.15,
+          1.54,
+          7.03,
+          11.76,
+          432.25,
+          3.13
         ]
       ]
     },
@@ -2192,1085 +2192,1085 @@
       "lon": -123.115759,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-12T16:11",
+        "timestamp": "2025-12-13T09:42",
         "aqhi": 2.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.334,
-          "no": 16.27,
-          "no2": 24.372,
-          "o3": null,
-          "co2": 457.301,
-          "pm25": 3.141
+          "co": 0.174,
+          "no": 12.389,
+          "no2": 12.906,
+          "o3": 5.111,
+          "co2": 445.494,
+          "pm25": 4.254
         }
       },
       "history": [
         [
-          "2025-12-11T16:11",
+          "2025-12-12T09:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T09:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T10:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T10:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T10:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T10:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T11:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T11:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T11:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T11:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T12:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T12:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T12:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T12:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T13:12",
           2.0,
           "NO2",
-          0.35,
-          36.47,
-          24.15,
-          null,
-          459.37,
-          4.74
-        ],
-        [
-          "2025-12-11T16:26",
-          2.0,
-          "NO2",
-          0.34,
-          36.48,
-          23.31,
-          null,
-          456.86,
-          4.27
-        ],
-        [
-          "2025-12-11T16:41",
-          2.0,
-          "NO2",
-          0.34,
-          45.93,
-          23.23,
-          null,
-          462.06,
-          5.27
-        ],
-        [
-          "2025-12-11T16:56",
-          2.0,
-          "NO2",
-          0.35,
-          35.85,
-          23.88,
-          null,
-          462.48,
-          5.12
-        ],
-        [
-          "2025-12-11T17:11",
-          2.0,
-          "NO2",
-          0.37,
-          35.39,
-          22.8,
-          null,
-          463.2,
-          5.29
-        ],
-        [
-          "2025-12-11T17:26",
-          2.0,
-          "NO2",
-          0.35,
-          38.39,
-          23.24,
-          null,
-          460.69,
-          4.74
-        ],
-        [
-          "2025-12-11T17:41",
-          2.0,
-          "NO2",
-          0.35,
-          35.57,
-          21.43,
-          null,
-          460.87,
-          4.9
-        ],
-        [
-          "2025-12-11T17:56",
-          2.0,
-          "NO2",
-          0.37,
-          47.72,
-          20.59,
-          null,
-          462.7,
-          4.56
-        ],
-        [
-          "2025-12-11T18:11",
-          2.0,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T18:26",
-          2.0,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T18:41",
-          2.0,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T18:56",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T19:11",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T19:26",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T19:41",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T19:56",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T20:11",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T20:26",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T20:41",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T20:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T21:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T21:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T21:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T21:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T22:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T22:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T22:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T22:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T23:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T23:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T23:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T23:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T00:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T00:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T00:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T00:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T01:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T01:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T01:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T01:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T02:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T02:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T02:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T02:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T03:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T03:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T03:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T03:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T04:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T04:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T04:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T04:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T05:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T05:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T05:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T05:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T06:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T06:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T06:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T06:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T07:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T07:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T07:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T07:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T08:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T08:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T08:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T08:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T09:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T09:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T09:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T09:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T10:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T10:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T10:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T10:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T11:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T11:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T11:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T11:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T12:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T12:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T12:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T12:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T13:11",
-          2.0,
-          "NO2",
-          0.24,
-          9.15,
-          18.98,
-          0.7,
-          452.68,
-          5.06
-        ],
-        [
-          "2025-12-12T13:26",
+          0.23,
+          8.92,
+          18.2,
+          1.13,
+          452.8,
+          4.91
+        ],
+        [
+          "2025-12-12T13:27",
           2.0,
           "NO2",
           0.21,
-          5.13,
-          16.22,
-          2.55,
-          452.08,
-          3.83
+          5.12,
+          16.74,
+          2.61,
+          452.18,
+          3.85
         ],
         [
-          "2025-12-12T13:41",
+          "2025-12-12T13:42",
           2.0,
           "NO2",
           0.2,
-          4.84,
-          15.49,
-          6.01,
-          449.92,
-          4.48
+          4.78,
+          15.51,
+          5.68,
+          450.16,
+          4.51
         ],
         [
-          "2025-12-12T13:56",
-          2.0,
-          "NO2",
-          0.21,
-          5.06,
-          18.24,
-          1.71,
-          451.11,
-          4.57
-        ],
-        [
-          "2025-12-12T14:11",
+          "2025-12-12T13:57",
           2.0,
           "NO2",
           0.22,
-          5.96,
-          19.17,
-          null,
-          450.98,
-          4.8
+          5.07,
+          18.6,
+          1.59,
+          451.25,
+          4.56
         ],
         [
-          "2025-12-12T14:26",
+          "2025-12-12T14:12",
+          2.0,
+          "NO2",
+          0.22,
+          5.98,
+          19.5,
+          null,
+          451.34,
+          4.82
+        ],
+        [
+          "2025-12-12T14:27",
           2.0,
           "NO2",
           0.28,
-          16.21,
+          16.22,
           23.18,
           null,
-          454.52,
+          454.86,
           4.61
         ],
         [
-          "2025-12-12T14:41",
-          2.0,
-          "NO2",
-          0.29,
-          14.75,
-          22.8,
-          null,
-          450.85,
-          5.59
-        ],
-        [
-          "2025-12-12T14:56",
+          "2025-12-12T14:42",
           2.0,
           "NO2",
           0.28,
-          6.24,
-          20.87,
+          14.72,
+          22.75,
           null,
-          450.94,
-          5.39
+          450.48,
+          5.61
         ],
         [
-          "2025-12-12T15:11",
-          2.0,
-          "NO2",
-          0.28,
-          16.78,
-          23.32,
-          null,
-          453.05,
-          5.2
-        ],
-        [
-          "2025-12-12T15:26",
+          "2025-12-12T14:57",
           2.0,
           "NO2",
           0.27,
-          16.06,
-          23.22,
+          5.9,
+          20.59,
           null,
-          452.89,
-          3.24
+          450.96,
+          5.42
         ],
         [
-          "2025-12-12T15:41",
+          "2025-12-12T15:12",
+          2.0,
+          "NO2",
+          0.28,
+          17.01,
+          23.35,
+          null,
+          456.28,
+          5.09
+        ],
+        [
+          "2025-12-12T15:27",
+          2.0,
+          "NO2",
+          0.27,
+          16.01,
+          23.29,
+          null,
+          453.25,
+          3.17
+        ],
+        [
+          "2025-12-12T15:42",
           2.0,
           "NO2",
           0.35,
-          16.68,
-          24.21,
+          16.54,
+          23.88,
           null,
-          459.79,
-          3.02
+          459.61,
+          3.01
         ],
         [
-          "2025-12-12T15:56",
+          "2025-12-12T15:57",
           2.0,
           "NO2",
           0.29,
           16.24,
           23.34,
           null,
-          452.55,
-          2.93
+          452.74,
+          2.95
         ],
         [
-          "2025-12-12T16:11",
+          "2025-12-12T16:12",
           2.0,
           "NO2",
-          0.33,
-          16.27,
-          24.37,
+          0.29,
+          16.13,
+          24.52,
           null,
-          457.3,
-          3.14
+          456.61,
+          3.04
+        ],
+        [
+          "2025-12-12T16:27",
+          2.0,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T16:42",
+          2.0,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T16:57",
+          2.0,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T17:12",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T17:27",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T17:42",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T17:57",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T18:12",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T18:27",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T18:42",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T18:57",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T19:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T19:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T19:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T19:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T20:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T20:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T20:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T20:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T21:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T21:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T21:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T21:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T22:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T22:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T22:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T22:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T23:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T23:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T23:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T23:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T00:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T00:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T00:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T00:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T01:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T01:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T01:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T01:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T02:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T02:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T02:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T02:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T03:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T03:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T03:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T03:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T04:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T04:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T04:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T04:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T05:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T05:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T05:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T05:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T06:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T06:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T06:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T06:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T07:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T07:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T07:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T07:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T08:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T08:27",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T08:42",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T08:57",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T09:12",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T09:27",
+          2.0,
+          "NO2",
+          0.19,
+          13.54,
+          14.86,
+          4.64,
+          446.8,
+          4.29
+        ],
+        [
+          "2025-12-13T09:42",
+          2.0,
+          "NO2",
+          0.17,
+          12.39,
+          12.91,
+          5.11,
+          445.49,
+          4.25
         ]
       ]
     },
@@ -3283,1085 +3283,1085 @@
       "lon": -123.1326337,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-12T16:45",
-        "aqhi": 2.0,
-        "primary": "NO2",
+        "timestamp": "2025-12-13T09:39",
+        "aqhi": 1.0,
+        "primary": "O3",
         "pollutants": {
-          "co": 0.282,
-          "no": 13.305,
-          "no2": 20.961,
-          "o3": 1.355,
-          "co2": 458.502,
-          "pm25": 2.227
+          "co": 0.131,
+          "no": 3.708,
+          "no2": 6.543,
+          "o3": 16.485,
+          "co2": 435.414,
+          "pm25": 2.852
         }
       },
       "history": [
         [
-          "2025-12-11T16:45",
-          1.0,
-          "NO2",
-          0.33,
-          11.37,
-          12.81,
-          2.35,
-          458.09,
-          2.07
+          "2025-12-12T09:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
         ],
         [
-          "2025-12-11T17:00",
-          1.0,
+          "2025-12-12T09:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T10:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T10:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T10:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T10:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T11:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T11:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T11:39",
+          2.0,
+          "NO2",
+          0.21,
+          8.55,
+          20.04,
+          4.79,
+          453.32,
+          2.5
+        ],
+        [
+          "2025-12-12T11:54",
+          2.0,
+          "NO2",
+          0.21,
+          12.09,
+          21.03,
+          5.56,
+          452.29,
+          2.48
+        ],
+        [
+          "2025-12-12T12:09",
+          2.0,
+          "NO2",
+          0.22,
+          27.57,
+          24.37,
+          3.4,
+          450.32,
+          2.92
+        ],
+        [
+          "2025-12-12T12:24",
+          2.0,
+          "NO2",
+          0.21,
+          18.9,
+          23.05,
+          1.73,
+          456.18,
+          2.6
+        ],
+        [
+          "2025-12-12T12:39",
+          2.0,
+          "NO2",
+          0.23,
+          21.72,
+          21.6,
+          0.34,
+          456.4,
+          2.41
+        ],
+        [
+          "2025-12-12T12:54",
+          2.0,
+          "NO2",
+          0.2,
+          16.09,
+          21.64,
+          1.62,
+          455.65,
+          2.41
+        ],
+        [
+          "2025-12-12T13:09",
+          2.0,
+          "NO2",
+          0.2,
+          10.71,
+          20.82,
+          5.11,
+          450.92,
+          2.37
+        ],
+        [
+          "2025-12-12T13:24",
+          2.0,
           "NO2",
           0.25,
+          11.73,
+          22.33,
           5.01,
-          12.74,
-          1.97,
-          451.79,
-          2.13
+          451.45,
+          2.55
         ],
         [
-          "2025-12-11T17:15",
-          1.0,
-          "NO2",
-          0.23,
-          5.19,
-          12.69,
-          1.67,
-          451.83,
-          2.22
-        ],
-        [
-          "2025-12-11T17:30",
-          1.0,
-          "NO2",
-          0.22,
-          4.77,
-          11.44,
-          3.45,
-          449.11,
-          2.22
-        ],
-        [
-          "2025-12-11T17:45",
-          1.0,
-          "NO2",
-          0.22,
-          4.77,
-          11.09,
-          4.63,
-          447.75,
-          2.03
-        ],
-        [
-          "2025-12-11T18:00",
-          1.0,
-          "NO2",
-          0.24,
-          5.02,
-          11.42,
-          3.71,
-          449.01,
-          2.06
-        ],
-        [
-          "2025-12-11T18:15",
-          1.0,
-          "NO2",
-          0.23,
-          5.57,
-          11.66,
-          3.16,
-          449.73,
-          2.08
-        ],
-        [
-          "2025-12-11T18:30",
-          1.0,
-          "NO2",
-          0.2,
-          4.69,
-          10.81,
-          5.16,
-          446.85,
-          1.98
-        ],
-        [
-          "2025-12-11T18:45",
-          1.0,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T19:00",
-          1.0,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T19:15",
-          1.0,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T19:30",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T19:45",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T20:00",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T20:15",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T20:30",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T20:45",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T21:00",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T21:15",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T21:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T21:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T22:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T22:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T22:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T22:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T23:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T23:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T23:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-11T23:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T00:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T00:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T00:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T00:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T01:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T01:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T01:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T01:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T02:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T02:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T02:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T02:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T03:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T03:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T03:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T03:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T04:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T04:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T04:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T04:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T05:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T05:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T05:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T05:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T06:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T06:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T06:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T06:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T07:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T07:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T07:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T07:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T08:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T08:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T08:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T08:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T09:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T09:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T09:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T09:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T10:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T10:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T10:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T10:45",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T11:00",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T11:15",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T11:30",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2025-12-12T11:45",
-          2.0,
-          "NO2",
-          0.21,
-          8.4,
-          20.24,
-          5.2,
-          452.87,
-          2.46
-        ],
-        [
-          "2025-12-12T12:00",
-          2.0,
-          "NO2",
-          0.21,
-          19.55,
-          23.2,
-          4.7,
-          455.05,
-          2.61
-        ],
-        [
-          "2025-12-12T12:15",
-          2.0,
-          "NO2",
-          0.22,
-          25.73,
-          24.17,
-          1.18,
-          451.43,
-          2.86
-        ],
-        [
-          "2025-12-12T12:30",
-          2.0,
-          "NO2",
-          0.23,
-          21.5,
-          22.48,
-          1.29,
-          456.86,
-          2.68
-        ],
-        [
-          "2025-12-12T12:45",
-          2.0,
-          "NO2",
-          0.21,
-          14.4,
-          20.66,
-          0.87,
-          455.93,
-          2.19
-        ],
-        [
-          "2025-12-12T13:00",
-          2.0,
-          "NO2",
-          0.2,
-          16.52,
-          22.04,
-          3.22,
-          455.33,
-          2.46
-        ],
-        [
-          "2025-12-12T13:15",
-          2.0,
-          "NO2",
-          0.22,
-          8.82,
-          20.53,
-          5.82,
-          448.74,
-          2.38
-        ],
-        [
-          "2025-12-12T13:30",
+          "2025-12-12T13:39",
           2.0,
           "NO2",
           0.27,
-          15.41,
-          24.62,
-          3.29,
-          452.01,
-          2.87
+          13.66,
+          22.85,
+          4.23,
+          452.0,
+          3.72
         ],
         [
-          "2025-12-12T13:45",
-          2.0,
-          "NO2",
-          0.22,
-          8.78,
-          19.93,
-          8.3,
-          448.64,
-          3.51
-        ],
-        [
-          "2025-12-12T14:00",
+          "2025-12-12T13:54",
           2.0,
           "NO2",
           0.21,
-          3.0,
-          14.56,
-          14.57,
-          446.15,
-          2.61
+          4.26,
+          15.48,
+          13.53,
+          447.1,
+          2.72
         ],
         [
-          "2025-12-12T14:15",
+          "2025-12-12T14:09",
           2.0,
           "NO2",
-          0.2,
-          4.47,
-          16.15,
-          11.65,
-          446.42,
-          2.08
+          0.21,
+          3.93,
+          15.9,
+          13.41,
+          446.35,
+          2.25
         ],
         [
-          "2025-12-12T14:30",
+          "2025-12-12T14:24",
+          2.0,
+          "NO2",
+          0.21,
+          4.9,
+          17.89,
+          7.22,
+          447.29,
+          2.02
+        ],
+        [
+          "2025-12-12T14:39",
           2.0,
           "NO2",
           0.22,
-          4.99,
-          19.73,
-          6.33,
-          448.35,
-          2.23
-        ],
-        [
-          "2025-12-12T14:45",
-          2.0,
-          "NO2",
-          0.22,
-          8.83,
-          20.92,
-          4.67,
-          449.04,
+          5.04,
+          19.69,
+          6.02,
+          447.58,
           2.58
         ],
         [
-          "2025-12-12T15:00",
-          2.0,
-          "NO2",
-          0.27,
-          13.51,
-          23.02,
-          3.3,
-          452.11,
-          2.35
-        ],
-        [
-          "2025-12-12T15:15",
-          2.0,
-          "NO2",
-          0.38,
-          14.92,
-          23.08,
-          null,
-          459.49,
-          2.56
-        ],
-        [
-          "2025-12-12T15:30",
+          "2025-12-12T14:54",
           2.0,
           "NO2",
           0.23,
-          5.06,
-          17.01,
-          6.11,
-          452.72,
-          2.09
+          12.6,
+          22.27,
+          1.63,
+          451.89,
+          2.37
         ],
         [
-          "2025-12-12T15:45",
+          "2025-12-12T15:09",
+          2.0,
+          "NO2",
+          0.37,
+          16.02,
+          24.46,
+          0.85,
+          458.37,
+          2.52
+        ],
+        [
+          "2025-12-12T15:24",
+          2.0,
+          "NO2",
+          0.34,
+          9.64,
+          20.36,
+          1.12,
+          454.94,
+          2.37
+        ],
+        [
+          "2025-12-12T15:39",
           2.0,
           "NO2",
           0.2,
-          3.48,
-          13.73,
-          8.17,
-          448.13,
-          1.9
+          2.16,
+          13.68,
+          7.95,
+          448.42,
+          1.88
         ],
         [
-          "2025-12-12T16:00",
+          "2025-12-12T15:54",
           2.0,
           "NO2",
           0.21,
-          4.57,
-          15.83,
-          6.92,
-          451.29,
-          2.15
+          4.1,
+          14.11,
+          7.69,
+          449.25,
+          2.02
         ],
         [
-          "2025-12-12T16:15",
+          "2025-12-12T16:09",
           2.0,
           "NO2",
-          0.32,
-          14.47,
-          20.44,
-          1.39,
-          456.42,
-          2.39
+          0.26,
+          8.99,
+          19.12,
+          3.97,
+          452.37,
+          2.34
         ],
         [
-          "2025-12-12T16:30",
+          "2025-12-12T16:24",
           2.0,
           "NO2",
           0.35,
-          16.61,
-          22.37,
-          0.62,
-          464.68,
-          2.36
+          17.14,
+          22.99,
+          0.69,
+          464.23,
+          2.33
         ],
         [
-          "2025-12-12T16:45",
+          "2025-12-12T16:39",
           2.0,
           "NO2",
-          0.28,
-          13.3,
-          20.96,
-          1.36,
-          458.5,
-          2.23
+          0.37,
+          14.83,
+          21.48,
+          0.51,
+          462.28,
+          2.4
+        ],
+        [
+          "2025-12-12T16:54",
+          2.0,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T17:09",
+          2.0,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T17:24",
+          2.0,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T17:39",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T17:54",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T18:09",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T18:24",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T18:39",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T18:54",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T19:09",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T19:24",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T19:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T19:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T20:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T20:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T20:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T20:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T21:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T21:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T21:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T21:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T22:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T22:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T22:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T22:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T23:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T23:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T23:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-12T23:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T00:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T00:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T00:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T00:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T01:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T01:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T01:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T01:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T02:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T02:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T02:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T02:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T03:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T03:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T03:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T03:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T04:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T04:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T04:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T04:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T05:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T05:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T05:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T05:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T06:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T06:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T06:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T06:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T07:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T07:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T07:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T07:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T08:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T08:24",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T08:39",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T08:54",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T09:09",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2025-12-13T09:24",
+          1.0,
+          "NO2",
+          0.13,
+          3.79,
+          7.69,
+          11.81,
+          437.05,
+          2.92
+        ],
+        [
+          "2025-12-13T09:39",
+          1.0,
+          "O3",
+          0.13,
+          3.71,
+          6.54,
+          16.49,
+          435.41,
+          2.85
         ]
       ]
     },
@@ -6556,30 +6556,19 @@
       "lon": -124.4786294,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-13T09:29",
+        "timestamp": "2025-12-13T09:44",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.189,
-          "no": 5.978,
-          "no2": 9.972,
-          "o3": 3.824,
-          "co2": 522.284,
-          "pm25": 2.188
+          "co": 0.188,
+          "no": 3.009,
+          "no2": 7.986,
+          "o3": 4.254,
+          "co2": 523.807,
+          "pm25": 2.272
         }
       },
       "history": [
-        [
-          "2025-12-12T09:29",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
         [
           "2025-12-12T09:44",
           null,
@@ -7630,11 +7619,22 @@
           1.0,
           "NO2",
           0.19,
-          5.98,
-          9.97,
-          3.82,
-          522.28,
-          2.19
+          4.89,
+          9.88,
+          3.86,
+          522.46,
+          2.15
+        ],
+        [
+          "2025-12-13T09:44",
+          1.0,
+          "NO2",
+          0.19,
+          3.01,
+          7.99,
+          4.25,
+          523.81,
+          2.27
         ]
       ]
     },
@@ -8738,30 +8738,19 @@
       "lon": -122.956237,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-13T09:26",
+        "timestamp": "2025-12-13T09:41",
         "aqhi": 2.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.154,
-          "no": 2.394,
-          "no2": 10.313,
-          "o3": 14.264,
-          "co2": 448.607,
-          "pm25": 1.927
+          "co": 0.153,
+          "no": 2.815,
+          "no2": 9.671,
+          "o3": 16.496,
+          "co2": 445.998,
+          "pm25": 2.12
         }
       },
       "history": [
-        [
-          "2025-12-12T09:26",
-          2.0,
-          "NO2",
-          0.15,
-          3.18,
-          11.77,
-          11.31,
-          447.52,
-          2.4
-        ],
         [
           "2025-12-12T09:41",
           2.0,
@@ -9812,11 +9801,22 @@
           2.0,
           "NO2",
           0.15,
-          2.39,
-          10.31,
-          14.26,
-          448.61,
-          1.93
+          2.36,
+          9.87,
+          14.85,
+          447.94,
+          2.03
+        ],
+        [
+          "2025-12-13T09:41",
+          2.0,
+          "NO2",
+          0.15,
+          2.81,
+          9.67,
+          16.5,
+          446.0,
+          2.12
         ]
       ]
     },
@@ -9843,7 +9843,7 @@
       },
       "history": [
         [
-          "2025-12-12T10:52-08:00",
+          "2025-12-12T11:05-08:00",
           null,
           null,
           null,
@@ -9854,7 +9854,7 @@
           null
         ],
         [
-          "2025-12-12T11:52-08:00",
+          "2025-12-12T12:05-08:00",
           null,
           null,
           null,
@@ -9865,7 +9865,7 @@
           null
         ],
         [
-          "2025-12-12T12:52-08:00",
+          "2025-12-12T13:05-08:00",
           null,
           null,
           null,
@@ -9876,7 +9876,7 @@
           null
         ],
         [
-          "2025-12-12T13:52-08:00",
+          "2025-12-12T14:05-08:00",
           null,
           null,
           null,
@@ -9887,7 +9887,7 @@
           null
         ],
         [
-          "2025-12-12T14:52-08:00",
+          "2025-12-12T15:05-08:00",
           null,
           null,
           null,
@@ -9898,7 +9898,7 @@
           null
         ],
         [
-          "2025-12-12T15:52-08:00",
+          "2025-12-12T16:05-08:00",
           null,
           null,
           null,
@@ -9909,7 +9909,7 @@
           null
         ],
         [
-          "2025-12-12T16:52-08:00",
+          "2025-12-12T17:05-08:00",
           null,
           null,
           null,
@@ -9920,7 +9920,7 @@
           null
         ],
         [
-          "2025-12-12T17:52-08:00",
+          "2025-12-12T18:05-08:00",
           null,
           null,
           null,
@@ -9931,7 +9931,7 @@
           null
         ],
         [
-          "2025-12-12T18:52-08:00",
+          "2025-12-12T19:05-08:00",
           null,
           null,
           null,
@@ -9942,7 +9942,7 @@
           null
         ],
         [
-          "2025-12-12T19:52-08:00",
+          "2025-12-12T20:05-08:00",
           null,
           null,
           null,
@@ -9953,7 +9953,7 @@
           null
         ],
         [
-          "2025-12-12T20:52-08:00",
+          "2025-12-12T21:05-08:00",
           null,
           null,
           null,
@@ -9964,7 +9964,7 @@
           null
         ],
         [
-          "2025-12-12T21:52-08:00",
+          "2025-12-12T22:05-08:00",
           null,
           null,
           null,
@@ -9975,7 +9975,7 @@
           null
         ],
         [
-          "2025-12-12T22:52-08:00",
+          "2025-12-12T23:05-08:00",
           null,
           null,
           null,
@@ -9986,7 +9986,7 @@
           null
         ],
         [
-          "2025-12-12T23:52-08:00",
+          "2025-12-13T00:05-08:00",
           null,
           null,
           null,
@@ -9997,7 +9997,7 @@
           null
         ],
         [
-          "2025-12-13T00:52-08:00",
+          "2025-12-13T01:05-08:00",
           null,
           null,
           null,
@@ -10008,7 +10008,7 @@
           null
         ],
         [
-          "2025-12-13T01:52-08:00",
+          "2025-12-13T02:05-08:00",
           null,
           null,
           null,
@@ -10019,7 +10019,7 @@
           null
         ],
         [
-          "2025-12-13T02:52-08:00",
+          "2025-12-13T03:05-08:00",
           null,
           null,
           null,
@@ -10030,7 +10030,7 @@
           null
         ],
         [
-          "2025-12-13T03:52-08:00",
+          "2025-12-13T04:05-08:00",
           null,
           null,
           null,
@@ -10041,7 +10041,7 @@
           null
         ],
         [
-          "2025-12-13T04:52-08:00",
+          "2025-12-13T05:05-08:00",
           null,
           null,
           null,
@@ -10052,7 +10052,7 @@
           null
         ],
         [
-          "2025-12-13T05:52-08:00",
+          "2025-12-13T06:05-08:00",
           null,
           null,
           null,
@@ -10063,7 +10063,7 @@
           null
         ],
         [
-          "2025-12-13T06:52-08:00",
+          "2025-12-13T07:05-08:00",
           null,
           null,
           null,
@@ -10074,7 +10074,7 @@
           null
         ],
         [
-          "2025-12-13T07:52-08:00",
+          "2025-12-13T08:05-08:00",
           null,
           null,
           null,
@@ -10085,7 +10085,7 @@
           null
         ],
         [
-          "2025-12-13T08:52-08:00",
+          "2025-12-13T09:05-08:00",
           null,
           null,
           null,
@@ -10096,7 +10096,7 @@
           null
         ],
         [
-          "2025-12-13T09:52-08:00",
+          "2025-12-13T10:05-08:00",
           null,
           null,
           null,
@@ -10117,30 +10117,19 @@
       "lon": -123.038952,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-13T09:30",
+        "timestamp": "2025-12-13T09:45",
         "aqhi": 2.0,
         "primary": "O3",
         "pollutants": {
-          "co": 0.29,
-          "no": 2.015,
-          "no2": 4.747,
-          "o3": 16.892,
-          "co2": 711.608,
-          "pm25": 4.042
+          "co": 0.368,
+          "no": 2.813,
+          "no2": 4.513,
+          "o3": 15.837,
+          "co2": 713.213,
+          "pm25": 3.49
         }
       },
       "history": [
-        [
-          "2025-12-12T09:30",
-          1.0,
-          "O3",
-          0.3,
-          4.64,
-          5.27,
-          13.65,
-          739.81,
-          1.37
-        ],
         [
           "2025-12-12T09:45",
           1.0,
@@ -11190,12 +11179,23 @@
           "2025-12-13T09:30",
           2.0,
           "O3",
-          0.29,
-          2.02,
-          4.75,
-          16.89,
-          711.61,
-          4.04
+          0.34,
+          2.19,
+          5.37,
+          15.11,
+          714.45,
+          4.16
+        ],
+        [
+          "2025-12-13T09:45",
+          2.0,
+          "O3",
+          0.37,
+          2.81,
+          4.51,
+          15.84,
+          713.21,
+          3.49
         ]
       ]
     },
@@ -11222,7 +11222,7 @@
       },
       "history": [
         [
-          "2025-12-12T10:52-08:00",
+          "2025-12-12T11:05-08:00",
           null,
           null,
           null,
@@ -11233,7 +11233,7 @@
           null
         ],
         [
-          "2025-12-12T11:52-08:00",
+          "2025-12-12T12:05-08:00",
           null,
           null,
           null,
@@ -11244,7 +11244,7 @@
           null
         ],
         [
-          "2025-12-12T12:52-08:00",
+          "2025-12-12T13:05-08:00",
           null,
           null,
           null,
@@ -11255,7 +11255,7 @@
           null
         ],
         [
-          "2025-12-12T13:52-08:00",
+          "2025-12-12T14:05-08:00",
           null,
           null,
           null,
@@ -11266,7 +11266,7 @@
           null
         ],
         [
-          "2025-12-12T14:52-08:00",
+          "2025-12-12T15:05-08:00",
           null,
           null,
           null,
@@ -11277,7 +11277,7 @@
           null
         ],
         [
-          "2025-12-12T15:52-08:00",
+          "2025-12-12T16:05-08:00",
           null,
           null,
           null,
@@ -11288,7 +11288,7 @@
           null
         ],
         [
-          "2025-12-12T16:52-08:00",
+          "2025-12-12T17:05-08:00",
           null,
           null,
           null,
@@ -11299,7 +11299,7 @@
           null
         ],
         [
-          "2025-12-12T17:52-08:00",
+          "2025-12-12T18:05-08:00",
           null,
           null,
           null,
@@ -11310,7 +11310,7 @@
           null
         ],
         [
-          "2025-12-12T18:52-08:00",
+          "2025-12-12T19:05-08:00",
           null,
           null,
           null,
@@ -11321,7 +11321,7 @@
           null
         ],
         [
-          "2025-12-12T19:52-08:00",
+          "2025-12-12T20:05-08:00",
           null,
           null,
           null,
@@ -11332,7 +11332,7 @@
           null
         ],
         [
-          "2025-12-12T20:52-08:00",
+          "2025-12-12T21:05-08:00",
           null,
           null,
           null,
@@ -11343,7 +11343,7 @@
           null
         ],
         [
-          "2025-12-12T21:52-08:00",
+          "2025-12-12T22:05-08:00",
           null,
           null,
           null,
@@ -11354,7 +11354,7 @@
           null
         ],
         [
-          "2025-12-12T22:52-08:00",
+          "2025-12-12T23:05-08:00",
           null,
           null,
           null,
@@ -11365,7 +11365,7 @@
           null
         ],
         [
-          "2025-12-12T23:52-08:00",
+          "2025-12-13T00:05-08:00",
           null,
           null,
           null,
@@ -11376,7 +11376,7 @@
           null
         ],
         [
-          "2025-12-13T00:52-08:00",
+          "2025-12-13T01:05-08:00",
           null,
           null,
           null,
@@ -11387,7 +11387,7 @@
           null
         ],
         [
-          "2025-12-13T01:52-08:00",
+          "2025-12-13T02:05-08:00",
           null,
           null,
           null,
@@ -11398,7 +11398,7 @@
           null
         ],
         [
-          "2025-12-13T02:52-08:00",
+          "2025-12-13T03:05-08:00",
           null,
           null,
           null,
@@ -11409,7 +11409,7 @@
           null
         ],
         [
-          "2025-12-13T03:52-08:00",
+          "2025-12-13T04:05-08:00",
           null,
           null,
           null,
@@ -11420,7 +11420,7 @@
           null
         ],
         [
-          "2025-12-13T04:52-08:00",
+          "2025-12-13T05:05-08:00",
           null,
           null,
           null,
@@ -11431,7 +11431,7 @@
           null
         ],
         [
-          "2025-12-13T05:52-08:00",
+          "2025-12-13T06:05-08:00",
           null,
           null,
           null,
@@ -11442,7 +11442,7 @@
           null
         ],
         [
-          "2025-12-13T06:52-08:00",
+          "2025-12-13T07:05-08:00",
           null,
           null,
           null,
@@ -11453,7 +11453,7 @@
           null
         ],
         [
-          "2025-12-13T07:52-08:00",
+          "2025-12-13T08:05-08:00",
           null,
           null,
           null,
@@ -11464,7 +11464,7 @@
           null
         ],
         [
-          "2025-12-13T08:52-08:00",
+          "2025-12-13T09:05-08:00",
           null,
           null,
           null,
@@ -11475,7 +11475,7 @@
           null
         ],
         [
-          "2025-12-13T09:52-08:00",
+          "2025-12-13T10:05-08:00",
           null,
           null,
           null,
@@ -11510,7 +11510,7 @@
       },
       "history": [
         [
-          "2025-12-12T10:52-08:00",
+          "2025-12-12T11:05-08:00",
           null,
           null,
           null,
@@ -11521,7 +11521,7 @@
           null
         ],
         [
-          "2025-12-12T11:52-08:00",
+          "2025-12-12T12:05-08:00",
           null,
           null,
           null,
@@ -11532,7 +11532,7 @@
           null
         ],
         [
-          "2025-12-12T12:52-08:00",
+          "2025-12-12T13:05-08:00",
           null,
           null,
           null,
@@ -11543,7 +11543,7 @@
           null
         ],
         [
-          "2025-12-12T13:52-08:00",
+          "2025-12-12T14:05-08:00",
           null,
           null,
           null,
@@ -11554,7 +11554,7 @@
           null
         ],
         [
-          "2025-12-12T14:52-08:00",
+          "2025-12-12T15:05-08:00",
           null,
           null,
           null,
@@ -11565,7 +11565,7 @@
           null
         ],
         [
-          "2025-12-12T15:52-08:00",
+          "2025-12-12T16:05-08:00",
           null,
           null,
           null,
@@ -11576,7 +11576,7 @@
           null
         ],
         [
-          "2025-12-12T16:52-08:00",
+          "2025-12-12T17:05-08:00",
           null,
           null,
           null,
@@ -11587,7 +11587,7 @@
           null
         ],
         [
-          "2025-12-12T17:52-08:00",
+          "2025-12-12T18:05-08:00",
           null,
           null,
           null,
@@ -11598,7 +11598,7 @@
           null
         ],
         [
-          "2025-12-12T18:52-08:00",
+          "2025-12-12T19:05-08:00",
           null,
           null,
           null,
@@ -11609,7 +11609,7 @@
           null
         ],
         [
-          "2025-12-12T19:52-08:00",
+          "2025-12-12T20:05-08:00",
           null,
           null,
           null,
@@ -11620,7 +11620,7 @@
           null
         ],
         [
-          "2025-12-12T20:52-08:00",
+          "2025-12-12T21:05-08:00",
           null,
           null,
           null,
@@ -11631,7 +11631,7 @@
           null
         ],
         [
-          "2025-12-12T21:52-08:00",
+          "2025-12-12T22:05-08:00",
           null,
           null,
           null,
@@ -11642,7 +11642,7 @@
           null
         ],
         [
-          "2025-12-12T22:52-08:00",
+          "2025-12-12T23:05-08:00",
           null,
           null,
           null,
@@ -11653,7 +11653,7 @@
           null
         ],
         [
-          "2025-12-12T23:52-08:00",
+          "2025-12-13T00:05-08:00",
           null,
           null,
           null,
@@ -11664,7 +11664,7 @@
           null
         ],
         [
-          "2025-12-13T00:52-08:00",
+          "2025-12-13T01:05-08:00",
           null,
           null,
           null,
@@ -11675,7 +11675,7 @@
           null
         ],
         [
-          "2025-12-13T01:52-08:00",
+          "2025-12-13T02:05-08:00",
           null,
           null,
           null,
@@ -11686,7 +11686,7 @@
           null
         ],
         [
-          "2025-12-13T02:52-08:00",
+          "2025-12-13T03:05-08:00",
           null,
           null,
           null,
@@ -11697,7 +11697,7 @@
           null
         ],
         [
-          "2025-12-13T03:52-08:00",
+          "2025-12-13T04:05-08:00",
           null,
           null,
           null,
@@ -11708,7 +11708,7 @@
           null
         ],
         [
-          "2025-12-13T04:52-08:00",
+          "2025-12-13T05:05-08:00",
           null,
           null,
           null,
@@ -11719,7 +11719,7 @@
           null
         ],
         [
-          "2025-12-13T05:52-08:00",
+          "2025-12-13T06:05-08:00",
           null,
           null,
           null,
@@ -11730,7 +11730,7 @@
           null
         ],
         [
-          "2025-12-13T06:52-08:00",
+          "2025-12-13T07:05-08:00",
           null,
           null,
           null,
@@ -11741,7 +11741,7 @@
           null
         ],
         [
-          "2025-12-13T07:52-08:00",
+          "2025-12-13T08:05-08:00",
           null,
           null,
           null,
@@ -11752,7 +11752,7 @@
           null
         ],
         [
-          "2025-12-13T08:52-08:00",
+          "2025-12-13T09:05-08:00",
           null,
           null,
           null,
@@ -11763,7 +11763,7 @@
           null
         ],
         [
-          "2025-12-13T09:52-08:00",
+          "2025-12-13T10:05-08:00",
           null,
           null,
           null,
@@ -11792,8 +11792,8 @@
           "no": null,
           "no2": null,
           "o3": null,
-          "co2": 954.7,
-          "pm25": 2.453
+          "co2": 888.64,
+          "pm25": 2.842
         }
       },
       "history": [
@@ -11816,8 +11816,8 @@
           null,
           null,
           null,
-          954.7,
-          2.45
+          888.64,
+          2.84
         ]
       ]
     },
@@ -11830,7 +11830,7 @@
       "lon": -123.10273,
       "active_alert": false,
       "latest": {
-        "timestamp": "2025-12-13T09:30",
+        "timestamp": "2025-12-13T09:45",
         "aqhi": null,
         "primary": null,
         "pollutants": {
@@ -11838,8 +11838,8 @@
           "no": null,
           "no2": null,
           "o3": null,
-          "co2": 772.177,
-          "pm25": 2.123
+          "co2": 755.142,
+          "pm25": 2.317
         }
       },
       "history": [
@@ -11862,8 +11862,19 @@
           null,
           null,
           null,
-          772.18,
-          2.12
+          761.24,
+          2.38
+        ],
+        [
+          "2025-12-13T09:45",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          755.14,
+          2.32
         ]
       ]
     },
@@ -11890,7 +11901,7 @@
       },
       "history": [
         [
-          "2025-12-12T10:52-08:00",
+          "2025-12-12T11:05-08:00",
           null,
           null,
           null,
@@ -11901,7 +11912,7 @@
           null
         ],
         [
-          "2025-12-12T11:52-08:00",
+          "2025-12-12T12:05-08:00",
           null,
           null,
           null,
@@ -11912,7 +11923,7 @@
           null
         ],
         [
-          "2025-12-12T12:52-08:00",
+          "2025-12-12T13:05-08:00",
           null,
           null,
           null,
@@ -11923,7 +11934,7 @@
           null
         ],
         [
-          "2025-12-12T13:52-08:00",
+          "2025-12-12T14:05-08:00",
           null,
           null,
           null,
@@ -11934,7 +11945,7 @@
           null
         ],
         [
-          "2025-12-12T14:52-08:00",
+          "2025-12-12T15:05-08:00",
           null,
           null,
           null,
@@ -11945,7 +11956,7 @@
           null
         ],
         [
-          "2025-12-12T15:52-08:00",
+          "2025-12-12T16:05-08:00",
           null,
           null,
           null,
@@ -11956,7 +11967,7 @@
           null
         ],
         [
-          "2025-12-12T16:52-08:00",
+          "2025-12-12T17:05-08:00",
           null,
           null,
           null,
@@ -11967,7 +11978,7 @@
           null
         ],
         [
-          "2025-12-12T17:52-08:00",
+          "2025-12-12T18:05-08:00",
           null,
           null,
           null,
@@ -11978,7 +11989,7 @@
           null
         ],
         [
-          "2025-12-12T18:52-08:00",
+          "2025-12-12T19:05-08:00",
           null,
           null,
           null,
@@ -11989,7 +12000,7 @@
           null
         ],
         [
-          "2025-12-12T19:52-08:00",
+          "2025-12-12T20:05-08:00",
           null,
           null,
           null,
@@ -12000,7 +12011,7 @@
           null
         ],
         [
-          "2025-12-12T20:52-08:00",
+          "2025-12-12T21:05-08:00",
           null,
           null,
           null,
@@ -12011,7 +12022,7 @@
           null
         ],
         [
-          "2025-12-12T21:52-08:00",
+          "2025-12-12T22:05-08:00",
           null,
           null,
           null,
@@ -12022,7 +12033,7 @@
           null
         ],
         [
-          "2025-12-12T22:52-08:00",
+          "2025-12-12T23:05-08:00",
           null,
           null,
           null,
@@ -12033,7 +12044,7 @@
           null
         ],
         [
-          "2025-12-12T23:52-08:00",
+          "2025-12-13T00:05-08:00",
           null,
           null,
           null,
@@ -12044,7 +12055,7 @@
           null
         ],
         [
-          "2025-12-13T00:52-08:00",
+          "2025-12-13T01:05-08:00",
           null,
           null,
           null,
@@ -12055,7 +12066,7 @@
           null
         ],
         [
-          "2025-12-13T01:52-08:00",
+          "2025-12-13T02:05-08:00",
           null,
           null,
           null,
@@ -12066,7 +12077,7 @@
           null
         ],
         [
-          "2025-12-13T02:52-08:00",
+          "2025-12-13T03:05-08:00",
           null,
           null,
           null,
@@ -12077,7 +12088,7 @@
           null
         ],
         [
-          "2025-12-13T03:52-08:00",
+          "2025-12-13T04:05-08:00",
           null,
           null,
           null,
@@ -12088,7 +12099,7 @@
           null
         ],
         [
-          "2025-12-13T04:52-08:00",
+          "2025-12-13T05:05-08:00",
           null,
           null,
           null,
@@ -12099,7 +12110,7 @@
           null
         ],
         [
-          "2025-12-13T05:52-08:00",
+          "2025-12-13T06:05-08:00",
           null,
           null,
           null,
@@ -12110,7 +12121,7 @@
           null
         ],
         [
-          "2025-12-13T06:52-08:00",
+          "2025-12-13T07:05-08:00",
           null,
           null,
           null,
@@ -12121,7 +12132,7 @@
           null
         ],
         [
-          "2025-12-13T07:52-08:00",
+          "2025-12-13T08:05-08:00",
           null,
           null,
           null,
@@ -12132,7 +12143,7 @@
           null
         ],
         [
-          "2025-12-13T08:52-08:00",
+          "2025-12-13T09:05-08:00",
           null,
           null,
           null,
@@ -12143,7 +12154,7 @@
           null
         ],
         [
-          "2025-12-13T09:52-08:00",
+          "2025-12-13T10:05-08:00",
           null,
           null,
           null,
