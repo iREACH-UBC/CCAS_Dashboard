@@ -28,6 +28,30 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Ensure you're on a branch (Actions checkouts can be detached)
+          git switch main 2>/dev/null || git checkout -B main
+          
           git add HelloLamppostData.json
-          git diff --cached --quiet || git commit -m "Update HelloLamppostData"
-          git push
+          
+          # No staged changes → exit cleanly
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          
+          git commit -m "Update HelloLamppostData"
+          
+          pushed=0
+          for i in {1..10}; do
+            git fetch origin main
+            git rebase --autostash origin/main   # do not ignore failures
+            if git push origin HEAD:main; then
+              pushed=1
+              break
+            fi
+            sleep 5
+          done
+          
+          test "$pushed" -eq 1
+

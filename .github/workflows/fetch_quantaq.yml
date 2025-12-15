@@ -32,9 +32,20 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions@github.com"
+          
           git add data/*.csv
-          git commit -m "Automated QuantAQ data update at $(date)" || echo "No changes to commit"
-          git push origin main
+          git commit -m "Automated QuantAQ data update at $(date -u +'%Y-%m-%dT%H:%M:%SZ')" || { echo "No changes"; exit 0; }
+          
+          pushed=0
+          for i in {1..5}; do
+            git fetch origin main
+            git rebase --autostash origin/main   # do NOT ignore failures
+            if git push origin HEAD:main; then pushed=1; break; fi
+            sleep 5
+          done
+          
+          test "$pushed" -eq 1
+
 
