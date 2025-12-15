@@ -53,6 +53,15 @@
         "aq_advisory": false,
         "is_stale": true
     },
+    "Sensor 15": {
+        "name": "Marpole Oakridge Family Place",
+        "label": "Sensor is temporarily offline",
+        "value": "N/A",
+        "top_contributor": "Sensor is temporarily offline",
+        "pollutant_concentration": "N/A",
+        "aq_advisory": false,
+        "is_stale": true
+    },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Sensor is temporarily offline",
