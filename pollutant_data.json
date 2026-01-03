@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-01-03T13:04-08:00",
+  "generated_at": "2026-01-03T13:16-08:00",
   "sensors": [
     {
       "id": "2021",
@@ -1101,778 +1101,19 @@
       "lon": -124.5218536,
       "active_alert": false,
       "latest": {
-        "timestamp": "2026-01-02T19:41",
+        "timestamp": "2026-01-03T12:56",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.175,
-          "no": 2.013,
-          "no2": 10.018,
-          "o3": 4.911,
-          "co2": 471.722,
-          "pm25": 5.11
+          "co": 0.136,
+          "no": 3.804,
+          "no2": 8.874,
+          "o3": 12.956,
+          "co2": 443.628,
+          "pm25": 1.929
         }
       },
       "history": [
-        [
-          "2026-01-01T19:41",
-          1.0,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T19:56",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T20:11",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T20:26",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T20:41",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T20:56",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T21:11",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T21:26",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T21:41",
-          null,
-          "NO2",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T21:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T22:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T22:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T22:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T22:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T23:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T23:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T23:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-01T23:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T00:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T00:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T00:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T00:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T01:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T01:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T01:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T01:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T02:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T02:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T02:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T02:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T03:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T03:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T03:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T03:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T04:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T04:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T04:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T04:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T05:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T05:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T05:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T05:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T06:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T06:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T06:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T06:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T07:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T07:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T07:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T07:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T08:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T08:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T08:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T08:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T09:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T09:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T09:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T09:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T10:11",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T10:26",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T10:41",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T10:56",
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          "2026-01-02T11:11",
-          1.0,
-          "NO2",
-          0.15,
-          1.99,
-          7.39,
-          7.97,
-          449.65,
-          3.07
-        ],
-        [
-          "2026-01-02T11:26",
-          1.0,
-          "NO2",
-          0.15,
-          2.56,
-          9.55,
-          7.52,
-          450.28,
-          3.43
-        ],
-        [
-          "2026-01-02T11:41",
-          1.0,
-          "NO2",
-          0.15,
-          2.56,
-          9.36,
-          8.17,
-          449.84,
-          4.21
-        ],
-        [
-          "2026-01-02T11:56",
-          1.0,
-          "NO2",
-          0.17,
-          3.15,
-          10.4,
-          7.52,
-          447.68,
-          4.42
-        ],
-        [
-          "2026-01-02T12:11",
-          1.0,
-          "NO2",
-          0.14,
-          3.02,
-          9.37,
-          7.34,
-          447.92,
-          5.19
-        ],
-        [
-          "2026-01-02T12:26",
-          1.0,
-          "NO2",
-          0.15,
-          5.89,
-          9.11,
-          6.23,
-          448.1,
-          6.08
-        ],
-        [
-          "2026-01-02T12:41",
-          1.0,
-          "NO2",
-          0.17,
-          5.32,
-          10.21,
-          6.11,
-          447.82,
-          6.63
-        ],
         [
           "2026-01-02T12:56",
           1.0,
@@ -2176,10 +1417,769 @@
           "NO2",
           0.18,
           2.01,
-          10.02,
-          4.91,
-          471.72,
-          5.11
+          10.04,
+          4.84,
+          471.0,
+          5.08
+        ],
+        [
+          "2026-01-02T19:56",
+          1.0,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T20:11",
+          1.0,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T20:26",
+          1.0,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T20:41",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T20:56",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T21:11",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T21:26",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T21:41",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T21:56",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T22:11",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T22:26",
+          null,
+          "NO2",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T22:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T22:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T23:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T23:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T23:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-02T23:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T00:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T00:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T00:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T00:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T01:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T01:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T01:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T01:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T02:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T02:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T02:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T02:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T03:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T03:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T03:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T03:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T04:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T04:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T04:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T04:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T05:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T05:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T05:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T05:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T06:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T06:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T06:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T06:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T07:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T07:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T07:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T07:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T08:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T08:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T08:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T08:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T09:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T09:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T09:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T09:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T10:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T10:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T10:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T10:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T11:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T11:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T11:41",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T11:56",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T12:11",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T12:26",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "2026-01-03T12:41",
+          1.0,
+          "NO2",
+          0.14,
+          3.05,
+          8.11,
+          8.61,
+          443.77,
+          2.99
+        ],
+        [
+          "2026-01-03T12:56",
+          1.0,
+          "NO2",
+          0.14,
+          3.8,
+          8.87,
+          12.96,
+          443.63,
+          1.93
         ]
       ]
     },
@@ -3283,30 +3283,19 @@
       "lon": -123.1326337,
       "active_alert": false,
       "latest": {
-        "timestamp": "2026-01-03T12:42",
+        "timestamp": "2026-01-03T12:57",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.224,
-          "no": 4.869,
-          "no2": 14.626,
-          "o3": 4.201,
-          "co2": 456.371,
-          "pm25": 3.217
+          "co": 0.205,
+          "no": 3.68,
+          "no2": 14.384,
+          "o3": 4.714,
+          "co2": 455.71,
+          "pm25": 3.195
         }
       },
       "history": [
-        [
-          "2026-01-02T12:42",
-          2.0,
-          "NO2",
-          0.34,
-          42.44,
-          16.1,
-          4.3,
-          473.78,
-          6.12
-        ],
         [
           "2026-01-02T12:57",
           2.0,
@@ -4357,11 +4346,22 @@
           1.0,
           "NO2",
           0.22,
-          4.87,
-          14.63,
-          4.2,
-          456.37,
-          3.22
+          4.15,
+          14.42,
+          4.9,
+          455.67,
+          3.14
+        ],
+        [
+          "2026-01-03T12:57",
+          1.0,
+          "NO2",
+          0.2,
+          3.68,
+          14.38,
+          4.71,
+          455.71,
+          3.2
         ]
       ]
     },
@@ -4374,30 +4374,19 @@
       "lon": -123.3381594,
       "active_alert": false,
       "latest": {
-        "timestamp": "2026-01-03T12:42",
+        "timestamp": "2026-01-03T12:57",
         "aqhi": 2.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.154,
-          "no": 5.125,
-          "no2": 14.56,
-          "o3": 6.003,
-          "co2": 451.907,
-          "pm25": 1.712
+          "co": 0.147,
+          "no": 2.896,
+          "no2": 10.956,
+          "o3": 11.47,
+          "co2": 447.007,
+          "pm25": 1.417
         }
       },
       "history": [
-        [
-          "2026-01-02T12:42",
-          1.0,
-          "NO2",
-          0.15,
-          6.37,
-          9.98,
-          3.52,
-          452.76,
-          3.56
-        ],
         [
           "2026-01-02T12:57",
           1.0,
@@ -5448,11 +5437,22 @@
           2.0,
           "NO2",
           0.15,
-          5.12,
-          14.56,
-          6.0,
-          451.91,
-          1.71
+          3.42,
+          12.49,
+          7.61,
+          450.16,
+          1.57
+        ],
+        [
+          "2026-01-03T12:57",
+          2.0,
+          "NO2",
+          0.15,
+          2.9,
+          10.96,
+          11.47,
+          447.01,
+          1.42
         ]
       ]
     },
@@ -6556,30 +6556,19 @@
       "lon": -123.1183766,
       "active_alert": false,
       "latest": {
-        "timestamp": "2026-01-03T12:44",
+        "timestamp": "2026-01-03T12:59",
         "aqhi": 2.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.22,
-          "no": 2.277,
-          "no2": 9.69,
-          "o3": 18.728,
-          "co2": 455.057,
-          "pm25": 3.197
+          "co": 0.191,
+          "no": 1.721,
+          "no2": 9.399,
+          "o3": 18.462,
+          "co2": 454.175,
+          "pm25": 3.298
         }
       },
       "history": [
-        [
-          "2026-01-02T12:44",
-          2.0,
-          "NO2",
-          0.38,
-          16.09,
-          16.59,
-          4.55,
-          514.4,
-          10.7
-        ],
         [
           "2026-01-02T12:59",
           2.0,
@@ -7629,12 +7618,23 @@
           "2026-01-03T12:44",
           2.0,
           "NO2",
-          0.22,
-          2.28,
-          9.69,
-          18.73,
-          455.06,
-          3.2
+          0.21,
+          1.86,
+          9.62,
+          17.64,
+          452.76,
+          3.44
+        ],
+        [
+          "2026-01-03T12:59",
+          2.0,
+          "NO2",
+          0.19,
+          1.72,
+          9.4,
+          18.46,
+          454.17,
+          3.3
         ]
       ]
     },
@@ -7647,30 +7647,19 @@
       "lon": -124.4786294,
       "active_alert": false,
       "latest": {
-        "timestamp": "2026-01-03T12:44",
+        "timestamp": "2026-01-03T12:59",
         "aqhi": 1.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.179,
-          "no": 12.348,
-          "no2": 8.794,
-          "o3": 4.941,
-          "co2": 517.397,
-          "pm25": 1.544
+          "co": 0.31,
+          "no": 5.644,
+          "no2": 12.623,
+          "o3": 9.383,
+          "co2": 477.856,
+          "pm25": 8.954
         }
       },
       "history": [
-        [
-          "2026-01-02T12:44",
-          1.0,
-          "NO2",
-          0.16,
-          6.29,
-          10.27,
-          5.31,
-          447.53,
-          6.06
-        ],
         [
           "2026-01-02T12:59",
           1.0,
@@ -8721,11 +8710,22 @@
           1.0,
           "NO2",
           0.18,
-          12.35,
-          8.79,
-          4.94,
-          517.4,
-          1.54
+          5.61,
+          9.55,
+          4.7,
+          520.24,
+          3.84
+        ],
+        [
+          "2026-01-03T12:59",
+          1.0,
+          "NO2",
+          0.31,
+          5.64,
+          12.62,
+          9.38,
+          477.86,
+          8.95
         ]
       ]
     },
@@ -9829,30 +9829,19 @@
       "lon": -122.956237,
       "active_alert": false,
       "latest": {
-        "timestamp": "2026-01-03T12:42",
+        "timestamp": "2026-01-03T12:57",
         "aqhi": 2.0,
         "primary": "NO2",
         "pollutants": {
-          "co": 0.354,
-          "no": 15.643,
-          "no2": 19.554,
-          "o3": null,
-          "co2": 492.767,
-          "pm25": 5.703
+          "co": 0.235,
+          "no": 5.31,
+          "no2": 19.882,
+          "o3": 8.489,
+          "co2": 475.143,
+          "pm25": 3.506
         }
       },
       "history": [
-        [
-          "2026-01-02T12:42",
-          2.0,
-          "NO2",
-          0.27,
-          15.59,
-          13.25,
-          1.62,
-          477.0,
-          5.74
-        ],
         [
           "2026-01-02T12:57",
           2.0,
@@ -10902,12 +10891,23 @@
           "2026-01-03T12:42",
           2.0,
           "NO2",
-          0.35,
-          15.64,
-          19.55,
-          null,
-          492.77,
-          5.7
+          0.36,
+          12.33,
+          19.77,
+          0.61,
+          497.09,
+          5.57
+        ],
+        [
+          "2026-01-03T12:57",
+          2.0,
+          "NO2",
+          0.24,
+          5.31,
+          19.88,
+          8.49,
+          475.14,
+          3.51
         ]
       ]
     },
@@ -11274,30 +11274,19 @@
       "lon": -123.038952,
       "active_alert": false,
       "latest": {
-        "timestamp": "2026-01-03T12:45",
+        "timestamp": "2026-01-03T13:00",
         "aqhi": 1.0,
         "primary": "O3",
         "pollutants": {
-          "co": 0.327,
-          "no": 1.165,
-          "no2": 5.185,
-          "o3": 13.66,
-          "co2": 726.965,
-          "pm25": 3.445
+          "co": 0.316,
+          "no": 0.86,
+          "no2": 5.5,
+          "o3": 13.637,
+          "co2": 723.37,
+          "pm25": 3.653
         }
       },
       "history": [
-        [
-          "2026-01-02T12:45",
-          1.0,
-          "O3",
-          0.34,
-          5.83,
-          5.99,
-          9.08,
-          699.81,
-          8.21
-        ],
         [
           "2026-01-02T13:00",
           1.0,
@@ -12348,11 +12337,22 @@
           1.0,
           "O3",
           0.33,
-          1.17,
-          5.19,
-          13.66,
-          726.96,
-          3.45
+          0.93,
+          5.38,
+          13.68,
+          725.06,
+          4.08
+        ],
+        [
+          "2026-01-03T13:00",
+          1.0,
+          "O3",
+          0.32,
+          0.86,
+          5.5,
+          13.64,
+          723.37,
+          3.65
         ]
       ]
     },
@@ -12964,7 +12964,7 @@
       },
       "history": [
         [
-          "2026-01-02T14:04-08:00",
+          "2026-01-02T14:16-08:00",
           null,
           null,
           null,
@@ -12975,7 +12975,7 @@
           null
         ],
         [
-          "2026-01-02T15:04-08:00",
+          "2026-01-02T15:16-08:00",
           null,
           null,
           null,
@@ -12986,7 +12986,7 @@
           null
         ],
         [
-          "2026-01-02T16:04-08:00",
+          "2026-01-02T16:16-08:00",
           null,
           null,
           null,
@@ -12997,7 +12997,7 @@
           null
         ],
         [
-          "2026-01-02T17:04-08:00",
+          "2026-01-02T17:16-08:00",
           null,
           null,
           null,
@@ -13008,7 +13008,7 @@
           null
         ],
         [
-          "2026-01-02T18:04-08:00",
+          "2026-01-02T18:16-08:00",
           null,
           null,
           null,
@@ -13019,7 +13019,7 @@
           null
         ],
         [
-          "2026-01-02T19:04-08:00",
+          "2026-01-02T19:16-08:00",
           null,
           null,
           null,
@@ -13030,7 +13030,7 @@
           null
         ],
         [
-          "2026-01-02T20:04-08:00",
+          "2026-01-02T20:16-08:00",
           null,
           null,
           null,
@@ -13041,7 +13041,7 @@
           null
         ],
         [
-          "2026-01-02T21:04-08:00",
+          "2026-01-02T21:16-08:00",
           null,
           null,
           null,
@@ -13052,7 +13052,7 @@
           null
         ],
         [
-          "2026-01-02T22:04-08:00",
+          "2026-01-02T22:16-08:00",
           null,
           null,
           null,
@@ -13063,7 +13063,7 @@
           null
         ],
         [
-          "2026-01-02T23:04-08:00",
+          "2026-01-02T23:16-08:00",
           null,
           null,
           null,
@@ -13074,7 +13074,7 @@
           null
         ],
         [
-          "2026-01-03T00:04-08:00",
+          "2026-01-03T00:16-08:00",
           null,
           null,
           null,
@@ -13085,7 +13085,7 @@
           null
         ],
         [
-          "2026-01-03T01:04-08:00",
+          "2026-01-03T01:16-08:00",
           null,
           null,
           null,
@@ -13096,7 +13096,7 @@
           null
         ],
         [
-          "2026-01-03T02:04-08:00",
+          "2026-01-03T02:16-08:00",
           null,
           null,
           null,
@@ -13107,7 +13107,7 @@
           null
         ],
         [
-          "2026-01-03T03:04-08:00",
+          "2026-01-03T03:16-08:00",
           null,
           null,
           null,
@@ -13118,7 +13118,7 @@
           null
         ],
         [
-          "2026-01-03T04:04-08:00",
+          "2026-01-03T04:16-08:00",
           null,
           null,
           null,
@@ -13129,7 +13129,7 @@
           null
         ],
         [
-          "2026-01-03T05:04-08:00",
+          "2026-01-03T05:16-08:00",
           null,
           null,
           null,
@@ -13140,7 +13140,7 @@
           null
         ],
         [
-          "2026-01-03T06:04-08:00",
+          "2026-01-03T06:16-08:00",
           null,
           null,
           null,
@@ -13151,7 +13151,7 @@
           null
         ],
         [
-          "2026-01-03T07:04-08:00",
+          "2026-01-03T07:16-08:00",
           null,
           null,
           null,
@@ -13162,7 +13162,7 @@
           null
         ],
         [
-          "2026-01-03T08:04-08:00",
+          "2026-01-03T08:16-08:00",
           null,
           null,
           null,
@@ -13173,7 +13173,7 @@
           null
         ],
         [
-          "2026-01-03T09:04-08:00",
+          "2026-01-03T09:16-08:00",
           null,
           null,
           null,
@@ -13184,7 +13184,7 @@
           null
         ],
         [
-          "2026-01-03T10:04-08:00",
+          "2026-01-03T10:16-08:00",
           null,
           null,
           null,
@@ -13195,7 +13195,7 @@
           null
         ],
         [
-          "2026-01-03T11:04-08:00",
+          "2026-01-03T11:16-08:00",
           null,
           null,
           null,
@@ -13206,7 +13206,7 @@
           null
         ],
         [
-          "2026-01-03T12:04-08:00",
+          "2026-01-03T12:16-08:00",
           null,
           null,
           null,
@@ -13217,7 +13217,7 @@
           null
         ],
         [
-          "2026-01-03T13:04-08:00",
+          "2026-01-03T13:16-08:00",
           null,
           null,
           null,
