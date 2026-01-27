@@ -34,12 +34,6 @@ jobs:
           
           git add HelloLamppostData.json
           
-          # No staged changes → exit cleanly
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
-          
           git commit -m "Update HelloLamppostData"
           
           pushed=0
