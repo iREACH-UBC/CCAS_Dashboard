@@ -1,146 +1,130 @@
 {
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 25.27,
+        "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 9.2,
+        "aq_advisory": false
     },
     "Sensor 13": {
         "name": "VPL - Central Library",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 25.67,
+        "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 24.78,
+        "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 23.17,
+        "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 1,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 14.01,
+        "aq_advisory": false
     },
     "Sensor 15": {
         "name": "Marpole Oakridge Family Place",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 21.4,
+        "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 10.34,
+        "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": true,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 17.57,
+        "aq_advisory": true
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": true,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "O3",
+        "pollutant_concentration": 30.39,
+        "aq_advisory": true
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 17.08,
+        "aq_advisory": false
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 26.94,
+        "aq_advisory": false
     },
     "Sensor 14": {
         "name": "West End Community Centre",
-        "label": "Sensor is temporarily offline",
+        "label": "Not Available",
         "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
+        "top_contributor": "Not Available",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "aq_advisory": false
     },
     "MOD-00628": {
         "name": "MOD-00628",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 18.64,
+        "aq_advisory": false
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 24.36,
+        "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
-        "label": "Sensor is temporarily offline",
-        "value": "N/A",
-        "top_contributor": "Sensor is temporarily offline",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": false,
-        "is_stale": true
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 23.81,
+        "aq_advisory": false
     }
 }
