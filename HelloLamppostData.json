@@ -77,7 +77,7 @@
         "value": "N/A",
         "top_contributor": "Sensor is temporarily offline",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false,
+        "aq_advisory": true,
         "is_stale": true
     },
     "Sensor 8": {
@@ -86,7 +86,7 @@
         "value": "N/A",
         "top_contributor": "Sensor is temporarily offline",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false,
+        "aq_advisory": true,
         "is_stale": true
     },
     "Sensor 12": {
