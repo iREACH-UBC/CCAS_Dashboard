@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-01-26 16:31:41",
+  "lastChecked": "2026-01-26 17:49:40",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -11,7 +11,7 @@
     },
     {
       "Region": "Whistler, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Metro Vancouver - NW, B.C.",
