@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 9.78,
+        "pollutant_concentration": 11.32,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 4.04,
+        "pollutant_concentration": 4.59,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -99,7 +99,7 @@
         "name": "West End Community Centre",
         "label": "Not Available",
         "value": "N/A",
-        "top_contributor": "Sensor Currently Offline",
+        "top_contributor": "Not Available",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
