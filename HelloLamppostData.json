@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.32,
+        "pollutant_concentration": 15.48,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -115,7 +115,7 @@
         "name": "NVDPL Capilano Branch",
         "label": "Not Available",
         "value": "N/A",
-        "top_contributor": "Sensor Currently Offline",
+        "top_contributor": "Not Available",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
