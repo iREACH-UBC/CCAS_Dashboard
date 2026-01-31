@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.09,
+        "pollutant_concentration": 22.95,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.43,
+        "pollutant_concentration": 10.77,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,15 +20,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 22.15,
+        "pollutant_concentration": 18.45,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
-        "label": "Low health risk",
-        "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 24.48,
+        "label": "Very high health risk",
+        "value": 25,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.42,
+        "pollutant_concentration": 10.11,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.63,
+        "pollutant_concentration": 15.71,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.22,
+        "pollutant_concentration": 28.15,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 11.81,
+        "pollutant_concentration": 11.79,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.71,
+        "pollutant_concentration": 16.52,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 4.45,
+        "pollutant_concentration": 4.63,
         "aq_advisory": false
     },
     "Sensor 10": {
