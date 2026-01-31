@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.77,
+        "pollutant_concentration": 21.31,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.67,
+        "pollutant_concentration": 17.94,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.77,
+        "pollutant_concentration": 11.29,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.0,
+        "pollutant_concentration": 12.39,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -76,15 +76,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.35,
+        "pollutant_concentration": 12.77,
         "aq_advisory": false
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
-        "value": 1,
-        "top_contributor": "O3",
-        "pollutant_concentration": 3.04,
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 18.48,
         "aq_advisory": false
     },
     "Sensor 10": {
