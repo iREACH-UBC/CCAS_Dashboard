@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.33,
+        "pollutant_concentration": 11.5,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.41,
+        "pollutant_concentration": 23.11,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -26,7 +26,7 @@
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Moderate health risk",
-        "value": 5,
+        "value": 4,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.05,
+        "pollutant_concentration": 15.63,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.72,
+        "pollutant_concentration": 16.94,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.75,
+        "pollutant_concentration": 27.39,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.01,
+        "pollutant_concentration": 25.57,
         "aq_advisory": false
     },
     "Sensor 12": {
