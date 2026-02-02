@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.44,
+        "pollutant_concentration": 20.76,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 17.22,
+        "pollutant_concentration": 16.2,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.49,
+        "pollutant_concentration": 5.81,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -75,8 +75,8 @@
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 10.33,
+        "top_contributor": "O3",
+        "pollutant_concentration": 26.48,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 14.82,
+        "pollutant_concentration": 17.6,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -121,10 +121,10 @@
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
-        "label": "Low health risk",
-        "value": 1,
-        "top_contributor": "O3",
-        "pollutant_concentration": 10.89,
+        "label": "Not Available",
+        "value": "N/A",
+        "top_contributor": "Sensor Currently Offline",
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     }
 }
