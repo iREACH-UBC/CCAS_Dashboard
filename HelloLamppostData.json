@@ -4,15 +4,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 23.24,
+        "pollutant_concentration": 18.38,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 12.13,
+        "pollutant_concentration": 11.22,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 24.77,
+        "pollutant_concentration": 25.08,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.99,
+        "pollutant_concentration": 23.34,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 24.39,
+        "pollutant_concentration": 21.55,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.16,
+        "pollutant_concentration": 13.52,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.42,
+        "pollutant_concentration": 9.29,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 12.01,
+        "pollutant_concentration": 11.59,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -76,15 +76,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 22.91,
+        "pollutant_concentration": 22.08,
         "aq_advisory": false
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 10.09,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 11.46,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -97,18 +97,18 @@
     },
     "Sensor 14": {
         "name": "West End Community Centre",
-        "label": "Not Available",
-        "value": "N/A",
-        "top_contributor": "Sensor Currently Offline",
-        "pollutant_concentration": "N/A",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 15.06,
         "aq_advisory": false
     },
     "MOD-00628": {
         "name": "MOD-00628",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 10.38,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -116,7 +116,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.94,
+        "pollutant_concentration": 15.59,
         "aq_advisory": false
     },
     "Sensor 4": {
