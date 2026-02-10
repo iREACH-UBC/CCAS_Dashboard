@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 24.86,
+        "pollutant_concentration": 18.55,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 15.29,
+        "pollutant_concentration": 15.36,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,15 +20,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.26,
+        "pollutant_concentration": 13.12,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 15.03,
+        "pollutant_concentration": 24.71,
+        "aq_advisory": false
+    },
+    "Sensor 16": {
+        "name": "Canadian Memorial United Church",
+        "label": "Not Available",
+        "value": "N/A",
+        "top_contributor": "Not Available",
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.64,
+        "pollutant_concentration": 9.61,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -52,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.23,
+        "pollutant_concentration": 35.17,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -60,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 30.08,
+        "pollutant_concentration": 26.02,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -68,7 +76,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.52,
+        "pollutant_concentration": 17.29,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -76,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.04,
+        "pollutant_concentration": 27.44,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -84,15 +92,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.32,
+        "pollutant_concentration": 21.09,
         "aq_advisory": false
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 4.84,
+        "top_contributor": "O3",
+        "pollutant_concentration": 21.8,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -108,7 +116,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.59,
+        "pollutant_concentration": 22.5,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -116,7 +124,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.62,
+        "pollutant_concentration": 21.84,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -124,7 +132,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.96,
+        "pollutant_concentration": 15.47,
         "aq_advisory": false
     }
 }
