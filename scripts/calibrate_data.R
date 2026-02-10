@@ -53,8 +53,8 @@ files_tbl <- tibble(path = matches, date_file = extract_date(matches)) %>%
   filter(!is.na(date_file)) %>%
   arrange(desc(date_file))
 
-#if (nrow(files_tbl) < 2)
-#  stop("Need at least 2 days of data for sensor ", sensor_id)
+if (nrow(files_tbl) < 2)
+  stop("Need at least 2 days of data for sensor ", sensor_id)
 
 
 # ── Load and combine ─────────────────────────────────────────────
