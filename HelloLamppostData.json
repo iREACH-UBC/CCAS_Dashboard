@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.23,
+        "pollutant_concentration": 17.36,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,15 +12,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.06,
+        "pollutant_concentration": 9.36,
         "aq_advisory": false
     },
     "Sensor 13": {
         "name": "VPL - Central Library",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.7,
+        "pollutant_concentration": 22.79,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.41,
+        "pollutant_concentration": 20.77,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.18,
+        "pollutant_concentration": 20.63,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.46,
+        "pollutant_concentration": 17.77,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.02,
+        "pollutant_concentration": 4.34,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -122,9 +122,9 @@
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.83,
+        "pollutant_concentration": 4.35,
         "aq_advisory": false
     },
     "Sensor 4": {
