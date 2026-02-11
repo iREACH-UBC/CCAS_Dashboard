@@ -115,8 +115,8 @@
         "name": "MOD-00628",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 3.71,
+        "top_contributor": "O3",
+        "pollutant_concentration": 19.27,
         "aq_advisory": false
     },
     "Sensor 11": {
