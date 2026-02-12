@@ -94,10 +94,18 @@ jobs:
       
           git add calibrated_data/${{ matrix.sid }}/
           git commit --allow-empty -m "RAMP ${{ matrix.sid }} calibrated $(date -u +'%FT%TZ')"
+          
+          # Add random jitter to prevent thundering herd
+          sleep $((RANDOM % 10 + 1))
+          
           for i in {1..5}; do
-            git pull --rebase --autostash origin main || true
-            if git push origin HEAD:main --force-with-lease; then break; fi
-            sleep 5
+            git pull --rebase --autostash origin main --depth=1 || true
+            if git push origin HEAD:main --force-with-lease; then 
+              echo "Push succeeded on attempt $i"
+              break
+            fi
+            # Exponential backoff: 2s, 4s, 8s, 16s, 32s
+            sleep $((2 ** i))
           done
 
 
@@ -171,8 +179,16 @@ jobs:
           fi
           git add calibrated_data/${{ matrix.sid }}/
           git commit --allow-empty -m "QAQ ${{ matrix.sid }} calibrated $(date -u +'%FT%TZ')" || true
+          
+          # Add random jitter to prevent thundering herd
+          sleep $((RANDOM % 10 + 1))
+          
           for i in {1..5}; do
-            git pull --rebase --autostash origin main || true
-            if git push origin HEAD:main --force-with-lease; then break; fi
-            sleep 5
+            git pull --rebase --autostash origin main --depth=1 || true
+            if git push origin HEAD:main --force-with-lease; then
+              echo "Push succeeded on attempt $i"
+              break
+            fi
+            # Exponential backoff: 2s, 4s, 8s, 16s, 32s
+            sleep $((2 ** i))
           done
