@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 22.53,
+        "pollutant_concentration": 19.19,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.66,
+        "pollutant_concentration": 22.84,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.3,
+        "pollutant_concentration": 19.11,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.31,
+        "pollutant_concentration": 12.14,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.81,
+        "pollutant_concentration": 14.57,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.7,
+        "pollutant_concentration": 17.46,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.08,
+        "pollutant_concentration": 15.06,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -68,15 +68,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.01,
+        "pollutant_concentration": 28.81,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.32,
+        "pollutant_concentration": 19.81,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.23,
+        "pollutant_concentration": 19.84,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 14.65,
+        "pollutant_concentration": 20.51,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.49,
+        "pollutant_concentration": 15.09,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -132,7 +132,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.74,
+        "pollutant_concentration": 8.27,
         "aq_advisory": false
     }
 }
