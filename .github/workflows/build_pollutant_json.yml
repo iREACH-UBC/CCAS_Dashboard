@@ -4,11 +4,9 @@ on:
   # Manual trigger
   workflow_dispatch: {}
 
-  # Re-run when calibrated CSVs change
-  push:
-    branches: [ main ]
-    paths:
-      - 'calibrated_data/**.csv'
+  workflow_run:
+    workflows: ["Update Calibrated Data"]
+    types: [completed]
 
   # Automatic every 10 minutes (UTC)
   schedule:
