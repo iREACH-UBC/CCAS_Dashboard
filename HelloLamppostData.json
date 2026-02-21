@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.14,
+        "pollutant_concentration": 17.18,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.36,
+        "pollutant_concentration": 22.45,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 25.72,
+        "pollutant_concentration": 26.45,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -123,16 +123,16 @@
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 10.0,
+        "top_contributor": "O3",
+        "pollutant_concentration": 24.42,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 11.32,
+        "top_contributor": "O3",
+        "pollutant_concentration": 18.12,
         "aq_advisory": false
     }
 }
