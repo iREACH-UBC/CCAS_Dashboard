@@ -26,17 +26,17 @@
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Moderate health risk",
-        "value": 4,
+        "value": 6,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.09,
+        "pollutant_concentration": 21.21,
         "aq_advisory": false
     },
     "Sensor 16": {
         "name": "Canadian Memorial United Church",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.73,
+        "pollutant_concentration": 20.6,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 30.02,
+        "pollutant_concentration": 30.21,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.37,
+        "pollutant_concentration": 29.56,
         "aq_advisory": false
     },
     "Sensor 12": {
