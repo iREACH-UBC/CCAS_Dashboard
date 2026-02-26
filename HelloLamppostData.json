@@ -91,8 +91,8 @@
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 11.31,
+        "top_contributor": "O3",
+        "pollutant_concentration": 24.39,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -123,16 +123,16 @@
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 6.94,
+        "top_contributor": "O3",
+        "pollutant_concentration": 19.48,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 8.69,
+        "top_contributor": "O3",
+        "pollutant_concentration": 16.91,
         "aq_advisory": false
     }
 }
