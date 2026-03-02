@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.94,
+        "pollutant_concentration": 15.17,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.58,
+        "pollutant_concentration": 9.91,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 18.96,
+        "pollutant_concentration": 17.95,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.27,
+        "pollutant_concentration": 14.34,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -100,31 +100,31 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 4.91,
+        "pollutant_concentration": 5.09,
         "aq_advisory": false
     },
     "Sensor 14": {
         "name": "West End Community Centre",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 15.66,
+        "pollutant_concentration": 18.3,
         "aq_advisory": false
     },
     "MOD-00628": {
         "name": "MOD-00628",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 4.76,
+        "top_contributor": "O3",
+        "pollutant_concentration": 17.71,
         "aq_advisory": false
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
         "value": 1,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 5.04,
+        "top_contributor": "O3",
+        "pollutant_concentration": 14.58,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -132,7 +132,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.33,
+        "pollutant_concentration": 7.57,
         "aq_advisory": false
     }
 }
