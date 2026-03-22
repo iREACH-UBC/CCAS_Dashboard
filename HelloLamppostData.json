@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 16.93,
+        "pollutant_concentration": 15.41,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.16,
+        "pollutant_concentration": 11.6,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "NO2",
-        "pollutant_concentration": 23.19,
+        "pollutant_concentration": 23.93,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.64,
+        "pollutant_concentration": 15.32,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.43,
+        "pollutant_concentration": 23.37,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.43,
+        "pollutant_concentration": 18.75,
         "aq_advisory": false
     },
     "Sensor 17": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 7.49,
+        "pollutant_concentration": 8.68,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.37,
+        "pollutant_concentration": 31.08,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.73,
+        "pollutant_concentration": 11.91,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.61,
+        "pollutant_concentration": 29.35,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -99,8 +99,8 @@
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 11.0,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 12.04,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -108,7 +108,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 26.89,
+        "pollutant_concentration": 29.0,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -116,7 +116,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.92,
+        "pollutant_concentration": 21.3,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.48,
+        "pollutant_concentration": 19.43,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -132,7 +132,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.36,
+        "pollutant_concentration": 20.38,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -140,7 +140,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.95,
+        "pollutant_concentration": 11.22,
         "aq_advisory": false
     }
 }
