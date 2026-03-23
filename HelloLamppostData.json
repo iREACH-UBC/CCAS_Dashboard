@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.16,
+        "pollutant_concentration": 3.29,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.19,
+        "pollutant_concentration": 28.37,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,23 +20,23 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.37,
+        "pollutant_concentration": 12.0,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 6.05,
+        "top_contributor": "O3",
+        "pollutant_concentration": 29.71,
         "aq_advisory": false
     },
     "Sensor 16": {
         "name": "Canadian Memorial United Church",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 5.31,
+        "top_contributor": "O3",
+        "pollutant_concentration": 22.28,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -44,15 +44,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.09,
+        "pollutant_concentration": 20.15,
         "aq_advisory": false
     },
     "Sensor 17": {
         "name": "NVDPL Parkgate Library Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 21.0,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 13.26,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.44,
+        "pollutant_concentration": 36.98,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.53,
+        "pollutant_concentration": 26.53,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 34.21,
+        "pollutant_concentration": 34.54,
         "aq_advisory": false
     },
     "Sensor 12": {
