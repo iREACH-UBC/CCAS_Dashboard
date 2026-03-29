@@ -3,8 +3,8 @@
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 9.79,
+        "top_contributor": "O3",
+        "pollutant_concentration": 25.73,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.15,
+        "pollutant_concentration": 29.31,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.47,
+        "pollutant_concentration": 29.04,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.34,
+        "pollutant_concentration": 32.95,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 24.26,
+        "pollutant_concentration": 25.51,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.16,
+        "pollutant_concentration": 17.13,
         "aq_advisory": false
     },
     "Sensor 17": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.9,
+        "pollutant_concentration": 30.12,
         "aq_advisory": false
     },
     "Sensor 15": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.35,
+        "pollutant_concentration": 40.22,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.29,
+        "pollutant_concentration": 33.38,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.21,
+        "pollutant_concentration": 27.72,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -108,7 +108,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.77,
+        "pollutant_concentration": 29.84,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -116,7 +116,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 36.97,
+        "pollutant_concentration": 37.67,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.58,
+        "pollutant_concentration": 34.36,
         "aq_advisory": false
     },
     "Sensor 11": {
