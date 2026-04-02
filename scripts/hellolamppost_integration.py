@@ -20,6 +20,10 @@ OUTPUT_FILE    = Path("HelloLamppostData.json")
 
 KEEP: set[str] | None = None        # whitelist if needed
 
+ALIASES: dict[str, list[str]] = {
+    "2043": ["2043", "18"],
+}
+
 # ───────── helpers ─────────────────────────────────────────────
 def aqhi_label(v):
     """
@@ -108,8 +112,9 @@ def main():
 
         site_name     = m.get("name")          or sid
         sensor_number = m.get("sensor_number") or sid
+        output_keys   = ALIASES.get(sid, [sensor_number])
 
-        if KEEP and sensor_number not in KEEP and sid not in KEEP:
+        if KEEP and sid not in KEEP and not any(k in KEEP for k in output_keys):
             continue
 
         latest   = s.get("latest", {}) or {}
@@ -146,7 +151,7 @@ def main():
         else:
             primary_out = primary
 
-        kiosk_out[sensor_number] = {
+        payload = {
             "name":                    site_name,
             "label":                   aqhi_label(aqhi_val),
             "value":                   aqhi_value_out,
@@ -154,6 +159,9 @@ def main():
             "pollutant_concentration": conc if conc == "N/A" else round(conc, 2),
             "aq_advisory":             bool(s.get("active_alert", False)),
         }
+
+        for out_key in output_keys:
+            kiosk_out[out_key] = payload.copy()
 
     OUTPUT_FILE.write_text(json.dumps(kiosk_out, indent=4) + "\n", encoding="utf-8")
     print(f"[SUCCESS] wrote {OUTPUT_FILE} ({len(kiosk_out)} sensors)")
