@@ -21,7 +21,7 @@ OUTPUT_FILE    = Path("HelloLamppostData.json")
 KEEP: set[str] | None = None        # whitelist if needed
 
 ALIASES: dict[str, list[str]] = {
-    "2043": ["2043", "18"],
+    "2043": ["Sensor 8", "Sensor 18"],
 }
 
 # ───────── helpers ─────────────────────────────────────────────
