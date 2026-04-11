@@ -2,19 +2,26 @@ name: Mirror or Regenerate pollutant_data.json
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # every 10 minutes
-  workflow_dispatch:        # manual trigger
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pollutant-data-sync
+  cancel-in-progress: true
 
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-      # ── 1. Check out THIS repo ────────────────────────────────────────────────
       - name: Checkout this repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      # ── 2. Set up Python ──────────────────────────────────────────────────────
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -23,7 +30,6 @@ jobs:
       - name: Install dependencies
         run: pip install pandas pytz requests
 
-      # ── 3. Fetch the source JSON and decide what to do ───────────────────────
       - name: Check source JSON freshness
         id: freshness
         env:
@@ -41,22 +47,22 @@ jobs:
               with urllib.request.urlopen(url, timeout=15) as r:
                   data = json.load(r)
           except Exception as e:
-              print(f"[WARN] Could not fetch source JSON: {e} → will regenerate")
+              print(f"[WARN] Could not fetch source JSON: {e} -> will regenerate")
               with open(os.environ["GITHUB_OUTPUT"], "a") as f:
                   f.write("stale=true\n")
               sys.exit(0)
 
           generated_at_str = data.get("generated_at")
           if not generated_at_str:
-              print("[WARN] No 'generated_at' field found → will regenerate")
+              print("[WARN] No 'generated_at' field found -> will regenerate")
               with open(os.environ["GITHUB_OUTPUT"], "a") as f:
                   f.write("stale=true\n")
               sys.exit(0)
 
           try:
-              generated_at = datetime.fromisoformat(generated_at_str)
+              generated_at = datetime.fromisoformat(generated_at_str.replace("Z", "+00:00"))
           except ValueError:
-              print(f"[WARN] Unparseable timestamp '{generated_at_str}' → will regenerate")
+              print(f"[WARN] Unparseable timestamp '{generated_at_str}' -> will regenerate")
               with open(os.environ["GITHUB_OUTPUT"], "a") as f:
                   f.write("stale=true\n")
               sys.exit(0)
@@ -69,7 +75,6 @@ jobs:
           print(f"generated_at = {generated_at_str}")
           print(f"Age: {age_minutes:.1f} minutes")
 
-          # Always save what we fetched
           with open("pollutant_data.json", "w") as f:
               json.dump(data, f, indent=2)
 
@@ -80,12 +85,10 @@ jobs:
               f.write(f"stale={stale}\n")
           EOF
 
-      # ── 4a. FRESH PATH ────────────────────────────────────────────────────────
       - name: "[Fresh] Confirm JSON copied"
         if: steps.freshness.outputs.stale == 'false'
         run: echo "Source JSON is fresh — using as-is, skipping regeneration."
 
-      # ── 4b. STALE PATH: pull calibrated_data and regenerate ──────────────────
       - name: "[Stale] Checkout source data repo"
         if: steps.freshness.outputs.stale == 'true'
         uses: actions/checkout@v4
@@ -97,34 +100,43 @@ jobs:
       - name: "[Stale] Copy data files into place"
         if: steps.freshness.outputs.stale == 'true'
         run: |
+          test -d source_data/calibrated_data
           cp -r source_data/calibrated_data ./calibrated_data
           [ -f source_data/sensor_metadata.csv ] && cp source_data/sensor_metadata.csv . || true
-          [ -f source_data/AQAdvisories.json ]   && cp source_data/AQAdvisories.json .   || true
+          [ -f source_data/AQAdvisories.json ] && cp source_data/AQAdvisories.json . || true
 
       - name: "[Stale] Run generate_json.py"
         if: steps.freshness.outputs.stale == 'true'
         run: python generate_json.py
 
-      # ── 5. Commit pollutant_data.json back to this repo ──────────────────────
       - name: Commit and push pollutant_data.json
         run: |
-          git config user.name  "github-actions[bot]"
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
           git add pollutant_data.json
-          git diff --cached --quiet && echo "No changes to commit." || \
-            git commit -m "chore: update pollutant_data.json [auto]"
-          git push
-          
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: update pollutant_data.json [auto]"
+
           for i in {1..5}; do
-            # Re‑sync with the latest main while keeping our commit on top
-            git pull --rebase --autostash origin main || true
-      
-            # Only overwrite our own tip; fail if main advanced meanwhile
+            git fetch origin main
+            git rebase origin/main
+
             if git push origin HEAD:main --force-with-lease; then
               echo "Push succeeded on attempt $i"
-              break
+              exit 0
             fi
-      
-            echo "Push failed on attempt $i – retrying in 5 s..."
+
+            echo "Push failed on attempt $i; retrying in 5s..."
             sleep 5
           done
+
+          echo "Push failed after 5 attempts."
+          exit 1
