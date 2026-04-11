@@ -27,7 +27,7 @@ jobs:
       - name: Check source JSON freshness
         id: freshness
         env:
-          SOURCE_JSON_URL: ${{ vars.SOURCE_JSON_URL }}   # e.g. https://example.com/pollutant_data.json
+          SOURCE_JSON_URL: https://raw.githubusercontent.com/iREACH-UBC/dashboard_local/main/pollutant_data.json   # e.g. https://example.com/pollutant_data.json
         run: |
           python - <<'EOF'
           import json, sys, os
