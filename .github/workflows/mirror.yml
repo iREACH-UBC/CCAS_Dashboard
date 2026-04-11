@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # ── 1. Check out THIS repo (contains generate_json.py + supporting files) ──
+      # ── 1. Check out THIS repo ────────────────────────────────────────────────
       - name: Checkout this repo
         uses: actions/checkout@v4
 
@@ -69,18 +69,18 @@ jobs:
           print(f"generated_at = {generated_at_str}")
           print(f"Age: {age_minutes:.1f} minutes")
 
-          # Always save what we fetched (used on the fresh path, or as fallback)
+          # Always save what we fetched
           with open("pollutant_data.json", "w") as f:
               json.dump(data, f, indent=2)
 
           stale = "true" if age_minutes > 60 else "false"
-          print(f"→ {'STALE: will regenerate' if stale == 'true' else 'FRESH: will copy as-is'}")
+          print(f"-> {'STALE: will regenerate' if stale == 'true' else 'FRESH: will copy as-is'}")
 
           with open(os.environ["GITHUB_OUTPUT"], "a") as f:
               f.write(f"stale={stale}\n")
           EOF
 
-      # ── 4a. FRESH PATH: pollutant_data.json already written above ────────────
+      # ── 4a. FRESH PATH ────────────────────────────────────────────────────────
       - name: "[Fresh] Confirm JSON copied"
         if: steps.freshness.outputs.stale == 'false'
         run: echo "Source JSON is fresh — using as-is, skipping regeneration."
@@ -90,9 +90,7 @@ jobs:
         if: steps.freshness.outputs.stale == 'true'
         uses: actions/checkout@v4
         with:
-          repository: ${{ vars.SOURCE_DATA_REPO }}   # e.g. "owner/sensor-data-repo"
-          # If SOURCE_DATA_REPO is public, you can delete the token line below.
-          # If it is private, add SOURCE_PAT to your repo secrets.
+          repository: ${{ vars.SOURCE_DATA_REPO }}
           token: ${{ secrets.SOURCE_PAT || github.token }}
           path: source_data
 
@@ -107,55 +105,12 @@ jobs:
         if: steps.freshness.outputs.stale == 'true'
         run: python generate_json.py
 
-      # ── 5. Push pollutant_data.json to the destination repo via GitHub API ───
-      - name: Push JSON to destination repo
-        env:
-          DEST_PAT:  ${{ secrets.DEST_PAT }}
-          DEST_REPO: ${{ vars.DEST_REPO }}   # e.g. "owner/dashboard-repo"
-          DEST_FILE: ${{ vars.DEST_FILE }}   # path inside dest repo, e.g. "data/pollutant_data.json"
+      # ── 5. Commit pollutant_data.json back to this repo ──────────────────────
+      - name: Commit and push pollutant_data.json
         run: |
-          python - <<'EOF'
-          import base64, json, os, urllib.request
-
-          token    = os.environ["DEST_PAT"]
-          repo     = os.environ["DEST_REPO"]
-          filepath = os.environ.get("DEST_FILE", "pollutant_data.json")
-          api_url  = f"https://api.github.com/repos/{repo}/contents/{filepath}"
-
-          headers = {
-              "Authorization":        f"Bearer {token}",
-              "Accept":               "application/vnd.github+json",
-              "X-GitHub-Api-Version": "2022-11-28",
-              "Content-Type":         "application/json",
-          }
-
-          with open("pollutant_data.json", "rb") as f:
-              content_b64 = base64.b64encode(f.read()).decode()
-
-          # Get the current file's SHA (required by GitHub API to update existing files)
-          sha = None
-          try:
-              req = urllib.request.Request(api_url, headers=headers)
-              with urllib.request.urlopen(req) as r:
-                  sha = json.load(r).get("sha")
-              print(f"Existing file found (sha={sha[:7]}…), will update.")
-          except urllib.error.HTTPError as e:
-              if e.code == 404:
-                  print("File does not exist yet — will create.")
-              else:
-                  raise
-
-          payload = {
-              "message": "chore: update pollutant_data.json [auto]",
-              "content": content_b64,
-          }
-          if sha:
-              payload["sha"] = sha
-
-          data = json.dumps(payload).encode()
-          req  = urllib.request.Request(api_url, data=data, headers=headers, method="PUT")
-          with urllib.request.urlopen(req) as r:
-              resp = json.load(r)
-
-          print(f"[SUCCESS] → {resp['content']['html_url']}")
-          EOF
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pollutant_data.json
+          git diff --cached --quiet && echo "No changes to commit." || \
+            git commit -m "chore: update pollutant_data.json [auto]"
+          git push
