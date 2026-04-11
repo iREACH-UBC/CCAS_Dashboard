@@ -114,3 +114,17 @@ jobs:
           git diff --cached --quiet && echo "No changes to commit." || \
             git commit -m "chore: update pollutant_data.json [auto]"
           git push
+          
+          for i in {1..5}; do
+            # Re‑sync with the latest main while keeping our commit on top
+            git pull --rebase --autostash origin main || true
+      
+            # Only overwrite our own tip; fail if main advanced meanwhile
+            if git push origin HEAD:main --force-with-lease; then
+              echo "Push succeeded on attempt $i"
+              break
+            fi
+      
+            echo "Push failed on attempt $i – retrying in 5 s..."
+            sleep 5
+          done
