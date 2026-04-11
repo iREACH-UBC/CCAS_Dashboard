@@ -2,7 +2,7 @@ name: Mirror or Regenerate pollutant_data.json
 
 on:
   schedule:
-    - cron: '0 * * * *'    # every hour
+    - cron: '*/10 * * * *'  # every 10 minutes
   workflow_dispatch:        # manual trigger
 
 jobs:
@@ -27,7 +27,7 @@ jobs:
       - name: Check source JSON freshness
         id: freshness
         env:
-          SOURCE_JSON_URL:https://raw.githubusercontent.com/iREACH-UBC/dashboard_local/refs/heads/main/pollutant_data.json
+          SOURCE_JSON_URL: "${{ vars.SOURCE_JSON_URL }}"
         run: |
           python - <<'EOF'
           import json, sys, os
@@ -91,7 +91,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ vars.SOURCE_DATA_REPO }}   # e.g. "owner/sensor-data-repo"
-          token: ${{ secrets.SOURCE_PAT }}
+          # If SOURCE_DATA_REPO is public, you can delete the token line below.
+          # If it is private, add SOURCE_PAT to your repo secrets.
+          token: ${{ secrets.SOURCE_PAT || github.token }}
           path: source_data
 
       - name: "[Stale] Copy data files into place"
