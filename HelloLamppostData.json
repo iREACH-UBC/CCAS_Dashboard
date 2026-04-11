@@ -82,9 +82,9 @@
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.44,
+        "pollutant_concentration": 12.12,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.58,
+        "pollutant_concentration": 12.63,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -132,13 +132,13 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.58,
+        "pollutant_concentration": 13.09,
         "aq_advisory": false
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "NO2",
         "pollutant_concentration": 12.63,
         "aq_advisory": false
@@ -148,7 +148,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.86,
+        "pollutant_concentration": 13.49,
         "aq_advisory": false
     }
 }
