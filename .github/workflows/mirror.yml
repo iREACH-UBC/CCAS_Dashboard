@@ -107,7 +107,7 @@ jobs:
 
       - name: "[Stale] Run generate_json.py"
         if: steps.freshness.outputs.stale == 'true'
-        run: python generate_json.py
+        run: python scripts/generate_json.py
 
       - name: Commit and push pollutant_data.json
         run: |
