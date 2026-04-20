@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.31,
+        "pollutant_concentration": 19.4,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,23 +12,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.64,
+        "pollutant_concentration": 13.07,
         "aq_advisory": false
     },
     "Sensor 13": {
         "name": "VPL - Central Library",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 27.72,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 28.26,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 18.81,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 19.08,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.33,
+        "pollutant_concentration": 11.88,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -44,15 +44,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 23.51,
+        "pollutant_concentration": 18.09,
         "aq_advisory": false
     },
     "Sensor 17": {
         "name": "NVDPL Parkgate Library Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 13.48,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 10.93,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.59,
+        "pollutant_concentration": 18.96,
         "aq_advisory": false
     },
     "Sensor 15": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.21,
+        "pollutant_concentration": 17.48,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 30.45,
+        "pollutant_concentration": 4.92,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.2,
+        "pollutant_concentration": 26.48,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.36,
+        "pollutant_concentration": 31.45,
         "aq_advisory": false
     },
     "Sensor 18": {
@@ -100,7 +100,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 38.36,
+        "pollutant_concentration": 31.45,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -108,15 +108,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.5,
+        "pollutant_concentration": 18.96,
         "aq_advisory": false
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.27,
+        "pollutant_concentration": 7.98,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.93,
+        "pollutant_concentration": 17.66,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -132,23 +132,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.05,
+        "pollutant_concentration": 22.86,
         "aq_advisory": false
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.09,
+        "pollutant_concentration": 24.7,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 21.49,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 12.33,
         "aq_advisory": false
     }
 }
