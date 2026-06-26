@@ -4,15 +4,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 24.67,
+        "pollutant_concentration": 16.09,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.57,
+        "pollutant_concentration": 9.3,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,15 +20,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 16.8,
+        "pollutant_concentration": 19.72,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.91,
+        "pollutant_concentration": 11.1,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -36,31 +36,31 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.78,
+        "pollutant_concentration": 17.42,
         "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 11.51,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 11.38,
         "aq_advisory": false
     },
     "Sensor 17": {
         "name": "NVDPL Parkgate Library Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 9.62,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 9.77,
         "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 14.01,
+        "pollutant_concentration": 11.44,
         "aq_advisory": false
     },
     "Sensor 15": {
@@ -68,15 +68,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.99,
+        "pollutant_concentration": 17.47,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 6.91,
+        "value": 1,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 8.64,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 41.93,
+        "pollutant_concentration": 36.33,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.93,
+        "pollutant_concentration": 23.76,
         "aq_advisory": false
     },
     "Sensor 18": {
@@ -100,15 +100,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 26.93,
+        "pollutant_concentration": 23.76,
         "aq_advisory": false
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.81,
+        "pollutant_concentration": 16.1,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -116,7 +116,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 17.53,
+        "pollutant_concentration": 10.61,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 21.77,
+        "pollutant_concentration": 19.53,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -132,23 +132,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.09,
+        "pollutant_concentration": 23.04,
         "aq_advisory": false
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.86,
+        "pollutant_concentration": 15.67,
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 19.23,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 12.65,
         "aq_advisory": false
     }
 }
