@@ -1,34 +1,34 @@
 {
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 31.16,
+        "pollutant_concentration": 21.92,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.99,
+        "pollutant_concentration": 14.37,
         "aq_advisory": false
     },
     "Sensor 13": {
         "name": "VPL - Central Library",
-        "label": "Low health risk",
-        "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 19.33,
+        "label": "Moderate health risk",
+        "value": 4,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 36.43,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.91,
+        "pollutant_concentration": 18.25,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.13,
+        "pollutant_concentration": 18.83,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 22.99,
+        "pollutant_concentration": 19.83,
         "aq_advisory": false
     },
     "Sensor 17": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.26,
+        "pollutant_concentration": 26.63,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -60,23 +60,23 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.93,
+        "pollutant_concentration": 21.02,
         "aq_advisory": false
     },
     "Sensor 15": {
         "name": "Marpole Oakridge Family Place",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 17.97,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 22.31,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 10.68,
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 12.51,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -84,23 +84,23 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 39.97,
+        "pollutant_concentration": 41.55,
         "aq_advisory": false
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 44.2,
+        "pollutant_concentration": 33.3,
         "aq_advisory": false
     },
     "Sensor 18": {
         "name": "Whistler Public Library",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 44.2,
+        "pollutant_concentration": 33.3,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -137,8 +137,8 @@
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
