@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 41.2,
+        "pollutant_concentration": 43.61,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.48,
+        "pollutant_concentration": 29.36,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 36.29,
+        "pollutant_concentration": 35.66,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 50.3,
+        "pollutant_concentration": 48.8,
         "aq_advisory": false
     },
     "Sensor 17": {
@@ -52,7 +52,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 53.9,
+        "pollutant_concentration": 54.82,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.32,
+        "pollutant_concentration": 19.05,
         "aq_advisory": false
     },
     "Sensor 15": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.85,
+        "pollutant_concentration": 43.62,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 43.99,
+        "pollutant_concentration": 44.18,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 41.57,
+        "pollutant_concentration": 42.28,
         "aq_advisory": false
     },
     "Sensor 18": {
@@ -100,7 +100,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 41.57,
+        "pollutant_concentration": 42.28,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -108,7 +108,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 32.88,
+        "pollutant_concentration": 31.69,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -124,7 +124,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 30.45,
+        "pollutant_concentration": 30.47,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -137,10 +137,10 @@
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.28,
+        "pollutant_concentration": 28.71,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -148,7 +148,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.34,
+        "pollutant_concentration": 35.41,
         "aq_advisory": false
     }
 }
