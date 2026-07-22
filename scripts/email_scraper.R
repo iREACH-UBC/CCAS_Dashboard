@@ -129,7 +129,28 @@ extract_info <- function(plain_text, email_id, date_hdr = NULL) {
   dt_str <- format(dt, "%Y-%m-%d %H:%M:%S")
   
   # 2) Find blocks like: "Air quality statement - issued for:\n<locations...>"
-  pattern <- "(?is)air\\s+quality\\s+(warning|statement)\\s*[-–—]\\s*(issued|ended|continued)\\s*for:\\s*([\\s\\S]+?)(?=\\n{2,}|The\\s+above\\s+alert|Current\\s+details|Air\\s+quality\\s+(warning|statement)|\\z)"
+  pattern <- paste0(
+    "(?is)",
+    "(?:",
+    "air\\s+quality\\s+(?:warning|statement)",
+    "|",
+    "(?:yellow|orange|red)\\s+level\\s+warning\\s*[-–—]\\s*air\\s+quality",
+    ")",
+    "\\s*[-–—]\\s*",
+    "(issued|ended|continued)\\s+for:\\s*",
+    "([\\s\\S]+?)",
+    "(?=",
+    "\\n{2,}",
+    "|The\\s+above\\s+alert",
+    "|Current\\s+details",
+    "|Impact\\s+Level:",
+    "|Forecast\\s+Confidence:",
+    "|Air\\s+quality\\s+(?:warning|statement)",
+    "|(?:yellow|orange|red)\\s+level\\s+warning",
+    "|\\z",
+    ")"
+  )
+  
   alert_matches <- str_match_all(plain_text, pattern)[[1]]
   if (is.null(alert_matches) || nrow(alert_matches) == 0) {
     message("No alert blocks found for email ID: ", email_id)
@@ -139,8 +160,8 @@ extract_info <- function(plain_text, email_id, date_hdr = NULL) {
   all_dfs <- list()
   
   for (j in seq_len(nrow(alert_matches))) {
-    action <- tolower(alert_matches[j, 3])  # issued/ended/continued
-    locations_block <- alert_matches[j, 4]
+    action <- tolower(alert_matches[j, 2])
+    locations_block <- alert_matches[j, 3]
     
     # Split by lines; typical lines look like "Metro Vancouver - NE, B.C. (MV-NE)" or sometimes no code
     lines <- str_split(locations_block, "\n")[[1]]
