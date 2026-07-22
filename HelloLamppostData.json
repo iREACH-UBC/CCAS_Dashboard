@@ -1,18 +1,18 @@
 {
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
-        "label": "Low health risk",
-        "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 17.73,
+        "label": "Moderate health risk",
+        "value": 4,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 31.16,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 17.4,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 15.99,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.62,
+        "pollutant_concentration": 19.33,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -28,15 +28,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.23,
+        "pollutant_concentration": 10.91,
         "aq_advisory": false
     },
     "Sensor 16": {
         "name": "Canadian Memorial United Church",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 24.11,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 17.13,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -44,15 +44,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 34.69,
+        "pollutant_concentration": 22.99,
         "aq_advisory": false
     },
     "Sensor 17": {
         "name": "NVDPL Parkgate Library Branch",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.05,
+        "pollutant_concentration": 28.26,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 36.57,
+        "pollutant_concentration": 27.93,
         "aq_advisory": false
     },
     "Sensor 15": {
@@ -68,23 +68,23 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.26,
+        "pollutant_concentration": 17.97,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 15.51,
+        "pollutant_concentration": 10.68,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 37.82,
+        "pollutant_concentration": 39.97,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -105,8 +105,8 @@
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
-        "label": "High health risk",
-        "value": 7,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -137,8 +137,8 @@
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -147,8 +147,8 @@
         "name": "Lions Gate Rec Center",
         "label": "Moderate health risk",
         "value": 4,
-        "top_contributor": "O3",
-        "pollutant_concentration": 23.68,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     }
 }
