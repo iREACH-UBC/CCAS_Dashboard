@@ -274,6 +274,73 @@ append_new_history <- function(temp_df, history_file) {
 
 as_char_df <- function(df) data.frame(lapply(df, as.character), stringsAsFactors = FALSE)
 
+# Rebuild the current active-alert state by replaying the complete history in
+# chronological order. This avoids relying on ACTIVE_FILE being persisted
+# between runs (for example, on an ephemeral GitHub Actions runner).
+rebuild_active_alerts <- function(history_file) {
+  empty_active <- as_char_df(data.frame(
+    Region = character(), Code = character(), Status = character(),
+    EmailTimestamp = character(), EmailID = character(),
+    stringsAsFactors = FALSE
+  ))
+  
+  if (!file.exists(history_file)) return(empty_active)
+  
+  history <- as_char_df(read.table(
+    history_file,
+    header = TRUE,
+    sep = "\t",
+    stringsAsFactors = FALSE,
+    quote = "",
+    comment.char = "",
+    fill = TRUE
+  ))
+  if (!nrow(history)) return(empty_active)
+  
+  # EmailTimestamp is stored as YYYY-mm-dd HH:MM:SS, so character ordering is
+  # chronological. seq_len() preserves file order for equal timestamps.
+  history$.__row_order <- seq_len(nrow(history))
+  history <- history[
+    order(history$EmailTimestamp, history$.__row_order, na.last = TRUE),
+    ,
+    drop = FALSE
+  ]
+  
+  active <- empty_active
+  
+  for (i in seq_len(nrow(history))) {
+    row <- history[i, c(
+      "Region", "Code", "Status", "EmailTimestamp", "EmailID"
+    ), drop = FALSE]
+    action <- tolower(row$Status)
+    region_key <- normalize_key(row$Region)
+    
+    # Region is the stable identity. Codes can change as Environment Canada
+    # changes the collection of forecast zones included in an alert.
+    match_idx <- which(normalize_key(active$Region) == region_key)
+    
+    # Fall back to code only if the history row has no usable region name.
+    if (!length(match_idx) && !nzchar(region_key) &&
+        !is.na(row$Code) && nzchar(row$Code)) {
+      match_idx <- which(active$Code == row$Code)
+    }
+    
+    if (identical(action, "ended")) {
+      if (length(match_idx)) {
+        active <- active[-match_idx, , drop = FALSE]
+      }
+    } else if (action %in% c("issued", "continued")) {
+      if (length(match_idx)) {
+        active[match_idx, ] <- as_char_df(row)
+      } else {
+        active <- rbind(active, as_char_df(row))
+      }
+    }
+  }
+  
+  active
+}
+
 # ──────────────────────────────────────────────────────────────────────────────
 # File bootstrapping
 # ──────────────────────────────────────────────────────────────────────────────
@@ -297,16 +364,6 @@ if (!file.exists(ACTIVE_FILE)) {
   )
   write.table(active_header, file = ACTIVE_FILE, sep = "\t", row.names = FALSE,
               col.names = TRUE, quote = FALSE)
-}
-
-# Load current active alerts (as character columns)
-active_alerts <- if (file.exists(ACTIVE_FILE)) {
-  as_char_df(read.table(ACTIVE_FILE, header = TRUE, sep = "\t", stringsAsFactors = FALSE))
-} else {
-  as_char_df(data.frame(
-    Region = character(), Code = character(), Status = character(),
-    EmailTimestamp = character(), EmailID = character(), stringsAsFactors = FALSE
-  ))
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -396,42 +453,14 @@ if (length(new_emails)) {
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Merge updates into active_alerts
+# Rebuild active_alerts from the complete history
 # ──────────────────────────────────────────────────────────────────────────────
-if (length(all_updates)) {
-  updates_df <- do.call(rbind, all_updates)
-  
-  for (i in seq_len(nrow(updates_df))) {
-    row    <- updates_df[i, ]
-    action <- tolower(row$Status)
-    
-    # Prefer matching by Code when present; else by normalized Region
-    if (!is.na(row$Code) && nzchar(row$Code)) {
-      match_idx <- which(active_alerts$Code == row$Code)
-    } else {
-      rk <- normalize_key(row$Region)
-      match_idx <- which(normalize_key(active_alerts$Region) == rk)
-    }
-    
-    if (identical(action, "ended")) {
-      if (length(match_idx)) {
-        message("Ending alert for: ", row$Region, " | Code: ", row$Code)
-        active_alerts <- active_alerts[-match_idx, , drop = FALSE]
-      }
-    } else if (action %in% c("issued", "continued")) {
-      if (length(match_idx)) {
-        active_alerts[match_idx, c("EmailTimestamp","Status","EmailID")] <-
-          as_char_df(row[c("EmailTimestamp","Status","EmailID")])
-      } else {
-        active_alerts <- rbind(active_alerts, as_char_df(row))
-      }
-    }
-  }
-  
-  # Save updated active alerts (overwrite)
-  write.table(active_alerts, file = ACTIVE_FILE, sep = "\t", row.names = FALSE,
-              col.names = TRUE, quote = FALSE)
-}
+active_alerts <- rebuild_active_alerts(HISTORY_FILE)
+
+# Save a disposable snapshot for debugging/local inspection. Correctness no
+# longer depends on this file surviving into the next run.
+write.table(active_alerts, file = ACTIVE_FILE, sep = "\t", row.names = FALSE,
+            col.names = TRUE, quote = FALSE)
 
 # ──────────────────────────────────────────────────────────────────────────────
 # Build output JSON (booleans per target region)
