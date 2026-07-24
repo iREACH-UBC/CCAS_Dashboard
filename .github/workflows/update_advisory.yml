@@ -45,14 +45,19 @@ jobs:
           RENV_CONFIG_AUTOLOADER_ENABLED: "FALSE" # double-lock renv autoload
         run: Rscript scripts/email_scraper.R
 
-      - name: Commit and push if AQAdvisories.json changed
+      - name: Commit and push updated advisory files
         run: |
           set -e
-          git config user.name  "github-actions[bot]"
+          git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add AQAdvisories.json
+
+          git add \
+            AQAdvisories.json \
+            alert_history.txt \
+            processed_emails.txt
+
           git diff --cached --quiet && echo "No changes to commit." || {
-            git commit -m "Update AQAdvisories.json";
-            git pull --rebase origin main;
-            git push origin HEAD:main;
+            git commit -m "Update AQ advisory state"
+            git pull --rebase origin main
+            git push origin HEAD:main
           }
