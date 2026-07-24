@@ -1,0 +1,136 @@
+Region	Code	Status	EmailTimestamp	EmailID
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	issued	2026-07-23 18:53:47	340
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-23 18:53:49	341
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-23 18:53:50	342
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-23 18:53:51	343
+Fraser Canyon - south including Lytton, B.C.	083122	ended	2026-07-23 18:53:52	344
+Fraser Canyon - south including Lytton, B.C.	083122	issued	2026-07-23 18:53:53	345
+Fraser Canyon - south including Lytton, B.C.	083122	issued	2026-07-23 18:53:55	346
+North Harrison Lake, B.C.	082711-082721-082731	issued	2026-07-23 18:53:56	347
+      Fraser Canyon - north including Lillooet, B.C.	083110	issued	2026-07-23 18:53:56	347
+Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-23 18:53:56	347
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	issued	2026-07-23 18:53:57	348
+North Harrison Lake, B.C.	082711-082721-082731	continued	2026-07-23 18:53:58	349
+      Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:53:58	349
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-07-23 18:53:59	350
+Eastern Fraser Valley, B.C.	082720-082732	ended	2026-07-23 18:54:01	351
+South Thompson, B.C.	083200	issued	2026-07-23 18:54:02	352
+Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:02	352
+North Harrison Lake, B.C.	082711-082721-082731	ended	2026-07-23 18:54:02	352
+Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:03	353
+      South Thompson, B.C.	083200	continued	2026-07-23 18:54:03	353
+Â Â     Nicola, B.C.	083121-083300	issued	2026-07-23 18:54:04	354
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:04	354
+Â Â     South Thompson, B.C.	083200	ended	2026-07-23 18:54:04	354
+Â Â     South Thompson, B.C.	083200	issued	2026-07-23 18:54:05	355
+Â Â     South Thompson, B.C.	083200	issued	2026-07-23 18:54:07	356
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:08	357
+Â Â     Nicola, B.C.	083121-083300	continued	2026-07-23 18:54:08	357
+Â Â     Fraser Canyon - north including Lillooet, B.C.	083110	continued	2026-07-23 18:54:10	359
+Â Â     Nicola, B.C.	083121-083300	continued	2026-07-23 18:54:10	359
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-23 18:54:11	360
+Â Â     Fraser Canyon - north including Lillooet, B.C.	083110	continued	2026-07-23 18:54:13	361
+Â Â     Nicola, B.C.	083121-083300	continued	2026-07-23 18:54:13	361
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:13	361
+Â Â     Fraser Canyon - north including Lillooet, B.C.	083110	ended	2026-07-23 18:54:14	362
+Â Â     Nicola, B.C.	083121-083300	ended	2026-07-23 18:54:14	362
+Â Â     South Thompson, B.C.	083200	ended	2026-07-23 18:54:14	362
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-23 18:54:15	363
+Fraser Canyon - south including Lytton, B.C.	083122	ended	2026-07-23 18:54:16	364
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	issued	2026-07-23 18:54:17	365
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-23 18:54:19	366
+Â Â     South Thompson, B.C.	083200	issued	2026-07-23 18:54:20	367
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	ended	2026-07-23 18:54:20	367
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	issued	2026-07-23 18:54:21	368
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:21	368
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	issued	2026-07-23 18:54:22	369
+Â Â     South Thompson, B.C.	083200	issued	2026-07-23 18:54:22	369
+Â Â     Nicola, B.C.	083121-083300	issued	2026-07-23 18:54:24	370
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-23 18:54:24	370
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:24	370
+Â Â     Nicola, B.C.	083121-083300	continued	2026-07-23 18:54:25	371
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-23 18:54:25	371
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:25	371
+Â Â     Fraser Canyon - north including Lillooet, B.C.	083110	issued	2026-07-23 18:54:26	372
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-23 18:54:26	372
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:26	372
+Â Â     Nicola, B.C.	083121-083300	ended	2026-07-23 18:54:26	372
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:28	373
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:28	373
+Fraser Canyon, B.C.	083110-083122	ended	2026-07-23 18:54:29	374
+      South Thompson, B.C.	083200	ended	2026-07-23 18:54:29	374
+Â Â     Fraser Canyon, B.C.	083110-083122	issued	2026-07-23 18:54:30	375
+Â Â     South Thompson, B.C.	083200	issued	2026-07-23 18:54:30	375
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:31	376
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:31	376
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:33	377
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:33	377
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:34	378
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:34	378
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	issued	2026-07-23 18:54:35	379
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:36	380
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:36	380
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-07-23 18:54:37	381
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-07-23 18:54:38	382
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:40	383
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:40	383
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:41	384
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:41	384
+Â Â     Metro Vancouver - NE, B.C.	082513-082630-082711-082714	issued	2026-07-23 18:54:42	385
+Â Â     Metro Vancouver - SE, B.C.	082640-082713	issued	2026-07-23 18:54:42	385
+Â Â     Central Fraser Valley, B.C.	082711-082712-082721	issued	2026-07-23 18:54:42	385
+Â Â     North Harrison Lake, B.C.	082711-082721-082731	issued	2026-07-23 18:54:42	385
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-07-23 18:54:42	385
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:43	386
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:43	386
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:44	387
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:44	387
+Â Â     Metro Vancouver - NE, B.C.	082513-082630-082711-082714	continued	2026-07-23 18:54:46	388
+Â Â     Metro Vancouver - SE, B.C.	082640-082713	continued	2026-07-23 18:54:46	388
+Â Â     Central Fraser Valley, B.C.	082711-082712-082721	continued	2026-07-23 18:54:46	388
+Â Â     North Harrison Lake, B.C.	082711-082721-082731	continued	2026-07-23 18:54:46	388
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-07-23 18:54:46	388
+Â Â     Metro Vancouver - NW, B.C.	082511-082512-082520-082610-082620	issued	2026-07-23 18:54:47	389
+Â Â     Metro Vancouver - SW, B.C.	082650	issued	2026-07-23 18:54:47	389
+Â Â     Metro Vancouver - NE, B.C.	082513-082630-082711-082714	continued	2026-07-23 18:54:47	389
+Â Â     Metro Vancouver - SE, B.C.	082640-082713	continued	2026-07-23 18:54:47	389
+Â Â     Central Fraser Valley, B.C.	082711-082712-082721	continued	2026-07-23 18:54:47	389
+Â Â     North Harrison Lake, B.C.	082711-082721-082731	continued	2026-07-23 18:54:47	389
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-07-23 18:54:47	389
+Â Â     Nicola, B.C.	083121-083300	issued	2026-07-23 18:54:48	390
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:48	390
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:48	390
+Â Â     Metro Vancouver - NW, B.C.	082511-082512-082520-082610-082620	continued	2026-07-23 18:54:49	391
+Â Â     Metro Vancouver - NE, B.C.	082513-082630-082711-082714	continued	2026-07-23 18:54:49	391
+Â Â     Metro Vancouver - SE, B.C.	082640-082713	continued	2026-07-23 18:54:49	391
+Â Â     Metro Vancouver - SW, B.C.	082650	continued	2026-07-23 18:54:49	391
+Â Â     Central Fraser Valley, B.C.	082711-082712-082721	continued	2026-07-23 18:54:49	391
+Â Â     North Harrison Lake, B.C.	082711-082721-082731	continued	2026-07-23 18:54:49	391
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-07-23 18:54:49	391
+Â Â     Metro Vancouver - NW, B.C.	082511-082512-082520-082610-082620	continued	2026-07-23 18:54:51	392
+Â Â     Metro Vancouver - NE, B.C.	082513-082630-082711-082714	continued	2026-07-23 18:54:51	392
+Â Â     Metro Vancouver - SE, B.C.	082640-082713	continued	2026-07-23 18:54:51	392
+Â Â     Metro Vancouver - SW, B.C.	082650	continued	2026-07-23 18:54:51	392
+Â Â     Central Fraser Valley, B.C.	082711-082712-082721	continued	2026-07-23 18:54:51	392
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-07-23 18:54:51	392
+Â Â     North Harrison Lake, B.C.	082711-082721-082731	ended	2026-07-23 18:54:51	392
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:52	393
+Â Â     Nicola, B.C.	083121-083300	continued	2026-07-23 18:54:52	393
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:52	393
+Â Â     Metro Vancouver - NW, B.C.	082511-082512-082520-082610-082620	continued	2026-07-23 18:54:53	394
+Â Â     Metro Vancouver - NE, B.C.	082513-082630-082711-082714	continued	2026-07-23 18:54:53	394
+Â Â     Metro Vancouver - SE, B.C.	082640-082713	continued	2026-07-23 18:54:53	394
+Â Â     Metro Vancouver - SW, B.C.	082650	continued	2026-07-23 18:54:53	394
+Â Â     Central Fraser Valley, B.C.	082711-082712-082721	continued	2026-07-23 18:54:53	394
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-07-23 18:54:53	394
+Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-07-23 18:54:54	395
+Â Â     Nicola, B.C.	083121-083300	continued	2026-07-23 18:54:54	395
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:54	395
+Â Â     Fraser Canyon - north including Lillooet, B.C.	083110	continued	2026-07-23 18:54:57	397
+Â Â     South Thompson, B.C.	083200	continued	2026-07-23 18:54:57	397
+Metro Vancouver - NW, B.C.	082511-082512-082520-082610-082620	ended	2026-07-23 18:54:58	398
+      Metro Vancouver - NE, B.C.	082513-082630-082711-082714	ended	2026-07-23 18:54:58	398
+      Metro Vancouver - SE, B.C.	082640-082713	ended	2026-07-23 18:54:58	398
+      Metro Vancouver - SW, B.C.	082650	ended	2026-07-23 18:54:58	398
+      Central Fraser Valley, B.C.	082711-082712-082721	ended	2026-07-23 18:54:58	398
+      Eastern Fraser Valley, B.C.	082720-082732	ended	2026-07-23 18:54:58	398
