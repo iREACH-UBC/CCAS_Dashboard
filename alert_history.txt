@@ -150,3 +150,6 @@ Metro Vancouver - NW, B.C.	082511-082512-082520-082610-082620	ended	2026-07-23 1
 Â Â     South Thompson, B.C.	083200	continued	2026-07-25 10:37:45	405
 Â Â     Fraser Canyon - north including Lillooet, B.C.	083110	ended	2026-07-25 10:37:45	405
 Â Â     Nicola, B.C.	083121-083300	continued	2026-07-25 10:37:46	406
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-26 00:10:32	407
+Â Â     South Thompson, B.C.	083200	continued	2026-07-26 00:10:32	407
+Â Â     Nicola, B.C.	083121-083300	continued	2026-07-26 00:10:33	408
