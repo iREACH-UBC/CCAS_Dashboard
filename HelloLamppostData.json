@@ -85,7 +85,7 @@
         "value": 1,
         "top_contributor": "NO2",
         "pollutant_concentration": 8.35,
-        "aq_advisory": true
+        "aq_advisory": false
     },
     "Sensor 18": {
         "name": "Whistler Public Library",
