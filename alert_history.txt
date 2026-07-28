@@ -164,3 +164,5 @@ South Thompson, B.C.	083200	ended	2026-07-26 09:37:31	410
 Â Â     Fraser Canyon - north including Lillooet, B.C.	083110	ended	2026-07-27 14:41:27	414
 Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-28 01:09:08	415
 Â Â     South Thompson, B.C.	083200	continued	2026-07-28 01:09:08	415
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-07-28 11:45:57	416
+Â Â     South Thompson, B.C.	083200	ended	2026-07-28 11:45:57	416
