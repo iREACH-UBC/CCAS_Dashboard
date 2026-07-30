@@ -170,3 +170,6 @@ Fraser Canyon - south including Lytton, B.C.	083122	ended	2026-07-28 13:42:22	41
 Â Â     Nicola, B.C.	083121-083300	issued	2026-07-29 11:37:21	418
 Â Â     Fraser Canyon - south including Lytton, B.C.	083122	issued	2026-07-29 11:37:21	418
 Â Â     South Thompson, B.C.	083200	issued	2026-07-29 11:37:21	418
+Â Â     Nicola, B.C.	083121-083300	issued	2026-07-30 04:53:56	419
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	issued	2026-07-30 04:53:56	419
+Â Â     South Thompson, B.C.	083200	issued	2026-07-30 04:53:56	419
