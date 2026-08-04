@@ -196,3 +196,4 @@ Nicola, B.C.	083121-083300	ended	2026-08-02 11:36:53	429
 Fraser Canyon, B.C.	083110-083122	issued	2026-08-04 12:48:00	432
       Nicola, B.C.	083121-083300	issued	2026-08-04 12:48:00	432
       South Thompson, B.C.	083200	issued	2026-08-04 12:48:00	432
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-08-04 14:43:26	433
