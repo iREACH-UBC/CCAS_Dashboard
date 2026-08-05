@@ -4,15 +4,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 22.38,
+        "pollutant_concentration": 21.35,
         "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.84,
+        "pollutant_concentration": 7.54,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.2,
+        "pollutant_concentration": 17.94,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.11,
+        "pollutant_concentration": 13.83,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.06,
+        "pollutant_concentration": 12.06,
         "aq_advisory": false
     },
     "Sensor 17": {
@@ -52,7 +52,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.79,
+        "pollutant_concentration": 15.17,
         "aq_advisory": false
     },
     "Sensor 15": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.02,
+        "pollutant_concentration": 11.43,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -68,15 +68,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 6.06,
+        "pollutant_concentration": 6.43,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 3.57,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.63,
+        "pollutant_concentration": 15.6,
         "aq_advisory": false
     },
     "Sensor 18": {
@@ -92,13 +92,13 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.63,
+        "pollutant_concentration": 15.6,
         "aq_advisory": false
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
-        "label": "High health risk",
-        "value": 8,
+        "label": "Moderate health risk",
+        "value": 5,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -114,7 +114,7 @@
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
         "label": "High health risk",
-        "value": 8,
+        "value": 7,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -122,7 +122,7 @@
     "Sensor 14": {
         "name": "West End Community Centre",
         "label": "Moderate health risk",
-        "value": 6,
+        "value": 5,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -137,16 +137,16 @@
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
-        "label": "High health risk",
-        "value": 7,
+        "label": "Moderate health risk",
+        "value": 6,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
-        "label": "High health risk",
-        "value": 7,
+        "label": "Moderate health risk",
+        "value": 6,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
