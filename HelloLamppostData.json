@@ -10,9 +10,9 @@
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
-        "value": 1,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.2,
+        "pollutant_concentration": 9.36,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Moderate health risk",
         "value": 5,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.73,
+        "pollutant_concentration": 21.08,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.19,
+        "pollutant_concentration": 12.66,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -49,8 +49,8 @@
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
-        "label": "Moderate health risk",
-        "value": 4,
+        "label": "Low health risk",
+        "value": 3,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.43,
+        "pollutant_concentration": 17.66,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -76,7 +76,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.35,
+        "pollutant_concentration": 13.73,
         "aq_advisory": false
     },
     "Sensor 8": {
@@ -98,7 +98,7 @@
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
         "label": "High health risk",
-        "value": 8,
+        "value": 7,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -113,8 +113,8 @@
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
-        "label": "Very high health risk",
-        "value": 11,
+        "label": "High health risk",
+        "value": 10,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -122,7 +122,7 @@
     "Sensor 14": {
         "name": "West End Community Centre",
         "label": "High health risk",
-        "value": 10,
+        "value": 9,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -137,8 +137,8 @@
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
-        "label": "High health risk",
-        "value": 7,
+        "label": "Moderate health risk",
+        "value": 6,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
