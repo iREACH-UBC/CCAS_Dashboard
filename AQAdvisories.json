@@ -11,23 +11,23 @@
     },
     {
       "Region": "Whistler, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Metro Vancouver - NW, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Metro Vancouver - NE, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Howe Sound, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Metro Vancouver - SE, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Metro Vancouver - SW, B.C.",
@@ -35,7 +35,7 @@
     },
     {
       "Region": "Central Fraser Valley, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "North Harrison Lake, B.C.",

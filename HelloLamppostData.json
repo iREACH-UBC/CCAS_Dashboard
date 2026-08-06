@@ -5,7 +5,7 @@
         "value": 3,
         "top_contributor": "NO2",
         "pollutant_concentration": 19.57,
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
@@ -21,7 +21,7 @@
         "value": 4,
         "top_contributor": "NO2",
         "pollutant_concentration": 25.89,
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 16": {
         "name": "Canadian Memorial United Church",
@@ -29,7 +29,7 @@
         "value": 3,
         "top_contributor": "NO2",
         "pollutant_concentration": 14.27,
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 9": {
         "name": "Bowen Island",
@@ -37,7 +37,7 @@
         "value": 3,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 17": {
         "name": "NVDPL Parkgate Library Branch",
@@ -45,7 +45,7 @@
         "value": 3,
         "top_contributor": "NO2",
         "pollutant_concentration": 14.48,
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
@@ -53,7 +53,7 @@
         "value": 3,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 15": {
         "name": "Marpole Oakridge Family Place",
@@ -85,7 +85,7 @@
         "value": 3,
         "top_contributor": "NO2",
         "pollutant_concentration": 14.81,
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 18": {
         "name": "Whistler Public Library",
@@ -101,7 +101,7 @@
         "value": 6,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
@@ -109,7 +109,7 @@
         "value": 7,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
@@ -117,7 +117,7 @@
         "value": 8,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 14": {
         "name": "West End Community Centre",
@@ -125,7 +125,7 @@
         "value": 5,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "MOD-00628": {
         "name": "MOD-00628",
@@ -133,7 +133,7 @@
         "value": 7,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
@@ -141,7 +141,7 @@
         "value": 6,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
@@ -149,6 +149,6 @@
         "value": 7,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     }
 }
