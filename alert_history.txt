@@ -257,3 +257,8 @@ Whistler, B.C.	082400	continued	2026-08-07 12:39:00	455
       North Harrison Lake, B.C.	082711-082721-082731	continued	2026-08-07 12:39:00	455
       Fraser Canyon - north including Lillooet, B.C.	083110	continued	2026-08-07 12:39:00	455
 Howe Sound, B.C.	082514	ended	2026-08-07 12:39:00	455
+Eastern Fraser Valley, B.C.	082720-082732	ended	2026-08-07 14:29:55	456
+Metro Vancouver - NW, B.C.	082511-082512-082520-082610-082620	ended	2026-08-07 14:29:56	457
+      Metro Vancouver - NE, B.C.	082513-082630-082711-082714	ended	2026-08-07 14:29:56	457
+      Metro Vancouver - SE, B.C.	082640-082713	ended	2026-08-07 14:29:56	457
+      Central Fraser Valley, B.C.	082711-082712-082721	ended	2026-08-07 14:29:56	457
