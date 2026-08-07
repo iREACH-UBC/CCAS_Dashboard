@@ -4,15 +4,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 41.98,
-        "aq_advisory": true
+        "pollutant_concentration": 34.09,
+        "aq_advisory": false
     },
     "Sensor 3": {
         "name": "Powell River Public Library",
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 46.9,
+        "pollutant_concentration": 41.76,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,61 +20,61 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 28.8,
-        "aq_advisory": true
+        "pollutant_concentration": 28.34,
+        "aq_advisory": false
     },
     "Sensor 16": {
         "name": "Canadian Memorial United Church",
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 19.69,
-        "aq_advisory": true
+        "pollutant_concentration": 22.2,
+        "aq_advisory": false
     },
     "Sensor 9": {
         "name": "Bowen Island",
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 51.56,
-        "aq_advisory": true
+        "pollutant_concentration": 55.59,
+        "aq_advisory": false
     },
     "Sensor 17": {
         "name": "NVDPL Parkgate Library Branch",
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 40.21,
-        "aq_advisory": true
+        "pollutant_concentration": 41.03,
+        "aq_advisory": false
     },
     "Sensor 6": {
         "name": "Squamish Nation Totem Hall",
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 35.79,
-        "aq_advisory": true
+        "pollutant_concentration": 36.8,
+        "aq_advisory": false
     },
     "Sensor 15": {
         "name": "Marpole Oakridge Family Place",
         "label": "Low health risk",
-        "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 10.26,
-        "aq_advisory": true
+        "value": 3,
+        "top_contributor": "O3",
+        "pollutant_concentration": 29.3,
+        "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.3,
+        "pollutant_concentration": 35.88,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Moderate health risk",
-        "value": 6,
+        "value": 5,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": true
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 42.06,
+        "pollutant_concentration": 43.09,
         "aq_advisory": true
     },
     "Sensor 18": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 42.06,
+        "pollutant_concentration": 43.09,
         "aq_advisory": true
     },
     "Sensor 5": {
@@ -100,16 +100,16 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 29.08,
-        "aq_advisory": true
+        "pollutant_concentration": 17.86,
+        "aq_advisory": false
     },
     "Sensor 12": {
         "name": "NVDPL Lynn Valley Branch",
         "label": "Moderate health risk",
-        "value": 5,
+        "value": 4,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": true
+        "aq_advisory": false
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
@@ -117,15 +117,15 @@
         "value": 5,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": true
+        "aq_advisory": false
     },
     "Sensor 14": {
         "name": "West End Community Centre",
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.15,
-        "aq_advisory": true
+        "pollutant_concentration": 28.62,
+        "aq_advisory": false
     },
     "MOD-00628": {
         "name": "MOD-00628",
@@ -141,14 +141,14 @@
         "value": 4,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": true
+        "aq_advisory": false
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Moderate health risk",
         "value": 4,
-        "top_contributor": "PM2.5",
-        "pollutant_concentration": "N/A",
-        "aq_advisory": true
+        "top_contributor": "O3",
+        "pollutant_concentration": 28.54,
+        "aq_advisory": false
     }
 }
