@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.93,
+        "pollutant_concentration": 16.27,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.79,
+        "pollutant_concentration": 10.55,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "NO2",
-        "pollutant_concentration": 24.71,
+        "pollutant_concentration": 25.72,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.04,
+        "pollutant_concentration": 21.18,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.87,
+        "pollutant_concentration": 15.51,
         "aq_advisory": false
     },
     "Sensor 17": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 14.98,
+        "pollutant_concentration": 14.04,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -52,15 +52,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.71,
+        "pollutant_concentration": 12.4,
         "aq_advisory": false
     },
     "Sensor 15": {
         "name": "Marpole Oakridge Family Place",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.0,
+        "pollutant_concentration": 20.67,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.28,
+        "pollutant_concentration": 9.43,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -76,7 +76,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.88,
+        "pollutant_concentration": 24.37,
         "aq_advisory": true
     },
     "Sensor 8": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.74,
+        "pollutant_concentration": 15.96,
         "aq_advisory": true
     },
     "Sensor 18": {
@@ -92,13 +92,13 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.74,
+        "pollutant_concentration": 15.96,
         "aq_advisory": true
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
@@ -124,15 +124,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.38,
+        "pollutant_concentration": 15.33,
         "aq_advisory": false
     },
     "MOD-00628": {
         "name": "MOD-00628",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.61,
+        "pollutant_concentration": 19.26,
         "aq_advisory": false
     },
     "Sensor 11": {
