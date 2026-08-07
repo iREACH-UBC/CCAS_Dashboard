@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.64,
+        "pollutant_concentration": 14.68,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.22,
+        "pollutant_concentration": 9.71,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "NO2",
-        "pollutant_concentration": 24.03,
+        "pollutant_concentration": 23.72,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 23.14,
+        "pollutant_concentration": 20.62,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.89,
+        "pollutant_concentration": 10.4,
         "aq_advisory": false
     },
     "Sensor 17": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.6,
+        "pollutant_concentration": 11.73,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -52,31 +52,31 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.73,
+        "pollutant_concentration": 11.59,
         "aq_advisory": false
     },
     "Sensor 15": {
         "name": "Marpole Oakridge Family Place",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.23,
+        "pollutant_concentration": 20.32,
         "aq_advisory": false
     },
     "Sensor 2": {
         "name": "Gillies Bay Public Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.8,
+        "pollutant_concentration": 8.71,
         "aq_advisory": false
     },
     "Sensor 7": {
         "name": "Pemberton Community Centre",
         "label": "Moderate health risk",
         "value": 4,
-        "top_contributor": "O3",
-        "pollutant_concentration": 17.45,
+        "top_contributor": "PM2.5",
+        "pollutant_concentration": "N/A",
         "aq_advisory": true
     },
     "Sensor 8": {
@@ -84,7 +84,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.03,
+        "pollutant_concentration": 14.74,
         "aq_advisory": true
     },
     "Sensor 18": {
@@ -92,7 +92,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.03,
+        "pollutant_concentration": 14.74,
         "aq_advisory": true
     },
     "Sensor 5": {
@@ -113,18 +113,18 @@
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 14": {
         "name": "West End Community Centre",
-        "label": "Low health risk",
-        "value": 3,
+        "label": "Moderate health risk",
+        "value": 4,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.07,
+        "pollutant_concentration": 18.67,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -132,7 +132,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.18,
+        "pollutant_concentration": 19.48,
         "aq_advisory": false
     },
     "Sensor 11": {
