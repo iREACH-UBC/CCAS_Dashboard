@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.38,
+        "pollutant_concentration": 17.83,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 7.63,
+        "pollutant_concentration": 9.02,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.98,
+        "pollutant_concentration": 17.52,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.04,
+        "pollutant_concentration": 12.17,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.74,
+        "pollutant_concentration": 10.95,
         "aq_advisory": false
     },
     "Sensor 17": {
@@ -44,7 +44,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 12.64,
+        "pollutant_concentration": 11.54,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.46,
+        "pollutant_concentration": 9.09,
         "aq_advisory": false
     },
     "Sensor 15": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 6.55,
+        "pollutant_concentration": 5.15,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.76,
+        "pollutant_concentration": 8.83,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -76,23 +76,23 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 31.12,
+        "pollutant_concentration": 31.2,
         "aq_advisory": false
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 13.83,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 11.78,
         "aq_advisory": false
     },
     "Sensor 18": {
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 13.83,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 11.78,
         "aq_advisory": false
     },
     "Sensor 5": {
@@ -100,7 +100,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.93,
+        "pollutant_concentration": 14.02,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -108,15 +108,15 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 15.34,
+        "pollutant_concentration": 15.5,
         "aq_advisory": false
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 10.03,
+        "pollutant_concentration": 14.06,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.64,
+        "pollutant_concentration": 19.52,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -132,7 +132,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.07,
+        "pollutant_concentration": 17.69,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -140,7 +140,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 15.64,
+        "pollutant_concentration": 15.77,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -148,7 +148,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.13,
+        "pollutant_concentration": 15.18,
         "aq_advisory": false
     }
 }
