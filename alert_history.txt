@@ -278,3 +278,6 @@ Fraser Canyon, B.C.	083110-083122	continued	2026-08-08 22:35:43	462
 Â Â     Nicola, B.C.	083121-083300	continued	2026-08-09 09:25:10	464
 Â Â     South Thompson, B.C.	083200	continued	2026-08-09 09:25:10	464
 Fraser Canyon, B.C.	083110-083122	continued	2026-08-09 09:25:11	465
+Fraser Canyon, B.C.	083110-083122	continued	2026-08-10 00:49:08	466
+Â Â     Nicola, B.C.	083121-083300	continued	2026-08-10 00:49:10	467
+Â Â     South Thompson, B.C.	083200	continued	2026-08-10 00:49:10	467
