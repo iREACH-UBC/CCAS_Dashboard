@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 8.2,
+        "pollutant_concentration": 13.15,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 34.09,
+        "pollutant_concentration": 37.59,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 16.51,
+        "pollutant_concentration": 16.72,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.37,
+        "pollutant_concentration": 19.93,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,7 +36,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 16.6,
+        "pollutant_concentration": 8.45,
         "aq_advisory": false
     },
     "Sensor 17": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.91,
+        "pollutant_concentration": 9.95,
         "aq_advisory": false
     },
     "Sensor 15": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 9.64,
+        "pollutant_concentration": 11.48,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 34.43,
+        "pollutant_concentration": 38.31,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -77,23 +77,23 @@
         "value": 5,
         "top_contributor": "PM2.5",
         "pollutant_concentration": "N/A",
-        "aq_advisory": false
+        "aq_advisory": true
     },
     "Sensor 8": {
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.67,
-        "aq_advisory": false
+        "pollutant_concentration": 8.82,
+        "aq_advisory": true
     },
     "Sensor 18": {
         "name": "Whistler Public Library",
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 11.67,
-        "aq_advisory": false
+        "pollutant_concentration": 8.82,
+        "aq_advisory": true
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
