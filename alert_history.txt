@@ -337,3 +337,10 @@ Whistler, B.C.	082400	continued	2026-08-15 04:21:45	496
       Fraser Canyon, B.C.	083110-083122	continued	2026-08-15 04:21:45	496
       Nicola, B.C.	083121-083300	continued	2026-08-15 04:21:45	496
       South Thompson, B.C.	083200	continued	2026-08-15 04:21:45	496
+Sunshine Coast - Gibsons to Earls Cove, B.C.	082310	issued	2026-08-15 12:18:51	497
+Whistler, B.C.	082400	continued	2026-08-15 12:18:51	497
+      Howe Sound, B.C.	082514	continued	2026-08-15 12:18:51	497
+      North Harrison Lake, B.C.	082711-082721-082731	continued	2026-08-15 12:18:51	497
+      Fraser Canyon, B.C.	083110-083122	continued	2026-08-15 12:18:51	497
+      Nicola, B.C.	083121-083300	continued	2026-08-15 12:18:51	497
+      South Thompson, B.C.	083200	continued	2026-08-15 12:18:51	497
