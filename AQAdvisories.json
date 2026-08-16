@@ -1,9 +1,9 @@
 {
-  "lastChecked": "2026-08-16 10:30:03",
+  "lastChecked": "2026-08-16 11:22:09",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
-      "ActiveAlert": true
+      "ActiveAlert": false
     },
     {
       "Region": "Sunshine Coast - Saltery Bay to Powell River, B.C.",
