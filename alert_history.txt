@@ -362,3 +362,4 @@ Sunshine Coast - Gibsons to Earls Cove, B.C.	082310	ended	2026-08-16 11:22:08	50
       North Harrison Lake, B.C.	082711-082721-082731	ended	2026-08-16 11:22:08	501
       Fraser Canyon - south including Lytton, B.C.	083122	ended	2026-08-16 11:22:08	501
 Â Â     Fraser Canyon - south including Lytton, B.C.	083122	issued	2026-08-16 11:22:09	502
+Eastern Fraser Valley, B.C.	082720-082732	ended	2026-08-16 13:20:52	503
