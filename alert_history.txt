@@ -352,3 +352,4 @@ Sunshine Coast - Gibsons to Earls Cove, B.C.	082310	continued	2026-08-16 02:24:2
       Fraser Canyon, B.C.	083110-083122	continued	2026-08-16 02:24:24	499
       Nicola, B.C.	083121-083300	continued	2026-08-16 02:24:24	499
       South Thompson, B.C.	083200	continued	2026-08-16 02:24:24	499
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	continued	2026-08-16 04:21:57	500
