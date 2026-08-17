@@ -380,3 +380,6 @@ Whistler, B.C.	082400	continued	2026-08-17 12:29:51	509
 Whistler, B.C.	082400	continued	2026-08-17 12:29:52	510
       Fraser Canyon - north including Lillooet, B.C.	083110	continued	2026-08-17 12:29:52	510
       South Thompson, B.C.	083200	continued	2026-08-17 12:29:52	510
+Whistler, B.C.	082400	continued	2026-08-17 13:22:58	511
+      Fraser Canyon - north including Lillooet, B.C.	083110	continued	2026-08-17 13:22:58	511
+      South Thompson, B.C.	083200	continued	2026-08-17 13:22:58	511
