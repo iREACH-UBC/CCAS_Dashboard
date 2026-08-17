@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.42,
+        "pollutant_concentration": 18.49,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -12,7 +12,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.3,
+        "pollutant_concentration": 13.03,
         "aq_advisory": false
     },
     "Sensor 13": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 23.67,
+        "pollutant_concentration": 23.44,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -28,7 +28,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 13.87,
+        "pollutant_concentration": 13.88,
         "aq_advisory": false
     },
     "Sensor 9": {
@@ -36,15 +36,15 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.56,
+        "pollutant_concentration": 21.38,
         "aq_advisory": false
     },
     "Sensor 17": {
         "name": "NVDPL Parkgate Library Branch",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "O3",
-        "pollutant_concentration": 9.62,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 11.93,
         "aq_advisory": false
     },
     "Sensor 6": {
@@ -52,7 +52,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 18.86,
+        "pollutant_concentration": 17.88,
         "aq_advisory": false
     },
     "Sensor 15": {
@@ -60,7 +60,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 17.76,
+        "pollutant_concentration": 18.67,
         "aq_advisory": false
     },
     "Sensor 2": {
@@ -68,7 +68,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 16.88,
+        "pollutant_concentration": 14.94,
         "aq_advisory": false
     },
     "Sensor 7": {
@@ -84,7 +84,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.93,
+        "pollutant_concentration": 30.61,
         "aq_advisory": true
     },
     "Sensor 18": {
@@ -92,7 +92,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 33.93,
+        "pollutant_concentration": 30.61,
         "aq_advisory": true
     },
     "Sensor 5": {
@@ -100,7 +100,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 14.76,
+        "pollutant_concentration": 14.86,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -108,7 +108,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.36,
+        "pollutant_concentration": 18.08,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -116,7 +116,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 7.46,
+        "pollutant_concentration": 8.07,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -124,15 +124,15 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.59,
+        "pollutant_concentration": 20.75,
         "aq_advisory": false
     },
     "MOD-00628": {
         "name": "MOD-00628",
         "label": "Low health risk",
         "value": 3,
-        "top_contributor": "O3",
-        "pollutant_concentration": 13.75,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 13.93,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -140,7 +140,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 17.97,
+        "pollutant_concentration": 16.9,
         "aq_advisory": false
     },
     "Sensor 4": {
@@ -148,7 +148,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.63,
+        "pollutant_concentration": 14.05,
         "aq_advisory": false
     }
 }
