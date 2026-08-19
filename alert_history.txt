@@ -393,3 +393,8 @@ Whistler, B.C.	082400	continued	2026-08-17 20:33:51	513
 Whistler, B.C.	082400	continued	2026-08-18 05:27:01	515
       Fraser Canyon - north including Lillooet, B.C.	083110	continued	2026-08-18 05:27:01	515
       South Thompson, B.C.	083200	continued	2026-08-18 05:27:01	515
+Â Â     Nicola, B.C.	083121-083300	continued	2026-08-18 17:23:55	516
+Â Â     Fraser Canyon - south including Lytton, B.C.	083122	ended	2026-08-18 17:23:55	516
+Fraser Canyon - north including Lillooet, B.C.	083110	continued	2026-08-18 17:23:57	517
+      South Thompson, B.C.	083200	continued	2026-08-18 17:23:57	517
+Whistler, B.C.	082400	ended	2026-08-18 17:23:57	517
