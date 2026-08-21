@@ -420,3 +420,5 @@ Nicola, B.C.	083121-083300	continued	2026-08-20 22:26:49	526
 Â Â     Fraser Canyon, B.C.	083110-083122	continued	2026-08-21 01:28:22	527
 Nicola, B.C.	083121-083300	continued	2026-08-21 06:34:56	528
       South Thompson, B.C.	083200	continued	2026-08-21 06:34:56	528
+Fraser Canyon - south including Lytton, B.C.	083122	issued	2026-08-21 12:23:47	529
+South Thompson, B.C.	083200	continued	2026-08-21 12:23:47	529
