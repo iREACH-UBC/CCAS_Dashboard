@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-08-21 12:23:47",
+  "lastChecked": "2026-08-21 13:21:21",
   "Advisories": [
     {
       "Region": "Sunshine Coast - Gibsons to Earls Cove, B.C.",
@@ -43,7 +43,7 @@
     },
     {
       "Region": "Eastern Fraser Valley, B.C.",
-      "ActiveAlert": false
+      "ActiveAlert": true
     },
     {
       "Region": "Fraser Canyon - north including Lillooet, B.C.",
