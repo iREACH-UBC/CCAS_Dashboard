@@ -439,3 +439,4 @@ Nicola, B.C.	083121-083300	continued	2026-08-22 16:20:37	538
 Fraser Canyon - north including Lillooet, B.C.	083110	ended	2026-08-22 16:20:37	538
 Â Â     Nicola, B.C.	083121-083300	continued	2026-08-22 16:20:38	539
 Â Â     South Thompson, B.C.	083200	continued	2026-08-22 16:20:38	539
+Fraser Canyon, B.C.	083110-083122	continued	2026-08-23 00:29:30	540
