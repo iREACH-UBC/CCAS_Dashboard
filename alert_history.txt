@@ -455,3 +455,4 @@ Fraser Canyon - north including Lillooet, B.C.	083110	issued	2026-08-24 11:23:55
 Nicola, B.C.	083121-083300	continued	2026-08-24 11:23:55	545
       Fraser Canyon - south including Lytton, B.C.	083122	continued	2026-08-24 11:23:55	545
       South Thompson, B.C.	083200	continued	2026-08-24 11:23:55	545
+Â Â     Eastern Fraser Valley, B.C.	082720-082732	issued	2026-08-24 14:29:11	546
