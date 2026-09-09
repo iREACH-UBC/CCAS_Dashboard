@@ -485,3 +485,13 @@ Nicola, B.C.	083121-083300	continued	2026-08-28 05:04:04	557
       South Thompson, B.C.	083200	continued	2026-08-28 05:04:04	557
 Nicola, B.C.	083121-083300	ended	2026-08-28 14:18:14	558
       South Thompson, B.C.	083200	ended	2026-08-28 14:18:14	558
+Fraser Canyon - north including Lillooet, B.C.	083110	continued	2026-09-09 09:24:32	481
+      Nicola, B.C.	083121-083300	continued	2026-09-09 09:24:32	481
+      South Thompson, B.C.	083200	continued	2026-09-09 09:24:32	481
+Nicola, B.C.	083121-083300	continued	2026-09-09 09:24:33	559
+      South Thompson, B.C.	083200	continued	2026-09-09 09:24:33	559
+Fraser Canyon - south including Lytton, B.C.	083122	ended	2026-09-09 09:24:33	559
+Nicola, B.C.	083121-083300	continued	2026-09-09 09:24:34	560
+      South Thompson, B.C.	083200	continued	2026-09-09 09:24:34	560
+Nicola, B.C.	083121-083300	ended	2026-09-09 09:24:35	561
+      South Thompson, B.C.	083200	ended	2026-09-09 09:24:35	561
