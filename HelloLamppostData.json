@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 31.45,
+        "pollutant_concentration": 23.38,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 23.7,
+        "pollutant_concentration": 23.77,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -97,10 +97,10 @@
     },
     "Sensor 5": {
         "name": "Chief Joe Mathias Centre",
-        "label": "Not Available",
-        "value": "N/A",
-        "top_contributor": "Sensor Currently Offline",
-        "pollutant_concentration": "N/A",
+        "label": "Low health risk",
+        "value": 1,
+        "top_contributor": "O3",
+        "pollutant_concentration": 16.21,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -108,7 +108,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 18.89,
+        "pollutant_concentration": 18.8,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.28,
+        "pollutant_concentration": 13.8,
         "aq_advisory": false
     },
     "MOD-00628": {
