@@ -3,8 +3,8 @@
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
         "value": 2,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 8.36,
+        "top_contributor": "O3",
+        "pollutant_concentration": 22.64,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "O3",
-        "pollutant_concentration": 27.26,
+        "pollutant_concentration": 28.57,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -108,7 +108,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 20.48,
+        "pollutant_concentration": 20.7,
         "aq_advisory": false
     },
     "Sensor 10": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 24.93,
+        "pollutant_concentration": 24.98,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -137,10 +137,10 @@
     },
     "Sensor 11": {
         "name": "NVDPL Capilano Branch",
-        "label": "Not Available",
-        "value": "N/A",
-        "top_contributor": "Sensor Currently Offline",
-        "pollutant_concentration": "N/A",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "O3",
+        "pollutant_concentration": 28.85,
         "aq_advisory": false
     },
     "Sensor 4": {
