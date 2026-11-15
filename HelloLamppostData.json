@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 17.52,
+        "pollutant_concentration": 12.44,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 12.19,
+        "pollutant_concentration": 11.02,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -108,14 +108,14 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.41,
+        "pollutant_concentration": 13.82,
         "aq_advisory": false
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
         "label": "Not Available",
         "value": "N/A",
-        "top_contributor": "Not Available",
+        "top_contributor": "Sensor Currently Offline",
         "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 10.72,
+        "pollutant_concentration": 25.42,
         "aq_advisory": false
     },
     "MOD-00628": {
