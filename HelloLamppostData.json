@@ -4,7 +4,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 22.5,
+        "pollutant_concentration": 21.36,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 23.8,
+        "pollutant_concentration": 19.38,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -100,7 +100,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 13.45,
+        "pollutant_concentration": 12.65,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -113,10 +113,10 @@
     },
     "Sensor 10": {
         "name": "Evelyne Saller Centre",
-        "label": "Not Available",
-        "value": "N/A",
-        "top_contributor": "Sensor Currently Offline",
-        "pollutant_concentration": "N/A",
+        "label": "Low health risk",
+        "value": 1,
+        "top_contributor": "O3",
+        "pollutant_concentration": 14.22,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 16.75,
+        "pollutant_concentration": 16.09,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -132,7 +132,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.65,
+        "pollutant_concentration": 17.06,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -145,10 +145,10 @@
     },
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
-        "label": "Not Available",
-        "value": "N/A",
-        "top_contributor": "Sensor Currently Offline",
-        "pollutant_concentration": "N/A",
+        "label": "Low health risk",
+        "value": 2,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 13.15,
         "aq_advisory": false
     }
 }
