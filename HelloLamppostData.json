@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 1,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.0,
+        "pollutant_concentration": 15.07,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -17,10 +17,10 @@
     },
     "Sensor 13": {
         "name": "VPL - Central Library",
-        "label": "Low health risk",
-        "value": 3,
-        "top_contributor": "NO2",
-        "pollutant_concentration": 20.23,
+        "label": "Not Available",
+        "value": "N/A",
+        "top_contributor": "Not Available",
+        "pollutant_concentration": "N/A",
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -100,7 +100,7 @@
         "label": "Low health risk",
         "value": 1,
         "top_contributor": "O3",
-        "pollutant_concentration": 9.93,
+        "pollutant_concentration": 10.05,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -116,7 +116,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 17.83,
+        "pollutant_concentration": 16.93,
         "aq_advisory": false
     },
     "Sensor 14": {
@@ -124,7 +124,7 @@
         "label": "Moderate health risk",
         "value": 4,
         "top_contributor": "O3",
-        "pollutant_concentration": 44.23,
+        "pollutant_concentration": 39.13,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -148,7 +148,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 15.52,
+        "pollutant_concentration": 15.61,
         "aq_advisory": false
     }
 }
