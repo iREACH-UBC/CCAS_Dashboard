@@ -2,9 +2,9 @@
     "Sensor 1": {
         "name": "West Vancouver Memorial Library",
         "label": "Low health risk",
-        "value": 3,
+        "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 19.61,
+        "pollutant_concentration": 18.49,
         "aq_advisory": false
     },
     "Sensor 3": {
@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.47,
+        "pollutant_concentration": 20.76,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -100,7 +100,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "O3",
-        "pollutant_concentration": 11.99,
+        "pollutant_concentration": 12.42,
         "aq_advisory": false
     },
     "Sensor 12": {
@@ -124,7 +124,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 21.1,
+        "pollutant_concentration": 19.55,
         "aq_advisory": false
     },
     "MOD-00628": {
@@ -132,7 +132,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.77,
+        "pollutant_concentration": 20.27,
         "aq_advisory": false
     },
     "Sensor 11": {
@@ -146,9 +146,9 @@
     "Sensor 4": {
         "name": "Lions Gate Rec Center",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 14.62,
+        "pollutant_concentration": 14.72,
         "aq_advisory": false
     }
 }
