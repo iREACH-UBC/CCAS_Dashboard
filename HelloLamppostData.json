@@ -18,9 +18,9 @@
     "Sensor 13": {
         "name": "VPL - Central Library",
         "label": "Low health risk",
-        "value": 2,
+        "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 16.77,
+        "pollutant_concentration": 14.36,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -132,7 +132,7 @@
         "label": "Low health risk",
         "value": 3,
         "top_contributor": "NO2",
-        "pollutant_concentration": 20.44,
+        "pollutant_concentration": 19.25,
         "aq_advisory": false
     },
     "Sensor 11": {
