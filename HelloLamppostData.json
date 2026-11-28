@@ -20,7 +20,7 @@
         "label": "Low health risk",
         "value": 2,
         "top_contributor": "NO2",
-        "pollutant_concentration": 18.42,
+        "pollutant_concentration": 18.97,
         "aq_advisory": false
     },
     "Sensor 16": {
@@ -129,10 +129,10 @@
     },
     "MOD-00628": {
         "name": "MOD-00628",
-        "label": "Not Available",
-        "value": "N/A",
-        "top_contributor": "Sensor Currently Offline",
-        "pollutant_concentration": "N/A",
+        "label": "Low health risk",
+        "value": 3,
+        "top_contributor": "NO2",
+        "pollutant_concentration": 22.96,
         "aq_advisory": false
     },
     "Sensor 11": {
